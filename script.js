@@ -366,13 +366,14 @@ Takım Kimliği:
 - Motto: STEM eğitimi ve liderlik odaklı bir gelişim yolculuğu.
 
 Kilit Kişiler:
-- Takım Mentorü: Ensar İnce
-- Takım Kaptanları: Levent Yiğit, Tuğra Kerem Kaya, İrem Ünver
-- Yazılım Ekibi: Oğuzhan Aşkın, İrem Ünver (Kaptan), Zeynep Sude Çakmak, Elif Başuslu
+- Takım Mentorü: Ensar İnce (Takım kurucusu ve baş mentor)
+- Takım Kaptanları: Levent Yiğit (Takım & Mekanik), Tuğra Kerem Kaya (Takım & PR), İrem Ünver (Yazılım)
+- Yazılım Ekibi: İrem Ünver (Kaptan), Oğuzhan Aşkın (Frontend/AI), Zeynep Sude Çakmak, Elif Başuslu
 - Mekanik Ekibi: Levent Yiğit (Kaptan), Tufan Gülmez, Arda Furkan Aygenoğlu, Muhammet Ali Sardoğan, Nilgün Hilal Karataş
 - PR Ekibi: Tuğra Kerem Kaya (Kaptan), Beray Erenel, Ege Göllü, Zeynep Sude Çakmak, Elif Başuslu, Nilgün Hilal Karataş
-- Tasarım & CAD: Eren Özgüler
-- İletişim: gulftechtr@gmail.com | Instagram: @gulftechtr
+- Tasarım & CAD: Eren Özgüler (Onshape uzmanı)
+- İletişim: gulftechtr@gmail.com | @gulftechtr (IG) | @gulftechtr (YT) | LinkedIn: Gulf Tech Team
+- Teknik Detaylar: Swerve Drive şasi, Java/WPILib, Onshape CAD, 2026 Web-tabanlı Scouting yazılımı.
 - Playlistler: "Tech the Halls", "Charge Up FEBRUARY"
 
 Görevin:
@@ -442,6 +443,19 @@ Görevin:
 
         let response = "";
 
+        if (/takım.*tanıt|ekib.*tanıt|üyeler|kimler var/i.test(msg)) {
+            response = `### 🦈 GulfTech #11392 Kadrosu\n\nEkibimiz tutkulu ve yetenekli üyelerden oluşuyor:\n\n` +
+                `**🎓 Mentorlar:**\n- ${team.mentor}\n\n` +
+                `**🔱 Kaptanlar:**\n- ${team.captains}\n\n` +
+                `**💻 Yazılım Ekibi:**\n- ${team.software.join('\n- ')}\n\n` +
+                `**⚙️ Mekanik Ekibi:**\n- ${team.mechanical.join('\n- ')}\n\n` +
+                `**🎨 PR Ekibi:**\n- ${team.pr.join('\n- ')}\n\n` +
+                `**📐 Tasarım & CAD:**\n- ${team.design.join('\n- ')}\n\n` +
+                `Takımımız 2024 sezonunda **Swerve Drive** ve **Gelişmiş Scouting** sistemleri üzerine yoğunlaşmıştır. 🚀`;
+            await delay(1500);
+            return response;
+        }
+
         // Multi-topic broad matching
         if (/selam|merhaba|hey|kimsin/i.test(msg)) {
             response += `Merhaba! 🦈 Ben **GulfTech AI**, takımıma özel bir dijital asistanım. Takım üyelerimizden, teknik projelerimizden veya playlistlerimizden bahsedebilirim.\n\n`;
@@ -452,31 +466,35 @@ Görevin:
         }
 
         if (/kaptan|captain|lider/i.test(msg)) {
-            response += `### 🔱 Kaptanlarımız\nTakımımızı **Levent Yiğit**, **Tuğra Kerem Kaya** ve **İrem Ünver** yönetiyor.\n\n`;
+            response += `### 🔱 Kaptanlarımız\nTakımımızı **Levent Yiğit**, **Tuğra Kerem Kaya** ve **İrem Ünver** yönetiyor. Bu üçlü takımın vizyonunu belirliyor.\n\n`;
         }
 
         if (/yazılım|kod|software|oğuzhan|irem/i.test(msg)) {
-            response += `### 💻 Yazılım Ekibi\nYazılım ekibimiz; **Oğuzhan Aşkın**, **İrem Ünver**, **Zeynep Sude Çakmak** ve **Elif Başuslu**'dan oluşuyor. 🤖\n\n`;
+             response += `### 💻 Yazılım Ekibi\nYazılım ekibimiz; **Oğuzhan Aşkın**, **İrem Ünver**, **Zeynep Sude Çakmak** ve **Elif Başuslu**'dan oluşuyor. Robotun tüm kontrol sistemleri bu ekibin elinden çıkıyor! 🤖\n\n`;
         }
 
         if (/mekanik|mechanical|tufan|arda|ali|nilgün/i.test(msg)) {
-            response += `### ⚙️ Mekanik Ekibi\nMekanik ekibimiz; **Levent Yiğit**, **Tufan Gülmez**, **Arda Furkan Aygenoğlu**, **Muhammet Ali Sardoğan** ve **Nilgün Hilal Karataş**'dan oluşur. 🛠️\n\n`;
+            response += `### ⚙️ Mekanik Ekibi\nMekanik ekibimiz; **Levent Yiğit**, **Tufan Gülmez**, **Arda Furkan Aygenoğlu**, **Muhammet Ali Sardoğan** ve **Nilgün Hilal Karataş**'dan oluşur. Robotun fiziksel inşasından sorumludurlar. 🛠️\n\n`;
         }
 
         if (/pr|halkla|beray|ege|sponsor/i.test(msg)) {
-            response += `### 🎨 PR Ekibi\nPR ekibimiz; **Tuğra Kerem Kaya**, **Beray Erenel**, **Ege Göllü**, **Zeynep Sude Çakmak**, **Elif Başuslu** ve **Nilgün Hilal Karataş**'dan oluşuyor. ✨\n\n`;
+            response += `### 🎨 PR Ekibi\nPR ekibimiz; **Tuğra Kerem Kaya**, **Beray Erenel**, **Ege Göllü**, **Zeynep Sude Çakmak**, **Elif Başuslu** ve **Nilgün Hilal Karataş**'dan oluşuyor. Sponsorluk ve marka yönetimine odaklanırlar. ✨\n\n`;
         }
 
-        if (/tasarım|cad|3d|eren/i.test(msg)) {
-            response += `### 📐 Tasarım & CAD\nTasarım süreçlerimizi **Eren Özgüler** yönetiyor. 📐\n\n`;
+        if (/tasarım|cad|3d|eren|onshape/i.test(msg)) {
+            response += `### 📐 Tasarım & CAD\nTasarım süreçlerimizi **Eren Özgüler** yönetiyor. Robotumuzun her parçası Onshape üzerinde özenle tasarlanır. 📐\n\n`;
         }
 
         if (/iletişim|ulaş|mail|telefon|numara/i.test(msg)) {
-            response += `### 📞 İletişim\nBize **gulftechtr@gmail.com** adresinden ulaşabilirsin. Telefonlarımız: +90 537 692 6558 / 544 552 0919. 🦈\n\n`;
+            response += `### 📞 İletişim\nBize **gulftechtr@gmail.com** adresinden ulaşabilirsin. Instagram/YouTube: **@gulftechtr**. Telefon: +90 537 692 6558. 🦈\n\n`;
         }
 
         if (/playlist|müzik|şarkı/i.test(msg)) {
-            response += `### 🎵 Müzik\nFavori playlistlerimiz: **Tech the Halls** ve **Charge Up FEBRUARY**. ⚡\n\n`;
+            response += `### 🎵 Müzik\nFavori playlistlerimiz: **Tech the Halls** ve **Charge Up FEBRUARY**. Spotify'da bizi takip etmeyi unutma! ⚡\n\n`;
+        }
+
+        if (/swerve|şasi|drive/i.test(msg)) {
+            response += `### 🏎️ Teknik Bilgi: Swerve Drive\nTakımımız bu sezon robotun hareket kabiliyetini artırmak için **Swerve Drive** sistemine geçti. Bu sistem, robotun 360 derece dönerek her yöne gitmesini sağlar. 🚀\n\n`;
         }
 
         // Broad fallback

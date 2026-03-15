@@ -5,13 +5,14 @@
 
 /* ---------- Variables ---------- */
 :root {
-    --bg-primary: #0a1628;
-    --bg-secondary: #0d1b30;
-    --bg-sidebar: #081422;
-    --bg-input: #0f1f38;
-    --bg-hover: rgba(0, 188, 212, 0.06);
-    --bg-active: rgba(0, 188, 212, 0.1);
-    --bg-card: rgba(13, 27, 48, 0.8);
+    --bg-primary: #050a14;
+    --bg-secondary: rgba(13, 27, 48, 0.6);
+    --bg-sidebar: rgba(8, 20, 34, 0.7);
+    --bg-input: rgba(15, 31, 56, 0.5);
+    --bg-hover: rgba(0, 188, 212, 0.08);
+    --bg-active: rgba(0, 188, 212, 0.12);
+    --bg-glass: rgba(255, 255, 255, 0.03);
+    --bg-card: rgba(13, 27, 48, 0.4);
 
     --text-primary: #e8ecf4;
     --text-secondary: #8a9bc0;
@@ -86,6 +87,42 @@ a:hover { text-decoration: underline; }
 /* ---------- Utility ---------- */
 .accent { color: var(--accent); }
 
+/* Liquid Glass Feature */
+.liquid-glass {
+    background: var(--bg-glass) !important;
+    backdrop-filter: blur(16px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.liquid-glass::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.03) 45%,
+        rgba(255, 255, 255, 0.08) 50%,
+        rgba(255, 255, 255, 0.03) 55%,
+        transparent 100%
+    );
+    transform: rotate(25deg);
+    animation: liquidShimmer 8s infinite linear;
+    pointer-events: none;
+}
+
+@keyframes liquidShimmer {
+    0% { transform: translateX(-30%) rotate(25deg); }
+    100% { transform: translateX(30%) rotate(25deg); }
+}
+
 /* ========================================
    SIDEBAR
    ======================================== */
@@ -93,7 +130,8 @@ a:hover { text-decoration: underline; }
     width: var(--sidebar-width);
     height: 100vh;
     background: var(--bg-sidebar);
-    border-right: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
@@ -127,17 +165,19 @@ a:hover { text-decoration: underline; }
 /* Specific class to clean logos with bad backgrounds */
 .clean-logo {
     background: transparent !important;
-    mix-blend-mode: screen !important; /* Removes absolute black perfectly */
-    filter: brightness(1.1) contrast(1.1) saturate(1.2);
+    mix-blend-mode: screen !important; 
+    filter: brightness(1.1) contrast(1.1) drop-shadow(0 0 15px var(--accent));
     transition: all 0.5s ease;
 }
 
 .brand-logo.clean-logo {
-    filter: brightness(1.2) contrast(1.2) drop-shadow(0 0 5px var(--accent));
+    filter: brightness(1.2) contrast(1.1) drop-shadow(0 0 8px var(--accent));
 }
 
 .welcome-mascot.clean-logo {
-    filter: brightness(1.1) contrast(1.1) drop-shadow(0 0 20px var(--accent));
+    width: 200px;
+    height: 200px;
+    filter: brightness(1.1) contrast(1.1) drop-shadow(0 0 25px var(--accent));
 }
 
 .welcome-mascot {
@@ -467,6 +507,16 @@ a:hover { text-decoration: underline; }
 .form-field select:focus {
     border-color: var(--accent);
     box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.1);
+}
+
+.message.ai .message-body {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-left: 3px solid var(--accent);
+    color: var(--text-primary);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .toggle-vis {
