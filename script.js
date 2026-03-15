@@ -368,12 +368,12 @@ Takım Kimliği:
 Kilit Kişiler:
 - Teknik Detaylar: Swerve Drive şasi (MK4i), Java/WPILib, Onshape CAD, Advancing Scouting sistemleri.
 - FRC 2025 REEFSCAPE: Resif yapıları, mercan skorlama ve derin tırmanış uzmanı.
-- FRC 2026 "CYBER-BAY" Vizyonu: Takımın bu sezonki ana hedefi tam otonom scouting, real-time robot telemetry ve AI destekli maç analizi.
+- FRC 2026 REBUILT: Haas sponsorluğundaki 2026 sezonu. Oyunun teması "geçmişi yeniden hayal etmek". Hub'lara yakıt (fuel) atma, kuleye (tower) tırmanma ve otonom dönem görevleri hakkında uzman.
 - Playlistler: "Tech the Halls", "Charge Up FEBRUARY"
 
 Görevin:
-- FRC 2025 REEFSCAPE ve FRC 2026 vizyonu hakkında detaylı bilgi ver.
-- 2026 hedeflerini (Otonom scouting, telemetry v2.0) her zaman vurgula.
+- FRC 2025 REEFSCAPE ve FRC 2026 REBUILT hakkında detaylı bilgi ver.
+- 2026'da "REBUILT" sezonunun getirdiği Hub ve Tower stratejilerini açıkla.
 - GulfTech ekibini her zaman "biz" olarak tanıt ve takım üyelerini görevleriyle eşle.
 - Türkçe/İngilizce yanıt ver, samimi ol, 🦈 kullan.
 - Markdown formatı kullan.`;
@@ -452,12 +452,13 @@ Görevin:
             return response;
         }
 
-        if (/2026|gelecek|plan|vizyon/i.test(msg)) {
-            response += `### 🚀 GulfTech 2026: Cyber-Bay Vizyonu\n\nTakımımızın 2026 hedefleri FRC standartlarını zorlamaya odaklanıyor:\n` +
-                `- **Otonom Scouting v2.0:** Görüntü işleme ile rakiplerin saha hareketlerini otomatik analiz eden bir sistem üzerine çalışıyoruz.\n` +
-                `- **Real-Time Telemetry:** Robotun verilerini anlık olarak pit alanına aktaran ve AI ile kestirimci bakım yapan bir arayüz geliştiriyoruz.\n` +
-                `- **Swerve Optimization:** MK4i modüllerimizi kendi tasarımımız olan hafif alaşımlı parçalarla daha da hızlandıracağız.\n\n` +
-                `Biz GulfTech olarak 2026'da sadece yarışmak değil, teknoloji üretmek istiyoruz! 🦈💎\n\n`;
+        if (/2026|rebuilt|game|oyun/i.test(msg)) {
+            response += `### 🏗️ FRC 2026: REBUILT (Presented by Haas)\n\n2026 sezonu teması **REBUILT** olarak açıklandı! "Geçmişi yeniden hayal etme" konseptiyle sahadayız:\n` +
+                `- **Active Hubs (Aktif Merkezler):** Robotlar topladıkları yakıtları (fuel) merkezlere atarak puan toplar.\n` +
+                `- **The Tower (Kule):** Maç sonunda robotların kuleye tırmanması (Level 1, 2 veya 3) en önemli puan kaynaklarından biridir.\n` +
+                `- **Otonom Dönem:** İlk 20 saniye robotlar merkezlere yakıt atarak ve tırmanış hazırlığı yaparak başlar.\n` +
+                `- **Yakıt Toplama:** Yakıtlar outpost'lardaki insan oyunculardan veya sahadaki depolardan toplanabilir.\n\n` +
+                `Biz GulfTech olarak 2026'da "REBUILT" sahasında en verimli yakıt sistemini kurmayı hedefliyoruz! 🦈💎\n\n`;
         }
 
         if (/reefscape|oyun|kural|2025/i.test(msg)) {
@@ -481,7 +482,7 @@ Görevin:
 
         // Broad fallback
         if (response === "") {
-            response = `Anlıyorum! 🦈 **FRC 2025 REEFSCAPE** stratejilerinden veya **2026 Cyber-Bay** hedeflerimizden bahsedebilirim. \n\nRobot mekaniği, yazılım veya takımızın vizyonu hakkında sormak istediğin bir şey var mı? ✨`;
+            response = `Anlıyorum! 🦈 **FRC 2025 REEFSCAPE** veya **2026 REBUILT** sezonu hakkında sormak istediğin bir şey var mı? \n\nRobot mekaniği, yakıt toplama stratejileri veya kule tırmanış detaylarından bahsedebilirim! ✨`;
         } else {
             response += `\nBaşka merak ettiğin bir FRC detayı var mı? 🦈`;
         }
