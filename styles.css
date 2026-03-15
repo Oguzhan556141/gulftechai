@@ -984,3 +984,93 @@ a:hover { text-decoration: underline; }
     opacity: 1;
     pointer-events: all;
 }
+
+/* ===== GULFTECH WEB EFFECTS REPLICATION ===== */
+
+/* Glassmorphism Sidebar */
+.sidebar {
+    background: rgba(8, 20, 34, 0.7) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+/* Moving Background Blobs */
+.bg-blobs {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background: radial-gradient(circle at center, #0a1628 0%, #050a14 100%);
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.2;
+    animation: blobFloat 25s infinite alternate ease-in-out;
+}
+
+.blob-1 {
+    width: 600px;
+    height: 600px;
+    background: #00bcd4;
+    top: -200px;
+    right: -200px;
+}
+
+.blob-2 {
+    width: 500px;
+    height: 500px;
+    background: #7c4dff;
+    bottom: -150px;
+    left: -150px;
+    animation-delay: -5s;
+    animation-duration: 30s;
+}
+
+.blob-3 {
+    width: 400px;
+    height: 400px;
+    background: #ffc107;
+    top: 30%;
+    left: 20%;
+    opacity: 0.1;
+    animation-delay: -10s;
+    animation-duration: 20s;
+}
+
+@keyframes blobFloat {
+    0% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(150px, 80px) scale(1.1); }
+    66% { transform: translate(-50px, 120px) scale(0.9); }
+    100% { transform: translate(50px, -50px) scale(1); }
+}
+
+/* Card Glows */
+.suggestion-chip {
+    background: rgba(13, 27, 48, 0.4) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+}
+
+.suggestion-chip:hover {
+    border-color: #ffd700 !important;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.4) !important;
+    transform: translateY(-5px) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* AI Message Glow */
+.message.ai .message-avatar img {
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5)) !important;
+}
+
+.message.ai .message-body {
+    border-left: 2px solid #ffd700;
+    padding-left: 15px;
+}

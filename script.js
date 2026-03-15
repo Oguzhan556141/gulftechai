@@ -438,8 +438,12 @@ Görevin:
             return `## 🌍 Gulf Tech Etkinlikleri\n\nTopluma katkı sağlamak ve kendimizi geliştirmek için birçok etkinlik düzenliyoruz:\n\n- **Çocuk Kasabası:** Geleceğin mühendislerine ilham vermek için Çocuk Kasabası'nda mentorluk yapıyoruz.\n- **İZAYDAŞ:** Sürdürülebilirlik vizyonumuz kapsamında atık yönetimi tesislerini ziyaret ettik.\n- **Takım Buluşmaları:** Diğer FRC takımlarıyla tecrübe paylaşımı yapıyoruz.\n\nAmacımız sadece robot yapmak değil, çevremizde bir fark yaratmak! 🦈`;
         }
 
-        if (/sponsor/i.test(msg)) {
-            return `## 🤝 Destekçilerimiz\n\nBize bu yolculukta inanan ve destek olan sponsorlarımız:\n\n- **${teamInfo.sponsors.join(', ')}**\n\nSizlerin desteğiyle daha büyük başarılara kulaç atıyoruz! ✨`;
+        if (/pr|halkla|ilişkil|sosyal\s*medya|sponsor/i.test(msg)) {
+            return `## 🎨 PR (Halkla İlişkiler) Ekibimiz\n\nTakımımızın sesini dünyaya duyuran ve destekçilerimizle bağ kuran ekibimiz:\n\n- **Tuğra Kerem Kaya (Kaptan)**\n- **Beray Erenel**\n- **Ege Göllü**\n- **Zeynep Sude Çakmak**\n- **Elif Başuslu**\n- **Nilgün Hilal Karataş**\n\nSponsorluk görüşmeleri, sosyal medya yönetimi ve takımın kurumsal kimliği bu ekibin elinden çıkıyor. 🦈✨`;
+        }
+
+        if (/tasarım|cad|3d|onshape|model/i.test(msg)) {
+            return `## 📐 Tasarım ve CAD Ekibi\n\nRobotumuzun dijital dünyadaki mimarı:\n\n- **Eren Özgüler**\n\nRobot inşa edilmeden önce her parça **Onshape** üzerinde Eren tarafından titizlikle planlanıyor. "Önce Tasarla, Sonra İnşa Et" prensibiyle çalışıyoruz. 🛠️`;
         }
 
         if (/mekanik|mechanical|robot/i.test(msg)) {
