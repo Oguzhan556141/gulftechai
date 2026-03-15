@@ -323,21 +323,34 @@
     async function callGeminiAPI(userMessage, history) {
         const systemPrompt = `Sen GulfTech AI'sın — FRC (FIRST Robotics Competition) Takımı #11392 "Gulf Tech" için geliştirilmiş bir yapay zeka asistanısın.
 
-Takım Bilgileri:
-- Takım Adı: Gulf Tech #11392
-- Konum: İzmit, Türkiye (İzmit Körfezi bölgesi)
+Takım Kimliği:
+- Takım Adı: Gulf Tech #11392 (İzmit Körfezi'nden ilham alır)
+- Konum: Gölcük BİLSEM, Kocaeli, Türkiye
 - Okul: Yücel Koyuncu Bilim ve Sanat Merkezi
-- Maskot: Köpek balığı (güç, özgüven ve potansiyeli simgeler)
-- Renkler: Koyu mavi/lacivert tonları ve sarı/altın
-- Alt takımlar: PR, Mekanik, Elektronik, Yazılım, Tasarım
-- FLL'den FRC'ye geçiş yapmış, 5 yıllık FLL deneyimi olan bir takım
-- Eskişehir'den başlayıp Avustralya'ya kadar uluslararası deneyim
+- Maskot: Köpek balığı (Özgüven, potansiyel ve azmi temsil eder)
+- Renkler: Mavi (derinlik ve kararlılık) ve Sarı (enerji)
+- Motto: STEM eğitimi ve liderlik odaklı bir gelişim yolculuğu.
+
+Kilit Kişiler:
+- Mentor: Ensar İnce
+- Kaptanlar: Levent Yiğit (Takım & Mekanik), Tuğra Kerem Kaya (Takım & PR), İrem Ünver (Yazılım)
+- Yazılım Ekibi: Oğuzhan Aşkın, İrem Ünver, Zeynep Sude Çakmak, Elif Başuslu
+- Mekanik Ekibi: Levent Yiğit, Tufan Gülmez, Arda Furkan Aygenoğlu, Muhammet Ali Sardoğan, Nilgün Hilal Karataş
+- PR Ekibi: Tuğra Kerem Kaya, Zeynep Sude Çakmak, Beray Erenel, Elif Başuslu, Ege Göllü, Nilgün Hilal Karataş
+- Tasarım: Eren Özgüler
+
+Deneyim ve Etkinlikler:
+- 5 yıllık FLL deneyimi üzerine kurulu bir FRC takımı.
+- Outreach: Çocuk Kasabası (Çocuk Kasabası) mentorlukları, İZAYDAŞ teknik gezisi (atık yönetimi).
+- Teknik: 2026 Scouting sistemi (web tabanlı), Swerve/Tank şasiler, gerçek zamanlı veri analizi.
+- Sponsorlar: Boeing, Fikret Yüksel Vakfı, TEKSA, Teknorova, Gölcük BİLSEM, Gölcük Belediyesi.
 
 Görevin:
 - FRC stratejisi, robotik, programlama (Java, C++, Python), mekanik tasarım, elektronik, scouting ve takım yönetimi konularında yardımcı ol
+- Takım üyeleri hakkında sorulan sorulara (isim isim) yanıt verebilirsin.
 - Türkçe ve İngilizce yanıt verebilirsin, kullanıcı hangi dilde yazarsa o dilde cevap ver
 - Teknik konularda detaylı ve kod örnekleriyle açıklama yap
-- Samimi ama profesyonel bir ton kullan
+- Samimi ama profesyonel bir ton kullan (Köpekbalığı emojisi 🦈 kullanmayı unutma)
 - Markdown formatı kullan (başlıklar, kod blokları, listeler)`;
 
         const contents = [];
@@ -389,286 +402,68 @@ Görevin:
     async function simulateResponse(userMessage) {
         const msg = userMessage.toLowerCase();
 
-        // Simulate thinking delay
-        await delay(800 + Math.random() * 1200);
-
-        // Knowledge base
-        const responses = {
-            greeting: `Merhaba! 🦈 Ben **GulfTech AI**, FRC Takımı **#11392 Gulf Tech** için geliştirilmiş yapay zeka asistanıyım.
-
-Size **robotik**, **FRC stratejisi**, **programlama**, **mekanik tasarım**, **scouting** ve daha birçok konuda yardımcı olabilirim.
-
-Ne hakkında konuşmak istersiniz?`,
-
-            gulftech: `## 🦈 Gulf Tech #11392
-
-**Gulf Tech**, İzmit Körfezi bölgesinden gelen bir **FRC (FIRST Robotics Competition)** takımıdır.
-
-### Temel Bilgiler
-- **Takım Numarası:** #11392
-- **Konum:** İzmit, Türkiye
-- **Okul:** Yücel Koyuncu Bilim ve Sanat Merkezi
-- **Maskot:** Köpek Balığı 🦈
-- **Renkler:** Koyu mavi/lacivert tonları + Sarı/Altın
-
-### Alt Takımlar
-- 🎨 **PR** — Halkla ilişkiler ve sosyal medya
-- ⚙️ **Mekanik** — Robot yapısı ve mekanizma tasarımı
-- ⚡ **Elektronik** — Devre ve sensör sistemleri
-- 💻 **Yazılım** — Robot programlama ve otonom kodlama
-- 📐 **Tasarım** — CAD ve 3D modelleme
-
-### Yolculuk
-Takım, **5 yıllık FLL (FIRST Lego League)** deneyimini FRC'ye taşımıştır. Eskişehir'den başlayan ve Avustralya'ya kadar uzanan uluslararası bir geçmişe sahiptirler.
-
-> *"FRC bizim için yalnızca bir yarışma değil, aynı zamanda bir öğrenme ve gelişim yolculuğudur."*`,
-
-            reefscape: `## 🎮 FRC 2025 — REEFSCAPE
-
-**REEFSCAPE**, FRC'nin 2025 sezonu oyunudur ve su altı/mercan resifi temalı bir oyundur.
-
-### Oyun Alanı
-- Okyanus temalı bir sahada oynanan 3v3 ittifak maçları
-- **Mercan (Coral)** ve **Yosun (Algae)** game piece'leri
-
-### Otonom Periyot (15 saniye)
-- Robot önceden programlanmış komutlarla hareket eder
-- Mercanları Reef yapısına yerleştirmek
-- Belirli bölgelere otonom hareket puanı
-
-### Teleop Periyot (2dk 15sn)
-- Sürücü kontrolüyle mercanları Reef yapısına yerleştirme
-- Yosunları işleme (Processor) veya ağa (Net) atma
-- Reef yapısının farklı seviyelerine (L1–L4) mercan yerleştirme
-
-### Endgame
-- Robotun **Cage** yapısına tırmanması (Shallow/Deep)
-- İttifak bonusları
-
-### Strateji İpuçları
-1. **Hızlı otonom** çok kritik — ilk mercanları erken yerleştirin
-2. **Çok seviyeli** scoring yapabilen robotlar avantajlı
-3. **Tırmanma mekanizması** endgame puanları için şart
-4. **Savunma stratejisi** ikinci ittifakta düşünülmeli`,
-
-            autonomous: `## 🤖 FRC Otonom Stratejileri
-
-Otonom periyot, maçın ilk **15 saniyesidir** ve robot tamamen önceden programlanmış komutlarla çalışır.
-
-### Temel Stratejiler
-
-#### 1. Basit Otonom (Güvenli)
-- Topluluk bölgesinden çıkış
-- Bir game piece'i scoring pozisyonuna bırakma
-\`\`\`java
-// Basit otonom örneği
-public void autonomousInit() {
-    autoTimer.reset();
-    autoTimer.start();
-}
-
-public void autonomousPeriodic() {
-    if (autoTimer.get() < 2.0) {
-        drive.arcadeDrive(0.5, 0); // İleri git
-    } else {
-        drive.arcadeDrive(0, 0); // Dur
-    }
-}
-\`\`\`
-
-#### 2. Çoklu Scoring Otonomu (Orta)
-- 2-3 game piece scoring
-- PathPlanner veya Trajectory kullanımı
-
-#### 3. Agresif Otonom (İleri)
-- 4+ game piece otonomu
-- Vision processing (Limelight/PhotonVision)
-- Dinamik yol düzeltme
-
-### Araçlar
-- **PathPlanner** — Otonom yol planlaması
-- **PhotonVision** — Görüntü işleme
-- **WPILib Trajectory** — Yörünge takibi
-- **REV/CTRE tuning** — Motor kontrolcü ayarları
-
-### İpuçları
-1. Otonomu **modüler** yazın — küçük komutlar birleştirin
-2. Her zaman bir **yedek basit otonom** hazır tutun
-3. **Odometry** kalibrasyonunu ihmal etmeyin
-4. Pratikte **en az 50+ test** çalıştırın`,
-
-            coding: `## 💻 FRC Robot Kodlama — Yaygın Hatalar
-
-Java ile FRC robot programlarken en sık yapılan hatalar:
-
-### 1. Motor Kontrolcü Yapılandırması
-\`\`\`java
-// ❌ YANLIŞ — Factory default unutulmuş
-TalonFX motor = new TalonFX(1);
-
-// ✅ DOĞRU
-TalonFX motor = new TalonFX(1);
-motor.getConfigurator().apply(new TalonFXConfiguration());
-\`\`\`
-
-### 2. Null Reference Hataları
-\`\`\`java
-// ❌ Subsystem'de init yapmadan kullanım
-private Joystick joystick;
-// robotInit'te joystick = new Joystick(0) unutulmuş
-
-// ✅ Constructor'da başlatma
-private final Joystick joystick = new Joystick(0);
-\`\`\`
-
-### 3. Otonom Zamanlama
-\`\`\`java
-// ❌ Thread.sleep kullanımı (YANLIŞ!)
-Thread.sleep(2000); // Robot'u kilitler!
-
-// ✅ Timer veya Command-based yapı
-new WaitCommand(2.0).andThen(new DriveCommand());
-\`\`\`
-
-### 4. PID Tuning
-- **P değeri** çok yüksek → Titreşim
-- **I değeri** kullanırken **iZone** ayarlayın
-- **D değeri** ile response hızını stabilize edin
-
-### 5. CAN Bus Hataları
-- Aynı CAN ID'yi iki cihaza vermek
-- CAN kablolarını doğru terminate etmemek
-- Firmware güncellemelerini yapmamak
-
-> **İpucu:** Her zaman **SmartDashboard / Shuffleboard** ile debug yapın!`,
-
-            scouting: `## 📊 FRC Scouting — Veri Toplama Rehberi
-
-Scouting, maç stratejisi için **kritik** önemdedir.
-
-### Toplanması Gereken Veriler
-
-#### Otonom
-- Başlangıç pozisyonu
-- Scoring sayısı ve pozisyonları
-- Topluluk bölgesinden çıkış (Evet/Hayır)
-
-#### Teleop
-- Game piece scoring (tip + konum)
-- Toplama hızı (Fast/Medium/Slow)
-- Savunma yapıyor mu?
-- Penaltı sayısı
-
-#### Endgame
-- Tırmanma tipi (Shallow/Deep/None)
-- Tırmanma süresi
-- Park etme
-
-### Scouting Yöntemleri
-
-| Yöntem | Avantaj | Dezavantaj |
-|--------|---------|------------|
-| **Kağıt** | Basit, batarya gerektirmez | Veri girişi yavaş |
-| **Tablet App** | Hızlı, standart | Şarj ihtiyacı |
-| **Web App** | Her cihazda çalışır | İnternet gerekli |
-| **QR Code** | Offline + hızlı transfer | Uygulama gerekli |
-
-### Araçlar
-- **The Blue Alliance API** — Takım verileri
-- **Statbotics** — EPA istatistikleri
-- **Google Sheets** — Basit analiz
-- **Tableau / Power BI** — Gelişmiş analiz
-
-### İpuçları
-1. Scout'çuları **eğitin** — tutarlılık önemli
-2. **Super scout** sistemi kullanın (subjektif gözlem)
-3. Verileri **gerçek zamanlı** analiz edin
-4. İttifak seçiminde **veriye dayalı** karar verin`,
-
-            cad: `## ⚙️ FRC Mekanik Tasarım — CAD Yazılımları
-
-### Önerilen CAD Yazılımları
-
-#### 1. Onshape (⭐ En Çok Önerilen)
-- **Ücretsiz** eğitim lisansı
-- **Bulut tabanlı** — kurulum gerektirmez
-- Takım çolaborasyonu mükemmel
-- FRC parça kütüphaneleri mevcut
-- **Link:** [onshape.com](https://www.onshape.com)
-
-#### 2. SolidWorks
-- Endüstri standardı
-- FIRST sponsorluğuyla **ücretsiz**
-- Çok güçlü simülasyon
-- Öğrenme eğrisi yüksek
-
-#### 3. Fusion 360
-- Autodesk'ten **ücretsiz** öğrenci lisansı
-- CAM entegrasyonu (CNC için)
-- Render kalitesi yüksek
-
-### FRC İçin CAD İpuçları
-
-1. **MKCad** kütüphanesini kullanın — hazır FRC parçaları
-2. **COTS parçaları** (WCP, REV, Andymark) modellerine bağlayın
-3. **Tolerans** hesaplarını unutmayın (±0.5mm)
-4. **Alt montaj** (sub-assembly) yapısı kurun:
-   - Drivetrain
-   - Intake
-   - Shooter/Scorer
-   - Climber
-5. Tasarımı **haftalık review** yapın
-
-### Robot Ağırlık Yönetimi
-- FRC limit: **56 kg (125 lbs)**
-- Hedef: **52 kg** — bumper ve batarya için pay bırakın
-- **Pocketing** ile parçaları hafifletin
-- Alüminyum vs Carbon Fiber karşılaştırması yapın`,
-
-            default: `Harika bir soru! 🦈
-
-Bu konuda size yardımcı olmaktan mutluluk duyarım. Ancak şu an **simüle modda** çalışıyorum, bu yüzden yanıtlarım sınırlı olabilir.
-
-**Tam AI deneyimi** için:
-1. Sol alttaki ⚙️ **Ayarlar** butonuna tıklayın
-2. Bir **Google Gemini API anahtarı** girin
-3. [Google AI Studio](https://aistudio.google.com/apikey) adresinden ücretsiz anahtar alabilirsiniz
-
-Simüle modda şu konularda yardımcı olabilirim:
-- 🦈 Gulf Tech #11392 hakkında bilgi
-- 🎮 FRC REEFSCAPE kuralları
-- 🤖 Otonom stratejileri
-- 💻 Robot kodlama ipuçları
-- 📊 Scouting yöntemleri
-- ⚙️ CAD ve mekanik tasarım
-
-Bu konulardan birini sormayı deneyin!`
+        // Expand simulated knowledge base with researched details
+        const teamInfo = {
+            members: {
+                mentors: ["Ensar İnce"],
+                software: ["İrem Ünver (Kaptan)", "Oğuzhan Aşkın", "Zeynep Sude Çakmak", "Elif Başuslu"],
+                mechanical: ["Levent Yiğit (Kaptan)", "Tufan Gülmez", "Arda Furkan Aygenoğlu", "Muhammet Ali Sardoğan", "Nilgün Hilal Karataş"],
+                pr: ["Tuğra Kerem Kaya (Kaptan)", "Zeynep Sude Çakmak", "Beray Erenel", "Elif Başuslu", "Ege Göllü", "Nilgün Hilal Karataş"],
+                design: ["Eren Özgüler"]
+            },
+            outreach: [
+                "Çocuk Kasabası (Çocuk Kasabası) ziyaretleri ve mentorlukları",
+                "İZAYDAŞ gezisi — Endüstriyel atık yönetimi ve geri dönüşüm eğitimi",
+                "Diğer FRC takımlarıyla ortak toplantılar ve bilgi paylaşımı"
+            ],
+            sponsors: ["Boeing", "Fikret Yüksel Vakfı", "TEKSA", "Teknorova", "Gölcük BİLSEM", "Gölcük Belediyesi"],
+            technical: {
+                scouting: "2026 için geliştirilen yeni web tabanlı sistem. Auto climb, ball scoring, swerve/tank analizi ve robot kondisyonu takibi yapabiliyor."
+            }
         };
 
-        // Match response
-        if (/merhaba|selam|hey|hi|hello|naber|nasıl/i.test(msg)) {
-            return responses.greeting;
-        }
-        if (/gulf\s*tech|takım|team|#11392|11392|hakkında|bilgi ver/i.test(msg)) {
-            return responses.gulftech;
-        }
-        if (/reefscape|reef|2025|oyun.*kural|game.*rule/i.test(msg)) {
-            return responses.reefscape;
-        }
-        if (/otonom|autonomous|auto.*strat/i.test(msg)) {
-            return responses.autonomous;
-        }
-        if (/kod|code|java|python|program|yazılım|software|hata|error|bug/i.test(msg)) {
-            return responses.coding;
-        }
-        if (/scout|veri.*topla|data.*collect|istatist/i.test(msg)) {
-            return responses.scouting;
-        }
-        if (/cad|solidworks|onshape|fusion|mekanik|tasarım|design|mech/i.test(msg)) {
-            return responses.cad;
+        // Simulate thinking delay
+        await delay(1000 + Math.random() * 1000);
+
+        // Open-ended response logic
+        if (/kaptan|captain|lider/i.test(msg)) {
+            return `## 🦈 Gulf Tech Kaptanları\n\nTakımımızda liderlik rollerini şu isimler paylaşıyor:\n\n- **Levent Yiğit:** Takım Kaptanı ve Mekanik Kaptanı\n- **Tuğra Kerem Kaya:** Takım Kaptanı ve PR Kaptanı\n- **İrem Ünver:** Yazılım Kaptanı\n\nBu ekip, takımın hem teknik hem de stratejik yönetimini sağlıyor.`;
         }
 
-        return responses.default;
+        if (/yazılım|yazılımcı|software|kod/i.test(msg)) {
+            return `## 💻 Yazılım Ekibimiz\n\nYazılım ekibimiz, robotun otonom ve teleop kontrollerinden sorumludur. Ekip üyelerimiz:\n\n- **İrem Ünver (Kaptan)**\n- **Oğuzhan Aşkın**\n- **Zeynep Sude Çakmak**\n- **Elif Başuslu**\n\nŞu an özellikle **2026 Scouting Sistemi** ve robotun kararlı çalışması üzerine odaklanmış durumdalar. 🤖`;
+        }
+
+        if (/etkinlik|outreach|ne yaptınız|gezi|ziyaret/i.test(msg)) {
+            return `## 🌍 Gulf Tech Etkinlikleri\n\nTopluma katkı sağlamak ve kendimizi geliştirmek için birçok etkinlik düzenliyoruz:\n\n- **Çocuk Kasabası:** Geleceğin mühendislerine ilham vermek için Çocuk Kasabası'nda mentorluk yapıyoruz.\n- **İZAYDAŞ:** Sürdürülebilirlik vizyonumuz kapsamında atık yönetimi tesislerini ziyaret ettik.\n- **Takım Buluşmaları:** Diğer FRC takımlarıyla tecrübe paylaşımı yapıyoruz.\n\nAmacımız sadece robot yapmak değil, çevremizde bir fark yaratmak! 🦈`;
+        }
+
+        if (/sponsor/i.test(msg)) {
+            return `## 🤝 Destekçilerimiz\n\nBize bu yolculukta inanan ve destek olan sponsorlarımız:\n\n- **${teamInfo.sponsors.join(', ')}**\n\nSizlerin desteğiyle daha büyük başarılara kulaç atıyoruz! ✨`;
+        }
+
+        if (/mekanik|mechanical|robot/i.test(msg)) {
+            return `## ⚙️ Mekanik ve Tasarım\n\nRobotumuzun kalbi burada atıyor! Mekanik ekibimiz:\n\n- **Kaptan:** Levent Yiğit\n- **Üyeler:** Tufan, Arda Furkan, Muhammet Ali, Nilgün Hilal.\n\nRobot tasarımında **Onshape** gibi CAD yazılımları kullanıyoruz ve şu an **2025 REEFSCAPE** için en verimli mekanizmaları test ediyoruz. 📐`;
+        }
+
+        if (/scout/i.test(msg)) {
+            return `## 📊 Scouting Sistemimiz\n\nVeri odaklı kararlar almak için geliştirdiğimiz **2026 Scouting Sistemi** oldukça güçlü:\n\n- **Web tabanlı:** Her yerden erişilebilir.\n- **Kapsam:** Auto başarısı, tırmanma, scoring ve robotun sürücü performansı.\n- **Analiz:** Swerve veya Tank şasi gibi teknik detayları gerçek zamanlı analiz ediyoruz.\n\nİttifak seçimlerinde en büyük yardımcımız bu sistem! 🦈`;
+        }
+
+        if (/merhaba|selam|hey|hi|hello|naber|nasıl/i.test(msg)) {
+            return `Merhaba! 🦈 Ben **GulfTech AI**. Gulf Tech #11392'nin ruhunu yansıtan bir rehberim. \n\nBana takımın **yolculuğundan**, **kaptanlardan**, **outreach projelerimizden** veya **2026 scouting sistemimizden** bahsedebilirsin. Bugün neyi merak ediyorsun?`;
+        }
+
+        if (/mentor/i.test(msg)) {
+            return `## 🎓 Mentorlarımız\n\nBize yol gösteren, tecrübeleriyle ufkumuzu açan baş mentorumuz:\n\n- **Ensar İnce**\n\nMental ve teknik her konuda desteğini bizden esirgemiyor! 🦈`;
+        }
+
+        if (/gulf\s*tech|takım|team|#11392|11392|hakkında|bilgi ver/i.test(msg)) {
+            return `## 🦈 Gulf Tech #11392\n\nBiz İzmit Körfezi'nden çıkan, enerjisini denizden, azmini köpekbalığı maskotundan alan bir **FRC** takımıyız. **Gölcük BİLSEM** bünyesinde faaliyet gösteriyoruz.\n\n5 yıllık FLL deneyimimizi FRC'nin devasa dünyasına taşıdık. Sadece robot kopyalamıyor, kendi teknolojilerimizi (örneğin Scouting sistemi) üretiyoruz. \n\n**Hakkımızda daha fazla bilgi almak istersen:** Etkinliklerimizden, sponsorlarımızdan veya teknik ekibimizden bahsedebilirim!`;
+        }
+
+        // Generic informative response for everything else
+        return `Güzel bir konu! 🦈 Bu konuda daha derinlemesine konuşabiliriz. \n\nŞu an **simüle modda** olduğum için belirli anahtar kelimelerle daha iyi yanıt verebiliyorum. Ama istersen bana **yazılım ekibini**, **sponsorlarımızı** veya **robot tasarım sürecimizi** sorabilirsin.\n\nEğer gerçek bir yapay zeka deneyimi istersen Ayarlar'dan **Gemini API** anahtarını ekleyebilirsin! ✨`;
     }
 
     // ===== MESSAGE RENDERING =====
