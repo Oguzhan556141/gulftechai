@@ -121,6 +121,20 @@ a:hover { text-decoration: underline; }
     object-fit: contain;
     filter: drop-shadow(0 0 8px rgba(0, 188, 212, 0.3));
     transition: transform 0.3s ease;
+    mix-blend-mode: lighten; /* Removes black/dark background parts */
+}
+
+/* Specific class to clean logos with bad backgrounds */
+.clean-logo {
+    background: transparent !important;
+    mix-blend-mode: screen !important; /* Good for removing dark boxes */
+    filter: contrast(110%) brightness(110%) !important;
+}
+
+/* If the background is light (checkered grid), we can use this */
+.remove-grid {
+    mix-blend-mode: lighten;
+    filter: contrast(150%) brightness(95%);
 }
 
 .brand:hover .brand-logo {
