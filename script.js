@@ -366,19 +366,13 @@ Takım Kimliği:
 - Motto: STEM eğitimi ve liderlik odaklı bir gelişim yolculuğu.
 
 Kilit Kişiler:
-- Takım Mentorü: Ensar İnce (Takım kurucusu ve baş mentor)
-- Takım Kaptanları: Levent Yiğit (Takım & Mekanik), Tuğra Kerem Kaya (Takım & PR), İrem Ünver (Yazılım)
-- Yazılım Ekibi: İrem Ünver (Kaptan), Oğuzhan Aşkın (Frontend/AI), Zeynep Sude Çakmak, Elif Başuslu
-- Mekanik Ekibi: Levent Yiğit (Kaptan), Tufan Gülmez, Arda Furkan Aygenoğlu, Muhammet Ali Sardoğan, Nilgün Hilal Karataş
-- PR Ekibi: Tuğra Kerem Kaya (Kaptan), Beray Erenel, Ege Göllü, Zeynep Sude Çakmak, Elif Başuslu, Nilgün Hilal Karataş
-- Tasarım & CAD: Eren Özgüler (Onshape uzmanı)
-- İletişim: gulftechtr@gmail.com | @gulftechtr (IG) | @gulftechtr (YT) | LinkedIn: Gulf Tech Team
-- Teknik Detaylar: Swerve Drive şasi, Java/WPILib, Onshape CAD, 2026 Web-tabanlı Scouting yazılımı.
+- Teknik Detaylar: Swerve Drive şasi (MK4i), Java/WPILib, Onshape CAD, Advancing Scouting sistemleri, Gerçek zamanlı veri analizi.
+- FRC Bilgisi: 2025 REEFSCAPE sezonu uzmanı. Resif yapıları, mercan (coral) skorlama, yosun (algae) temizleme ve tırmanma (climb) görevlerinde detaylı strateji bilgisi.
 - Playlistler: "Tech the Halls", "Charge Up FEBRUARY"
 
 Görevin:
-- Tüm bu detayları ezbere bil ve tek soruda birden fazla takımdan bahsedebil.
-- Üye adlarını gördüğünde görevlerini hemen hatırla. Örn: "Oğuzhan Aşkın yazılımdadır."
+- FRC stratejisi, robot mekaniği (asansörler, intake sistemleri, swerve), scouting ve yazılım (PathPlanner, Command-based programming) konularında derinlemesine bilgi ver.
+- GulfTech ekibini her zaman "biz" olarak tanıt ve takım üyelerini görevleriyle eşle.
 - Türkçe/İngilizce yanıt ver, samimi ol, 🦈 kullan.
 - Markdown formatı kullan.`;
 
@@ -456,52 +450,30 @@ Görevin:
             return response;
         }
 
-        // Multi-topic broad matching
-        if (/selam|merhaba|hey|kimsin/i.test(msg)) {
-            response += `Merhaba! 🦈 Ben **GulfTech AI**, takımıma özel bir dijital asistanım. Takım üyelerimizden, teknik projelerimizden veya playlistlerimizden bahsedebilirim.\n\n`;
-        }
-
-        if (/mentor|ensar/i.test(msg)) {
-            response += `### 🎓 Mentorlarımız\nBaş mentorumuz **Ensar İnce**, bize hem teknik hem de mental olarak yol gösteriyor. 🦈\n\n`;
-        }
-
-        if (/kaptan|captain|lider/i.test(msg)) {
-            response += `### 🔱 Kaptanlarımız\nTakımımızı **Levent Yiğit**, **Tuğra Kerem Kaya** ve **İrem Ünver** yönetiyor. Bu üçlü takımın vizyonunu belirliyor.\n\n`;
-        }
-
-        if (/yazılım|kod|software|oğuzhan|irem/i.test(msg)) {
-             response += `### 💻 Yazılım Ekibi\nYazılım ekibimiz; **Oğuzhan Aşkın**, **İrem Ünver**, **Zeynep Sude Çakmak** ve **Elif Başuslu**'dan oluşuyor. Robotun tüm kontrol sistemleri bu ekibin elinden çıkıyor! 🤖\n\n`;
-        }
-
-        if (/mekanik|mechanical|tufan|arda|ali|nilgün/i.test(msg)) {
-            response += `### ⚙️ Mekanik Ekibi\nMekanik ekibimiz; **Levent Yiğit**, **Tufan Gülmez**, **Arda Furkan Aygenoğlu**, **Muhammet Ali Sardoğan** ve **Nilgün Hilal Karataş**'dan oluşur. Robotun fiziksel inşasından sorumludurlar. 🛠️\n\n`;
-        }
-
-        if (/pr|halkla|beray|ege|sponsor/i.test(msg)) {
-            response += `### 🎨 PR Ekibi\nPR ekibimiz; **Tuğra Kerem Kaya**, **Beray Erenel**, **Ege Göllü**, **Zeynep Sude Çakmak**, **Elif Başuslu** ve **Nilgün Hilal Karataş**'dan oluşuyor. Sponsorluk ve marka yönetimine odaklanırlar. ✨\n\n`;
-        }
-
-        if (/tasarım|cad|3d|eren|onshape/i.test(msg)) {
-            response += `### 📐 Tasarım & CAD\nTasarım süreçlerimizi **Eren Özgüler** yönetiyor. Robotumuzun her parçası Onshape üzerinde özenle tasarlanır. 📐\n\n`;
-        }
-
-        if (/iletişim|ulaş|mail|telefon|numara/i.test(msg)) {
-            response += `### 📞 İletişim\nBize **gulftechtr@gmail.com** adresinden ulaşabilirsin. Instagram/YouTube: **@gulftechtr**. Telefon: +90 537 692 6558. 🦈\n\n`;
-        }
-
-        if (/playlist|müzik|şarkı/i.test(msg)) {
-            response += `### 🎵 Müzik\nFavori playlistlerimiz: **Tech the Halls** ve **Charge Up FEBRUARY**. Spotify'da bizi takip etmeyi unutma! ⚡\n\n`;
+        if (/reefscape|oyun|kural|2025/i.test(msg)) {
+            response += `### 🎮 FRC 2025: REEFSCAPE\n\n**REEFSCAPE** sezonunda odaklanmamız gereken ana noktalar:\n` +
+                `- **Coral (Mercan):** Resif'in (Reef) 4 farklı seviyesine mercan yerleştirerek puan kazanılır. L4 en yüksek puanı verir.\n` +
+                `- **Algae (Yosun):** Resif üzerindeki yosunları temizleyerek 'Processor'a atmak veya 'Barge'a ulaştırmak önemlidir.\n` +
+                `- **Endgame:** Maç sonunda robotların 'Barge'a tırmanması (Deep veya Shallow climb) kritik puan değerindedir.\n\n` +
+                `Biz GulfTech olarak bu sene hızlı bir asansör sistemi ve stabil bir Swerve şasisi ile sahada fark yaratmayı hedefliyoruz! 🚀\n\n`;
         }
 
         if (/swerve|şasi|drive/i.test(msg)) {
-            response += `### 🏎️ Teknik Bilgi: Swerve Drive\nTakımımız bu sezon robotun hareket kabiliyetini artırmak için **Swerve Drive** sistemine geçti. Bu sistem, robotun 360 derece dönerek her yöne gitmesini sağlar. 🚀\n\n`;
+            response += `### 🏎️ Swerve Drive (MK4i)\nTakımımız **MK4i Swerve** modüllerini kullanıyor. Avantajlarımız:\n` +
+                `- **360° Manevra Kabiliyeti:** Dar alanlarda rakipleri kolayca ekarte edebiliyoruz.\n` +
+                `- **Fırçasız Motorlar:** CANcoder ve Falcon/Kraken motorlarla maksimum tork ve hız.\n` +
+                `- **Yazılım Kontrolü:** WPILib ve PathPlanner ile otonom dönemde milimetrik hassasiyet. 🚀\n\n`;
+        }
+
+        if (/scout|veri|analiz/i.test(msg)) {
+            response += `### 📊 Gelişmiş Scouting\nScouting ekibimiz, rakip analizlerini gerçek zamanlı yaparak maç stratejilerimizi güncelliyor. 2026 için hedefimiz, veriyi doğrudan tableau veya özel web panellerimize aktaran tamamen otonom bir sistem! 📈\n\n`;
         }
 
         // Broad fallback
         if (response === "") {
-            response = `Anlıyorum! 🦈 Bu konu hakkında da konuşabiliriz. Takım üyelerimizden (Oğuzhan, İrem, Levent, Tuğra, Eren...) veya projelerimizden sormak istediğin bir şey var mı? \n\nŞu an **simüle modda** olsam da Ayarlar kısmından **Gemini API** eklersen çok daha akıllı cevaplar verebilirim! ✨`;
+            response = `Anlıyorum! 🦈 FRC stratejileri, robot bileşenleri veya **GulfTech** ekibimiz hakkında sormak istediğin başka bir şey var mı? \n\nYeni **REEFSCAPE** oyun kurallarından veya teknik detaylarımızdan bahsedebilirim! ✨`;
         } else {
-            response += `\nBaşka merak ettiğin bir şey var mı? 🦈`;
+            response += `\nBaşka hangi FRC bilgisini öğrenmek istersin? 🦈`;
         }
 
         await delay(1000 + Math.random() * 1000);
