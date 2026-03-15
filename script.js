@@ -305,8 +305,15 @@
             }
 
             typingEl.remove();
+            
+            // Add message placeholder for typewriter
+            const msgEl = appendMessage('ai', '', true);
+            const bodyEl = msgEl.querySelector('.message-body');
+            
+            // Typewriter effect
+            await typeWriter(response, bodyEl);
+            
             conversations[currentConvId].messages.push({ role: 'ai', content: response });
-            appendMessage('ai', response);
         } catch (err) {
             typingEl.remove();
             const errorMsg = '⚠️ Bir hata oluştu: ' + err.message;
@@ -317,6 +324,20 @@
         isResponding = false;
         saveConversation();
         scrollToBottom();
+    }
+
+    // Typewriter logic
+    async function typeWriter(text, element) {
+        let currentText = '';
+        const words = text.split(' ');
+        
+        for (let i = 0; i < words.length; i++) {
+            currentText += words[i] + (i === words.length - 1 ? '' : ' ');
+            element.innerHTML = renderMarkdown(currentText);
+            scrollToBottom();
+            // Speed control
+            await delay(10 + Math.random() * 30);
+        }
     }
 
     // ===== GEMINI API =====
@@ -345,13 +366,16 @@ Deneyim ve Etkinlikler:
 - Teknik: 2026 Scouting sistemi (web tabanlı), Swerve/Tank şasiler, gerçek zamanlı veri analizi.
 - Sponsorlar: Boeing, Fikret Yüksel Vakfı, TEKSA, Teknorova, Gölcük BİLSEM, Gölcük Belediyesi.
 
+- İletişim: gulftechtr@gmail.com | Instagram: @gulftechtr | LinkedIn: Gulf Tech Team | YouTube: @gulftechtr
+- Telefon: +90 (537) 692 6558, +90 (544) 552 0919
+- Playlistler: "Tech the Halls" (Yılbaşı & Mühendislik), "Charge Up FEBRUARY" (Yüksek enerji/motivasyon)
+
 Görevin:
-- FRC stratejisi, robotik, programlama (Java, C++, Python), mekanik tasarım, elektronik, scouting ve takım yönetimi konularında yardımcı ol
-- Takım üyeleri hakkında sorulan sorulara (isim isim) yanıt verebilirsin.
-- Türkçe ve İngilizce yanıt verebilirsin, kullanıcı hangi dilde yazarsa o dilde cevap ver
-- Teknik konularda detaylı ve kod örnekleriyle açıklama yap
-- Samimi ama profesyonel bir ton kullan (Köpekbalığı emojisi 🦈 kullanmayı unutma)
-- Markdown formatı kullan (başlıklar, kod blokları, listeler)`;
+- FRC stratejisi, robotik, programlama, mekanik ve iletişim konularında yardımcı ol.
+- Takım üyeleri ve iletişim kanalları hakkında detaylı bilgi ver.
+- Türkçe/İngilizce yanıt ver, samimi ol, 🦈 kullan.
+- Yanıtları tane tane (typewriter) veriyormuşsun gibi düşün (kod bunu yapacak).
+- Markdown formatı kullan.`;
 
         const contents = [];
 
@@ -454,20 +478,16 @@ Görevin:
             return `## 📊 Scouting Sistemimiz\n\nVeri odaklı kararlar almak için geliştirdiğimiz **2026 Scouting Sistemi** oldukça güçlü:\n\n- **Web tabanlı:** Her yerden erişilebilir.\n- **Kapsam:** Auto başarısı, tırmanma, scoring ve robotun sürücü performansı.\n- **Analiz:** Swerve veya Tank şasi gibi teknik detayları gerçek zamanlı analiz ediyoruz.\n\nİttifak seçimlerinde en büyük yardımcımız bu sistem! 🦈`;
         }
 
-        if (/merhaba|selam|hey|hi|hello|naber|nasıl/i.test(msg)) {
-            return `Merhaba! 🦈 Ben **GulfTech AI**. Gulf Tech #11392'nin ruhunu yansıtan bir rehberim. \n\nBana takımın **yolculuğundan**, **kaptanlardan**, **outreach projelerimizden** veya **2026 scouting sistemimizden** bahsedebilirsin. Bugün neyi merak ediyorsun?`;
+        if (/playlist|müzik|şarkı|dinle/i.test(msg)) {
+            return `## 🎵 Gulf Tech Playlistleri\n\nRobot yaparken motivasyonumuzu yüksek tutan favori listelerimiz:\n\n- **Tech the Halls:** Yılbaşı ruhunu mühendislik vizyonumuzla birleştirdiğimiz özel listemiz. 🎄⚙️\n- **Charge Up FEBRUARY:** Şubat ayının yoğun çalışma temposunda enerjimizi zirvede tutan yüksek tempolu parçalar. ⚡🚀\n\nBu listeler Spotify hesabımızda mevcut, robot kodlarken mutlaka dinlemelisin! 🦈`;
         }
 
-        if (/mentor/i.test(msg)) {
-            return `## 🎓 Mentorlarımız\n\nBize yol gösteren, tecrübeleriyle ufkumuzu açan baş mentorumuz:\n\n- **Ensar İnce**\n\nMental ve teknik her konuda desteğini bizden esirgemiyor! 🦈`;
-        }
-
-        if (/gulf\s*tech|takım|team|#11392|11392|hakkında|bilgi ver/i.test(msg)) {
-            return `## 🦈 Gulf Tech #11392\n\nBiz İzmit Körfezi'nden çıkan, enerjisini denizden, azmini köpekbalığı maskotundan alan bir **FRC** takımıyız. **Gölcük BİLSEM** bünyesinde faaliyet gösteriyoruz.\n\n5 yıllık FLL deneyimimizi FRC'nin devasa dünyasına taşıdık. Sadece robot kopyalamıyor, kendi teknolojilerimizi (örneğin Scouting sistemi) üretiyoruz. \n\n**Hakkımızda daha fazla bilgi almak istersen:** Etkinliklerimizden, sponsorlarımızdan veya teknik ekibimizden bahsedebilirim!`;
+        if (/iletişim|ulaş|telefon|numara|sosyal\s*medya|instagram|mail|e-posta/i.test(msg)) {
+            return `## 📞 Bize Ulaşın\n\nGulf Tech #11392 ekibiyle her zaman iletişimde kalabilirsin:\n\n### Sosyal Medya\n- **Instagram:** [@gulftechtr](https://www.instagram.com/gulftechtr/)\n- **LinkedIn:** [Gulf Tech Team](https://www.linkedin.com/in/gulf-tech-280625398/)\n- **YouTube:** [@gulftechtr](https://www.youtube.com/@gulftechtr)\n\n### İletişim Kanalları\n- **E-posta:** gulftechtr@gmail.com\n- **Telefon 1:** +90 (537) 692 6558\n- **Telefon 2:** +90 (544) 552 0919\n\nSoruların varsa çekinmeden yazabilirsin! 🦈✨`;
         }
 
         // Generic informative response for everything else
-        return `Güzel bir konu! 🦈 Bu konuda daha derinlemesine konuşabiliriz. \n\nŞu an **simüle modda** olduğum için belirli anahtar kelimelerle daha iyi yanıt verebiliyorum. Ama istersen bana **yazılım ekibini**, **sponsorlarımızı** veya **robot tasarım sürecimizi** sorabilirsin.\n\nEğer gerçek bir yapay zeka deneyimi istersen Ayarlar'dan **Gemini API** anahtarını ekleyebilirsin! ✨`;
+        return `Güzel bir konu! 🦈 Bu konuda daha derinlemesine konuşabiliriz. \n\nŞu an **simüle modda** olduğum için belirli anahtar kelimelerle daha iyi yanıt verebiliyorum. Ama istersen bana **yazılım ekibini**, **sponsorlarımızı**, **playlistlerimizi** veya **iletişim kanallarımızı** sorabilirsin.\n\nEğer gerçek bir yapay zeka deneyimi istersen Ayarlar'dan **Gemini API** anahtarını ekleyebilirsin! ✨`;
     }
 
     // ===== MESSAGE RENDERING =====
@@ -492,6 +512,7 @@ Görevin:
         `;
 
         chatMessages.appendChild(div);
+        return div;
     }
 
     function showTypingIndicator() {
