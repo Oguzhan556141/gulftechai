@@ -165,19 +165,25 @@ a:hover { text-decoration: underline; }
 /* Specific class to clean logos with bad backgrounds */
 .clean-logo {
     background: transparent !important;
-    mix-blend-mode: screen !important; 
-    filter: brightness(1.1) contrast(1.1) drop-shadow(0 0 15px var(--accent));
-    transition: all 0.5s ease;
+    mix-blend-mode: screen !important; /* Perfect for removing dark/black backgrounds from neon artwork */
+    filter: brightness(1.2) contrast(1.1) saturate(1.1) drop-shadow(0 0 15px var(--accent));
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .brand-logo.clean-logo {
-    filter: brightness(1.2) contrast(1.1) drop-shadow(0 0 8px var(--accent));
+    filter: brightness(1.3) contrast(1.2) drop-shadow(0 0 10px var(--accent));
 }
 
 .welcome-mascot.clean-logo {
     width: 200px;
     height: 200px;
-    filter: brightness(1.1) contrast(1.1) drop-shadow(0 0 25px var(--accent));
+    filter: brightness(1.2) contrast(1.2) drop-shadow(0 0 30px var(--accent));
+    mix-blend-mode: screen !important;
+}
+
+/* Fallback for AI message avatars */
+.message-avatar img.clean-logo {
+    mix-blend-mode: screen !important;
 }
 
 .welcome-mascot {
