@@ -367,29 +367,18 @@ Takım Kimliği:
 
 Kilit Kişiler:
 - Takım Mentorü: Ensar İnce
-- Takım & Mekanik Kaptanı: Levent Yiğit
-- Takım & PR Kaptanı: Tuğra Kerem Kaya
-- Yazılım Kaptanı: İrem Ünver
-- Yazılım Ekibi: Oğuzhan Aşkın, İrem Ünver, Zeynep Sude Çakmak, Elif Başuslu
-- Mekanik Ekibi: Levent Yiğit, Tufan Gülmez, Arda Furkan Aygenoğlu, Muhammet Ali Sardoğan, Nilgün Hilal Karataş
-- PR Ekibi: Tuğra Kerem Kaya, Zeynep Sude Çakmak, Beray Erenel, Elif Başuslu, Ege Göllü, Nilgün Hilal Karataş
+- Takım Kaptanları: Levent Yiğit, Tuğra Kerem Kaya, İrem Ünver
+- Yazılım Ekibi: Oğuzhan Aşkın, İrem Ünver (Kaptan), Zeynep Sude Çakmak, Elif Başuslu
+- Mekanik Ekibi: Levent Yiğit (Kaptan), Tufan Gülmez, Arda Furkan Aygenoğlu, Muhammet Ali Sardoğan, Nilgün Hilal Karataş
+- PR Ekibi: Tuğra Kerem Kaya (Kaptan), Beray Erenel, Ege Göllü, Zeynep Sude Çakmak, Elif Başuslu, Nilgün Hilal Karataş
 - Tasarım & CAD: Eren Özgüler
+- İletişim: gulftechtr@gmail.com | Instagram: @gulftechtr
+- Playlistler: "Tech the Halls", "Charge Up FEBRUARY"
 
 Görevin:
-- Üyeleri isim ve görevleriyle net eşleştir: Örn: "Oğuzhan Aşkın yazılım ekibindedir."
-- Outreach: Çocuk Kasabası (Çocuk Kasabası) mentorlukları, İZAYDAŞ teknik gezisi (atık yönetimi).
-- Teknik: 2026 Scouting sistemi (web tabanlı), Swerve/Tank şasiler, gerçek zamanlı veri analizi.
-- Sponsorlar: Boeing, Fikret Yüksel Vakfı, TEKSA, Teknorova, Gölcük BİLSEM, Gölcük Belediyesi.
-
-- İletişim: gulftechtr@gmail.com | Instagram: @gulftechtr | LinkedIn: Gulf Tech Team | YouTube: @gulftechtr
-- Telefon: +90 (537) 692 6558, +90 (544) 552 0919
-- Playlistler: "Tech the Halls" (Yılbaşı & Mühendislik), "Charge Up FEBRUARY" (Yüksek enerji/motivasyon)
-
-Görevin:
-- FRC stratejisi, robotik, programlama, mekanik ve iletişim konularında yardımcı ol.
-- Takım üyeleri ve iletişim kanalları hakkında detaylı bilgi ver.
+- Tüm bu detayları ezbere bil ve tek soruda birden fazla takımdan bahsedebil.
+- Üye adlarını gördüğünde görevlerini hemen hatırla. Örn: "Oğuzhan Aşkın yazılımdadır."
 - Türkçe/İngilizce yanıt ver, samimi ol, 🦈 kullan.
-- Yanıtları tane tane (typewriter) veriyormuşsun gibi düşün (kod bunu yapacak).
 - Markdown formatı kullan.`;
 
         const contents = [];
@@ -441,68 +430,64 @@ Görevin:
     async function simulateResponse(userMessage) {
         const msg = userMessage.toLowerCase();
 
-        // Expand simulated knowledge base with researched details
-        const teamInfo = {
-            members: {
-                mentors: ["Ensar İnce"],
-                software: ["İrem Ünver (Kaptan)", "Oğuzhan Aşkın", "Zeynep Sude Çakmak", "Elif Başuslu"],
-                mechanical: ["Levent Yiğit (Kaptan)", "Tufan Gülmez", "Arda Furkan Aygenoğlu", "Muhammet Ali Sardoğan", "Nilgün Hilal Karataş"],
-                pr: ["Tuğra Kerem Kaya (Kaptan)", "Zeynep Sude Çakmak", "Beray Erenel", "Elif Başuslu", "Ege Göllü", "Nilgün Hilal Karataş"],
-                design: ["Eren Özgüler"]
-            },
-            outreach: [
-                "Çocuk Kasabası (Çocuk Kasabası) ziyaretleri ve mentorlukları",
-                "İZAYDAŞ gezisi — Endüstriyel atık yönetimi ve geri dönüşüm eğitimi",
-                "Diğer FRC takımlarıyla ortak toplantılar ve bilgi paylaşımı"
-            ],
-            sponsors: ["Boeing", "Fikret Yüksel Vakfı", "TEKSA", "Teknorova", "Gölcük BİLSEM", "Gölcük Belediyesi"],
-            technical: {
-                scouting: "2026 için geliştirilen yeni web tabanlı sistem. Auto climb, ball scoring, swerve/tank analizi ve robot kondisyonu takibi yapabiliyor."
-            }
+        // 🦈 COMPLETE TEAM KNOWLEDGE
+        const team = {
+            mentor: "Ensar İnce",
+            captains: "Levent Yiğit, Tuğra Kerem Kaya ve İrem Ünver",
+            software: ["Oğuzhan Aşkın (Yazılım)", "İrem Ünver (Yazılım Kaptanı)", "Zeynep Sude Çakmak (Yazılım)", "Elif Başuslu (Yazılım)"],
+            mechanical: ["Levent Yiğit (Mekanik Kaptanı)", "Tufan Gülmez (Mekanik)", "Arda Furkan Aygenoğlu (Mekanik)", "Muhammet Ali Sardoğan (Mekanik)", "Nilgün Hilal Karataş (Mekanik)"],
+            pr: ["Tuğra Kerem Kaya (PR Kaptanı)", "Beray Erenel (PR)", "Ege Göllü (PR)", "Zeynep Sude Çakmak (PR)", "Elif Başuslu (PR)", "Nilgün Hilal Karataş (PR)"],
+            design: ["Eren Özgüler (Tasarım & CAD)"]
         };
 
-        // Simulate thinking delay
-        await delay(1000 + Math.random() * 1000);
+        let response = "";
 
-        // Open-ended response logic
+        // Multi-topic broad matching
+        if (/selam|merhaba|hey|kimsin/i.test(msg)) {
+            response += `Merhaba! 🦈 Ben **GulfTech AI**, takımıma özel bir dijital asistanım. Takım üyelerimizden, teknik projelerimizden veya playlistlerimizden bahsedebilirim.\n\n`;
+        }
+
+        if (/mentor|ensar/i.test(msg)) {
+            response += `### 🎓 Mentorlarımız\nBaş mentorumuz **Ensar İnce**, bize hem teknik hem de mental olarak yol gösteriyor. 🦈\n\n`;
+        }
+
         if (/kaptan|captain|lider/i.test(msg)) {
-            return `## 🦈 Gulf Tech Kaptanları\n\nTakımımızda liderlik rollerini şu isimler paylaşıyor:\n\n- **Levent Yiğit:** Takım Kaptanı ve Mekanik Kaptanı\n- **Tuğra Kerem Kaya:** Takım Kaptanı ve PR Kaptanı\n- **İrem Ünver:** Yazılım Kaptanı\n\nBu ekip, takımın hem teknik hem de stratejik yönetimini sağlıyor.`;
+            response += `### 🔱 Kaptanlarımız\nTakımımızı **Levent Yiğit**, **Tuğra Kerem Kaya** ve **İrem Ünver** yönetiyor.\n\n`;
         }
 
-        if (/yazılım|yazılımcı|software|kod/i.test(msg)) {
-            return `## 💻 Yazılım Ekibimiz\n\nYazılım ekibimiz, robotun otonom ve teleop kontrollerinden sorumludur. Ekip üyelerimiz:\n\n- **İrem Ünver (Kaptan)**\n- **Oğuzhan Aşkın**\n- **Zeynep Sude Çakmak**\n- **Elif Başuslu**\n\nŞu an özellikle **2026 Scouting Sistemi** ve robotun kararlı çalışması üzerine odaklanmış durumdalar. 🤖`;
+        if (/yazılım|kod|software|oğuzhan|irem/i.test(msg)) {
+            response += `### 💻 Yazılım Ekibi\nYazılım ekibimiz; **Oğuzhan Aşkın**, **İrem Ünver**, **Zeynep Sude Çakmak** ve **Elif Başuslu**'dan oluşuyor. 🤖\n\n`;
         }
 
-        if (/etkinlik|outreach|ne yaptınız|gezi|ziyaret/i.test(msg)) {
-            return `## 🌍 Gulf Tech Etkinlikleri\n\nTopluma katkı sağlamak ve kendimizi geliştirmek için birçok etkinlik düzenliyoruz:\n\n- **Çocuk Kasabası:** Geleceğin mühendislerine ilham vermek için Çocuk Kasabası'nda mentorluk yapıyoruz.\n- **İZAYDAŞ:** Sürdürülebilirlik vizyonumuz kapsamında atık yönetimi tesislerini ziyaret ettik.\n- **Takım Buluşmaları:** Diğer FRC takımlarıyla tecrübe paylaşımı yapıyoruz.\n\nAmacımız sadece robot yapmak değil, çevremizde bir fark yaratmak! 🦈`;
+        if (/mekanik|mechanical|tufan|arda|ali|nilgün/i.test(msg)) {
+            response += `### ⚙️ Mekanik Ekibi\nMekanik ekibimiz; **Levent Yiğit**, **Tufan Gülmez**, **Arda Furkan Aygenoğlu**, **Muhammet Ali Sardoğan** ve **Nilgün Hilal Karataş**'dan oluşur. 🛠️\n\n`;
         }
 
-        if (/pr|halkla|ilişkil|sosyal\s*medya|sponsor/i.test(msg)) {
-            return `## 🎨 PR (Halkla İlişkiler) Ekibimiz\n\nTakımımızın sesini dünyaya duyuran ve destekçilerimizle bağ kuran ekibimiz:\n\n- **Tuğra Kerem Kaya (Kaptan)**\n- **Beray Erenel**\n- **Ege Göllü**\n- **Zeynep Sude Çakmak**\n- **Elif Başuslu**\n- **Nilgün Hilal Karataş**\n\nSponsorluk görüşmeleri, sosyal medya yönetimi ve takımın kurumsal kimliği bu ekibin elinden çıkıyor. 🦈✨`;
+        if (/pr|halkla|beray|ege|sponsor/i.test(msg)) {
+            response += `### 🎨 PR Ekibi\nPR ekibimiz; **Tuğra Kerem Kaya**, **Beray Erenel**, **Ege Göllü**, **Zeynep Sude Çakmak**, **Elif Başuslu** ve **Nilgün Hilal Karataş**'dan oluşuyor. ✨\n\n`;
         }
 
-        if (/tasarım|cad|3d|onshape|model/i.test(msg)) {
-            return `## 📐 Tasarım ve CAD Ekibi\n\nRobotumuzun dijital dünyadaki mimarı:\n\n- **Eren Özgüler**\n\nRobot inşa edilmeden önce her parça **Onshape** üzerinde Eren tarafından titizlikle planlanıyor. "Önce Tasarla, Sonra İnşa Et" prensibiyle çalışıyoruz. 🛠️`;
+        if (/tasarım|cad|3d|eren/i.test(msg)) {
+            response += `### 📐 Tasarım & CAD\nTasarım süreçlerimizi **Eren Özgüler** yönetiyor. 📐\n\n`;
         }
 
-        if (/mekanik|mechanical|robot/i.test(msg)) {
-            return `## ⚙️ Mekanik ve Tasarım\n\nRobotumuzun kalbi burada atıyor! Mekanik ekibimiz:\n\n- **Kaptan:** Levent Yiğit\n- **Üyeler:** Tufan, Arda Furkan, Muhammet Ali, Nilgün Hilal.\n\nRobot tasarımında **Onshape** gibi CAD yazılımları kullanıyoruz ve şu an **2025 REEFSCAPE** için en verimli mekanizmaları test ediyoruz. 📐`;
+        if (/iletişim|ulaş|mail|telefon|numara/i.test(msg)) {
+            response += `### 📞 İletişim\nBize **gulftechtr@gmail.com** adresinden ulaşabilirsin. Telefonlarımız: +90 537 692 6558 / 544 552 0919. 🦈\n\n`;
         }
 
-        if (/scout/i.test(msg)) {
-            return `## 📊 Scouting Sistemimiz\n\nVeri odaklı kararlar almak için geliştirdiğimiz **2026 Scouting Sistemi** oldukça güçlü:\n\n- **Web tabanlı:** Her yerden erişilebilir.\n- **Kapsam:** Auto başarısı, tırmanma, scoring ve robotun sürücü performansı.\n- **Analiz:** Swerve veya Tank şasi gibi teknik detayları gerçek zamanlı analiz ediyoruz.\n\nİttifak seçimlerinde en büyük yardımcımız bu sistem! 🦈`;
+        if (/playlist|müzik|şarkı/i.test(msg)) {
+            response += `### 🎵 Müzik\nFavori playlistlerimiz: **Tech the Halls** ve **Charge Up FEBRUARY**. ⚡\n\n`;
         }
 
-        if (/playlist|müzik|şarkı|dinle/i.test(msg)) {
-            return `## 🎵 Gulf Tech Playlistleri\n\nRobot yaparken motivasyonumuzu yüksek tutan favori listelerimiz:\n\n- **Tech the Halls:** Yılbaşı ruhunu mühendislik vizyonumuzla birleştirdiğimiz özel listemiz. 🎄⚙️\n- **Charge Up FEBRUARY:** Şubat ayının yoğun çalışma temposunda enerjimizi zirvede tutan yüksek tempolu parçalar. ⚡🚀\n\nBu listeler Spotify hesabımızda mevcut, robot kodlarken mutlaka dinlemelisin! 🦈`;
+        // Broad fallback
+        if (response === "") {
+            response = `Anlıyorum! 🦈 Bu konu hakkında da konuşabiliriz. Takım üyelerimizden (Oğuzhan, İrem, Levent, Tuğra, Eren...) veya projelerimizden sormak istediğin bir şey var mı? \n\nŞu an **simüle modda** olsam da Ayarlar kısmından **Gemini API** eklersen çok daha akıllı cevaplar verebilirim! ✨`;
+        } else {
+            response += `\nBaşka merak ettiğin bir şey var mı? 🦈`;
         }
 
-        if (/iletişim|ulaş|telefon|numara|sosyal\s*medya|instagram|mail|e-posta/i.test(msg)) {
-            return `## 📞 Bize Ulaşın\n\nGulf Tech #11392 ekibiyle her zaman iletişimde kalabilirsin:\n\n### Sosyal Medya\n- **Instagram:** [@gulftechtr](https://www.instagram.com/gulftechtr/)\n- **LinkedIn:** [Gulf Tech Team](https://www.linkedin.com/in/gulf-tech-280625398/)\n- **YouTube:** [@gulftechtr](https://www.youtube.com/@gulftechtr)\n\n### İletişim Kanalları\n- **E-posta:** gulftechtr@gmail.com\n- **Telefon 1:** +90 (537) 692 6558\n- **Telefon 2:** +90 (544) 552 0919\n\nSoruların varsa çekinmeden yazabilirsin! 🦈✨`;
-        }
-
-        // Generic informative response for everything else
-        return `Güzel bir konu! 🦈 Bu konuda daha derinlemesine konuşabiliriz. \n\nŞu an **simüle modda** olduğum için belirli anahtar kelimelerle daha iyi yanıt verebiliyorum. Ama istersen bana **yazılım ekibini**, **sponsorlarımızı**, **playlistlerimizi** veya **iletişim kanallarımızı** sorabilirsin.\n\nEğer gerçek bir yapay zeka deneyimi istersen Ayarlar'dan **Gemini API** anahtarını ekleyebilirsin! ✨`;
+        await delay(1000 + Math.random() * 1000);
+        return response;
     }
 
     // ===== MESSAGE RENDERING =====

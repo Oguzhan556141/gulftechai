@@ -127,8 +127,17 @@ a:hover { text-decoration: underline; }
 /* Specific class to clean logos with bad backgrounds */
 .clean-logo {
     background: transparent !important;
-    mix-blend-mode: screen !important; /* Perfect for neon/circuitry on dark bg */
-    filter: contrast(110%) brightness(120%) drop-shadow(0 0 10px var(--accent));
+    mix-blend-mode: screen !important; /* Removes absolute black perfectly */
+    filter: brightness(1.1) contrast(1.1) saturate(1.2);
+    transition: all 0.5s ease;
+}
+
+.brand-logo.clean-logo {
+    filter: brightness(1.2) contrast(1.2) drop-shadow(0 0 5px var(--accent));
+}
+
+.welcome-mascot.clean-logo {
+    filter: brightness(1.1) contrast(1.1) drop-shadow(0 0 20px var(--accent));
 }
 
 .welcome-mascot {
