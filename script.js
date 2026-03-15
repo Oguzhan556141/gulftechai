@@ -271,11 +271,24 @@
         if (!currentConvId) {
             currentConvId = 'conv_' + Date.now();
             conversations[currentConvId] = {
-                title: text.slice(0, 50),
+                title: generateSmartTitle(text),
                 messages: [],
                 createdAt: Date.now(),
                 updatedAt: Date.now()
             };
+        }
+
+        // Helper for smart titles
+        function generateSmartTitle(msg) {
+            const m = msg.toLowerCase();
+            if (m.includes('merhaba') || m.includes('selam')) return 'Tanışma';
+            if (m.includes('yazılım') || m.includes('kod')) return 'Yazılım Hakkında';
+            if (m.includes('mekanik') || m.includes('robot')) return 'Mekanik Tasarım';
+            if (m.includes('pr') || m.includes('sponsor')) return 'PR ve Sponsorluk';
+            if (m.includes('scout')) return 'Scouting Sistemi';
+            if (m.includes('playlist') || m.includes('müzik')) return 'Müzik & Playlist';
+            if (m.includes('iletişim') || m.includes('ulaş')) return 'İletişim Bilgileri';
+            return msg.slice(0, 30) + '...';
         }
 
         // Remove welcome screen
@@ -353,15 +366,17 @@ Takım Kimliği:
 - Motto: STEM eğitimi ve liderlik odaklı bir gelişim yolculuğu.
 
 Kilit Kişiler:
-- Mentor: Ensar İnce
-- Kaptanlar: Levent Yiğit (Takım & Mekanik), Tuğra Kerem Kaya (Takım & PR), İrem Ünver (Yazılım)
+- Takım Mentorü: Ensar İnce
+- Takım & Mekanik Kaptanı: Levent Yiğit
+- Takım & PR Kaptanı: Tuğra Kerem Kaya
+- Yazılım Kaptanı: İrem Ünver
 - Yazılım Ekibi: Oğuzhan Aşkın, İrem Ünver, Zeynep Sude Çakmak, Elif Başuslu
 - Mekanik Ekibi: Levent Yiğit, Tufan Gülmez, Arda Furkan Aygenoğlu, Muhammet Ali Sardoğan, Nilgün Hilal Karataş
 - PR Ekibi: Tuğra Kerem Kaya, Zeynep Sude Çakmak, Beray Erenel, Elif Başuslu, Ege Göllü, Nilgün Hilal Karataş
-- Tasarım: Eren Özgüler
+- Tasarım & CAD: Eren Özgüler
 
-Deneyim ve Etkinlikler:
-- 5 yıllık FLL deneyimi üzerine kurulu bir FRC takımı.
+Görevin:
+- Üyeleri isim ve görevleriyle net eşleştir: Örn: "Oğuzhan Aşkın yazılım ekibindedir."
 - Outreach: Çocuk Kasabası (Çocuk Kasabası) mentorlukları, İZAYDAŞ teknik gezisi (atık yönetimi).
 - Teknik: 2026 Scouting sistemi (web tabanlı), Swerve/Tank şasiler, gerçek zamanlı veri analizi.
 - Sponsorlar: Boeing, Fikret Yüksel Vakfı, TEKSA, Teknorova, Gölcük BİLSEM, Gölcük Belediyesi.
@@ -498,7 +513,7 @@ Görevin:
         if (!animate) div.style.animation = 'none';
 
         const avatarContent = role === 'ai'
-            ? '<img src="assets/shark-mascot.png" alt="AI">'
+            ? '<img src="assets/shark-mascot.png" alt="AI" style="background:transparent; mix-blend-mode:lighten;">'
             : 'Sen';
 
         const senderName = role === 'ai' ? 'GulfTech AI' : 'Sen';
