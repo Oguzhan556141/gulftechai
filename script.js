@@ -366,12 +366,14 @@ Takım Kimliği:
 - Motto: STEM eğitimi ve liderlik odaklı bir gelişim yolculuğu.
 
 Kilit Kişiler:
-- Teknik Detaylar: Swerve Drive şasi (MK4i), Java/WPILib, Onshape CAD, Advancing Scouting sistemleri, Gerçek zamanlı veri analizi.
-- FRC Bilgisi: 2025 REEFSCAPE sezonu uzmanı. Resif yapıları, mercan (coral) skorlama, yosun (algae) temizleme ve tırmanma (climb) görevlerinde detaylı strateji bilgisi.
+- Teknik Detaylar: Swerve Drive şasi (MK4i), Java/WPILib, Onshape CAD, Advancing Scouting sistemleri.
+- FRC 2025 REEFSCAPE: Resif yapıları, mercan skorlama ve derin tırmanış uzmanı.
+- FRC 2026 "CYBER-BAY" Vizyonu: Takımın bu sezonki ana hedefi tam otonom scouting, real-time robot telemetry ve AI destekli maç analizi.
 - Playlistler: "Tech the Halls", "Charge Up FEBRUARY"
 
 Görevin:
-- FRC stratejisi, robot mekaniği (asansörler, intake sistemleri, swerve), scouting ve yazılım (PathPlanner, Command-based programming) konularında derinlemesine bilgi ver.
+- FRC 2025 REEFSCAPE ve FRC 2026 vizyonu hakkında detaylı bilgi ver.
+- 2026 hedeflerini (Otonom scouting, telemetry v2.0) her zaman vurgula.
 - GulfTech ekibini her zaman "biz" olarak tanıt ve takım üyelerini görevleriyle eşle.
 - Türkçe/İngilizce yanıt ver, samimi ol, 🦈 kullan.
 - Markdown formatı kullan.`;
@@ -450,6 +452,14 @@ Görevin:
             return response;
         }
 
+        if (/2026|gelecek|plan|vizyon/i.test(msg)) {
+            response += `### 🚀 GulfTech 2026: Cyber-Bay Vizyonu\n\nTakımımızın 2026 hedefleri FRC standartlarını zorlamaya odaklanıyor:\n` +
+                `- **Otonom Scouting v2.0:** Görüntü işleme ile rakiplerin saha hareketlerini otomatik analiz eden bir sistem üzerine çalışıyoruz.\n` +
+                `- **Real-Time Telemetry:** Robotun verilerini anlık olarak pit alanına aktaran ve AI ile kestirimci bakım yapan bir arayüz geliştiriyoruz.\n` +
+                `- **Swerve Optimization:** MK4i modüllerimizi kendi tasarımımız olan hafif alaşımlı parçalarla daha da hızlandıracağız.\n\n` +
+                `Biz GulfTech olarak 2026'da sadece yarışmak değil, teknoloji üretmek istiyoruz! 🦈💎\n\n`;
+        }
+
         if (/reefscape|oyun|kural|2025/i.test(msg)) {
             response += `### 🎮 FRC 2025: REEFSCAPE\n\n**REEFSCAPE** sezonunda odaklanmamız gereken ana noktalar:\n` +
                 `- **Coral (Mercan):** Resif'in (Reef) 4 farklı seviyesine mercan yerleştirerek puan kazanılır. L4 en yüksek puanı verir.\n` +
@@ -471,9 +481,9 @@ Görevin:
 
         // Broad fallback
         if (response === "") {
-            response = `Anlıyorum! 🦈 FRC stratejileri, robot bileşenleri veya **GulfTech** ekibimiz hakkında sormak istediğin başka bir şey var mı? \n\nYeni **REEFSCAPE** oyun kurallarından veya teknik detaylarımızdan bahsedebilirim! ✨`;
+            response = `Anlıyorum! 🦈 **FRC 2025 REEFSCAPE** stratejilerinden veya **2026 Cyber-Bay** hedeflerimizden bahsedebilirim. \n\nRobot mekaniği, yazılım veya takımızın vizyonu hakkında sormak istediğin bir şey var mı? ✨`;
         } else {
-            response += `\nBaşka hangi FRC bilgisini öğrenmek istersin? 🦈`;
+            response += `\nBaşka merak ettiğin bir FRC detayı var mı? 🦈`;
         }
 
         await delay(1000 + Math.random() * 1000);
