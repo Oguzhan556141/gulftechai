@@ -513,7 +513,7 @@ Görevin:
         if (!animate) div.style.animation = 'none';
 
         const avatarContent = role === 'ai'
-            ? '<img src="https://gulftechrobotic.com.tr/kopek-removebg-preview.png" alt="AI" class="remove-grid" style="background:transparent; mix-blend-mode:lighten;">'
+            ? '<img src="assets/ai-mascot.png" alt="AI" class="clean-logo">'
             : 'Sen';
 
         const senderName = role === 'ai' ? 'GulfTech AI' : 'Sen';

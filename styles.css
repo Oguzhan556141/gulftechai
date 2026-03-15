@@ -127,14 +127,16 @@ a:hover { text-decoration: underline; }
 /* Specific class to clean logos with bad backgrounds */
 .clean-logo {
     background: transparent !important;
-    mix-blend-mode: screen !important; /* Good for removing dark boxes */
-    filter: contrast(110%) brightness(110%) !important;
+    mix-blend-mode: screen !important; /* Perfect for neon/circuitry on dark bg */
+    filter: contrast(110%) brightness(120%) drop-shadow(0 0 10px var(--accent));
 }
 
-/* If the background is light (checkered grid), we can use this */
-.remove-grid {
-    mix-blend-mode: lighten;
-    filter: contrast(150%) brightness(95%);
+.welcome-mascot {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    margin-bottom: 24px;
+    animation: floatMascot 4s ease-in-out infinite;
 }
 
 .brand:hover .brand-logo {
@@ -597,15 +599,6 @@ a:hover { text-decoration: underline; }
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
-}
-
-.welcome-mascot {
-    width: 120px;
-    height: 120px;
-    object-fit: contain;
-    margin-bottom: 24px;
-    filter: drop-shadow(0 0 30px rgba(0, 188, 212, 0.25));
-    animation: floatMascot 4s ease-in-out infinite;
 }
 
 @keyframes floatMascot {
