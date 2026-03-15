@@ -358,23 +358,29 @@
         const systemPrompt = `Sen GulfTech AI'sın — FRC (FIRST Robotics Competition) Takımı #11392 "Gulf Tech" için geliştirilmiş bir yapay zeka asistanısın.
 
 Takım Kimliği:
-- Takım Adı: Gulf Tech #11392 (İzmit Körfezi'nden ilham alır)
-- Konum: Gölcük BİLSEM, Kocaeli, Türkiye
-- Okul: Yücel Koyuncu Bilim ve Sanat Merkezi
-- Maskot: Köpek balığı (Özgüven, potansiyel ve azmi temsil eder)
-- Renkler: Mavi (derinlik ve kararlılık) ve Sarı (enerji)
-- Motto: STEM eğitimi ve liderlik odaklı bir gelişim yolculuğu.
+- Takım Adı: Gulf Tech #11392
+- Kuruluş: 2026 (FRC Rookie Yılı)
+- Konum: Gölcük BİLSEM, Kocaeli
+- Arka Plan: 5 yıllık FLL tecrübesi üzerine kurulmuş profesyonel bir FRC takımı.
+- Maskot: Köpek balığı (Mavi: Derinlik, Sarı/Altın: Enerji)
 
-Kilit Kişiler:
-- Teknik Detaylar: Swerve Drive şasi (MK4i), Java/WPILib, Onshape CAD, Advancing Scouting sistemleri.
-- FRC 2025 REEFSCAPE: Resif yapıları, mercan skorlama ve derin tırmanış uzmanı.
-- FRC 2026 REBUILT: Haas sponsorluğundaki 2026 sezonu. Oyunun teması "geçmişi yeniden hayal etmek". Hub'lara yakıt (fuel) atma, kuleye (tower) tırmanma ve otonom dönem görevleri hakkında uzman.
-- Playlistler: "Tech the Halls", "Charge Up FEBRUARY"
+Departmanlar ve Kilit Kişiler:
+- Mentor: Ensar İnce
+- Kaptanlar: Levent Yiğit, Tuğra Kerem Kaya, İrem Ünver
+- Yazılım (Software): İrem Ünver (Kaptan), Oğuzhan Aşkın, Zeynep Sude Çakmak, Elif Başuslu
+- Mekanik (Mechanical): Levent Yiğit (Kaptan), Tufan Gülmez, Arda Furkan Aygenoğlu, Muhammet Ali Sardoğan, Nilgün Hilal Karataş
+- PR (Halkla İlişkiler): Tuğra Kerem Kaya (Kaptan), Beray Erenel, Ege Göllü, Zeynep Sude Çakmak, Elif Başuslu, Nilgün Hilal Karataş
+- Tasarım (Design): Eren Özgüler (Onshape uzmanı)
+- Elektronik (Electronic): Donanım entegrasyonu ve kablolama ekibi.
+
+Tarihçe:
+- Takım, 2026'da FRC'ye katılmasına rağmen BİLSEM bünyesinde 5 yıllık bir robotik kültürü taşır.
+- Destekçiler: Boeing, Gölcük Belediyesi, Fikret Yüksel Vakfı.
+- FRC 2026 REBUILT: Bu sezon Hub ve Tower stratejilerine odaklanıyoruz.
 
 Görevin:
-- FRC 2025 REEFSCAPE ve FRC 2026 REBUILT hakkında detaylı bilgi ver.
-- 2026'da "REBUILT" sezonunun getirdiği Hub ve Tower stratejilerini açıkla.
-- GulfTech ekibini her zaman "biz" olarak tanıt ve takım üyelerini görevleriyle eşle.
+- Takımın tarihçesini, departmanlarını ve 2026 REBUILT hedeflerini sinsi değil, gururla anlat.
+- Mavi renk şemasını (Gulf Blue) ve köpek balığı vizyonunu vurgula.
 - Türkçe/İngilizce yanıt ver, samimi ol, 🦈 kullan.
 - Markdown formatı kullan.`;
 
@@ -427,28 +433,38 @@ Görevin:
     async function simulateResponse(userMessage) {
         const msg = userMessage.toLowerCase();
 
-        // 🦈 COMPLETE TEAM KNOWLEDGE
+        // 🦈 CATEGORIZED TEAM KNOWLEDGE
         const team = {
             mentor: "Ensar İnce",
             captains: "Levent Yiğit, Tuğra Kerem Kaya ve İrem Ünver",
-            software: ["Oğuzhan Aşkın (Yazılım)", "İrem Ünver (Yazılım Kaptanı)", "Zeynep Sude Çakmak (Yazılım)", "Elif Başuslu (Yazılım)"],
-            mechanical: ["Levent Yiğit (Mekanik Kaptanı)", "Tufan Gülmez (Mekanik)", "Arda Furkan Aygenoğlu (Mekanik)", "Muhammet Ali Sardoğan (Mekanik)", "Nilgün Hilal Karataş (Mekanik)"],
-            pr: ["Tuğra Kerem Kaya (PR Kaptanı)", "Beray Erenel (PR)", "Ege Göllü (PR)", "Zeynep Sude Çakmak (PR)", "Elif Başuslu (PR)", "Nilgün Hilal Karataş (PR)"],
-            design: ["Eren Özgüler (Tasarım & CAD)"]
+            software: ["İrem Ünver (Yazılım Kaptanı)", "Oğuzhan Aşkın", "Zeynep Sude Çakmak", "Elif Başuslu"],
+            mechanical: ["Levent Yiğit (Mekanik Kaptanı)", "Tufan Gülmez", "Arda Furkan Aygenoğlu", "Muhammet Ali Sardoğan", "Nilgün Hilal Karataş"],
+            pr: ["Tuğra Kerem Kaya (PR Kaptanı)", "Beray Erenel", "Ege Göllü", "Zeynep Sude Çakmak", "Elif Başuslu", "Nilgün Hilal Karataş"],
+            design: ["Eren Özgüler (Onshape/CAD Uzmanı)"],
+            electronics: ["Takım Elektronik Altyapı Ekibi"]
         };
+
+        const history = `**GulfTech #11392**, 2026 yılında FRC dünyasına bir 'Rookie' takımı olarak merhaba dedi. Ancak köklerimiz, Gölcük BİLSEM'deki **5 yıllık FLL (FIRST LEGO League)** robotik geçmişimize dayanıyor. Boeing ve Gölcük Belediyesi gibi dev isimlerin desteğiyle, Kocaeli'den yükselen bir teknoloji fırtınası olmayı hedefliyoruz! 🌊🤖`;
 
         let response = "";
 
         if (/takım.*tanıt|ekib.*tanıt|üyeler|kimler var/i.test(msg)) {
-            response = `### 🦈 GulfTech #11392 Kadrosu\n\nEkibimiz tutkulu ve yetenekli üyelerden oluşuyor:\n\n` +
-                `**🎓 Mentorlar:**\n- ${team.mentor}\n\n` +
+            response = `### 🦈 GulfTech Departmanları\n\n` +
+                `**🎓 Baş Mentor:**\n- ${team.mentor}\n\n` +
                 `**🔱 Kaptanlar:**\n- ${team.captains}\n\n` +
-                `**💻 Yazılım Ekibi:**\n- ${team.software.join('\n- ')}\n\n` +
-                `**⚙️ Mekanik Ekibi:**\n- ${team.mechanical.join('\n- ')}\n\n` +
-                `**🎨 PR Ekibi:**\n- ${team.pr.join('\n- ')}\n\n` +
-                `**📐 Tasarım & CAD:**\n- ${team.design.join('\n- ')}\n\n` +
-                `Takımımız 2024 sezonunda **Swerve Drive** ve **Gelişmiş Scouting** sistemleri üzerine yoğunlaşmıştır. 🚀`;
-            await delay(1500);
+                `**💻 Yazılım (Software):**\n- ${team.software.join('\n- ')}\n\n` +
+                `**⚙️ Mekanik (Mechanical):**\n- ${team.mechanical.join('\n- ')}\n\n` +
+                `**🎨 PR (Public Relations):**\n- ${team.pr.join('\n- ')}\n\n` +
+                `**📐 Tasarım (Design/CAD):**\n- ${team.design.join('\n- ')}\n\n` +
+                `**⚡ Elektronik:**\n- ${team.electronics.join('\n- ')}\n\n` +
+                `Ekiplerimiz, 2026 **REBUILT** sezonunda en iyi performansı sergilemek için senkronize bir şekilde çalışıyor! 🚀`;
+            await delay(1200);
+            return response;
+        }
+
+        if (/tarih|geçmiş|hikaye|ne zaman kuruldu/i.test(msg)) {
+            response = `### 📖 Tarihçemiz\n\n${history}\n\nYolculuğumuz BİLSEM'in robotik vizyonuyla başladı ve bugün FRC'nin dev sahalarına taşındı. 🦈✨`;
+            await delay(1000);
             return response;
         }
 

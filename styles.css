@@ -5,27 +5,27 @@
 
 /* ---------- Variables ---------- */
 :root {
-    --bg-primary: #01040a; /* Ultra dark cyber black */
-    --bg-secondary: rgba(0, 212, 255, 0.03);
-    --bg-sidebar: rgba(1, 4, 10, 0.9);
-    --bg-input: rgba(0, 212, 255, 0.04);
-    --bg-hover: rgba(0, 212, 255, 0.06);
-    --bg-active: rgba(0, 212, 255, 0.1);
-    --bg-glass: rgba(0, 212, 255, 0.02);
-    --bg-card: rgba(1, 4, 10, 0.6);
+    --bg-primary: #020817; /* Deep Midnight Blue */
+    --bg-secondary: rgba(0, 102, 255, 0.05); /* Soft Blue Tint */
+    --bg-sidebar: rgba(1, 10, 25, 0.95);
+    --bg-input: rgba(0, 90, 255, 0.06);
+    --bg-hover: rgba(0, 212, 255, 0.1);
+    --bg-active: rgba(0, 212, 255, 0.15);
+    --bg-glass: rgba(0, 150, 255, 0.03);
+    --bg-card: rgba(2, 8, 23, 0.7);
 
-    --text-primary: #ffffff;
-    --text-secondary: #8ecae6;
-    --text-muted: #457b9d;
-    --text-accent: #00d4ff; /* Logo Cyan */
+    --text-primary: #f0f7ff; /* Very Light Blue-White */
+    --text-secondary: #a5b4fc; /* Pale Blue */
+    --text-muted: #64748b;
+    --text-accent: #38bdf8; /* Sky Blue */
 
-    --accent: #00d4ff; /* Logo Cyan */
-    --accent-gold: #ffc400; /* Logo Gold */
-    --accent-bright: #00fbff;
+    --accent: #0ea5e9; /* Gulf Blue */
+    --accent-gold: #fbbf24; /* Logo Gold */
+    --accent-bright: #00d4ff;
     
-    --gradient-logo: linear-gradient(135deg, #00d4ff 0%, #ffc400 100%);
-    --gradient-glass: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(255, 196, 0, 0.05) 100%);
-    --shadow-glow: 0 0 30px rgba(0, 212, 255, 0.2);
+    --gradient-logo: linear-gradient(135deg, #0ea5e9 0%, #fbbf24 100%);
+    --gradient-glass: linear-gradient(135deg, rgba(14, 165, 233, 0.1) 0%, rgba(251, 191, 36, 0.05) 100%);
+    --shadow-glow: 0 0 30px rgba(14, 165, 233, 0.25);
 
     --border: rgba(100, 140, 200, 0.1);
     --border-focus: rgba(0, 188, 212, 0.4);
@@ -105,9 +105,9 @@ a:hover { text-decoration: underline; }
     background: linear-gradient(
         45deg,
         transparent 0%,
-        rgba(0, 212, 255, 0.01) 40%,
-        rgba(255, 196, 0, 0.05) 50%,
-        rgba(0, 212, 255, 0.01) 60%,
+        rgba(14, 165, 233, 0.03) 40%,
+        rgba(251, 191, 36, 0.07) 50%,
+        rgba(14, 165, 233, 0.03) 60%,
         transparent 100%
     );
     transform: rotate(25deg);
