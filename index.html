@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GulfTech AI — FRC Team #11392 AI Assistant</title>
+    <meta name="description" content="GulfTech AI is an intelligent assistant for FRC Team #11392. Get help with robotics, FRC strategy, programming, and more.">
+    <link rel="icon" href="assets/shark-mascot.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="brand">
+                <img src="assets/shark-mascot.png" alt="GulfTech Shark" class="brand-logo">
+                <div class="brand-text">
+                    <span class="brand-name">Gulf<span class="accent">Tech</span> AI</span>
+                    <span class="brand-tag">FRC #11392</span>
+                </div>
+            </div>
+            <button class="sidebar-close" id="sidebarClose" aria-label="Close sidebar">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+        </div>
+
+        <button class="new-chat-btn" id="newChatBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            <span>Yeni Sohbet</span>
+        </button>
+
+        <div class="chat-history" id="chatHistory">
+            <div class="history-section">
+                <span class="history-label">Bugün</span>
+                <div class="history-list" id="historyList">
+                    <!-- Dynamically populated -->
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="api-status" id="apiStatus">
+                <div class="status-dot offline"></div>
+                <span>Simüle Mod</span>
+            </div>
+            <button class="settings-btn" id="settingsBtn" title="API Ayarları">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                </svg>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ===== SETTINGS MODAL ===== -->
+    <div class="modal-overlay" id="settingsModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>API Ayarları</h3>
+                <button class="modal-close" id="settingsClose">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-desc">Gerçek AI yanıtları için bir Google Gemini API anahtarı girin. Anahtar olmadan simüle modda çalışır.</p>
+                <div class="form-field">
+                    <label for="apiKeyInput">Gemini API Anahtarı</label>
+                    <div class="input-row">
+                        <input type="password" id="apiKeyInput" placeholder="AIza...">
+                        <button class="toggle-vis" id="toggleApiVis" title="Göster/Gizle">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-field">
+                    <label for="modelSelect">Model</label>
+                    <select id="modelSelect">
+                        <option value="gemini-2.0-flash">Gemini 2.0 Flash (Hızlı)</option>
+                        <option value="gemini-2.0-pro">Gemini 2.0 Pro (Gelişmiş)</option>
+                        <option value="gemini-1.5-pro">Gemini 1.5 Pro</option>
+                    </select>
+                </div>
+                <button class="btn-save" id="saveApiKey">Kaydet</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MAIN CHAT ===== -->
+    <main class="chat-main" id="chatMain">
+        <!-- Top bar -->
+        <header class="chat-header">
+            <button class="menu-btn" id="menuBtn" aria-label="Toggle sidebar">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+            <div class="chat-header-title">
+                <span>GulfTech AI</span>
+                <span class="model-badge" id="modelBadge">Simüle Mod</span>
+            </div>
+            <a href="https://gulftechrobotic.com.tr/" target="_blank" class="team-link" title="GulfTech Robotic Website">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+        </header>
+
+        <!-- Messages Area -->
+        <div class="chat-messages" id="chatMessages">
+            <!-- Welcome screen (shown when no messages) -->
+            <div class="welcome-screen" id="welcomeScreen">
+                <img src="assets/shark-mascot.png" alt="GulfTech Shark" class="welcome-mascot">
+                <h1>Gulf<span class="accent">Tech</span> AI</h1>
+                <p>FRC #11392 Yapay Zeka Asistanı</p>
+                <p class="welcome-sub">Robotik, FRC stratejisi, programlama ve daha fazlası hakkında sorularınızı sorun.</p>
+
+                <div class="suggestions" id="suggestions">
+                    <button class="suggestion-chip" data-prompt="FRC 2025 REEFSCAPE oyun kurallarını açıkla">
+                        <span class="chip-icon">🎮</span>
+                        <span>REEFSCAPE Kuralları</span>
+                    </button>
+                    <button class="suggestion-chip" data-prompt="FRC'de otonom dönem için en iyi stratejiler neler?">
+                        <span class="chip-icon">🤖</span>
+                        <span>Otonom Stratejileri</span>
+                    </button>
+                    <button class="suggestion-chip" data-prompt="Java'da FRC robot kodu yazarken en yaygın hatalar neler?">
+                        <span class="chip-icon">💻</span>
+                        <span>Robot Kod Hataları</span>
+                    </button>
+                    <button class="suggestion-chip" data-prompt="Scouting verisi toplamak için en iyi yöntemler neler?">
+                        <span class="chip-icon">📊</span>
+                        <span>Scouting İpuçları</span>
+                    </button>
+                    <button class="suggestion-chip" data-prompt="FRC'de mekanik tasarım için CAD yazılımı önerir misin?">
+                        <span class="chip-icon">⚙️</span>
+                        <span>CAD & Mekanik</span>
+                    </button>
+                    <button class="suggestion-chip" data-prompt="Gulf Tech #11392 takımı hakkında bilgi ver">
+                        <span class="chip-icon">🦈</span>
+                        <span>Gulf Tech Hakkında</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="chat-input-wrapper">
+            <div class="chat-input-container" id="chatInputContainer">
+                <textarea id="chatInput" placeholder="GulfTech AI'ya mesajınızı yazın..." rows="1" autofocus></textarea>
+                <button class="send-btn" id="sendBtn" disabled aria-label="Gönder">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </button>
+            </div>
+            <p class="input-hint">GulfTech AI hata yapabilir. Önemli bilgileri doğrulayın. <span class="powered-by">Powered by Gulf Tech #11392</span></p>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
