@@ -211,38 +211,74 @@
         loadHistory();
     }
 
+    // ===== COUNTDOWN =====
+    function getNextRegional() {
+        const regionals = [
+            { name: 'Haliç Regional', date: new Date('2026-03-25T10:00:00+03:00'), location: 'Ataköy, İstanbul' },
+            { name: 'Marmara Regional', date: new Date('2026-03-28T10:00:00+03:00'), location: 'Ataköy, İstanbul' },
+            { name: 'Avrasya Regional', date: new Date('2026-03-31T10:00:00+03:00'), location: 'Ataköy, İstanbul' },
+            { name: 'Ankara Regional', date: new Date('2026-04-07T10:00:00+03:00'), location: 'Ankara' },
+            { name: 'Başkent Regional', date: new Date('2026-04-10T10:00:00+03:00'), location: 'Ankara' }
+        ];
+        const now = new Date();
+        return regionals.find(r => r.date > now) || regionals[regionals.length - 1];
+    }
+
+    function updateCountdown() {
+        const el = document.getElementById('countdownTimer');
+        if (!el) return;
+        const next = getNextRegional();
+        const now = new Date();
+        const diff = next.date - now;
+        if (diff <= 0) { el.innerHTML = `<strong>${next.name}</strong> başladı! 🏟️`; return; }
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor((diff % 86400000) / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+        el.innerHTML = `<div class="countdown-label">🏟️ <strong>${next.name}</strong> — ${next.location}</div>` +
+            `<div class="countdown-digits">` +
+            `<span class="cd-block"><span class="cd-num">${d}</span><span class="cd-unit">gün</span></span>` +
+            `<span class="cd-sep">:</span>` +
+            `<span class="cd-block"><span class="cd-num">${String(h).padStart(2,'0')}</span><span class="cd-unit">saat</span></span>` +
+            `<span class="cd-sep">:</span>` +
+            `<span class="cd-block"><span class="cd-num">${String(m).padStart(2,'0')}</span><span class="cd-unit">dk</span></span>` +
+            `<span class="cd-sep">:</span>` +
+            `<span class="cd-block"><span class="cd-num">${String(s).padStart(2,'0')}</span><span class="cd-unit">sn</span></span>` +
+            `</div>`;
+    }
+
     // ===== NEW CHAT =====
     function startNewChat() {
         currentConvId = null;
         chatMessages.innerHTML = '';
 
-        // Re-add welcome screen
         const welcome = document.createElement('div');
         welcome.className = 'welcome-screen';
         welcome.id = 'welcomeScreen';
         welcome.innerHTML = `
-            <img src="assets/shark-mascot.png" alt="GulfTech Shark" class="welcome-mascot">
+            <img src="assets/ai-mascot.png" alt="GulfTech AI" class="welcome-mascot clean-logo">
             <h1>Gulf<span class="accent">Tech</span> AI</h1>
             <p>FRC #11392 Yapay Zeka Asistanı</p>
-            <p class="welcome-sub">Robotik, FRC stratejisi, programlama ve daha fazlası hakkında sorularınızı sorun.</p>
+            <div class="countdown-container" id="countdownTimer"></div>
+            <p class="welcome-sub">Robotik, FRC stratejisi, takım bilgisi ve daha fazlası hakkında sorularınızı sorun.</p>
             <div class="suggestions" id="suggestions">
-                <button class="suggestion-chip" data-prompt="FRC 2025 REEFSCAPE oyun kurallarını açıkla">
-                    <span class="chip-icon">🎮</span><span>REEFSCAPE Kuralları</span>
+                <button class="suggestion-chip" data-prompt="FRC 2026 REBUILT oyun kurallarını açıkla">
+                    <span class="chip-icon">🏗️</span><span>REBUILT Kuralları</span>
                 </button>
-                <button class="suggestion-chip" data-prompt="FRC'de otonom dönem için en iyi stratejiler neler?">
-                    <span class="chip-icon">🤖</span><span>Otonom Stratejileri</span>
+                <button class="suggestion-chip" data-prompt="FRC ödülleri nelerdir?">
+                    <span class="chip-icon">🏆</span><span>FRC Ödülleri</span>
                 </button>
-                <button class="suggestion-chip" data-prompt="Java'da FRC robot kodu yazarken en yaygın hatalar neler?">
-                    <span class="chip-icon">💻</span><span>Robot Kod Hataları</span>
+                <button class="suggestion-chip" data-prompt="Turnuva takvimi nedir?">
+                    <span class="chip-icon">📍</span><span>Turnuva Takvimi</span>
                 </button>
-                <button class="suggestion-chip" data-prompt="Scouting verisi toplamak için en iyi yöntemler neler?">
-                    <span class="chip-icon">📊</span><span>Scouting İpuçları</span>
+                <button class="suggestion-chip" data-prompt="Takım üyelerini tanıt">
+                    <span class="chip-icon">🦈</span><span>Takım Kadrosu</span>
                 </button>
-                <button class="suggestion-chip" data-prompt="FRC'de mekanik tasarım için CAD yazılımı önerir misin?">
-                    <span class="chip-icon">⚙️</span><span>CAD & Mekanik</span>
+                <button class="suggestion-chip" data-prompt="Yazılım ekibini anlat">
+                    <span class="chip-icon">💻</span><span>Yazılım Ekibi</span>
                 </button>
-                <button class="suggestion-chip" data-prompt="Gulf Tech #11392 takımı hakkında bilgi ver">
-                    <span class="chip-icon">🦈</span><span>Gulf Tech Hakkında</span>
+                <button class="suggestion-chip" data-prompt="Tarihçemizi anlat">
+                    <span class="chip-icon">📖</span><span>Tarihçemiz</span>
                 </button>
             </div>
         `;
@@ -355,34 +391,42 @@
 
     // ===== GEMINI API =====
     async function callGeminiAPI(userMessage, history) {
-        const systemPrompt = `Sen GulfTech AI'sın — FRC (FIRST Robotics Competition) Takımı #11392 "Gulf Tech" için geliştirilmiş bir yapay zeka asistanısın.
+        const currentYear = new Date().getFullYear();
+        const systemPrompt = `Sen GulfTech AI'sın — FRC Takımı #11392 için geliştirilmiş bir yapay zeka asistanısın. Şu an ${currentYear} yılındayız.
 
 Takım Kimliği:
 - Takım Adı: Gulf Tech #11392
 - Kuruluş: 2026 (FRC Rookie Yılı)
-- Konum: Gölcük BİLSEM, Kocaeli
+- Konum: Gölcük BİLSEM, Kocaeli, Türkiye
 - Arka Plan: 5 yıllık FLL tecrübesi üzerine kurulmuş profesyonel bir FRC takımı.
 - Maskot: Köpek balığı (Mavi: Derinlik, Sarı/Altın: Enerji)
+- Destekçiler: Boeing, Gölcük Belediyesi, Fikret Yüksel Vakfı, TEKSA, Teknorova.
 
-Departmanlar ve Kilit Kişiler:
+Departmanlar:
 - Mentor: Ensar İnce
-- Kaptanlar: Levent Yiğit, Tuğra Kerem Kaya, İrem Ünver
-- Yazılım (Software): İrem Ünver (Kaptan), Oğuzhan Aşkın, Zeynep Sude Çakmak, Elif Başuslu
-- Mekanik (Mechanical): Levent Yiğit (Kaptan), Tufan Gülmez, Arda Furkan Aygenoğlu, Muhammet Ali Sardoğan, Nilgün Hilal Karataş
-- PR (Halkla İlişkiler): Tuğra Kerem Kaya (Kaptan), Beray Erenel, Ege Göllü, Zeynep Sude Çakmak, Elif Başuslu, Nilgün Hilal Karataş
-- Tasarım (Design): Eren Özgüler (Onshape uzmanı)
-- Elektronik (Electronic): Donanım entegrasyonu ve kablolama ekibi.
+- Kaptanlar: Levent Yiğit (Mekanik), Tuğra Kerem Kaya (PR), İrem Ünver (Yazılım)
+- Yazılım: İrem Ünver (Kaptan), Oğuzhan Aşkın, Zeynep Sude Çakmak, Elif Başuslu
+- Mekanik: Levent Yiğit (Kaptan), Tufan Gülmez, Arda Furkan Aygenoğlu, Muhammet Ali Sardoğan, Nilgün Hilal Karataş
+- PR: Tuğra Kerem Kaya (Kaptan), Beray Erenel, Ege Göllü, Zeynep Sude Çakmak, Elif Başuslu, Nilgün Hilal Karataş
+- Tasarım & CAD: Eren Özgüler (Onshape)
+- Elektronik: Donanım ve kablolama ekibi
 
-Tarihçe:
-- Takım, 2026'da FRC'ye katılmasına rağmen BİLSEM bünyesinde 5 yıllık bir robotik kültürü taşır.
-- Destekçiler: Boeing, Gölcük Belediyesi, Fikret Yüksel Vakfı.
-- FRC 2026 REBUILT: Bu sezon Hub ve Tower stratejilerine odaklanıyoruz.
+FRC 2026 REBUILT (Presented by Haas):
+- Tema: "Geçmişi yeniden hayal et"
+- Oyun: Hub'lara yakıt atma, Tower'a tırmanma (L1-L3), otonom ilk 20sn.
+- Bölge: Türkiye Regionalleri (İstanbul & Ankara, Mart-Nisan 2026)
 
-Görevin:
-- Takımın tarihçesini, departmanlarını ve 2026 REBUILT hedeflerini sinsi değil, gururla anlat.
-- Mavi renk şemasını (Gulf Blue) ve köpek balığı vizyonunu vurgula.
-- Türkçe/İngilizce yanıt ver, samimi ol, 🦈 kullan.
-- Markdown formatı kullan.`;
+FRC Ödülleri:
+- Rookie All-Star: En iyi rookie takımı.
+- Engineering Inspiration: Mühendislik kültürü yaygınlaştırma.
+- FIRST Impact Award: En prestijli ödül, FIRST misyonunu temsil.
+- Dean's List, Autonomous, Quality Award gibi birçok ödül daha.
+
+KRİTİK KURALLAR:
+1. Sadece sorulan branş/konu hakkında cevap ver. Sormadıkça diğer branşları karıştırma.
+2. "Yazılım ekibini anlat" denince SADECE yazılım ekibini yaz, diğerlerini katma.
+3. Türkçe/İngilizce yanıt ver, samimi ol, 🦈 kullan.
+4. Markdown formatı kullan.`;
 
         const contents = [];
 
@@ -436,74 +480,136 @@ Görevin:
         // 🦈 CATEGORIZED TEAM KNOWLEDGE
         const team = {
             mentor: "Ensar İnce",
-            captains: "Levent Yiğit, Tuğra Kerem Kaya ve İrem Ünver",
-            software: ["İrem Ünver (Yazılım Kaptanı)", "Oğuzhan Aşkın", "Zeynep Sude Çakmak", "Elif Başuslu"],
-            mechanical: ["Levent Yiğit (Mekanik Kaptanı)", "Tufan Gülmez", "Arda Furkan Aygenoğlu", "Muhammet Ali Sardoğan", "Nilgün Hilal Karataş"],
-            pr: ["Tuğra Kerem Kaya (PR Kaptanı)", "Beray Erenel", "Ege Göllü", "Zeynep Sude Çakmak", "Elif Başuslu", "Nilgün Hilal Karataş"],
-            design: ["Eren Özgüler (Onshape/CAD Uzmanı)"],
+            captains: "Levent Yiğit (Mekanik), Tuğra Kerem Kaya (PR) ve İrem Ünver (Yazılım)",
+            software: ["İrem Ünver (Kaptan)", "Oğuzhan Aşkın", "Zeynep Sude Çakmak", "Elif Başuslu"],
+            mechanical: ["Levent Yiğit (Kaptan)", "Tufan Gülmez", "Arda Furkan Aygenoğlu", "Muhammet Ali Sardoğan", "Nilgün Hilal Karataş"],
+            pr: ["Tuğra Kerem Kaya (Kaptan)", "Beray Erenel", "Ege Göllü", "Zeynep Sude Çakmak", "Elif Başuslu", "Nilgün Hilal Karataş"],
+            design: ["Eren Özgüler (Onshape/CAD)"],
             electronics: ["Takım Elektronik Altyapı Ekibi"]
         };
 
-        const history = `**GulfTech #11392**, 2026 yılında FRC dünyasına bir 'Rookie' takımı olarak merhaba dedi. Ancak köklerimiz, Gölcük BİLSEM'deki **5 yıllık FLL (FIRST LEGO League)** robotik geçmişimize dayanıyor. Boeing ve Gölcük Belediyesi gibi dev isimlerin desteğiyle, Kocaeli'den yükselen bir teknoloji fırtınası olmayı hedefliyoruz! 🌊🤖`;
+        const teamHistory = `**GulfTech #11392**, 2026 yılında FRC dünyasına 'Rookie' olarak katıldı. Köklerimiz Gölcük BİLSEM'deki **5 yıllık FLL** robotik geçmişimize dayanıyor. Boeing, Gölcük Belediyesi ve Fikret Yüksel Vakfı desteğiyle Kocaeli'den yükselen bir teknoloji dalgası olmayı hedefliyoruz! 🌊🤖`;
 
         let response = "";
 
-        if (/takım.*tanıt|ekib.*tanıt|üyeler|kimler var/i.test(msg)) {
+        // === BRANCH-ISOLATED RESPONSES ===
+        if (/takım.*tanıt|ekib.*tanıt|tüm üyeler|kimler var|kadro/i.test(msg)) {
             response = `### 🦈 GulfTech Departmanları\n\n` +
-                `**🎓 Baş Mentor:**\n- ${team.mentor}\n\n` +
-                `**🔱 Kaptanlar:**\n- ${team.captains}\n\n` +
-                `**💻 Yazılım (Software):**\n- ${team.software.join('\n- ')}\n\n` +
-                `**⚙️ Mekanik (Mechanical):**\n- ${team.mechanical.join('\n- ')}\n\n` +
-                `**🎨 PR (Public Relations):**\n- ${team.pr.join('\n- ')}\n\n` +
-                `**📐 Tasarım (Design/CAD):**\n- ${team.design.join('\n- ')}\n\n` +
-                `**⚡ Elektronik:**\n- ${team.electronics.join('\n- ')}\n\n` +
-                `Ekiplerimiz, 2026 **REBUILT** sezonunda en iyi performansı sergilemek için senkronize bir şekilde çalışıyor! 🚀`;
+                `**🎓 Baş Mentor:** ${team.mentor}\n\n` +
+                `**🔱 Kaptanlar:** ${team.captains}\n\n` +
+                `**💻 Yazılım:** ${team.software.join(', ')}\n\n` +
+                `**⚙️ Mekanik:** ${team.mechanical.join(', ')}\n\n` +
+                `**🎨 PR:** ${team.pr.join(', ')}\n\n` +
+                `**📐 Tasarım:** ${team.design.join(', ')}\n\n` +
+                `**⚡ Elektronik:** ${team.electronics.join(', ')}\n\n` +
+                `2026 **REBUILT** sezonunda hep birlikte sahaya çıkıyoruz! 🚀`;
             await delay(1200);
             return response;
         }
 
-        if (/tarih|geçmiş|hikaye|ne zaman kuruldu/i.test(msg)) {
-            response = `### 📖 Tarihçemiz\n\n${history}\n\nYolculuğumuz BİLSEM'in robotik vizyonuyla başladı ve bugün FRC'nin dev sahalarına taşındı. 🦈✨`;
-            await delay(1000);
-            return response;
+        // ISOLATED: Only Software
+        if (/yazılım|software|kod/i.test(msg) && !/takım|tüm|hep/i.test(msg)) {
+            response = `### 💻 Yazılım Ekibi\n\nYazılım ekibimiz robotun beyni olan kontrol sistemlerinden sorumlu:\n- ${team.software.join('\n- ')}\n\nJava/WPILib, PathPlanner otonom ve Command-based programming kullanıyoruz. 🤖`;
+            await delay(800); return response;
         }
 
-        if (/2026|rebuilt|game|oyun/i.test(msg)) {
-            response += `### 🏗️ FRC 2026: REBUILT (Presented by Haas)\n\n2026 sezonu teması **REBUILT** olarak açıklandı! "Geçmişi yeniden hayal etme" konseptiyle sahadayız:\n` +
-                `- **Active Hubs (Aktif Merkezler):** Robotlar topladıkları yakıtları (fuel) merkezlere atarak puan toplar.\n` +
-                `- **The Tower (Kule):** Maç sonunda robotların kuleye tırmanması (Level 1, 2 veya 3) en önemli puan kaynaklarından biridir.\n` +
-                `- **Otonom Dönem:** İlk 20 saniye robotlar merkezlere yakıt atarak ve tırmanış hazırlığı yaparak başlar.\n` +
-                `- **Yakıt Toplama:** Yakıtlar outpost'lardaki insan oyunculardan veya sahadaki depolardan toplanabilir.\n\n` +
-                `Biz GulfTech olarak 2026'da "REBUILT" sahasında en verimli yakıt sistemini kurmayı hedefliyoruz! 🦈💎\n\n`;
+        // ISOLATED: Only Mechanical
+        if (/mekanik|mechanical/i.test(msg) && !/takım|tüm|hep/i.test(msg)) {
+            response = `### ⚙️ Mekanik Ekibi\n\nMekanik ekibimiz robotun fiziksel inşasından sorumlu:\n- ${team.mechanical.join('\n- ')}\n\nMK4i Swerve Drive şasi, asansör sistemleri ve intake mekanizmaları onların eseri. 🛠️`;
+            await delay(800); return response;
         }
 
-        if (/reefscape|oyun|kural|2025/i.test(msg)) {
-            response += `### 🎮 FRC 2025: REEFSCAPE\n\n**REEFSCAPE** sezonunda odaklanmamız gereken ana noktalar:\n` +
-                `- **Coral (Mercan):** Resif'in (Reef) 4 farklı seviyesine mercan yerleştirerek puan kazanılır. L4 en yüksek puanı verir.\n` +
-                `- **Algae (Yosun):** Resif üzerindeki yosunları temizleyerek 'Processor'a atmak veya 'Barge'a ulaştırmak önemlidir.\n` +
-                `- **Endgame:** Maç sonunda robotların 'Barge'a tırmanması (Deep veya Shallow climb) kritik puan değerindedir.\n\n` +
-                `Biz GulfTech olarak bu sene hızlı bir asansör sistemi ve stabil bir Swerve şasisi ile sahada fark yaratmayı hedefliyoruz! 🚀\n\n`;
+        // ISOLATED: Only PR
+        if (/pr|halkla|public/i.test(msg) && !/takım|tüm|hep/i.test(msg)) {
+            response = `### 🎨 PR Ekibi\n\nPR ekibimiz takımın görünürlüğünden sorumlu:\n- ${team.pr.join('\n- ')}\n\nSosyal medya yönetimi, sponsorluk süreçleri ve takım tanıtımı onların uzmanlığı. ✨`;
+            await delay(800); return response;
         }
 
+        // ISOLATED: Only Design
+        if (/tasarım|design|cad|onshape|eren/i.test(msg) && !/takım|tüm|hep/i.test(msg)) {
+            response = `### 📐 Tasarım & CAD Ekibi\n\n- ${team.design.join('\n- ')}\n\nRobotumuzun her parçası Onshape üzerinde özenle tasarlanır. 3D modelleme ve prototipleme süreçlerini yönetiyor. 📐`;
+            await delay(800); return response;
+        }
+
+        // History
+        if (/tarih|geçmiş|hikaye|ne zaman kuruldu|kuruluş/i.test(msg)) {
+            response = `### 📖 Tarihçemiz\n\n${teamHistory}\n\nYolculuğumuz BİLSEM'in robotik vizyonuyla başladı ve bugün FRC'nin dev sahalarına taşındı. 🦈✨`;
+            await delay(1000); return response;
+        }
+
+        // FRC Awards
+        if (/ödül|award|rookie all|impact|inspiration/i.test(msg)) {
+            response = `### 🏆 FRC Ödülleri\n\nFRC'de kazanılabilecek en önemli ödüller:\n` +
+                `- **Rookie All-Star:** Yılın en iyi rookie takımına verilir. Worlds'e direkt bilet!\n` +
+                `- **Engineering Inspiration:** Mühendislik kültürünü toplumda yaygınlaştıran takıma.\n` +
+                `- **FIRST Impact Award:** En prestijli ödül. FIRST misyonunu en iyi temsil eden takıma.\n` +
+                `- **Autonomous Award:** En iyi otonom performansı gösteren takıma.\n` +
+                `- **Quality Award:** Sağlam ve güvenilir robot tasarımı için.\n` +
+                `- **Dean's List:** Öne çıkan bireysel öğrencilere. \n\n` +
+                `Biz GulfTech olarak ilk sezonumuzda **Rookie All-Star** ödülünü hedefliyoruz! 🦈🏆`;
+            await delay(1000); return response;
+        }
+
+        // Regional Info
+        if (/bölge|regional|turnuva|takvim|ne zaman/i.test(msg)) {
+            response = `### 📍 2026 Türkiye Regionalleri\n\n` +
+                `| Turnuva | Tarih | Konum |\n|---------|-------|-------|\n` +
+                `| Haliç Regional | 25-27 Mart | Ataköy, İstanbul |\n` +
+                `| Marmara Regional | 28-30 Mart | Ataköy, İstanbul |\n` +
+                `| Avrasya Regional | 31 Mar – 2 Nis | Ataköy, İstanbul |\n` +
+                `| Ankara Regional | 7-9 Nisan | Ankara |\n` +
+                `| Başkent Regional | 10-12 Nisan | Ankara |\n\n` +
+                `Tüm turnuvalara giriş **ücretsizdir**. Ziyaret saatleri: 10:00 – 18:00. 🦈🏟️`;
+            await delay(1000); return response;
+        }
+
+        // 2026 REBUILT
+        if (/2026|rebuilt/i.test(msg)) {
+            response += `### 🏗️ FRC 2026: REBUILT\n\n"Geçmişi yeniden hayal etme" konseptiyle sahadayız:\n` +
+                `- **Active Hubs:** Yakıtları merkezlere atarak puan topla.\n` +
+                `- **Tower:** Kuleye tırmanma (L1-L3) endgame puanlarını belirler.\n` +
+                `- **Otonom:** İlk 20 sn tamamen otonom. Yakıt at + L1 tırman.\n` +
+                `- **Yakıt:** Depolardan veya insan oyunculardan toplanır.\n\n`;
+        }
+
+        // Swerve
         if (/swerve|şasi|drive/i.test(msg)) {
-            response += `### 🏎️ Swerve Drive (MK4i)\nTakımımız **MK4i Swerve** modüllerini kullanıyor. Avantajlarımız:\n` +
-                `- **360° Manevra Kabiliyeti:** Dar alanlarda rakipleri kolayca ekarte edebiliyoruz.\n` +
-                `- **Fırçasız Motorlar:** CANcoder ve Falcon/Kraken motorlarla maksimum tork ve hız.\n` +
-                `- **Yazılım Kontrolü:** WPILib ve PathPlanner ile otonom dönemde milimetrik hassasiyet. 🚀\n\n`;
+            response += `### 🏎️ Swerve Drive (MK4i)\n- 360° manevra kabiliyeti\n- CANcoder + Falcon/Kraken motor sistemi\n- PathPlanner ile milimetrik otonom hassasiyet 🚀\n\n`;
         }
 
+        // Scouting
         if (/scout|veri|analiz/i.test(msg)) {
-            response += `### 📊 Gelişmiş Scouting\nScouting ekibimiz, rakip analizlerini gerçek zamanlı yaparak maç stratejilerimizi güncelliyor. 2026 için hedefimiz, veriyi doğrudan tableau veya özel web panellerimize aktaran tamamen otonom bir sistem! 📈\n\n`;
+            response += `### 📊 Scouting\nRakip analizlerini gerçek zamanlı yaparak maç stratejilerimizi güncelliyoruz. Web tabanlı scouting paneli geliştiriyoruz! 📈\n\n`;
         }
 
-        // Broad fallback
+        // Greetings
+        if (/selam|merhaba|hey|kimsin/i.test(msg)) {
+            response += `Merhaba! 🦈 Ben **GulfTech AI**, FRC #11392 takımının dijital asistanıyım. Takım üyelerimizden, FRC 2026 REBUILT kurallarından, ödüllerden veya turnuva takviminden bahsedebilirim!\n\n`;
+        }
+
+        // Contact
+        if (/iletişim|ulaş|mail|telefon/i.test(msg)) {
+            response += `### 📞 İletişim\n- **E-posta:** gulftechtr@gmail.com\n- **Instagram:** @gulftechtr\n- **YouTube:** @gulftechtr\n- **Telefon:** +90 537 692 6558\n🦈\n\n`;
+        }
+
+        // Playlist
+        if (/playlist|müzik|şarkı/i.test(msg)) {
+            response += `### 🎵 Müzik\nPlaylistlerimiz: **Tech the Halls** ve **Charge Up FEBRUARY**. ⚡\n\n`;
+        }
+
+        // Mentor
+        if (/mentor|ensar/i.test(msg)) {
+            response += `### 🎓 Mentorumuz\nBaş mentorumuz **Ensar İnce**, takımımızın kurucusu ve teknik rehberi. 🦈\n\n`;
+        }
+
+        // Fallback
         if (response === "") {
-            response = `Anlıyorum! 🦈 **FRC 2025 REEFSCAPE** veya **2026 REBUILT** sezonu hakkında sormak istediğin bir şey var mı? \n\nRobot mekaniği, yakıt toplama stratejileri veya kule tırmanış detaylarından bahsedebilirim! ✨`;
+            response = `Anlıyorum! 🦈 Sana şu konularda yardımcı olabilirim:\n- 🏗️ FRC 2026 REBUILT kuralları\n- 🏆 FRC ödülleri\n- 📍 Turnuva takvimi\n- 🦈 GulfTech takım bilgileri\n- 💻 Yazılım / ⚙️ Mekanik / 🎨 PR / 📐 Tasarım ekipleri\n\nHangi konuda yardımcı olayım? ✨`;
         } else {
-            response += `\nBaşka merak ettiğin bir FRC detayı var mı? 🦈`;
+            response += `\nBaşka bir soru var mı? 🦈`;
         }
 
-        await delay(1000 + Math.random() * 1000);
+        await delay(800 + Math.random() * 600);
         return response;
     }
 
@@ -645,5 +751,7 @@ Görevin:
 
     // ===== BOOT =====
     init();
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
 
 })();

@@ -690,10 +690,80 @@ a:hover { text-decoration: underline; }
 }
 
 .welcome-sub {
-    color: var(--text-muted) !important;
-    font-size: 0.88rem !important;
-    margin-bottom: 36px !important;
-    max-width: 420px;
+    color: var(--text-secondary) !important;
+    font-size: 0.9rem !important;
+    margin-bottom: 30px !important;
+    max-width: 480px;
+    opacity: 0.8;
+}
+
+/* Countdown Container */
+.countdown-container {
+    background: var(--bg-secondary);
+    border: 1px solid rgba(14, 165, 233, 0.2);
+    border-radius: var(--radius-lg);
+    padding: 20px 30px;
+    margin-bottom: 40px;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3), var(--shadow-glow);
+    animation: glowPulse 4s infinite alternate;
+}
+
+@keyframes glowPulse {
+    from { box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3), 0 0 10px rgba(14, 165, 233, 0.1); }
+    to { box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3), 0 0 25px rgba(14, 165, 233, 0.3); }
+}
+
+.countdown-label {
+    font-size: 0.85rem;
+    color: var(--text-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+}
+
+.countdown-digits {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.cd-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cd-num {
+    background: rgba(14, 165, 233, 0.1);
+    border: 1px solid rgba(14, 165, 233, 0.3);
+    border-radius: var(--radius-md);
+    padding: 8px 12px;
+    font-family: var(--font-mono);
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #fff;
+    min-width: 55px;
+    text-shadow: 0 0 10px rgba(14, 165, 233, 0.5);
+}
+
+.cd-unit {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-top: 6px;
+    font-weight: 600;
+}
+
+.cd-sep {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--accent);
+    margin-bottom: 20px;
 }
 
 /* Suggestion Chips */
@@ -711,22 +781,40 @@ a:hover { text-decoration: underline; }
     gap: 10px;
     padding: 14px 16px;
     border-radius: var(--radius-md);
-    border: 1px solid var(--border);
-    background: var(--bg-card);
+    border: 1px solid rgba(14, 165, 233, 0.15);
+    background: rgba(2, 8, 23, 0.5);
     color: var(--text-secondary);
     font-family: var(--font-body);
     font-size: 0.84rem;
     cursor: pointer;
-    transition: all 0.25s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     text-align: left;
+    position: relative;
+    overflow: hidden;
+}
+
+.suggestion-chip::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .suggestion-chip:hover {
     border-color: var(--accent);
     color: var(--text-primary);
-    background: var(--bg-hover);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-glow);
+    background: rgba(14, 165, 233, 0.1);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), var(--shadow-glow);
+}
+
+.suggestion-chip:hover::before {
+    opacity: 1;
 }
 
 .chip-icon {
