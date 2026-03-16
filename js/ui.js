@@ -22,6 +22,11 @@ export const UI = {
     apiStatus: $('#apiStatus'),
     modelBadge: $('#modelBadge'),
     countdownTimer: $('#countdownTimer'),
+    navSchedule: $('#navSchedule'),
+    mapModal: $('#mapModal'),
+    mapModalClose: $('#mapModalClose'),
+    mapModalBody: $('#mapModalBody'),
+    backToTurkey: $('#backToTurkey'),
 
     toggleSidebar(show) {
         this.sidebar.classList.toggle('open', show);

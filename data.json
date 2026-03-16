@@ -54,5 +54,37 @@
     { "name": "FIRST Impact Award", "desc": "En prestijli ödül. FIRST misyonunu en iyi temsil eden takıma." },
     { "name": "Autonomous Award", "desc": "En iyi otonom performansı gösteren takıma." },
     { "name": "Quality Award", "desc": "Sağlam ve güvenilir robot tasarımı için." }
-  ]
+  ],
+  "venues": {
+    "Ataköy, İstanbul": {
+      "name": "Sinan Erdem Spor Salonu (Ataköy)",
+      "address": "Zuhuratbaba, 34147 Bakırköy/İstanbul",
+      "logistics": {
+        "transport": "Marmaray (Ataköy durağı) veya Metrobüs (Şirinevler) ile ulaşım sağlanabilir.",
+        "accommodation": "Ataköy ve Bakırköy bölgesindeki oteller önerilir.",
+        "notes": "Yiyecek ve içecek alanları salonun çevresinde mevcuttur."
+      },
+      "floorPlan": {
+        "pits": "Giriş katı, sol kanat",
+        "field": "Ana saha alanı, orta bölüm",
+        "stands": "İzleyici tribünleri, üst ve yan bölümler",
+        "food": "Giriş katı, sağ kanat"
+      }
+    },
+    "Ankara": {
+      "name": "Ankara Spor Salonu",
+      "address": "Doğanbey, Cumhuriyet Cd., 06050 Altındağ/Ankara",
+      "logistics": {
+        "transport": "Ankara YHT Garı yanındadır. Metro ve otobüs ile merkezi ulaşım.",
+        "accommodation": "Ulus ve Kızılay bölgesindeki oteller yürüme mesafesindedir.",
+        "notes": "Ankara'nın en modern ve geniş spor komplekslerinden biridir."
+      },
+      "floorPlan": {
+        "pits": "Alt kat fuaye alanı",
+        "field": "Merkezi oyun alanı",
+        "stands": "360 derece izleme alanı",
+        "food": "Üst kat kantin bölgesi"
+      }
+    }
+  }
 }

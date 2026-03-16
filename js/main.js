@@ -60,6 +60,23 @@ function bindEvents() {
     UI.toggleApiVis.addEventListener('click', () => {
         UI.apiKeyInput.type = UI.apiKeyInput.type === 'password' ? 'text' : 'password';
     });
+
+    // Schedule Modal
+    UI.navSchedule.addEventListener('click', () => {
+        UI.mapModal.classList.add('visible');
+        openScheduleModal();
+    });
+    UI.mapModalClose.addEventListener('click', () => UI.mapModal.classList.remove('visible'));
+    UI.mapModal.addEventListener('click', (e) => {
+        if (e.target === UI.mapModal) UI.mapModal.classList.remove('visible');
+    });
+}
+
+import { MapComponent } from './map.js';
+function openScheduleModal() {
+    const mapComp = new MapComponent(appData);
+    UI.mapModalBody.innerHTML = '';
+    UI.mapModalBody.appendChild(mapComp.render());
 }
 
 function saveSettings() {

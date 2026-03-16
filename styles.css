@@ -16,6 +16,131 @@
 
     --text-primary: #f0f7ff; /* Very Light Blue-White */
     --text-secondary: #a5b4fc; /* Pale Blue */
+/* ===== SIDEBAR NAV ===== */
+.sidebar-nav {
+    padding: 8px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--sidebar-border);
+}
+
+.nav-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--accent);
+}
+
+.nav-badge {
+    margin-left: auto;
+    background: var(--accent);
+    color: white;
+    font-size: 0.65rem;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+/* ===== MAP MODAL SPECIFIC ===== */
+.map-modal {
+    max-width: 800px;
+    width: 90%;
+}
+
+.venue-header {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border);
+}
+
+.venue-title {
+    font-family: 'Outfit', sans-serif;
+    color: var(--accent);
+    margin-bottom: 5px;
+}
+
+.venue-address {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.venue-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 600px) {
+    .venue-grid { grid-template-columns: 1fr; }
+}
+
+.venue-info-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 15px;
+}
+
+.venue-info-card h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.venue-info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.venue-info-list li {
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.info-label {
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-back-map {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+}
+
+.btn-back-map:hover {
+    background: var(--accent);
+    color: white;
+}
+
 /* ===== MASCOT ANIMATIONS ===== */
 .welcome-mascot {
     transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
