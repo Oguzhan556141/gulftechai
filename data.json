@@ -1,0 +1,58 @@
+{
+  "team": {
+    "name": "Gulf Tech #11392",
+    "foundedAt": 2026,
+    "location": "Gölcük BİLSEM, Kocaeli, Türkiye",
+    "background": "5 yıllık FLL tecrübesi üzerine kurulmuş profesyonel bir FRC takımı.",
+    "mascot": "Köpek balığı (Mavi: Derinlik, Sarı/Altın: Enerji)",
+    "supporters": ["Boeing", "Gölcük Belediyesi", "Fikret Yüksel Vakfı", "TEKSA", "Teknorova"],
+    "departments": {
+      "mentor": "Ensar İnce",
+      "captains": "Levent Yiğit (Mekanik), Tuğra Kerem Kaya (PR), İrem Ünver (Yazılım)",
+      "software": {
+        "captain": "İrem Ünver",
+        "members": ["Oğuzhan Aşkın", "Zeynep Sude Çakmak", "Elif Başuslu"]
+      },
+      "mechanical": {
+        "captain": "Levent Yiğit",
+        "members": ["Tufan Gülmez", "Arda Furkan Aygenoğlu", "Muhammet Ali Sardoğan", "Nilgün Hilal Karataş"]
+      },
+      "pr": {
+        "captain": "Tuğra Kerem Kaya",
+        "members": ["Beray Erenel", "Ege Göllü", "Zeynep Sude Çakmak", "Elif Başuslu", "Nilgün Hilal Karataş"]
+      },
+      "design": {
+        "members": ["Eren Özgüler (Onshape)"]
+      },
+      "electronics": {
+        "description": "Donanım ve kablolama ekibi"
+      }
+    },
+    "history": "GulfTech #11392, 2026 yılında FRC dünyasına 'Rookie' olarak katıldı. Köklerimiz Gölcük BİLSEM'deki 5 yıllık FLL robotik geçmişimize dayanıyor. Boeing, Gölcük Belediyesi ve Fikret Yüksel Vakfı desteğiyle Kocaeli'den yükselen bir teknoloji dalgası olmayı hedefliyoruz! 🌊🤖"
+  },
+  "frc2026": {
+    "theme": "REBUILT (Presented by Haas)",
+    "concept": "Geçmişi yeniden hayal et",
+    "game": "Hub'lara yakıt atma, Tower'a tırmanma (L1-L3), otonom ilk 20sn.",
+    "rules": [
+      { "id": "hubs", "title": "Active Hubs", "desc": "Yakıtları merkezlere atarak puan topla." },
+      { "id": "tower", "title": "Tower", "desc": "Kuleye tırmanma (L1-L3) endgame puanlarını belirler." },
+      { "id": "autonomous", "title": "Otonom", "desc": "İlk 20 sn tamamen otonom. Yakıt at + L1 tırman." },
+      { "id": "fuel", "title": "Yakıt", "desc": "Depolardan veya insan oyunculardan toplanır." }
+    ]
+  },
+  "regionals": [
+    { "name": "Haliç Regional", "date": "2026-03-25T10:00:00+03:00", "location": "Ataköy, İstanbul" },
+    { "name": "Marmara Regional", "date": "2026-03-28T10:00:00+03:00", "location": "Ataköy, İstanbul" },
+    { "name": "Avrasya Regional", "date": "2026-03-31T10:00:00+03:00", "location": "Ataköy, İstanbul" },
+    { "name": "Ankara Regional", "date": "2026-04-07T10:00:00+03:00", "location": "Ankara" },
+    { "name": "Başkent Regional", "date": "2026-04-10T10:00:00+03:00", "location": "Ankara" }
+  ],
+  "awards": [
+    { "name": "Rookie All-Star", "desc": "Yılın en iyi rookie takımına verilir. Worlds'e direkt bilet!" },
+    { "name": "Engineering Inspiration", "desc": "Mühendislik kültürünü toplumda yaygınlaştıran takıma." },
+    { "name": "FIRST Impact Award", "desc": "En prestijli ödül. FIRST misyonunu en iyi temsil eden takıma." },
+    { "name": "Autonomous Award", "desc": "En iyi otonom performansı gösteren takıma." },
+    { "name": "Quality Award", "desc": "Sağlam ve güvenilir robot tasarımı için." }
+  ]
+}

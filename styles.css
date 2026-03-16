@@ -16,6 +16,89 @@
 
     --text-primary: #f0f7ff; /* Very Light Blue-White */
     --text-secondary: #a5b4fc; /* Pale Blue */
+/* ===== MASCOT ANIMATIONS ===== */
+.welcome-mascot {
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
+    cursor: pointer;
+    animation: floating 3s ease-in-out infinite;
+}
+
+.welcome-mascot:hover {
+    filter: drop-shadow(0 0 15px var(--accent-glow));
+}
+
+@keyframes floating {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+.brand-logo:hover {
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: rotate(0); }
+    25% { transform: rotate(-10deg); }
+    75% { transform: rotate(10deg); }
+}
+
+/* ===== INTERACTIVE MAP STYLES ===== */
+.map-container {
+    margin-top: 20px;
+    width: 100%;
+    height: 300px;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+}
+
+.map-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.5), rgba(15, 23, 42, 0.5));
+    color: var(--text-secondary);
+}
+
+.map-node {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent-glow);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.map-node:hover {
+    transform: scale(1.5);
+}
+
+.map-node-label {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-card);
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    border: 1px solid var(--border);
+}
+
+.map-node:hover .map-node-label {
+    opacity: 1;
+}
     --text-muted: #64748b;
     --text-accent: #38bdf8; /* Sky Blue */
 
