@@ -104,7 +104,7 @@
 .map-container {
     position: relative;
     width: 100%;
-    height: 220px; /* Reduced for jewel look */
+    height: 200px; /* Even smaller for elegance */
     background: rgba(0, 0, 0, 0.2);
     border-radius: 12px;
     overflow: hidden;
