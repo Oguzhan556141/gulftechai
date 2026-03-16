@@ -1484,6 +1484,108 @@ a:hover { text-decoration: underline; }
     transform: translateY(-2px);
 }
 
+.venue-map-section {
+    margin-top: 20px;
+}
+
+.schedule-google-map {
+    height: 240px;
+    margin-top: 10px;
+}
+
+.schedule-google-map-frame {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.schedule-location-list {
+    margin-top: 12px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.schedule-location-item {
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-primary);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 0.82rem;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    transition: all 0.2s ease;
+}
+
+.schedule-location-item span:last-child {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+}
+
+.schedule-location-item:hover,
+.schedule-location-item.active {
+    border-color: var(--accent);
+    background: rgba(56, 189, 248, 0.12);
+}
+
+.schedule-map-actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media (max-width: 520px) {
+    .schedule-location-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+.venue-map-title {
+    margin-bottom: 10px;
+    color: var(--accent-gold);
+    font-size: 0.95rem;
+}
+
+.venue-map-frame {
+    width: 100%;
+    height: 220px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.venue-map-actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-open-google {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.04);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.btn-open-google:hover {
+    border-color: var(--accent);
+    color: #fff;
+    background: rgba(56, 189, 248, 0.2);
+    text-decoration: none;
+}
+
 .venue-visual-sim-premium {
     width: 100%;
     height: 100%;
