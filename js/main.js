@@ -35,6 +35,15 @@ async function init() {
     bindEvents();
     UI.autoResizeInput();
     
+    // Register Service Worker for PWA/Offline Support
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('./service-worker.js')
+                .then(registration => console.log('ServiceWorker registered:', registration))
+                .catch(error => console.error('ServiceWorker registration failed:', error));
+        });
+    }
+
     if (apiKey) UI.apiKeyInput.value = apiKey;
     UI.modelSelect.value = model;
 

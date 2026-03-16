@@ -1,0 +1,22 @@
+{
+  "name": "GulfTech AI",
+  "short_name": "GulfTech",
+  "description": "GulfTech #11392 FRC Takımı Yapay Zeka Asistanı",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#020817",
+  "theme_color": "#0ea5e9",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "assets/ai-mascot.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/ai-mascot.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
