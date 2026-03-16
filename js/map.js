@@ -17,8 +17,9 @@ export class MapComponent {
     showTurkeyMap() {
         this.currentView = 'turkey';
         this.container.innerHTML = '';
+        const mapContainer = document.createElement('div');
+        mapContainer.className = 'map-container';
         
-        // Accurate Turkey Silhouette
         const svgContent = `
             <svg width="100%" height="100%" viewBox="0 0 800 350" preserveAspectRatio="xMidYMid meet" class="turkey-svg">
                 <defs>
