@@ -17,65 +17,60 @@ export class MapComponent {
     showTurkeyMap() {
         this.currentView = 'turkey';
         this.container.innerHTML = '';
-        const mapContainer = document.createElement('div');
-        mapContainer.className = 'map-container';
-        
-        const svgContent = `
-            <svg width="100%" height="100%" viewBox="0 0 800 320" preserveAspectRatio="xMidYMid meet" class="turkey-svg">
-                <defs>
-                    <linearGradient id="mapGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:var(--accent);stop-opacity:0.5" />
-                        <stop offset="100%" style="stop-color:var(--accent-gold);stop-opacity:0.2" />
-                    </linearGradient>
-                </defs>
-                <g transform="scale(0.85) translate(60, 20)">
-                    <path class="turkey-detailed-path" d="M12.4,142.3c4.7-2,9.3-4.1,14-6.1c16.3-4.1,32.7-8.2,49-12.3c10.7,0.7,21.3,1.3,32,2
-                        c6,5.3,12.1,10.6,18.1,15.9c3.1-3.1,6.1-6.2,9.2-9.2c16.7-7.2,33.5-14.3,50.2-21.5c15-0.7,30.1-1.5,45.1-2.2
-                        c3.1,7,6.1,14,9.2,21c17.5,3.3,35,6.5,52.5,9.8c11.1-6.8,22.2-13.6,33.3-20.4c17.2,0.9,34.4,1.8,51.6,2.7
-                        c8.1,3.4,16.2,6.7,24.3,10.1c11.9-4.2,23.8-8.4,35.6-12.6c18.1,5.1,36.2,10.2,54.3,15.3c15.2-1.9,30.3-3.9,45.5-5.8
-                        c13,1.9,26.1,3.8,39.1,5.7c8.5,8.8,17,17.5,25.6,26.3c16,13.8,32,27.5,48.1,41.3c2.7,11.8,5.5,23.5,8.2,35.3
-                        c-3.1,14.6-6.1,29.3-9.2,43.9c-10.7,13.1-21.4,26.2-32.1,39.2c-17,3.5-34,7.1-51,10.6c-18.7,4.3-37.5,8.7-56.2,13
-                        c-16-2-32.1-4.1-48.1-6.1c-15,3-30.1,6.1-45.1,9.1c-17.2,0.6-34.4,1.3-51.6,1.9c-20.9-4.9-41.9-9.7-62.8-14.6
-                        c-16.7-1.8-33.5-3.6-50.2-5.4c-20.4,4.6-40.8,9.2-61.2,13.7c-21.3-4.5-42.6-8.9-63.9-13.4c-17.5,1.5-35,3-52.5,4.5
-                        c-21.8-8.8-43.5-17.6-65.3-26.4c-11.8,13-23.5,26.1-35.3,39.1c-13.4,2.9-26.7,5.8-40.1,8.7c-10.3-10.1-20.6-20.1-30.8-30.2
-                        c-14.6-1.9-29.3-3.8-43.9-5.7c-10.3-9.5-20.6-19.1-30.8-28.6C9.1,180.5,10.7,161.4,12.4,142.3z" 
-                        fill="url(#mapGradient)" stroke="var(--accent)" stroke-width="1.2" />
-                </g>
-                <text x="50%" y="92%" fill="var(--text-accent)" font-size="8" text-anchor="middle" font-family="Outfit" style="letter-spacing:10px;opacity:0.3;font-weight:900">TÜRKİYE FRC ARENA</text>
-            </svg>
-        `;
-        mapContainer.innerHTML = svgContent;
+        const uniqueLocations = [...new Set(this.data.regionals.map((r) => r.location))];
+        if (uniqueLocations.length === 0) return;
 
-        const locations = {
-            'Başakşehir, İstanbul': { x: 195, y: 135, color: 'var(--accent)' },
-            'Ataköy, İstanbul': { x: 195, y: 145, color: 'var(--accent-gold)' },
-            'Etimesgut, Ankara': { x: 380, y: 185, color: 'var(--accent)' },
-            'Mersin': { x: 440, y: 260, color: 'var(--accent)' },
-            'İzmir': { x: 135, y: 200, color: 'var(--accent-gold)' }
+        const frame = document.createElement('iframe');
+        frame.className = 'schedule-google-map-frame';
+        frame.loading = 'lazy';
+        frame.allowFullscreen = true;
+        frame.referrerPolicy = 'no-referrer-when-downgrade';
+
+        let selectedLocation = uniqueLocations[0];
+
+        const setMapLocation = (location) => {
+            selectedLocation = location;
+            const query = encodeURIComponent(`${location}, Turkiye`);
+            frame.src = `https://www.google.com/maps?q=${query}&output=embed`;
         };
 
-        this.data.regionals.forEach(r => {
-            const coords = locations[r.location] || { x: 180, y: 150 };
-            const node = document.createElement('div');
-            node.className = 'map-node pulsing-node';
-            node.style.left = `${coords.x}px`;
-            node.style.top = `${coords.y}px`;
-            node.style.background = coords.color || 'var(--accent)';
-            node.style.boxShadow = `0 0 20px ${coords.color || 'var(--accent)'}`;
-            
-            const label = document.createElement('div');
-            label.className = 'map-node-label';
-            label.innerHTML = `<span style="color:var(--accent-gold); font-weight:800">${r.name}</span><br><span style="font-size:0.7rem;opacity:0.8">${new Date(r.date).toLocaleDateString('tr-TR', {month:'long', day:'numeric'})}</span>`;
-            
-            node.appendChild(label);
-            mapContainer.appendChild(node);
-            node.addEventListener('click', () => this.showVenueView(r.location));
+        setMapLocation(uniqueLocations[0]);
+
+        const mapContainer = document.createElement('div');
+        mapContainer.className = 'map-container schedule-google-map';
+        mapContainer.appendChild(frame);
+        this.container.appendChild(mapContainer);
+
+        const list = document.createElement('div');
+        list.className = 'schedule-location-list';
+
+        uniqueLocations.forEach((location, idx) => {
+            const regionalCount = this.data.regionals.filter((r) => r.location === location).length;
+            const item = document.createElement('button');
+            item.className = `schedule-location-item${idx === 0 ? ' active' : ''}`;
+            item.type = 'button';
+            item.innerHTML = `<span>${location}</span><span>${regionalCount} turnuva</span>`;
+
+            item.addEventListener('click', () => {
+                setMapLocation(location);
+                list.querySelectorAll('.schedule-location-item').forEach((el) => el.classList.remove('active'));
+                item.classList.add('active');
+            });
+
+            list.appendChild(item);
         });
 
-        this.container.appendChild(mapContainer);
-        
+        this.container.appendChild(list);
+
+        const actions = document.createElement('div');
+        actions.className = 'schedule-map-actions';
+        actions.innerHTML = '<button class="btn-open-google" type="button">Salon Detayini Ac</button>';
+        const detailsBtn = actions.querySelector('button');
+        detailsBtn.addEventListener('click', () => this.showVenueView(selectedLocation));
+        this.container.appendChild(actions);
+
         const hint = document.createElement('div');
-        hint.innerHTML = '<div class="map-hint-premium">Salon planı ve lojistik için bir şehre dokun 🦈</div>';
+        hint.innerHTML = '<div class="map-hint-premium">Konumu degistirmek icin sehri sec, sonra salon detayini ac.</div>';
         this.container.appendChild(hint);
 
         const backBtn = document.getElementById('backToTurkey');
@@ -84,8 +79,12 @@ export class MapComponent {
 
     showVenueView(location) {
         this.currentView = 'venue';
-        const venue = this.data.venues[location];
+        const venue = this.data.venues?.[location];
         if (!venue) return;
+
+        const mapQuery = encodeURIComponent(`${venue.address}, Turkiye`);
+        const embedUrl = `https://www.google.com/maps?q=${mapQuery}&output=embed`;
+        const openInMapsUrl = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
 
         this.container.innerHTML = `
             <div class="venue-header premium-header">
@@ -111,9 +110,18 @@ export class MapComponent {
                     </ul>
                 </div>
             </div>
-            <div class="venue-sim-container" style="height:200px; margin-top:20px;">
-                <div class="venue-visual-sim-premium">
-                    <div class="sim-overlay">SALON PLANI YÜKLENİYOR...</div>
+            <div class="venue-map-section">
+                <h4 class="venue-map-title">Google Haritalar Onizleme</h4>
+                <iframe
+                    class="venue-map-frame"
+                    src="${embedUrl}"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    allowfullscreen
+                    title="${venue.name} konum haritasi"
+                ></iframe>
+                <div class="venue-map-actions">
+                    <a class="btn-open-google" href="${openInMapsUrl}" target="_blank" rel="noopener noreferrer">Google Maps'te Ac</a>
                 </div>
             </div>
         `;
@@ -127,6 +135,6 @@ export class MapComponent {
 }
 
 export function renderMap(regionals) {
-    const comp = new MapComponent({ regionals });
+    const comp = new MapComponent({ regionals, venues: {} });
     return comp.render();
 }
