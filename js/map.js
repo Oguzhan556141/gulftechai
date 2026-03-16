@@ -19,9 +19,9 @@ export class MapComponent {
         const mapContainer = document.createElement('div');
         mapContainer.className = 'map-container';
         
-        // High-Fidelity Turkey SVG (Enhanced Path)
+        // High-Fidelity Turkey SVG
         const svgContent = `
-            <svg width="100%" height="100%" viewBox="0 0 800 350" preserveAspectRatio="xMidYMid meet" class="turkey-svg">
+            <svg width="100%" height="100%" viewBox="0 0 800 320" preserveAspectRatio="xMidYMid meet" class="turkey-svg">
                 <defs>
                     <linearGradient id="mapGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%" style="stop-color:var(--accent);stop-opacity:0.4" />
@@ -32,21 +32,22 @@ export class MapComponent {
                         <feComposite in="SourceGraphic" in2="blur" operator="over"/>
                     </filter>
                 </defs>
-                <path class="turkey-detailed-path" d="M11.6,183.1h11.7l11.7-5.9l11.7,5.9l17.5-17.5l29.2-5.9l8.8,11.7l11.7-11.7l58.4-23.4l58.4-11.7l8.8,29.2
-                    l58.4,17.5l29.2-29.2l58.4-5.9l40.9,11.7l40.9-11.7l64.3,5.9l29.2-11.7l40.9,5.9l40.9,29.2l52.6,40.9l8.8,40.9l-11.7,46.7
-                    l-29.2,35.1l-64.3,11.7l-58.4,11.7l-46.7-11.7l-52.6,11.7l-58.4,5.9l-64.3-17.5l-52.6-5.9l-64.3,11.7l-58.4-11.7l-52.6,5.9
-                    l-64.3,11.7l-58.4-29.2l-8.8,35.1l-40.9,11.7l-35.1-29.2l-46.7-5.9l-29.2-23.4l-11.7-40.9L11.6,183.1z" 
+                <path class="turkey-detailed-path" d="M12,160h12l12-6l12,6l18-18l30-6l9,12l12-12l60-24l60-12l9,30
+                    l60,18l30-30l60-6l42,12l42-12l66,6l30-12l42,6l42,30l54,42l9,42l-12,48
+                    l-30,36l-66,12l-60,12l-48-12l-54,12l-60,6l-66-18l-54-6l-66,12l-60-12l-54,6
+                    l-66,12l-60-30l-9,36l-42,12l-36-30l-48-6l-30-24l-12-42L12,160z" 
                     fill="url(#mapGradient)" stroke="var(--accent)" stroke-width="2" />
-                <text x="50%" y="94%" fill="var(--text-accent)" font-size="16" text-anchor="middle" font-family="Outfit" style="letter-spacing:8px;opacity:0.5;font-weight:700">TÜRKİYE FRC ARENA</text>
+                <text x="50%" y="95%" fill="var(--text-accent)" font-size="14" text-anchor="middle" font-family="Outfit" style="letter-spacing:8px;opacity:0.5;font-weight:700">TÜRKİYE FRC ARENA</text>
             </svg>
         `;
         mapContainer.innerHTML = svgContent;
 
         const locations = {
-            'Ataköy, İstanbul': { x: 170, y: 145, color: 'var(--accent)' },
-            'Ankara': { x: 380, y: 210, color: 'var(--accent-gold)' },
-            'Mersin': { x: 440, y: 280, color: 'var(--accent)' },
-            'İzmir': { x: 100, y: 220, color: 'var(--accent-gold)' }
+            'Başakşehir, İstanbul': { x: 170, y: 135, color: 'var(--accent)' },
+            'Ataköy, İstanbul': { x: 175, y: 140, color: 'var(--accent-gold)' },
+            'Etimesgut, Ankara': { x: 380, y: 195, color: 'var(--accent)' },
+            'Mersin': { x: 440, y: 260, color: 'var(--accent)' },
+            'İzmir': { x: 100, y: 205, color: 'var(--accent-gold)' }
         };
 
         this.data.regionals.forEach(r => {

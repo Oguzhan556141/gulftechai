@@ -47,13 +47,14 @@
     ]
   },
   "regionals": [
-    { "name": "Haliç Regional", "date": "2026-03-25T10:00:00+03:00", "location": "Ataköy, İstanbul" },
-    { "name": "Marmara Regional", "date": "2026-03-28T10:00:00+03:00", "location": "Ataköy, İstanbul" },
-    { "name": "Avrasya Regional", "date": "2026-03-31T10:00:00+03:00", "location": "Ataköy, İstanbul" },
-    { "name": "Ankara Regional", "date": "2026-04-07T10:00:00+03:00", "location": "Ankara" },
-    { "name": "Başkent Regional", "date": "2026-04-10T10:00:00+03:00", "location": "Ankara" },
-    { "name": "Mersin Regional", "date": "2026-04-15T10:00:00+03:00", "location": "Mersin" },
-    { "name": "İzmir Regional", "date": "2026-04-20T10:00:00+03:00", "location": "İzmir" }
+    { "name": "Istanbul Regional", "date": "2026-03-03T09:00:00+03:00", "location": "Başakşehir, İstanbul" },
+    { "name": "Bosphorus Regional", "date": "2026-03-06T09:00:00+03:00", "location": "Başakşehir, İstanbul" },
+    { "name": "Yeditepe Regional", "date": "2026-03-09T09:00:00+03:00", "location": "Başakşehir, İstanbul" },
+    { "name": "Haliç Regional", "date": "2026-03-25T09:00:00+03:00", "location": "Ataköy, İstanbul" },
+    { "name": "Marmara Regional", "date": "2026-03-28T09:00:00+03:00", "location": "Ataköy, İstanbul" },
+    { "name": "Eurasia Regional", "date": "2026-03-31T09:00:00+03:00", "location": "Ataköy, İstanbul" },
+    { "name": "Ankara Regional", "date": "2026-04-07T09:00:00+03:00", "location": "Etimesgut, Ankara" },
+    { "name": "Capital Regional", "date": "2026-04-10T09:00:00+03:00", "location": "Etimesgut, Ankara" }
   ],
   "awards": [
     { "name": "Rookie All-Star", "desc": "Yılın en iyi rookie takımına verilir. Worlds'e direkt bilet!" },
@@ -63,34 +64,49 @@
     { "name": "Quality Award", "desc": "Sağlam ve güvenilir robot tasarımı için." }
   ],
   "venues": {
-    "Ataköy, İstanbul": {
-      "name": "Sinan Erdem Spor Salonu (Ataköy)",
-      "address": "Zuhuratbaba, 34147 Bakırköy/İstanbul",
+    "Başakşehir, İstanbul": {
+      "name": "Başakşehir Spor Kompleksi",
+      "address": "Başakşehir, İstanbul",
       "logistics": {
-        "transport": "Marmaray (Ataköy durağı) veya Metrobüs (Şirinevler) ile ulaşım sağlanabilir.",
-        "accommodation": "Ataköy ve Bakırköy bölgesindeki oteller önerilir.",
-        "notes": "Yiyecek ve içecek alanları salonun çevresinde mevcuttur."
+        "transport": "M3 Metro hattı veya İETT otobüsleri.",
+        "accommodation": "Başakşehir ve Kayaşehir otelleri.",
+        "notes": "Modern ve geniş bir salon."
       },
       "floorPlan": {
-        "pits": "Giriş katı, sol kanat",
-        "field": "Ana saha alanı, orta bölüm",
-        "stands": "İzleyici tribünleri, üst ve yan bölümler",
-        "food": "Giriş katı, sağ kanat"
+        "pits": "Giriş kat, yan salon",
+        "field": "Merkez arena",
+        "stands": "Üst kat tribünler",
+        "food": "Kafeterya alanı"
       }
     },
-    "Ankara": {
-      "name": "Ankara Spor Salonu",
-      "address": "Doğanbey, Cumhuriyet Cd., 06050 Altındağ/Ankara",
+    "Ataköy, İstanbul": {
+      "name": "Sinan Erdem Spor Kompleksi / TAF Atletizm Salonu",
+      "address": "Ataköy, Bakırköy/İstanbul",
       "logistics": {
-        "transport": "Ankara YHT Garı yanındadır. Metro ve otobüs ile merkezi ulaşım.",
-        "accommodation": "Ulus ve Kızılay bölgesindeki oteller yürüme mesafesindedir.",
-        "notes": "Ankara'nın en modern ve geniş spor komplekslerinden biridir."
+        "transport": "Marmaray Ataköy durağı veya Metrobüs Şirinevler.",
+        "accommodation": "Bakırköy bölgesindeki oteller.",
+        "notes": "Atletizm salonu bitişiğindedir."
       },
       "floorPlan": {
-        "pits": "Alt kat fuaye alanı",
-        "field": "Merkezi oyun alanı",
-        "stands": "360 derece izleme alanı",
-        "food": "Üst kat kantin bölgesi"
+        "pits": "Saha çevresi koridorlar",
+        "field": "Atletizm sahası orta alanı",
+        "stands": "Sabit tribünler",
+        "food": "Fuaye alanı"
+      }
+    },
+    "Etimesgut, Ankara": {
+      "name": "Devlet Bahçeli Eğitim, Yaşam ve Spor Kompleksi",
+      "address": "Etimesgut, Ankara",
+      "logistics": {
+        "transport": "Etimesgut banliyö treni veya şehir içi otobüsler.",
+        "accommodation": "Etimesgut ve Sincan bölgesi.",
+        "notes": "Ankara'nın yeni ve teknolojik kompleksi."
+      },
+      "floorPlan": {
+        "pits": "Alt kat spor salonu",
+        "field": "Ana müsabaka sahası",
+        "stands": "İzleyici tribünleri",
+        "food": "Kantin ve bahçe alanı"
       }
     },
     "Mersin": {

@@ -13,10 +13,14 @@ let model = localStorage.getItem(CONFIG.MODEL_STORAGE_KEY) || CONFIG.DEFAULT_MOD
 
 async function init() {
     try {
-        const response = await fetch(CONFIG.DATA_PATH);
-        appData = await response.json();
+        const [dataRes, knowRes] = await Promise.all([
+            fetch(CONFIG.DATA_PATH),
+            fetch('knowledge.json')
+        ]);
+        appData = await dataRes.json();
+        window.appKnowledge = await knowRes.json(); // Global for now or pass as needed
     } catch (err) {
-        console.error('Data load error:', err);
+        console.error('Initial load error:', err);
     }
 
     UI.updateApiStatus(apiKey, model);
@@ -52,6 +56,12 @@ function bindEvents() {
     UI.menuBtn.addEventListener('click', () => UI.toggleSidebar(true));
     UI.sidebarClose.addEventListener('click', () => UI.toggleSidebar(false));
     UI.newChatBtn.addEventListener('click', startNewChat);
+    UI.sidebarBrand.addEventListener('click', () => {
+        UI.chatMessages.innerHTML = '';
+        currentConvId = null;
+        UI.toggleSidebar(false);
+        startNewChat();
+    });
 
     // Settings
     UI.settingsBtn.addEventListener('click', () => UI.settingsModal.classList.add('visible'));
@@ -168,8 +178,8 @@ async function handleSend() {
 
     try {
         const responseText = apiKey 
-            ? await callGeminiAPI(text, conversations[currentConvId].messages, apiKey, model, appData)
-            : await simulateResponse(text, appData);
+            ? await callGeminiAPI(text, conversations[currentConvId].messages, apiKey, model, appData, window.appKnowledge)
+            : await simulateResponse(text, appData, window.appKnowledge);
 
         typingIndicator.remove();
         const msgEl = UI.appendMessage('ai', '', true);

@@ -1,17 +1,20 @@
 import { delay } from './utils.js';
 
-export async function callGeminiAPI(userMessage, history, apiKey, model, data) {
+export async function callGeminiAPI(userMessage, history, apiKey, model, data, knowledge) {
     const currentYear = new Date().getFullYear();
-    const systemPrompt = `Sen GulfTech AI'sın — FRC Takımı #11392 için geliştirilmiş bir yapay zeka asistanısın. Şu an ${currentYear} yılındayız.
+    const systemPrompt = `Sen GulfTech AI'sın.
     
-Dinamik Veriler:
+Grup Hafızan (knowledge.json):
+${JSON.stringify(knowledge, null, 2)}
+
+Dinamik Veriler (data.json):
 ${JSON.stringify(data, null, 2)}
 
 KRİTİK KURALLAR:
-1. Sadece sorulan branş/konu hakkında cevap ver. Sormadıkça diğer branşları karıştırma.
-2. "Yazılım ekibini anlat" denince SADECE yazılım ekibini yaz, diğerlerini katma.
-3. Türkçe/İngilizce yanıt ver, samimi ol, 🦈 kullan.
-4. Markdown formatı kullan.`;
+1. Sadece sorulan branş/konu hakkında detaylı cevap ver.
+2. Bilgileri gruplandır (Headerlar ve listeler kullan).
+3. "The Blue Wave" ruhunu ve FLL'den gelen 5 yıllık mirasını vurgula.
+4. Türkçe/İngilizce samimi bir dil kullan, 🦈 kullan.`;
 
     const contents = history.map(msg => ({
         role: msg.role === 'user' ? 'user' : 'model',
@@ -40,62 +43,57 @@ KRİTİK KURALLAR:
     return resData.candidates?.[0]?.content?.parts?.[0]?.text;
 }
 
-export async function simulateResponse(userMessage, data) {
+export async function simulateResponse(userMessage, data, knowledge) {
     const msg = userMessage.toLowerCase();
-    const { team, frc2026, regionals, awards } = data;
+    const { team, regionals } = data;
+    const { takim_kimligi, teknik_hafiza, yarisma_hafizasi, sosyal_aglar } = knowledge;
 
     if (/takım.*tanıt|ekib.*tanıt|tüm üyeler|kimler var|kadro/i.test(msg)) {
         await delay(1200);
-        return `### 🦈 GulfTech Departmanları\n\n` +
-            `**🎓 Baş Mentor:** ${team.departments.mentor}\n\n` +
-            `**🔱 Kaptanlar:** ${team.departments.captains}\n\n` +
-            `**💻 Yazılım:** ${team.departments.software.captain}, ${team.departments.software.members.join(', ')}\n\n` +
-            `**⚙️ Mekanik:** ${team.departments.mechanical.captain}, ${team.departments.mechanical.members.join(', ')}\n\n` +
-            `**🎨 PR:** ${team.departments.pr.captain}, ${team.departments.pr.members.join(', ')}\n\n` +
-            `**📐 Tasarım:** ${team.departments.design.members.join(', ')}\n\n` +
-            `**⚡ Elektronik:** ${team.departments.electronics.description}\n\n` +
-            `2026 **REBUILT** sezonunda hep birlikte sahaya çıkıyoruz! 🚀`;
+        return `### 🔱 ${takim_kimligi.isim} — ${takim_kimligi.motto}\n\n` +
+            `**📖 Vizyonumuz:** ${takim_kimligi.vizyon}\n\n` +
+            `**🏛️ Kurum:** ${takim_kimligi.kurum}\n\n` +
+            `**🦈 Takım Yapısı:**\n` +
+            `- **Mentor:** ${team.departments.mentor}\n` +
+            `- **Kaptanlar:** ${team.departments.captains}\n` +
+            `- **Yazılım:** ${team.departments.software.captain}\n` +
+            `- **Mekanik:** ${team.departments.mechanical.captain}\n\n` +
+            `*${takim_kimligi.miras}* ⚡`;
     }
 
-    if (/yazılım|software|kod/i.test(msg) && !/takım|tüm|hep/i.test(msg)) {
-        await delay(800);
-        return `### 💻 Yazılım Ekibi\n- ${team.departments.software.captain} (Kaptan)\n- ${team.departments.software.members.join('\n- ')}\n\nJava/WPILib, PathPlanner otonom ve Command-based programming kullanıyoruz. 🤖`;
+    if (/geşmiş|tarih|mavi dalga|blue wave|neden/i.test(msg)) {
+        await delay(1000);
+        return `### 🌊 The Blue Wave Hikayesi\n\n${takim_kimligi.miras}\n\n**Logo Anlamı:**\n` +
+            `- 🦈 **Köpek Balığı:** ${takim_kimligi.logo_anlami.kopek_baligi}\n` +
+            `- 💙 **Mavi:** ${takim_kimligi.logo_anlami.mavi_tonlari}\n` +
+            `- 💛 **Sarı:** ${takim_kimligi.logo_anlami.sari_tonlar}\n\n` +
+            `Bizim için FRC yalnızca bir yarışma değil, teknik ve sosyal bir gelişim yolculuğudur. 🚀`;
+    }
+
+    if (/teknik|yazılım|donanım|scout|robot/i.test(msg)) {
+        await delay(1000);
+        return `### ⚙️ Teknik Altyapımız\n\n` +
+            `- **Yazılım:** ${teknik_hafiza.yazilim_stack}\n` +
+            `- **Donanım:** ${teknik_hafiza.donanim}\n` +
+            `- **Strateji:** ${teknik_hafiza.strateji}\n` +
+            `- **Scout:** ${teknik_hafiza.scout_sistemi}\n\n` +
+            `Her maçta "The Blue Wave" fırtınası estirmeye hazırız! 🦈🖥️`;
     }
     
-    // ... add more simulated logic based on data object
     if (/bölge|regional|turnuva|takvim|ne zaman/i.test(msg)) {
         await delay(1000);
-        let table = `### 📍 2026 Türkiye Regionalleri\n\n| Turnuva | Tarih | Konum |\n|---------|-------|-------|\n`;
-        regionals.forEach(r => {
-            const dateStr = new Date(r.date).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long' });
-            table += `| ${r.name} | ${dateStr} | ${r.location} |\n`;
+        let table = `### 📍 ${yarisma_hafizasi.sezon} Takvimi\n\n| Turnuva | Tarih | Mekan |\n|---------|-------|-------|\n`;
+        yarisma_hafizasi.bolgesel_turnuvalar.forEach(r => {
+            table += `| ${r.ad} | ${r.tarih} | ${r.mekan} |\n`;
         });
-        return table + `\n Tüm turnuvalara giriş **ücretsizdir**. Ziyaret saatleri: 10:00 – 18:00. 🦈🏟️`;
+        return table + `\n\nHedeflerimiz: **${yarisma_hafizasi.hedefler.join(', ')}** 🦈🏆`;
     }
 
-    if (/ödül|award/i.test(msg)) {
-        await delay(1000);
-        let list = `### 🏆 FRC Ödülleri\n\n`;
-        awards.forEach(a => { list += `- **${a.name}:** ${a.desc}\n`; });
-        return list + `\nBiz GulfTech olarak ilk sezonumuzda **Rookie All-Star** ödülünü hedefliyoruz! 🦈🏆`;
-    }
-
-    // History
-    if (/tarih|geçmiş|hikaye|ne zaman kuruldu|kuruluş/i.test(msg)) {
-        await delay(1000);
-        return `### 📖 Tarihçemiz\n\n${team.history}\n\nTakımımızı sosyal medyada takip etmeyi unutmayın: 
-- [Instagram](${team.social.instagram})
-- [YouTube](${team.social.youtube})
-- [Web Sitesi](${team.social.website})
-\n🦈✨`;
-    }
-
-    // Contact / Social
-    if (/iletişim|ulaş|sosyal|medya|instagram|link/i.test(msg)) {
+    if (/iletişim|sosyal|medya|instagram|site|link/i.test(msg)) {
         await delay(800);
-        return `### 🔗 Sosyal Medya & İletişim\n\nBize her zaman ulaşabilirsiniz:\n- 📸 **Instagram:** [gulftechtr](${team.social.instagram})\n- 📺 **YouTube:** [@gulftechtr](${team.social.youtube})\n- 🌐 **Web:** [gulftechrobotic.com.tr](${team.social.website})\n\nBizimle "The Blue Wave" dalgasına katılın! 🦈🚀`;
+        return `### 🔗 GulfTech'e Ulaşın\n\n- 📸 [Instagram](${sosyal_aglar.instagram})\n- 📺 [YouTube](${sosyal_aglar.youtube})\n- 🌐 [Web Sitesi](${sosyal_aglar.website})\n\nKocaeli'den yükselen teknoloji dalgasına katılın! 🦈🚀`;
     }
 
     await delay(1000);
-    return `Anlıyorum! 🦈 Sana şu konularda yardımcı olabilirim:\n- 🏗️ FRC 2026 REBUILT kuralları\n- 🏆 FRC ödülleri\n- 📍 Turnuva takvimi\n- 🦈 GulfTech takım bilgileri\n- 💻 Yazılım / ⚙️ Mekanik / 🎨 PR / 📐 Tasarım ekipleri\n\nHangi konuda yardımcı olayım? ✨`;
+    return `Anlıyorum! 🦈 Sana şu konularda yardımcı olabilirim:\n- 📖 Takım Tarihçesi & "The Blue Wave" hikayesi\n- ⚙️ Teknik Altyapı (Yazılım/Donanım)\n- 📍 2026 Turnuva Takvimi\n- 🏆 Sezon Hedefleri\n\nHangi konuda bilgi istersin? ✨`;
 }

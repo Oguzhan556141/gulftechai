@@ -1,0 +1,40 @@
+{
+  "takim_kimligi": {
+    "isim": "Gulf Tech #11392",
+    "kurum": "Gölcük BİLSEM (Yücel Koyuncu Bilim ve Sanat Merkezi)",
+    "konum": "Kocaeli, Türkiye",
+    "motto": "The Blue Wave (Mavi Dalga)",
+    "miras": "5 yıllık başarılı FLL tecrübesi üzerine inşa edildi.",
+    "vizyon": "Bilim, Teknoloji, Mühendislik ve Matematik (STEM) alanlarında ilham kaynağı olmak.",
+    "logo_anlami": {
+      "kopek_baligi": "Öz güven, potansiyel ve mücadele gücü.",
+      "mavi_tonlari": "Derinlik ve kararlılık.",
+      "sari_tonlar": "Enerji ve görünürlük."
+    }
+  },
+  "teknik_hafiza": {
+    "yazilim_stack": "Java, WPILib, PathPlanner, Command-Based Programming.",
+    "donanim": "RoboRIO 2.0, CAN tabanlı motor sürücüleri (Kraken/Falcon).",
+    "strateji": "Hızlı döngü süreleri ve hassas otonom navigasyon.",
+    "scout_sistemi": "Gelişmiş veri analizi ve maç stratejisi planlama."
+  },
+  "yarisma_hafizasi": {
+    "sezon": "2026 REBUILT (Presented by Haas)",
+    "hedefler": ["Rookie All-Star", "FIRST Impact Award", "Worlds'e bilet!"],
+    "bolgesel_turnuvalar": [
+      { "ad": "Istanbul Regional", "tarih": "3-5 Mart", "mekan": "Başakşehir Spor Kompleksi" },
+      { "ad": "Bosphorus Regional", "tarih": "6-8 Mart", "mekan": "Başakşehir Spor Kompleksi" },
+      { "ad": "Yeditepe Regional", "tarih": "9-11 Mart", "mekan": "Başakşehir Spor Kompleksi" },
+      { "ad": "Haliç Regional", "tarih": "25-27 Mart", "mekan": "TAF Atletizm Salonu" },
+      { "ad": "Marmara Regional", "tarih": "28-30 Mart", "mekan": "TAF Atletizm Salonu" },
+      { "ad": "Eurasia Regional", "tarih": "31 Mart - 2 Nisan", "mekan": "TAF Atletizm Salonu" },
+      { "ad": "Ankara Regional", "tarih": "7-9 Nisan", "mekan": "Devlet Bahçeli Kompleksi" },
+      { "ad": "Capital Regional", "tarih": "10-12 Nisan", "mekan": "Devlet Bahçeli Kompleksi" }
+    ]
+  },
+  "sosyal_aglar": {
+    "instagram": "https://www.instagram.com/gulftechtr/",
+    "youtube": "https://www.youtube.com/@gulftechtr",
+    "website": "https://gulftechrobotic.com.tr/"
+  }
+}

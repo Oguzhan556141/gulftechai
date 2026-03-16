@@ -11,6 +11,7 @@ export const UI = {
     menuBtn: $('#menuBtn'),
     sidebarClose: $('#sidebarClose'),
     newChatBtn: $('#newChatBtn'),
+    sidebarBrand: $('#sidebarBrand'),
     historyList: $('#historyList'),
     settingsBtn: $('#settingsBtn'),
     settingsModal: $('#settingsModal'),
@@ -95,7 +96,7 @@ export const UI = {
         const div = document.createElement('div');
         div.className = 'message ai';
         div.innerHTML = `
-            <div class="message-avatar"><img src="assets/shark-mascot.png" alt="AI"></div>
+            <div class="message-avatar"><img src="assets/ai-mascot.png" alt="AI"></div>
             <div class="message-content">
                 <div class="message-sender">GulfTech AI</div>
                 <div class="typing-indicator"><span></span><span></span><span></span></div>
