@@ -146,7 +146,7 @@ export const UI = {
             if (el && el.textContent !== String(values[unit])) {
                 el.textContent = values[unit];
                 el.classList.add('updating');
-                setTimeout(() => el.classList.remove('updating'), 400);
+                setTimeout(() => el.classList.remove('updating'), 500);
             }
         });
     }
