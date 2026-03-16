@@ -134,7 +134,7 @@ export class MapComponent {
     }
 }
 
-export function renderMap(regionals) {
-    const comp = new MapComponent({ regionals, venues: {} });
+export function renderMap(data) {
+    const comp = new MapComponent(data);
     return comp.render();
 }

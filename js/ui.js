@@ -114,25 +114,40 @@ export const UI = {
         const diff = nextDate - now;
         
         if (diff <= 0) {
-            this.countdownTimer.innerHTML = `<strong>${next.name}</strong> başladı! 🏟️`;
+            this.countdownTimer.innerHTML = `<div class="countdown-label">🚀 <strong>${next.name}</strong> Başladı!</div>`;
             return;
         }
 
-        const d = Math.floor(diff / 86400000);
-        const h = Math.floor((diff % 86400000) / 3600000);
-        const m = Math.floor((diff % 3600000) / 60000);
-        const s = Math.floor((diff % 60000) / 1000);
+        const values = {
+            d: Math.floor(diff / 86400000),
+            h: String(Math.floor((diff % 86400000) / 3600000)).padStart(2, '0'),
+            m: String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0'),
+            s: String(Math.floor((diff % 60000) / 1000)).padStart(2, '0')
+        };
 
-        this.countdownTimer.innerHTML = `
-            <div class="countdown-label">🏟️ <strong>${next.name}</strong> — ${next.location}</div>
-            <div class="countdown-digits">
-                <span class="cd-block"><span class="cd-num">${d}</span><span class="cd-unit">gün</span></span>
-                <span class="cd-sep">:</span>
-                <span class="cd-block"><span class="cd-num">${String(h).padStart(2,'0')}</span><span class="cd-unit">saat</span></span>
-                <span class="cd-sep">:</span>
-                <span class="cd-block"><span class="cd-num">${String(m).padStart(2,'0')}</span><span class="cd-unit">dk</span></span>
-                <span class="cd-sep">:</span>
-                <span class="cd-block"><span class="cd-num">${String(s).padStart(2,'0')}</span><span class="cd-unit">sn</span></span>
-            </div>`;
+        // If the inner structure isn't ready (first run or fallback), create it
+        if (!this.countdownTimer.querySelector('.countdown-digits')) {
+            this.countdownTimer.innerHTML = `
+                <div class="countdown-label">🏟️ <strong>${next.name}</strong> — ${next.location}</div>
+                <div class="countdown-digits">
+                    <span class="cd-block"><span class="cd-num" id="cd-d"></span><span class="cd-unit">gün</span></span>
+                    <span class="cd-sep">:</span>
+                    <span class="cd-block"><span class="cd-num" id="cd-h"></span><span class="cd-unit">saat</span></span>
+                    <span class="cd-sep">:</span>
+                    <span class="cd-block"><span class="cd-num" id="cd-m"></span><span class="cd-unit">dk</span></span>
+                    <span class="cd-sep">:</span>
+                    <span class="cd-block"><span class="cd-num" id="cd-s"></span><span class="cd-unit">sn</span></span>
+                </div>`;
+        }
+
+        // Update individual units
+        ['d', 'h', 'm', 's'].forEach(unit => {
+            const el = $(`#cd-${unit}`);
+            if (el && el.textContent !== String(values[unit])) {
+                el.textContent = values[unit];
+                el.classList.add('updating');
+                setTimeout(() => el.classList.remove('updating'), 500);
+            }
+        });
     }
 };

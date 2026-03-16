@@ -1,4 +1,5 @@
 import { delay } from './utils.js';
+import { handlers } from './handlers.js';
 
 export async function callGeminiAPI(userMessage, history, apiKey, model, data, knowledge) {
     const currentYear = new Date().getFullYear();
@@ -46,7 +47,7 @@ KRİTİK KURALLAR:
 
 export async function simulateResponse(userMessage, data, knowledge) {
     const msg = userMessage.toLowerCase();
-    
+
     // Safety check for knowledge object
     if (!knowledge || !knowledge.takim_kimligi) {
         return "Üzgünüm, şu an hafızamda bir sorun var. Lütfen sayfayı yenilemeyi dene! 🦈🌊";
@@ -56,92 +57,20 @@ export async function simulateResponse(userMessage, data, knowledge) {
     const th = knowledge.teknik_hafiza || {};
     const yh = knowledge.yarisma_hafizasi || {};
 
-    // 1. Takım Kadrosu
-    if (/takım.*tanıt|ekib.*tanıt|tüm üyeler|kimler var|kadro/i.test(msg)) {
-        await delay(1200);
-        
-        // Safety check for roster info
-        const ym = k.yonetim_ve_mentorlar || {};
-        const captains = k.kaptanlar || [];
-        const members = k.ekip_uyeleri || [];
+    for (const handler of handlers) {
+        let isMatch = false;
+        if (typeof handler.match === 'function') {
+            isMatch = handler.match(msg, k, knowledge);
+        } else if (handler.match instanceof RegExp) {
+            isMatch = handler.match.test(msg);
+        }
 
-        return `### 🔱 ${k.isim || 'GulfTech'} — ${k.motto || 'The Blue Wave'}\n\n` +
-            `**🦈 Takım Kadromuz:**\n` +
-            `- **Müdür:** ${ym.kurumsal_mudur || 'Levent Kurt'}\n` +
-            `- **Mentor:** ${ym.takim_mentoru || 'Ensar İnce'}\n` +
-            `- **Danışman Öğretmen:** ${ym.ogretmen_ve_danisman || 'Serkan Turgut'}\n\n` +
-            `**⭐ Kaptanlarımız:**\n` +
-            captains.map(c => `- **${c.isim}**: ${c.rol}`).join('\n') + `\n\n` +
-            `**👥 Ekibimizden Bazı İsimler:**\n` +
-            members.join(', ') + `\n\n` +
-            `*${k.miras || ''}* 🌊`;
-    }
-
-    // 2. Tarihçe & Logo
-    if (/geşmiş|tarih|mavi dalga|blue wave|neden|logo/i.test(msg)) {
-        await delay(1000);
-        const la = k.logo_anlami || {};
-        return `### 🌊 The Blue Wave Hikayesi\n\n${k.miras || ''}\n\n**Logo Anlamı:**\n` +
-            `- 🦈 **Köpek Balığı:** ${la.kopek_baligi || ''}\n` +
-            `- 💙 **Mavi:** ${la.mavi_tonlari || ''}\n` +
-            `- 💛 **Sarı:** ${la.sari_tonlar || ''}\n\n` +
-            `Bizim için FRC yalnızca bir yarışma değil, teknik ve sosyal bir gelişim yolculuğudur. 🚀`;
-    }
-
-    // 3. Teknik Hafıza
-    if (/teknik|yazılım|donanım|scout|robot/i.test(msg)) {
-        await delay(1000);
-        return `### ⚙️ Teknik Altyapımız\n\n` +
-            `- **Yazılım:** ${th.yazilim_stack || 'Java'}\n` +
-            `- **Donanım:** ${th.donanim || 'RoboRIO 2.0'}\n` +
-            `- **Strateji:** ${th.strateji || ''}\n` +
-            `- **Scout:** ${th.scout_sistemi || ''}\n\n` +
-            `Her maçta "The Blue Wave" fırtınası estirmeye hazırız! 🦈🖥️`;
-    }
-    
-    // 4. Turnuva Takvimi
-    if (/bölge|turnuva|takvim|ne zaman/i.test(msg)) {
-        await delay(1000);
-        let table = `### 📍 ${yh.sezon || '2026'} Takvimi\n\n| Turnuva | Tarih | Mekan |\n|---------|-------|-------|\n`;
-        const list = yh.bolgesel_turnuvalar || [];
-        list.forEach(r => {
-            table += `| ${r.ad} | ${r.tarih} | ${r.mekan} |\n`;
-        });
-        const goals = yh.hedefler ? yh.hedefler.join(', ') : '';
-        return table + `\n\nHedeflerimiz: **${goals}** 🦈🏆`;
-    }
-
-    // 5. İletişim & Sosyal Medya
-    if (/iletişim|sosyal|medya|instagram|site|link/i.test(msg)) {
-        await delay(800);
-        const sa = k.sosyal_aglar || {};
-        return `### 🔗 GulfTech'e Ulaşın\n\n- 📸 [Instagram](${sa.instagram || ''})\n- 📺 [YouTube](${sa.youtube || ''})\n- 🌐 [Web Sitesi](${sa.website || ''})\n\nKocaeli'den yükselen teknoloji dalgasına katılın! 🦈🚀`;
-    }
-
-    // 6. Sponsorlar
-    if (/sponsor/i.test(msg)) {
-        await delay(1000);
-        const sponsors = k.sponsorlar || [];
-        return `### 🤝 Destekçilerimiz (Sponsorlar)\n\nGulfTech #11392 olarak yolculuğumuza destek olan değerli kurumlar:\n\n` +
-            sponsors.map(s => `- **${s.ad}**: ${s.kategori}`).join('\n') + 
-            `\n\nBirlikte daha güçlüyüz! 🌊🚀`;
-    }
-
-    // 7. 2026 Sezon Detayları
-    if (/2026|rebuilt|oyun|maç/i.test(msg)) {
-        await delay(1200);
-        const scoring = yh.puanlama || [];
-        return `### 🏗️ FRC 2026: REBUILT\n\n${yh.oyun_ozeti || ''}\n\n**🎯 Puanlama Anahtarı:**\n` +
-            scoring.map(p => `- ${p}`).join('\n') + 
-            `\n\nBu sezon robotumuzu "REBUILT" görevini en verimli şekilde tamamlayacak şekilde optimize ediyoruz! 🦈🔋`;
-    }
-
-    // 8. Övgü & Tebrik
-    if (/başarılar|tebrik|helal|harika|güzel|iyi şanslar|maşallah/i.test(msg)) {
-        await delay(800);
-        return `### 🌊 Çok Teşekkürler! 🦈\n\nBu güzel dileklerin ve desteğin bizim için çok değerli. **#GulfTechFamily** desteğiyle ${yh.sezon || ''} sezonuna ve "REBUILT" görevine son hızla hazırlanıyoruz! 🛠️💪\n\nBirlikte "Mavi Dalga"yı en yükseğe taşıyacağız! 🌊🚀`;
+        if (isMatch) {
+            await delay(1000);
+            return await handler.handle(msg, data, knowledge);
+        }
     }
 
     await delay(1000);
-    return `Anlıyorum! 🦈 Sana şu konularda yardımcı olabilirim:\n- 📖 Takım Tarihçesi & "The Blue Wave" hikayesi\n- 👥 Takım Kadrosu & Mentorlar\n- ⚙️ Teknik Altyapı (Yazılım/Donanım)\n- 🤝 Sponsorlarımız\n- 🏗️ 2026 REBUILT Sezon Detayları\n- 📍 Turnuva Takvimi\n\nHangi konuda bilgi istersin? ✨`;
+    return `Anlıyorum! 🦈 Sana şu konularda yardımcı olabilirim:\n- 🤖 FRC Nedir?\n- 📖 Tarihçemiz & "The Blue Wave"\n- 👥 Takım Kadrosu & Divizyonlarımız\n- 📅 Etkinliklerimiz\n- ⚙️ Teknik Altyapı & Scout\n- 🤝 Sponsorlarımız\n- 🏗️ 2026 REBUILT Sezon Detayları\n- 📍 Turnuva Takvimi\n\nHangi konuda bilgi istersin? ✨`;
 }
