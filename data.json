@@ -28,7 +28,12 @@
         "description": "Donanım ve kablolama ekibi"
       }
     },
-    "history": "GulfTech #11392, 2026 yılında FRC dünyasına 'Rookie' olarak katıldı. Köklerimiz Gölcük BİLSEM'deki 5 yıllık FLL robotik geçmişimize dayanıyor. Boeing, Gölcük Belediyesi ve Fikret Yüksel Vakfı desteğiyle Kocaeli'den yükselen bir teknoloji dalgası olmayı hedefliyoruz! 🌊🤖"
+    "history": "GulfTech #11392, 'The Blue Wave' (Mavi Dalga) olarak 2026 yılında FRC sahnesine giriş yaptı. Gölcük BİLSEM'in 5 yıllık köklü FLL tecrübesini, FRC'nin dev robot arena ve mühendislik vizyonuyla birleştiriyoruz. Köpek balığı maskotumuz, denizin derinliklerindeki kararlılığı ve sarı/altın detaylar ise teknolojiye olan tutkumuzu simgeliyor. 🦈⚡",
+    "social": {
+      "instagram": "https://www.instagram.com/gulftechtr/",
+      "youtube": "https://www.youtube.com/@gulftechtr",
+      "website": "https://gulftechrobotic.com.tr/"
+    }
   },
   "frc2026": {
     "theme": "REBUILT (Presented by Haas)",

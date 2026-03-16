@@ -80,6 +80,22 @@ export async function simulateResponse(userMessage, data) {
         return list + `\nBiz GulfTech olarak ilk sezonumuzda **Rookie All-Star** ödülünü hedefliyoruz! 🦈🏆`;
     }
 
+    // History
+    if (/tarih|geçmiş|hikaye|ne zaman kuruldu|kuruluş/i.test(msg)) {
+        await delay(1000);
+        return `### 📖 Tarihçemiz\n\n${team.history}\n\nTakımımızı sosyal medyada takip etmeyi unutmayın: 
+- [Instagram](${team.social.instagram})
+- [YouTube](${team.social.youtube})
+- [Web Sitesi](${team.social.website})
+\n🦈✨`;
+    }
+
+    // Contact / Social
+    if (/iletişim|ulaş|sosyal|medya|instagram|link/i.test(msg)) {
+        await delay(800);
+        return `### 🔗 Sosyal Medya & İletişim\n\nBize her zaman ulaşabilirsiniz:\n- 📸 **Instagram:** [gulftechtr](${team.social.instagram})\n- 📺 **YouTube:** [@gulftechtr](${team.social.youtube})\n- 🌐 **Web:** [gulftechrobotic.com.tr](${team.social.website})\n\nBizimle "The Blue Wave" dalgasına katılın! 🦈🚀`;
+    }
+
     await delay(1000);
     return `Anlıyorum! 🦈 Sana şu konularda yardımcı olabilirim:\n- 🏗️ FRC 2026 REBUILT kuralları\n- 🏆 FRC ödülleri\n- 📍 Turnuva takvimi\n- 🦈 GulfTech takım bilgileri\n- 💻 Yazılım / ⚙️ Mekanik / 🎨 PR / 📐 Tasarım ekipleri\n\nHangi konuda yardımcı olayım? ✨`;
 }

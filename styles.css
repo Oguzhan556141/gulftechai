@@ -8,14 +8,53 @@
     --bg-primary: #020817; /* Deep Midnight Blue */
     --bg-secondary: rgba(0, 102, 255, 0.05); /* Soft Blue Tint */
     --bg-sidebar: rgba(1, 10, 25, 0.95);
+    /* ===== CORE COLORS (Logo-based) ===== */
+    --accent: #38bdf8; /* Cyan - Shield/Shark Glow */
+    --accent-gold: #fbbf24; /* Gold - AI Text/Circle */
+    --accent-glow: rgba(56, 189, 248, 0.4);
+    --gold-glow: rgba(251, 191, 36, 0.3);
+    
+    --bg-dark: #030712; /* Deep Space Black */
+    --bg-card: rgba(15, 23, 42, 0.6);
+    --sidebar-bg: rgba(3, 7, 18, 0.85);
+
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --text-accent: var(--accent);
+
+    --border: rgba(56, 189, 248, 0.15);
+    --gold-border: rgba(251, 191, 36, 0.2);
     --bg-input: rgba(0, 90, 255, 0.06);
     --bg-hover: rgba(0, 212, 255, 0.1);
     --bg-active: rgba(0, 212, 255, 0.15);
     --bg-glass: rgba(0, 150, 255, 0.03);
-    --bg-card: rgba(2, 8, 23, 0.7);
 
-    --text-primary: #f0f7ff; /* Very Light Blue-White */
-    --text-secondary: #a5b4fc; /* Pale Blue */
+    --accent-bright: #00d4ff;
+    
+    --gradient-logo: linear-gradient(135deg, #0ea5e9 0%, #fbbf24 100%);
+    --gradient-glass: linear-gradient(135deg, rgba(14, 165, 233, 0.1) 0%, rgba(251, 191, 36, 0.05) 100%);
+    --shadow-glow: 0 0 30px rgba(14, 165, 233, 0.25);
+
+    --border-focus: rgba(0, 188, 212, 0.4);
+
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.3);
+    --shadow-glow: 0 0 20px rgba(0, 188, 212, 0.15);
+
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 50px;
+
+    --sidebar-width: 280px;
+
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-heading: 'Outfit', 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
 /* ===== SIDEBAR NAV ===== */
 .sidebar-nav {
     padding: 8px;
@@ -224,37 +263,6 @@
 .map-node:hover .map-node-label {
     opacity: 1;
 }
-    --text-muted: #64748b;
-    --text-accent: #38bdf8; /* Sky Blue */
-
-    --accent: #0ea5e9; /* Gulf Blue */
-    --accent-gold: #fbbf24; /* Logo Gold */
-    --accent-bright: #00d4ff;
-    
-    --gradient-logo: linear-gradient(135deg, #0ea5e9 0%, #fbbf24 100%);
-    --gradient-glass: linear-gradient(135deg, rgba(14, 165, 233, 0.1) 0%, rgba(251, 191, 36, 0.05) 100%);
-    --shadow-glow: 0 0 30px rgba(14, 165, 233, 0.25);
-
-    --border: rgba(100, 140, 200, 0.1);
-    --border-focus: rgba(0, 188, 212, 0.4);
-
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
-    --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.3);
-    --shadow-glow: 0 0 20px rgba(0, 188, 212, 0.15);
-
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 16px;
-    --radius-xl: 24px;
-    --radius-full: 50px;
-
-    --sidebar-width: 280px;
-
-    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-heading: 'Outfit', 'Inter', sans-serif;
-    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
-}
-
 /* ---------- Reset ---------- */
 *, *::before, *::after {
     margin: 0;
@@ -294,11 +302,11 @@ a:hover { text-decoration: underline; }
 
 /* Liquid Glass Feature */
 .liquid-glass {
-    background: var(--bg-glass) !important;
-    backdrop-filter: blur(16px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
+    background: var(--bg-card);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     position: relative;
     overflow: hidden;
 }
@@ -413,6 +421,11 @@ a:hover { text-decoration: underline; }
 .brand-text {
     display: flex;
     flex-direction: column;
+}
+
+.brand-text .accent {
+    color: var(--accent-gold);
+    text-shadow: 0 0 10px var(--gold-glow);
 }
 
 .brand-name {
@@ -727,14 +740,12 @@ a:hover { text-decoration: underline; }
     box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.1);
 }
 
-.message.ai .message-body {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-left: 3px solid var(--accent);
-    color: var(--text-primary);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+.message.ai .message-bo.liquid-glass {
+    background: var(--bg-card);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
 .toggle-vis {
@@ -1420,6 +1431,61 @@ a:hover { text-decoration: underline; }
     33% { transform: translate(150px, 80px) scale(1.1); }
     66% { transform: translate(-50px, 120px) scale(0.9); }
     100% { transform: translate(50px, -50px) scale(1); }
+}
+
+
+/* ===== PREMIUM ENHANCEMENTS ===== */
+.pulsing-node {
+    animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+}
+
+@keyframes pulse-ring {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.7); }
+    70% { transform: scale(1.2); box-shadow: 0 0 0 10px rgba(56, 189, 248, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
+}
+
+.map-hint-premium {
+    text-align: center;
+    padding: 15px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.1), transparent);
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.glass-glow {
+    border: 1px solid var(--border) !important;
+    background: rgba(255, 255, 255, 0.02) !important;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.05) !important;
+    transition: all 0.3s ease;
+}
+
+.glass-glow:hover {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 30px rgba(56, 189, 248, 0.1) !important;
+    transform: translateY(-2px);
+}
+
+.venue-visual-sim-premium {
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(45deg, rgba(56, 189, 248, 0.02), rgba(56, 189, 248, 0.02) 10px, rgba(56, 189, 248, 0.05) 10px, rgba(56, 189, 248, 0.05) 20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.premium-header {
+    background: linear-gradient(90deg, rgba(56, 189, 248, 0.1), transparent);
+    padding: 20px;
+    border-radius: 12px;
 }
 
 /* Card Glows */
