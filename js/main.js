@@ -36,6 +36,9 @@ async function init() {
 
     // Initial Mascot Animation Setup
     setupMascotInteractions();
+    
+    // Dynamic background effects
+    initDynamicStars();
 }
 
 function bindEvents() {
@@ -153,6 +156,20 @@ function loadConversation(id) {
 function startNewChat() {
     currentConvId = null;
     location.reload(); 
+}
+
+function initDynamicStars() {
+    const starCount = 60;
+    const body = document.body;
+    for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.className = 'star-node';
+        star.style.left = `${Math.random() * 100}vw`;
+        star.style.top = `${Math.random() * 100}vh`;
+        star.style.animationDelay = `${Math.random() * 5}s`;
+        star.style.opacity = (Math.random() * 0.5) + 0.3;
+        body.appendChild(star);
+    }
 }
 
 function extractTopic(text) {

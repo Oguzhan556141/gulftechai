@@ -94,9 +94,9 @@
 
 /* ===== MAP MODAL SPECIFIC ===== */
 .map-modal {
-    max-width: 600px;
+    max-width: 550px;
     width: 90%;
-    min-height: 400px;
+    min-height: 380px;
     display: flex;
     flex-direction: column;
 }
@@ -104,11 +104,11 @@
 .map-container {
     position: relative;
     width: 100%;
-    height: 300px; /* Force visibility */
+    height: 220px; /* Reduced for jewel look */
     background: rgba(0, 0, 0, 0.2);
     border-radius: 12px;
     overflow: hidden;
-    margin: 15px 0;
+    margin: 10px 0;
     border: 1px solid var(--border);
 }
 
@@ -347,9 +347,10 @@ a:hover { text-decoration: underline; }
 }
 
 @keyframes liquidShimmer {
-    0% { transform: translate(-30%, -30%) rotate(25deg); opacity: 0; }
-    50% { opacity: 1; }
-    100% { transform: translate(15%, 15%) rotate(25deg); opacity: 0; }
+    0% { transform: translate(-50%, -50%) rotate(25deg); opacity: 0; }
+    20% { opacity: 0.15; }
+    80% { opacity: 0.15; }
+    100% { transform: translate(50%, 50%) rotate(25deg); opacity: 0; }
 }
 
 /* ========================================
