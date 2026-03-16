@@ -94,8 +94,22 @@
 
 /* ===== MAP MODAL SPECIFIC ===== */
 .map-modal {
-    max-width: 700px;
-    width: 85%;
+    max-width: 600px;
+    width: 90%;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.map-container {
+    position: relative;
+    width: 100%;
+    height: 300px; /* Force visibility */
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 15px 0;
+    border: 1px solid var(--border);
 }
 
 .venue-header {
@@ -1488,7 +1502,7 @@ a:hover { text-decoration: underline; }
     border-radius: 12px;
 }
 
-/* ===== STARS BACKGROUND ===== */
+/* ===== STARS BACKGROUND (RANDOM FLICKER) ===== */
 .stars-layer {
     position: fixed;
     top: 0;
@@ -1498,22 +1512,24 @@ a:hover { text-decoration: underline; }
     pointer-events: none;
     z-index: -1;
     background-image: 
-        radial-gradient(1px 1px at 20px 30px, var(--accent), rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 40px 70px, var(--accent-gold), rgba(0,0,0,0)),
-        radial-gradient(1.5px 1.5px at 50px 160px, var(--accent), rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 80px 120px, var(--accent-gold), rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 110px 210px, var(--accent), rgba(0,0,0,0)),
-        radial-gradient(1.5px 1.5px at 150px 250px, var(--accent-gold), rgba(0,0,0,0));
-    background-repeat: repeat;
-    background-size: 300px 300px;
-    opacity: 0.3;
-    animation: stars-twinkle 4s ease-in-out infinite alternate;
+        radial-gradient(1px 1px at 15% 15%, var(--accent), rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 35% 25%, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 55% 10%, var(--accent-gold), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 85% 35%, var(--accent), rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 10% 45%, white, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 45% 65%, var(--accent-gold), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 75% 85%, var(--accent), rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 25% 95%, white, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 95% 75%, var(--accent-gold), rgba(0,0,0,0));
+    background-size: 600px 600px;
+    animation: starsRandomTour 15s linear infinite;
+    opacity: 0.5;
 }
 
-@keyframes stars-twinkle {
-    0% { opacity: 0.2; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(1.05); }
-    100% { opacity: 0.2; transform: scale(1); }
+@keyframes starsRandomTour {
+    0% { background-position: 0 0; opacity: 0.4; }
+    50% { background-position: 50px 100px; opacity: 0.7; }
+    100% { background-position: 0 0; opacity: 0.4; }
 }
 
 /* ===== UNIFIED BRANDING ===== */
@@ -1554,4 +1570,38 @@ a:hover { text-decoration: underline; }
     border-color: var(--accent) !important;
     box-shadow: 0 8px 25px rgba(56, 189, 248, 0.2) !important;
     background: rgba(56, 189, 248, 0.1) !important;
+}
+
+/* ===== BACKGROUND BLOBS (LIQUID GLASS TOUR) ===== */
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.35;
+    animation: blobTour 25s infinite alternate ease-in-out;
+}
+
+.blob-1 {
+    width: 400px; height: 400px;
+    background: var(--accent);
+    top: -100px; right: -100px;
+}
+
+.blob-2 {
+    width: 500px; height: 500px;
+    background: var(--accent-gold);
+    bottom: -150px; left: -150px;
+    animation-duration: 35s;
+}
+
+.blob-3 {
+    width: 300px; height: 300px;
+    background: #7c4dff;
+    top: 40%; left: 40%;
+}
+
+@keyframes blobTour {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(150px, 100px) scale(1.1); }
+    100% { transform: translate(-100px, -50px) scale(0.9); }
 }

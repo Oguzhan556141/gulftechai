@@ -152,7 +152,19 @@ function loadConversation(id) {
 
 function startNewChat() {
     currentConvId = null;
-    location.reload(); // Simple way to reset for now, or just re-render welcome
+    location.reload(); 
+}
+
+function extractTopic(text) {
+    const lower = text.toLowerCase();
+    if (lower.includes('ekip') || lower.includes('kadro') || lower.includes('kimler')) return 'Takım Kadrosu 👥';
+    if (lower.includes('yazılım') || lower.includes('software')) return 'Yazılım Ekibi 💻';
+    if (lower.includes('mekanik') || lower.includes('robot')) return 'Mekanik & Robot ⚙️';
+    if (lower.includes('turnuva') || lower.includes('takvim') || lower.includes('bölge')) return 'Yarışma Takvimi 📍';
+    if (lower.includes('blue wave') || lower.includes('hikaye') || lower.includes('nedir')) return 'The Blue Wave 🌊';
+    if (lower.includes('başarı') || lower.includes('tebrik')) return 'Teşekkür Mesajı ❤️';
+    
+    return text.length > 25 ? text.slice(0, 22) + '...' : text;
 }
 
 async function handleSend() {
@@ -161,7 +173,8 @@ async function handleSend() {
 
     if (!currentConvId) {
         currentConvId = 'conv_' + Date.now();
-        conversations[currentConvId] = { title: text.slice(0, 30) + '...', messages: [], updatedAt: Date.now() };
+        const title = extractTopic(text);
+        conversations[currentConvId] = { title: title, messages: [], updatedAt: Date.now() };
     }
 
     $('#welcomeScreen')?.remove();

@@ -8,6 +8,8 @@ export class MapComponent {
     render() {
         this.container = document.createElement('div');
         this.container.className = 'enhanced-map-wrapper';
+        this.container.style.width = '100%';
+        this.container.style.height = '100%';
         this.showTurkeyMap();
         return this.container;
     }
@@ -16,12 +18,9 @@ export class MapComponent {
         this.currentView = 'turkey';
         this.container.innerHTML = '';
         
-        const mapContainer = document.createElement('div');
-        mapContainer.className = 'map-container';
-        
-        // High-Fidelity Turkey SVG
+        // Accurate Turkey Silhouette
         const svgContent = `
-            <svg width="100%" height="100%" viewBox="0 0 800 320" preserveAspectRatio="xMidYMid meet" class="turkey-svg">
+            <svg width="100%" height="100%" viewBox="0 0 800 350" preserveAspectRatio="xMidYMid meet" class="turkey-svg">
                 <defs>
                     <linearGradient id="mapGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%" style="stop-color:var(--accent);stop-opacity:0.4" />
@@ -32,22 +31,28 @@ export class MapComponent {
                         <feComposite in="SourceGraphic" in2="blur" operator="over"/>
                     </filter>
                 </defs>
-                <path class="turkey-detailed-path" d="M12,160h12l12-6l12,6l18-18l30-6l9,12l12-12l60-24l60-12l9,30
-                    l60,18l30-30l60-6l42,12l42-12l66,6l30-12l42,6l42,30l54,42l9,42l-12,48
-                    l-30,36l-66,12l-60,12l-48-12l-54,12l-60,6l-66-18l-54-6l-66,12l-60-12l-54,6
-                    l-66,12l-60-30l-9,36l-42,12l-36-30l-48-6l-30-24l-12-42L12,160z" 
-                    fill="url(#mapGradient)" stroke="var(--accent)" stroke-width="2" />
-                <text x="50%" y="95%" fill="var(--text-accent)" font-size="14" text-anchor="middle" font-family="Outfit" style="letter-spacing:8px;opacity:0.5;font-weight:700">TÜRKİYE FRC ARENA</text>
+                <path class="turkey-detailed-path" d="M12.4,142.3c4.7-2,9.3-4.1,14-6.1c16.3-4.1,32.7-8.2,49-12.3c10.7,0.7,21.3,1.3,32,2
+                    c6,5.3,12.1,10.6,18.1,15.9c3.1-3.1,6.1-6.2,9.2-9.2c16.7-7.2,33.5-14.3,50.2-21.5c15-0.7,30.1-1.5,45.1-2.2
+                    c3.1,7,6.1,14,9.2,21c17.5,3.3,35,6.5,52.5,9.8c11.1-6.8,22.2-13.6,33.3-20.4c17.2,0.9,34.4,1.8,51.6,2.7
+                    c8.1,3.4,16.2,6.7,24.3,10.1c11.9-4.2,23.8-8.4,35.6-12.6c18.1,5.1,36.2,10.2,54.3,15.3c15.2-1.9,30.3-3.9,45.5-5.8
+                    c13,1.9,26.1,3.8,39.1,5.7c8.5,8.8,17,17.5,25.6,26.3c16,13.8,32,27.5,48.1,41.3c2.7,11.8,5.5,23.5,8.2,35.3
+                    c-3.1,14.6-6.1,29.3-9.2,43.9c-10.7,13.1-21.4,26.2-32.1,39.2c-17,3.5-34,7.1-51,10.6c-18.7,4.3-37.5,8.7-56.2,13
+                    c-16-2-32.1-4.1-48.1-6.1c-15,3-30.1,6.1-45.1,9.1c-17.2,0.6-34.4,1.3-51.6,1.9c-20.9-4.9-41.9-9.7-62.8-14.6
+                    c-16.7-1.8-33.5-3.6-50.2-5.4c-20.4,4.6-40.8,9.2-61.2,13.7c-21.3-4.5-42.6-8.9-63.9-13.4c-17.5,1.5-35,3-52.5,4.5
+                    c-21.8-8.8-43.5-17.6-65.3-26.4c-11.8,13-23.5,26.1-35.3,39.1c-13.4,2.9-26.7,5.8-40.1,8.7c-10.3-10.1-20.6-20.1-30.8-30.2
+                    c-14.6-1.9-29.3-3.8-43.9-5.7c-10.3-9.5-20.6-19.1-30.8-28.6C9.1,180.5,10.7,161.4,12.4,142.3z" 
+                    fill="url(#mapGradient)" stroke="var(--accent)" stroke-width="1.2" />
+                <text x="50%" y="95%" fill="var(--text-accent)" font-size="12" text-anchor="middle" font-family="Outfit" style="letter-spacing:6px;opacity:0.4;font-weight:700">TÜRKİYE FRC ARENA</text>
             </svg>
         `;
         mapContainer.innerHTML = svgContent;
 
         const locations = {
-            'Başakşehir, İstanbul': { x: 170, y: 135, color: 'var(--accent)' },
-            'Ataköy, İstanbul': { x: 175, y: 140, color: 'var(--accent-gold)' },
-            'Etimesgut, Ankara': { x: 380, y: 195, color: 'var(--accent)' },
-            'Mersin': { x: 440, y: 260, color: 'var(--accent)' },
-            'İzmir': { x: 100, y: 205, color: 'var(--accent-gold)' }
+            'Başakşehir, İstanbul': { x: 170, y: 145, color: 'var(--accent)' },
+            'Ataköy, İstanbul': { x: 170, y: 155, color: 'var(--accent-gold)' },
+            'Etimesgut, Ankara': { x: 380, y: 210, color: 'var(--accent)' },
+            'Mersin': { x: 440, y: 280, color: 'var(--accent)' },
+            'İzmir': { x: 100, y: 220, color: 'var(--accent-gold)' }
         };
 
         this.data.regionals.forEach(r => {

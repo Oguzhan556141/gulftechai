@@ -1,5 +1,4 @@
 import { delay } from './utils.js';
-
 export async function callGeminiAPI(userMessage, history, apiKey, model, data, knowledge) {
     const currentYear = new Date().getFullYear();
     const systemPrompt = `Sen GulfTech AI'sın.
@@ -14,7 +13,8 @@ KRİTİK KURALLAR:
 1. Sadece sorulan branş/konu hakkında detaylı cevap ver.
 2. Bilgileri gruplandır (Headerlar ve listeler kullan).
 3. "The Blue Wave" ruhunu ve FLL'den gelen 5 yıllık mirasını vurgula.
-4. Türkçe/İngilizce samimi bir dil kullan, 🦈 kullan.`;
+4. Övgü ve iyi dilekleri (başarılar, tebrikler vb.) Mavi Dalga ruhuyla, nazikçe ve minnettarlıkla karşıla.
+5. Türkçe/İngilizce samimi bir dil kullan, 🦈 kullan.`;
 
     const contents = history.map(msg => ({
         role: msg.role === 'user' ? 'user' : 'model',
@@ -92,6 +92,11 @@ export async function simulateResponse(userMessage, data, knowledge) {
     if (/iletişim|sosyal|medya|instagram|site|link/i.test(msg)) {
         await delay(800);
         return `### 🔗 GulfTech'e Ulaşın\n\n- 📸 [Instagram](${sosyal_aglar.instagram})\n- 📺 [YouTube](${sosyal_aglar.youtube})\n- 🌐 [Web Sitesi](${sosyal_aglar.website})\n\nKocaeli'den yükselen teknoloji dalgasına katılın! 🦈🚀`;
+    }
+
+    if (/başarılar|tebrik|helal|harika|güzel|iyi şanslar|maşallah/i.test(msg)) {
+        await delay(800);
+        return `### 🌊 Çok Teşekkürler! 🦈\n\nBu güzel dileklerin ve desteğin bizim için çok değerli. **#GulfTechFamily** desteğiyle ${yarisma_hafizasi.sezon} sezonuna ve "REBUILT" görevine son hızla hazırlanıyoruz! 🛠️💪\n\nBirlikte "Mavi Dalga"yı en yükseğe taşıyacağız! 🌊🚀`;
     }
 
     await delay(1000);

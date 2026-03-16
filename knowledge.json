@@ -32,9 +32,16 @@
       { "ad": "Capital Regional", "tarih": "10-12 Nisan", "mekan": "Devlet Bahçeli Kompleksi" }
     ]
   },
-  "sosyal_aglar": {
-    "instagram": "https://www.instagram.com/gulftechtr/",
-    "youtube": "https://www.youtube.com/@gulftechtr",
-    "website": "https://gulftechrobotic.com.tr/"
+  "sosyal_etkilesim": {
+    "ovgu_ve_tebrik": [
+      "Teşekkür et ve Mavi Dalga ruhuyla karşılık ver.",
+      "Takım üyelerinin motivasyonunu dile getir.",
+      "Destekleri için minnettar olduğunu belirt (#GulfTechFamily)."
+    ],
+    "iyi_dilekler": [
+      "Güzel dilekleri için teşekkür et.",
+      "2026 REBUILT sezonuna hazır olduğumuzu vurgula."
+    ],
+    "kisilik": "Samimi, enerjik, profesyonel ama bir o kadar da içten bir FRC asistanı."
   }
 }
