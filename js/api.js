@@ -121,11 +121,17 @@ export async function simulateResponse(userMessage, data, knowledge) {
     if (/geşmiş|tarih|mavi dalga|blue wave|neden|logo/i.test(msg)) {
         await delay(1000);
         const la = k.logo_anlami || {};
-        return `### 🌊 The Blue Wave Hikayesi\n\n${k.miras || ''}\n\n**Logo Anlamı:**\n` +
+        return `### 🌊 The Blue Wave: FLL'den FRC'ye Yolculuğumuz\n\n` +
+            `Gulf Tech'in temelleri, Yücel Koyuncu BİLSEM çatısı altında **'Robogobi'** takımıyla 5 yıl süren başarılı bir FLL serüvenine dayanıyor. 🚀\n\n` +
+            `**📍 Yolculuğumuz:**\n` +
+            `- **Başlangıç:** Her şey Eskişehir'de büyük bir tutkuyla başladı.\n` +
+            `- **Uluslararası Başarı:** Kıtaları aşarak Avustralya'ya kadar uzanan bir FLL ruhu inşa ettik.\n` +
+            `- **Hedef:** FLL'de edindiğimiz deneyimleri, liderlik ve strateji becerilerini daha karmaşık projelere dökmek için FRC arenasına adım attık.\n\n` +
+            `**Logo Anlamı:**\n` +
             `- 🦈 **Köpek Balığı:** ${la.kopek_baligi || ''}\n` +
             `- 💙 **Mavi:** ${la.mavi_tonlari || ''}\n` +
-            `- 💛 **Sarı:** ${la.sari_tonlar || ''}\n\n` +
-            `Bizim için FRC yalnızca bir yarışma değil, teknik ve sosyal bir gelişim yolculuğudur. 🚀`;
+            `- 💛 **Sarı:** ${la.sarı_tonlar || ''}\n\n` +
+            `FRC bizim için yalnızca bir yarışma değil, çevremize ilham olduğumuz bir gelişim yolculuğudur! 🌊💙`;
     }
 
     // 3. Teknik Hafıza
