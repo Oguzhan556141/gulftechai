@@ -2,7 +2,7 @@ import { CONFIG } from './config.js';
 import { UI, $, $$ } from './ui.js';
 import { getNextRegional, delay, renderMarkdown } from './utils.js';
 import { callGeminiAPI, simulateResponse } from './api.js';
-import { renderMap } from './map.js';
+import { renderMap, MapComponent } from './map.js';
 
 let appData = null;
 let conversations = JSON.parse(localStorage.getItem(CONFIG.CONV_STORAGE_KEY) || '{}');
@@ -12,15 +12,22 @@ let apiKey = localStorage.getItem(CONFIG.API_KEY_STORAGE_KEY) || '';
 let model = localStorage.getItem(CONFIG.MODEL_STORAGE_KEY) || CONFIG.DEFAULT_MODEL;
 
 async function init() {
+    console.log('App initializing...');
     try {
         const [dataRes, knowRes] = await Promise.all([
             fetch(CONFIG.DATA_PATH),
             fetch('knowledge.json')
         ]);
+        
+        if (!dataRes.ok) throw new Error(`Data loading failed: ${dataRes.status}`);
+        if (!knowRes.ok) throw new Error(`Knowledge loading failed: ${knowRes.status}`);
+
         appData = await dataRes.json();
-        window.appKnowledge = await knowRes.json(); // Global for now or pass as needed
+        window.appKnowledge = await knowRes.json();
+        console.log('Data loaded successfully');
     } catch (err) {
         console.error('Initial load error:', err);
+        UI.appendMessage('ai', '⚠️ Hafıza yüklenirken hata oluştu: ' + err.message);
     }
 
     UI.updateApiStatus(apiKey, model);
@@ -88,14 +95,14 @@ function bindEvents() {
     document.addEventListener('click', (e) => {
         const chip = e.target.closest('.suggestion-chip');
         if (chip) {
-            const text = chip.textContent.trim();
+            const text = chip.getAttribute('data-prompt') || chip.textContent.trim();
             UI.chatInput.value = text;
             handleSend();
         }
     });
 }
 
-import { MapComponent } from './map.js';
+
 function openScheduleModal() {
     const mapComp = new MapComponent(appData);
     UI.mapModalBody.innerHTML = '';
@@ -227,7 +234,7 @@ async function handleSend() {
                 clearInterval(interval);
                 // If it's regional info, append the map
                 if (/bölge|regional|turnuva|takvim/i.test(text)) {
-                    bodyEl.appendChild(renderMap(appData.regionals));
+                    bodyEl.appendChild(renderMap(appData));
                 }
                 conversations[currentConvId].messages.push({ role: 'ai', content: responseText });
                 localStorage.setItem(CONFIG.CONV_STORAGE_KEY, JSON.stringify(conversations));

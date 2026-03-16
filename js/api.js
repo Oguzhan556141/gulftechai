@@ -46,7 +46,7 @@ KRİTİK KURALLAR:
 
 export async function simulateResponse(userMessage, data, knowledge) {
     const msg = userMessage.toLowerCase();
-    
+
     // Safety check for knowledge object
     if (!knowledge || !knowledge.takim_kimligi) {
         return "Üzgünüm, şu an hafızamda bir sorun var. Lütfen sayfayı yenilemeyi dene! 🦈🌊";
@@ -59,7 +59,7 @@ export async function simulateResponse(userMessage, data, knowledge) {
     // 1. Takım Kadrosu
     if (/takım.*tanıt|ekib.*tanıt|tüm üyeler|kimler var|kadro/i.test(msg)) {
         await delay(1200);
-        
+
         // Safety check for roster info
         const ym = k.yonetim_ve_mentorlar || {};
         const captains = k.kaptanlar || [];
@@ -67,14 +67,54 @@ export async function simulateResponse(userMessage, data, knowledge) {
 
         return `### 🔱 ${k.isim || 'GulfTech'} — ${k.motto || 'The Blue Wave'}\n\n` +
             `**🦈 Takım Kadromuz:**\n` +
-            `- **Müdür:** ${ym.kurumsal_mudur || 'Levent Kurt'}\n` +
             `- **Mentor:** ${ym.takim_mentoru || 'Ensar İnce'}\n` +
-            `- **Danışman Öğretmen:** ${ym.ogretmen_ve_danisman || 'Serkan Turgut'}\n\n` +
+            `- **Danışman Öğretmen:** ${ym.ogretmen_ve_danisman || 'Ümran Hoca'}\n\n` +
             `**⭐ Kaptanlarımız:**\n` +
             captains.map(c => `- **${c.isim}**: ${c.rol}`).join('\n') + `\n\n` +
-            `**👥 Ekibimizden Bazı İsimler:**\n` +
-            members.join(', ') + `\n\n` +
+            `**👥 Ekibimiz:**\n` +
+            members.map(m => `- **${m.isim}**: ${m.rol}`).join('\n') + `\n\n` +
             `*${k.miras || ''}* 🌊`;
+    }
+
+    // 1.5. Divizyonlar
+    if (/divizyon|departman|bölüm|pr|mekanik|elektronik|yazılım|tasarım/i.test(msg)) {
+        await delay(1000);
+        const divizyonlar = k.divizyonlar || {};
+        let divText = `### ⚙️ Takım Divizyonlarımız\n\n`;
+        for (const [ad, aciklama] of Object.entries(divizyonlar)) {
+            divText += `- **${ad}:** ${aciklama}\n`;
+        }
+        return divText + `\nHer divizyon, "The Blue Wave" inançlarımızı gerçeğe dönüştürmek için birlikte çalışır! 🦈`;
+    }
+
+    // Individual Member Queries
+    const ym = k.yonetim_ve_mentorlar || {};
+    const captains = k.kaptanlar || [];
+    const members = k.ekip_uyeleri || [];
+
+    // Check mentors
+    if (msg.includes('ensar') || msg.includes('ince')) {
+        return `**Ensar İnce**, GulfTech #11392 takımımızın değerli **Takım Mentoru**'dur. 🦈 Takımımıza teknik ve stratejik konularda rehberlik etmektedir.`;
+    }
+    if (msg.includes('ümran') || msg.includes('umran') || msg.includes('kayaoğlu')) {
+        return `**Ümran Kayaoğlu**, GulfTech #11392 takımımızın **Danışman Öğretmenidir**. 🌊 Takımımızın kurumsal ve eğitim süreçlerinde yanımızda yer almaktadır.`;
+    }
+
+    // Check captains & members with partial matching
+    const allPartners = [
+        ...captains.map(c => ({ name: c.isim, role: c.rol, type: 'captain' })),
+        ...members.map(m => ({ name: m.isim, role: m.rol, type: 'member' }))
+    ];
+
+    for (const p of allPartners) {
+        if (!p.name) continue;
+        const firstName = p.name.split(' ')[0].toLowerCase();
+        if (msg.includes(p.name.toLowerCase()) || (msg.length < 20 && msg.includes(firstName))) {
+            const flavor = p.type === 'captain'
+                ? `🦈 Mavi Dalga ruhuyla ekibimize liderlik etmektedir!`
+                : `🌊 Takımımızın hedeflerine ulaşmasında aktif rol oynamaktadır.`;
+            return `**${p.name}**, GulfTech #11392 takımımızda **${p.role}** görevini üstlenmektedir. ${flavor}`;
+        }
     }
 
     // 2. Tarihçe & Logo
@@ -98,7 +138,7 @@ export async function simulateResponse(userMessage, data, knowledge) {
             `- **Scout:** ${th.scout_sistemi || ''}\n\n` +
             `Her maçta "The Blue Wave" fırtınası estirmeye hazırız! 🦈🖥️`;
     }
-    
+
     // 4. Turnuva Takvimi
     if (/bölge|turnuva|takvim|ne zaman/i.test(msg)) {
         await delay(1000);
@@ -123,7 +163,7 @@ export async function simulateResponse(userMessage, data, knowledge) {
         await delay(1000);
         const sponsors = k.sponsorlar || [];
         return `### 🤝 Destekçilerimiz (Sponsorlar)\n\nGulfTech #11392 olarak yolculuğumuza destek olan değerli kurumlar:\n\n` +
-            sponsors.map(s => `- **${s.ad}**: ${s.kategori}`).join('\n') + 
+            sponsors.map(s => `- **${s.ad}**: ${s.kategori}`).join('\n') +
             `\n\nBirlikte daha güçlüyüz! 🌊🚀`;
     }
 
@@ -132,7 +172,7 @@ export async function simulateResponse(userMessage, data, knowledge) {
         await delay(1200);
         const scoring = yh.puanlama || [];
         return `### 🏗️ FRC 2026: REBUILT\n\n${yh.oyun_ozeti || ''}\n\n**🎯 Puanlama Anahtarı:**\n` +
-            scoring.map(p => `- ${p}`).join('\n') + 
+            scoring.map(p => `- ${p}`).join('\n') +
             `\n\nBu sezon robotumuzu "REBUILT" görevini en verimli şekilde tamamlayacak şekilde optimize ediyoruz! 🦈🔋`;
     }
 

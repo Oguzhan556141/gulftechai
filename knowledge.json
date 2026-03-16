@@ -10,11 +10,18 @@
     "logo_anlami": {
       "kopek_baligi": "Öz güven, potansiyel ve mücadele gücü. İzmit Körfezi ile olan bağlantımızı temsil eder.",
       "mavi_tonlari": "Derinlik ve kararlılık.",
-      "sari_tonlar": "Enerji ve yaratıcılık."
+      "beyaz_tonlar": "Enerji ve yaratıcılık."
     },
     "yonetim_ve_mentorlar": {
-      "ogretmen_ve_danisman": "Ümran Hoca",
+      "ogretmen_ve_danisman": "Ümran Kayaoğlu",
       "takim_mentoru": "Ensar İnce"
+    },
+    "divizyonlar": {
+      "PR": "Takımımızın dış dünya ile olan ilişkisini düzenleyen ekiptir. Sponsorluk görüşmeleri, proje yönetimi, sosyal medya yönetimi ve takım imajından sorumludur.",
+      "Mekanik": "Robotumuzun temellerini atıp fiziksel olarak düzenleyen ekiptir. Şasi üretimi ve geliştirilen eklentilerin yapımından sorumludur.",
+      "Elektronik": "Robotun bir nevi beynini ve sinir sistemini oluşturan ekiptir. Kablolama ve sensör kontrolü onların sorumluluğudur.",
+      "Yazılım": "Robotun beynini kodlayan ekiptir. Otonom sürüş ve kontrol algoritmalarını yazmaktan sorumludur.",
+      "Tasarım": "Robotun dijital ortamda planlamasını yapan ekiptir. 3D modelleme ve teknik çizimler yapmaktan sorumludur."
     },
     "kaptanlar": [
       {
@@ -26,18 +33,21 @@
         "rol": "Takım Kaptanı & PR Kaptanı"
       },
       {
-        "isim": "Irem Ünver",
+        "isim": "İrem Ünver",
         "rol": "Yazılım Kaptanı"
       }
     ],
     "ekip_uyeleri": [
-      "Meryem Elif Atmaca",
-      "Pelin Gülmez",
-      "Muhammed Kerem Şimdi",
-      "Arya Kahraman",
-      "Melike Azra Uğur",
-      "Umut Selim Bahalı",
-      "Yağız Polat"
+      { "isim": "Zeynep Sude Çakmak", "rol": "PR & Elektronik & Yazılım Üyesi" },
+      { "isim": "Tufan Gülmez", "rol": "Mekanik Üyesi" },
+      { "isim": "Beray Erenel", "rol": "PR Üyesi" },
+      { "isim": "Eren Özgüler", "rol": "Tasarım Üyesi" },
+      { "isim": "Elif Başuslu", "rol": "PR & Elektronik & Yazılım Üyesi" },
+      { "isim": "Arda Furkan Aygenoğlu", "rol": "Mekanik Üyesi" },
+      { "isim": "Ege Göllü", "rol": "PR Üyesi" },
+      { "isim": "Oğuzhan Aşkın", "rol": "Yazılım Üyesi" },
+      { "isim": "Muhammet Ali Sardoğan", "rol": "Mekanik Üyesi" },
+      { "isim": "Nilgün Hilal Karataş", "rol": "PR & Mekanik Üyesi" }
     ],
     "sponsorlar": [
       {
@@ -78,7 +88,7 @@
   "teknik_hafiza": {
     "sezon": "2026 REBUILT",
     "yazilim_stack": "Java, WPILib, PathPlanner, Command-Based Programming.",
-    "donanim": "RoboRIO 2.0, CAN tabanlı motor sürücüleri (Kraken/Falcon).",
+    "donanim": "RoboRIO 2.0, CAN tabanlı motor sürücüleri (REV Sparkmax).",
     "strateji": "Hızlı döngü süreleri, hassas otonom navigasyon ve veri analitiği.",
     "scout_sistemi": "Gelişmiş veri analizi ve maç stratejisi planlama."
   },
@@ -91,10 +101,10 @@
       "Bonuslar: Energized Ranking Point (100+ fuel) ve Supercharged Ranking Point (360+ fuel)."
     ],
     "hedefler": [
-      "Rookie All-Star",
-      "FIRST Impact Award (En prestijli ödül)",
-      "Autonomous Award sponsored by Google.org",
-      "Engineering Inspiration Award sponsored by SpaceX"
+      "Toplumda cinsiyet eşitliğini sağlamak. ",
+      "Çevremize faydalı olmak.",
+      "Çocuklara robotik ve mühendislik sevgisini aşılamak.",
+      "Sürdürülebilirlik projeleri geliştirmek."
     ],
     "bolgesel_turnuvalar": [
       {
