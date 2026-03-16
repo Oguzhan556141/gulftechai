@@ -51,7 +51,9 @@
     { "name": "Marmara Regional", "date": "2026-03-28T10:00:00+03:00", "location": "Ataköy, İstanbul" },
     { "name": "Avrasya Regional", "date": "2026-03-31T10:00:00+03:00", "location": "Ataköy, İstanbul" },
     { "name": "Ankara Regional", "date": "2026-04-07T10:00:00+03:00", "location": "Ankara" },
-    { "name": "Başkent Regional", "date": "2026-04-10T10:00:00+03:00", "location": "Ankara" }
+    { "name": "Başkent Regional", "date": "2026-04-10T10:00:00+03:00", "location": "Ankara" },
+    { "name": "Mersin Regional", "date": "2026-04-15T10:00:00+03:00", "location": "Mersin" },
+    { "name": "İzmir Regional", "date": "2026-04-20T10:00:00+03:00", "location": "İzmir" }
   ],
   "awards": [
     { "name": "Rookie All-Star", "desc": "Yılın en iyi rookie takımına verilir. Worlds'e direkt bilet!" },
@@ -89,6 +91,36 @@
         "field": "Merkezi oyun alanı",
         "stands": "360 derece izleme alanı",
         "food": "Üst kat kantin bölgesi"
+      }
+    },
+    "Mersin": {
+      "name": "Servet Tazegül Spor Salonu",
+      "address": "Yenişehir, Mersin",
+      "logistics": {
+        "transport": "Şehir içi otobüs ve dolmuş hatları.",
+        "accommodation": "Yenişehir bölgesindeki oteller.",
+        "notes": "Akdeniz'in en geniş spor komplekslerinden biri."
+      },
+      "floorPlan": {
+        "pits": "Antrenman sahası bölümü",
+        "field": "Ana yarışma sahası",
+        "stands": "Batı ve Doğu tribünleri",
+        "food": "Giriş katı kafeterya"
+      }
+    },
+    "İzmir": {
+      "name": "Fuar İzmir",
+      "address": "Gaziemir, İzmir",
+      "logistics": {
+        "transport": "İZBAN ve ESHOT otobüsleri.",
+        "accommodation": "Gaziemir ve Havalimanı bölgesi otelleri.",
+        "notes": "Devasa fuar alanı, geniş pit operasyonu sağlar."
+      },
+      "floorPlan": {
+        "pits": "C Holü",
+        "field": "B Holü Merkezi",
+        "stands": "Modüler tribün sistemleri",
+        "food": "Holler arası geçiş koridorları"
       }
     }
   }

@@ -70,6 +70,16 @@ function bindEvents() {
     UI.mapModal.addEventListener('click', (e) => {
         if (e.target === UI.mapModal) UI.mapModal.classList.remove('visible');
     });
+
+    // Suggestion Chips Delegation (Global)
+    document.addEventListener('click', (e) => {
+        const chip = e.target.closest('.suggestion-chip');
+        if (chip) {
+            const text = chip.textContent.trim();
+            UI.chatInput.value = text;
+            handleSend();
+        }
+    });
 }
 
 import { MapComponent } from './map.js';

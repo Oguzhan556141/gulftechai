@@ -1488,66 +1488,70 @@ a:hover { text-decoration: underline; }
     border-radius: 12px;
 }
 
-/* Card Glows */
+/* ===== STARS BACKGROUND ===== */
+.stars-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    background-image: 
+        radial-gradient(1px 1px at 20px 30px, var(--accent), rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 40px 70px, var(--accent-gold), rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 50px 160px, var(--accent), rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 80px 120px, var(--accent-gold), rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 110px 210px, var(--accent), rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 150px 250px, var(--accent-gold), rgba(0,0,0,0));
+    background-repeat: repeat;
+    background-size: 300px 300px;
+    opacity: 0.3;
+    animation: stars-twinkle 4s ease-in-out infinite alternate;
+}
+
+@keyframes stars-twinkle {
+    0% { opacity: 0.2; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.05); }
+    100% { opacity: 0.2; transform: scale(1); }
+}
+
+/* ===== UNIFIED BRANDING ===== */
+.brand-name, .welcome-screen h1 {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #ffffff 30%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.2));
+}
+
+.brand-name .accent, .welcome-screen h1 .accent {
+    background: linear-gradient(135deg, var(--accent-gold) 0%, #fde68a 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 15px var(--gold-glow) !important;
+}
+
+/* Suggestion Chips - Liquid Glass */
 .suggestion-chip {
-    background: rgba(13, 27, 48, 0.4) !important;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+    background: rgba(15, 23, 42, 0.7) !important;
+    backdrop-filter: blur(12px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(180%) !important;
+    border: 1px solid var(--border) !important;
+    padding: 10px 16px !important;
+    border-radius: 12px !important;
+    color: var(--text-primary) !important;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
 }
 
 .suggestion-chip:hover {
-    border-color: #ffd700 !important;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.4) !important;
-    transform: translateY(-5px) !important;
-    background: rgba(255, 255, 255, 0.05) !important;
-}
-
-/* AI Message Glow */
-.message.ai .message-avatar img {
-    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5)) !important;
-}
-
-.message.ai .message-body {
-    border-left: 2px solid #ffd700;
-    padding-left: 15px;
-}
-
-/* ===== WARMER VISUAL EFFECTS ===== */
-.bg-blobs {
-    background: radial-gradient(circle at center, #0f1c2e 0%, #050a14 100%) !important;
-}
-
-.blob-1 {
-    background: rgba(0, 188, 212, 0.3) !important; /* Cyan glow */
-}
-
-.blob-2 {
-    background: rgba(124, 77, 255, 0.25) !important; /* Purple glow */
-}
-
-.blob-3 {
-    background: rgba(255, 193, 7, 0.15) !important; /* Warm Gold glow */
-}
-
-.suggestion-chip {
-    border: 1px solid rgba(255, 193, 7, 0.15) !important;
-}
-
-.suggestion-chip:hover {
-    box-shadow: 0 0 25px rgba(255, 193, 7, 0.3), 0 5px 15px rgba(0, 0, 0, 0.4) !important;
-    border-color: #ffd700 !important;
-}
-
-.message.ai .message-body {
-    border-left: 3px solid #ffd700 !important;
-    background: rgba(255, 193, 7, 0.03) !important;
-}
-
-.sidebar {
-    border-right: 1px solid rgba(255, 193, 7, 0.1) !important;
-}
-
-.brand-logo {
-    filter: drop-shadow(0 0 12px rgba(255, 193, 7, 0.4)) !important;
+    transform: translateY(-3px) scale(1.02);
+    border-color: var(--accent) !important;
+    box-shadow: 0 8px 25px rgba(56, 189, 248, 0.2) !important;
+    background: rgba(56, 189, 248, 0.1) !important;
 }
