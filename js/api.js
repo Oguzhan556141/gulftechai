@@ -176,12 +176,33 @@ export async function simulateResponse(userMessage, data, knowledge) {
             `\n\nBu sezon robotumuzu "REBUILT" görevini en verimli şekilde tamamlayacak şekilde optimize ediyoruz! 🦈🔋`;
     }
 
-    // 8. Övgü & Tebrik
+    // 8. FRC Nedir?
+    if (/frc.*nedir|first.*robotics/i.test(msg)) {
+        await delay(1200);
+        const frc = k.frc_nedir || {};
+        return `### 🤖 FRC (FIRST Robotics Competition) Nedir?\n\n` +
+               `**${frc.tanim || ''}**\n\n` +
+               `- 💡 **More Than Robots:** ${frc.more_than_robots || ''}\n` +
+               `- ⚙️ **İleri Mühendislik:** ${frc.ileri_muhendislik || ''}\n` +
+               `- 🤝 **Takım Ruhu:** ${frc.takim_ruhu || ''}\n\n` +
+               `*Duyarlı Profesyonellik* ile geleceği inşa ediyoruz! 🦈`;
+    }
+
+    // 9. Etkinlikler
+    if (/etkinlik|yapıyorsunuz|neler.*yaptınız/i.test(msg)) {
+        await delay(1000);
+        const etkinlikler = knowledge.etkinlikler || [];
+        return `### 📅 Etkinliklerimiz\n\nEkip olarak sadece robot yapmıyor, çevremizi de aydınlatıyoruz:\n\n` +
+               etkinlikler.map(e => `- **${e.ad}**: ${e.aciklama}`).join('\n') +
+               `\n\nFaaliyetlerimiz hız kesmeden devam ediyor! 🚀`;
+    }
+
+    // 10. Övgü & Tebrik
     if (/başarılar|tebrik|helal|harika|güzel|iyi şanslar|maşallah/i.test(msg)) {
         await delay(800);
         return `### 🌊 Çok Teşekkürler! 🦈\n\nBu güzel dileklerin ve desteğin bizim için çok değerli. **#GulfTechFamily** desteğiyle ${yh.sezon || ''} sezonuna ve "REBUILT" görevine son hızla hazırlanıyoruz! 🛠️💪\n\nBirlikte "Mavi Dalga"yı en yükseğe taşıyacağız! 🌊🚀`;
     }
 
     await delay(1000);
-    return `Anlıyorum! 🦈 Sana şu konularda yardımcı olabilirim:\n- 📖 Takım Tarihçesi & "The Blue Wave" hikayesi\n- 👥 Takım Kadrosu & Mentorlar\n- ⚙️ Teknik Altyapı (Yazılım/Donanım)\n- 🤝 Sponsorlarımız\n- 🏗️ 2026 REBUILT Sezon Detayları\n- 📍 Turnuva Takvimi\n\nHangi konuda bilgi istersin? ✨`;
+    return `Anlıyorum! 🦈 Sana şu konularda yardımcı olabilirim:\n- 🤖 FRC Nedir?\n- 📖 Tarihçemiz & "The Blue Wave"\n- 👥 Takım Kadrosu & Divizyonlarımız\n- 📅 Etkinliklerimiz\n- ⚙️ Teknik Altyapı & Scout\n- 🤝 Sponsorlarımız\n- 🏗️ 2026 REBUILT Sezon Detayları\n- 📍 Turnuva Takvimi\n\nHangi konuda bilgi istersin? ✨`;
 }
