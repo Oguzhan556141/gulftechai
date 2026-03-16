@@ -1046,12 +1046,6 @@ a:hover {
     display: flex;
     align-items: center;
     gap: 12px;
-    animation: textPulse 3s ease-in-out infinite;
-}
-
-@keyframes textPulse {
-    0%, 100% { opacity: 0.95; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.02); text-shadow: 0 0 15px rgba(14, 165, 233, 0.4); }
 }
 
 .cd-block {
@@ -1061,16 +1055,37 @@ a:hover {
 }
 
 .cd-num {
-    background: rgba(14, 165, 233, 0.1);
-    border: 1px solid rgba(14, 165, 233, 0.3);
-    border-radius: var(--radius-md);
-    padding: 8px 12px;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(14, 165, 233, 0.4);
+    border-radius: 8px;
+    padding: 10px 4px;
     font-family: var(--font-mono);
-    font-size: 1.8rem;
-    font-weight: 800;
+    font-size: 2.2rem;
+    font-weight: 700;
     color: #fff;
-    min-width: 55px;
-    text-shadow: 0 0 10px rgba(14, 165, 233, 0.5);
+    min-width: 65px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 0 20px rgba(14, 165, 233, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cd-num::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.05);
+    z-index: 1;
+}
+
+.cd-num.updating {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+    box-shadow: 0 0 15px rgba(14, 165, 233, 0.3);
 }
 
 .cd-unit {
@@ -1609,14 +1624,13 @@ a:hover {
 
 .orion-star {
     fill: #e0f7fa;
-    opacity: 0.8;
-    animation: twinkleStar 4s infinite alternate ease-in-out;
+    opacity: 0.7;
 }
 
 .orion-star.bright {
     fill: #fff;
     filter: drop-shadow(0 0 4px #4fc3f7);
-    animation: twinkleStar 3s infinite alternate ease-in-out;
+    opacity: 0.9;
 }
 
 .orion-star.belt {
