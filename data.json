@@ -3,14 +3,16 @@
     "name": "Gulf Tech #11392",
     "foundedAt": 2026,
     "location": "Gölcük BİLSEM, Kocaeli, Türkiye",
-    "background": "5 yıllık FLL tecrübesi üzerine kurulmuş profesyonel bir FRC takımı.",
+    "background": "Yücel Koyuncu BİLSEM'in 5 yıllık 'Robogobi' FLL tecrübesi üzerine kurulmuş, Eskişehir'den Avustralya'ya uzanan bir başarı hikayesine sahip profesyonel FRC takımı.",
     "mascot": "Köpek balığı (Mavi: Derinlik, Sarı/Altın: Enerji)",
     "supporters": [
       "Boeing",
       "Gölcük Belediyesi",
       "Fikret Yüksel Vakfı",
       "TEKSA",
-      "Teknorova"
+      "Teknorova",
+      "İZAYDAŞ",
+      "Kocaeli Büyükşehir Belediyesi"
     ],
     "departments": {
       "mentor": "Ensar İnce",
@@ -20,7 +22,8 @@
         "members": [
           "Oğuzhan Aşkın",
           "Zeynep Sude Çakmak",
-          "Elif Başuslu"
+          "Elif Başuslu",
+          "Nilgün Hilal Karataş"
         ]
       },
       "mechanical": {

@@ -165,6 +165,7 @@ export const handlers = [
             const frc = k.frc_nedir || {};
             return `### 🤖 FRC (FIRST Robotics Competition) Nedir?\n\n` +
                    `**${frc.tanim || ''}**\n\n` +
+                   `- 🇹🇷 **Türkiye Serüveni:** ${frc.tarihce_turkiye || ''}\n` +
                    `- 💡 **More Than Robots:** ${frc.more_than_robots || ''}\n` +
                    `- ⚙️ **İleri Mühendislik:** ${frc.ileri_muhendislik || ''}\n` +
                    `- 🤝 **Takım Ruhu:** ${frc.takim_ruhu || ''}\n\n` +

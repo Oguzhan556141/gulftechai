@@ -6,14 +6,15 @@
     "motto": "The Blue Wave (Mavi Dalga)",
     "miras": "FLL’den FRC’ye uzanan yolculuğumuzda, Eskişehir’de bir tutku olarak başlayan ve kıtalar ötesinde, Avustralya’da devam eden FLL ruhunu FRC’ye yansıtma kararı aldık. Yücel Koyuncu Bilim ve Sanat Merkezi olarak First Lego League (FLL) yarışmasında 'Robogobi' takımıyla 5 yıllık muazzam bir deneyim kazandık. Bu süreçte kazandığımız ulusal ve uluslararası başarıları, gerçek mühendislik süreçlerini daha profesyonelce deneyimlemek ve çevremize ilham olmak amacıyla FRC arena'sına taşımaya karar verdik. Gulf Tech #11392, bu güçlü mirasın ve 'The Blue Wave' ruhunun temsilcisidir.",
     "vizyon": "Bilim ve teknolojiye duyulan saygıyı artırmak, gençleri STEM liderleri olmaya teşvik etmek.",
-    "ismin_kaynagi": "İzmit Körfezi'ne (Gulf) olan bağlılığımızı ve bölgenin teknolojik gücünü (Tech) temsil eder.",
+    "ismin_kaynagi": "“Gulf Tech” ismiyle İzmit Körfezi’ne olan bağlılığımızı vurgularken, Körfez'in (Gulf) teknolojik gücünü (Tech) temsil ediyoruz.",
     "logo_anlami": {
-      "kopek_baligi": "Öz güven, potansiyel ve mücadele gücü. İzmit Körfezi ile olan bağlantımızı temsil eder.",
-      "mavi_tonlari": "Derinlik ve kararlılık.",
-      "sarı_tonlar": "Enerji ve yaratıcılık."
+      "kopek_baligi": "Öz güven, potansiyel ve mücadele gücü. İzmit Körfezi ile olan bağlantımızı temsil eden ana maskotumuzdur.",
+      "mavi_tonlari": "Derinlik, kararlılık ve denizin gücü.",
+      "sarı_tonlar": "Enerji, yaratıcılık ve teknolojik parıltı."
     },
     "frc_nedir": {
       "tanim": "Zeka için Spor: Gençlerin bilim ve teknoloji ile ilgilenmeleri için tasarlanmış, dünyanın en prestijli robotik yarışması.",
+      "tarihce_turkiye": "FRC'nin Türkiye serüveni 2015 yılında Fikret Yüksel Vakfı tarafından düzenlenen ilk off-season etkinliği ile başladı. 2-5 Aralık 2015'te Ülker Spor Arena'da yapılan bu ilk etkinlikten sonra Türkiye, dünya genelinde %37'lik büyüme oranıyla en hızlı büyüyen FRC ülkesi haline geldi.",
       "more_than_robots": "FRC, lise öğrencilerinin belirli kaynaklarla, kısıtlı zaman diliminde bir robot inşa ettikleri ortamdır. Sadece robot yapmayı değil; markalaşmayı, iş birliğini ve 'Duyarlı Profesyonellik' (Gracious Professionalism) kavramını öğretir.",
       "ileri_muhendislik": "Endüstriyel seviyede donanım ve yazılım kullanarak gerçek dünya problemlerine çözümler üretiyoruz.",
       "takim_ruhu": "Mekanik, yazılım ve PR birimlerimizle bir şirket gibi organize oluyoruz."
@@ -79,6 +80,10 @@
       {
         "isim": "Muhammet Ali Sardoğan",
         "rol": "Mekanik Üyesi"
+      },
+      {
+        "isim": "Nilgün Hilal Karataş",
+        "rol": "Ekip Üyesi"
       }
     ],
     "sponsorlar": [
