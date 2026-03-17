@@ -188,5 +188,22 @@ export const handlers = [
             const yh = knowledge.yarisma_hafizasi || {};
             return `### 🌊 Çok Teşekkürler! 🦈\n\nBu güzel dileklerin ve desteğin bizim için çok değerli. **#GulfTechFamily** desteğiyle ${yh.sezon || ''} sezonuna ve "REBUILT" görevine son hızla hazırlanıyoruz! 🛠️💪\n\nBirlikte "Mavi Dalga"yı en yükseğe taşıyacağız! 🌊🚀`;
         }
+    },
+    {
+        name: 'oduller',
+        match: /ödül|başarı/i,
+        handle: async (msg, data, knowledge) => {
+            const awards = data.awards || [];
+            return `### 🏆 FRC Ödülleri\n\nFRC dünyasındaki önemli ödüllerden bazıları:\n\n` +
+                awards.map(a => `- **${a.name}**: ${a.desc}`).join('\n') +
+                `\n\nGulfTech olarak hedefimiz bu prestijli ödülleri müzemize taşımak! 🦈✨`;
+        }
+    },
+    {
+        name: 'yaratan',
+        match: /seni kim.*yaptı|yaratıcın.*kim|kim.*geliştirdi|seni kim.*kodladı/i,
+        handle: async (msg, data, knowledge) => {
+            return `Ben, GulfTech #11392 takımında bulunan **Orion** adında anonim bir ekip üyesi tarafından geliştirildim. 🦈💻\n\nTakımımızın "The Blue Wave" ruhunu dijital dünyaya taşımak için buradayım! 🌊✨`;
+        }
     }
 ];
