@@ -1,30 +1,6 @@
-import { delay } from './utils.js';
+const delay = () => {}; //  './utils.js';
 
-export const handlers = [
-    {
-        name: 'iletisim',
-        match: /iletişim|sosyal|medya|instagram|site|link|ulaşım|irtibat/i,
-        handle: async (msg, data, knowledge) => {
-            const k = knowledge.takim_kimligi;
-            const sa = k.sosyal_aglar || {};
-            return `### 🔗 GulfTech'e Ulaşın\n\n- 📸 [Instagram](${sa.instagram || ''})\n- 📺 [YouTube](${sa.youtube || ''})\n- 🌐 [Web Sitesi](${sa.website || ''})\n\nKocaeli'den yükselen teknoloji dalgasına katılın! 🦈🚀`;
-        }
-    },
-    {
-        name: 'frc_nedir',
-        match: /frc|first.*robotics/i,
-        handle: async (msg, data, knowledge) => {
-            const k = knowledge.takim_kimligi;
-            const frc = k.frc_nedir || {};
-            return `### 🤖 FRC (FIRST Robotics Competition) Nedir?\n\n` +
-                `**${frc.tanim || ''}**\n\n` +
-                `- 🇹🇷 **Türkiye Serüveni:** ${frc.tarihce_turkiye || ''}\n` +
-                `- 💡 **More Than Robots:** ${frc.more_than_robots || ''}\n` +
-                `- ⚙️ **İleri Mühendislik:** ${frc.ileri_muhendislik || ''}\n` +
-                `- 🤝 **Takım Ruhu:** ${frc.takim_ruhu || ''}\n\n` +
-                `*Duyarlı Profesyonellik* ile geleceği inşa ediyoruz! 🦈`;
-        }
-    },
+const handlers = [
     {
         name: 'takim_kadrosu',
         match: /takım.*tanıt|ekib.*tanıt|tüm üyeler|kimler var|kadro/i,
@@ -106,7 +82,7 @@ export const handlers = [
     },
     {
         name: 'tarihce',
-        match: /geçmiş|tarih|mavi dalga|blue wave|neden|logo/i,
+        match: /geşmiş|tarih|mavi dalga|blue wave|neden|logo/i,
         handle: async (msg, data, knowledge) => {
             const k = knowledge.takim_kimligi;
             const la = k.logo_anlami || {};
@@ -151,6 +127,15 @@ export const handlers = [
         }
     },
     {
+        name: 'iletisim',
+        match: /iletişim|sosyal|medya|instagram|site|link/i,
+        handle: async (msg, data, knowledge) => {
+            const k = knowledge.takim_kimligi;
+            const sa = k.sosyal_aglar || {};
+            return `### 🔗 GulfTech'e Ulaşın\n\n- 📸 [Instagram](${sa.instagram || ''})\n- 📺 [YouTube](${sa.youtube || ''})\n- 🌐 [Web Sitesi](${sa.website || ''})\n\nKocaeli'den yükselen teknoloji dalgasına katılın! 🦈🚀`;
+        }
+    },
+    {
         name: 'sponsorlar',
         match: /sponsor/i,
         handle: async (msg, data, knowledge) => {
@@ -170,6 +155,21 @@ export const handlers = [
             return `### 🏗️ FRC 2026: REBUILT\n\n${yh.oyun_ozeti || ''}\n\n**🎯 Puanlama Anahtarı:**\n` +
                 scoring.map(p => `- ${p}`).join('\n') +
                 `\n\nBu sezon robotumuzu "REBUILT" görevini en verimli şekilde tamamlayacak şekilde optimize ediyoruz! 🦈🔋`;
+        }
+    },
+    {
+        name: 'frc_nedir',
+        match: /frc.*nedir|first.*robotics/i,
+        handle: async (msg, data, knowledge) => {
+            const k = knowledge.takim_kimligi;
+            const frc = k.frc_nedir || {};
+            return `### 🤖 FRC (FIRST Robotics Competition) Nedir?\n\n` +
+                `**${frc.tanim || ''}**\n\n` +
+                `- 🇹🇷 **Türkiye Serüveni:** ${frc.tarihce_turkiye || ''}\n` +
+                `- 💡 **More Than Robots:** ${frc.more_than_robots || ''}\n` +
+                `- ⚙️ **İleri Mühendislik:** ${frc.ileri_muhendislik || ''}\n` +
+                `- 🤝 **Takım Ruhu:** ${frc.takim_ruhu || ''}\n\n` +
+                `*Duyarlı Profesyonellik* ile geleceği inşa ediyoruz! 🦈`;
         }
     },
     {
@@ -204,7 +204,8 @@ export const handlers = [
         name: 'yaratan',
         match: /seni kim.*yaptı|yaratıcın.*kim|kim.*geliştirdi|seni kim.*kodladı/i,
         handle: async (msg, data, knowledge) => {
-            return `Ben, GulfTech #11392 takımında bulunan **Oğuzhan Aşkın** tarafından geliştirildim. 🦈💻\n\nTakımımızın "The Blue Wave" ruhunu dijital dünyaya taşımak için buradayım! 🌊✨`;
+            return `Ben, GulfTech #11392 takımında bulunan **Orion** adında anonim bir ekip üyesi tarafından geliştirildim. 🦈💻\n\nTakımımızın "The Blue Wave" ruhunu dijital dünyaya taşımak için buradayım! 🌊✨`;
         }
     }
 ];
+module.exports = { handlers };

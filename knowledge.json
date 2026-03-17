@@ -14,14 +14,14 @@
     },
     "frc_nedir": {
       "tanim": "Zeka için Spor: Gençlerin bilim ve teknoloji ile ilgilenmeleri için tasarlanmış, dünyanın en prestijli robotik yarışması.",
-      "tarihce_turkiye": "FRC'nin Türkiye serüveni 2015 yılında Fikret Yüksel Vakfı tarafından düzenlenen ilk off-season etkinliği ile başladı. 2-5 Aralık 2015'te Ülker Spor Arena'da yapılan bu ilk etkinlikten sonra Türkiye, dünya genelinde %37'lik büyüme oranıyla en hızlı büyüyen FRC ülkesi haline geldi. 2026 sezonu teması 'REBUILT presented by Haas' olarak belirlenmiştir.",
+      "tarihce_turkiye": "FRC'nin Türkiye serüveni 2015 yılında Fikret Yüksel Vakfı tarafından düzenlenen ilk off-season etkinliği ile başladı. 2-5 Aralık 2015'te Ülker Spor Arena'da yapılan bu ilk etkinlikten sonra Türkiye, dünya genelinde %37'lik büyüme oranıyla en hızlı büyüyen FRC ülkesi haline geldi. 2026 sezonu teması 'REBUILT' olarak belirlenmiştir.",
       "more_than_robots": "FRC, lise öğrencilerinin belirli kaynaklarla, bazı kurallar altında ve kısıtlı zaman diliminde bir robot inşa ettikleri heyecan dolu bir süreçtir. Sadece robot yapmayı değil; markalaşmayı, iş birliğini ve 'Duyarlı Profesyonellik' (Gracious Professionalism) kavramını öğretir.",
       "ileri_muhendislik": "Endüstriyel seviyede donanım ve yazılım kullanarak gerçek dünya problemlerine çözümler üretiyoruz.",
       "takim_ruhu": "Mekanik, yazılım ve PR birimlerimizle bir şirket gibi organize oluyoruz."
     },
     "yonetim_ve_mentorlar": {
-      "ogretmen_ve_danisman": "Ümran Kayaoğlu",
-      "takim_mentoru": "Ensar İnce"
+      "takim_mentoru1": "Ümran Kayaoğlu",
+      "takim_mentoru2": "Ensar İnce"
     },
     "divizyonlar": {
       "PR": "Takımımızın dış dünya ile olan ilişkisini düzenleyen ekiptir. Sponsorluk görüşmeleri, proje yönetimi, sosyal medya yönetimi ve takım imajından sorumludur.",
@@ -59,7 +59,7 @@
       },
       {
         "isim": "Eren Özgüler",
-        "rol": "Tasarım Üyesi"
+        "rol": "Mekanik & Tasarım Üyesi"
       },
       {
         "isim": "Elif Başuslu",
@@ -67,7 +67,7 @@
       },
       {
         "isim": "Arda Furkan Aygenoğlu",
-        "rol": "Mekanik Üyesi"
+        "rol": "Mekanik & PR Üyesi"
       },
       {
         "isim": "Ege Göllü",
@@ -79,11 +79,7 @@
       },
       {
         "isim": "Muhammet Ali Sardoğan",
-        "rol": "Mekanik Üyesi"
-      },
-      {
-        "isim": "Nilgün Hilal Karataş",
-        "rol": "Ekip Üyesi"
+        "rol": "Mekanik & Tasarım Üyesi"
       }
     ],
     "sponsorlar": [
@@ -134,14 +130,29 @@
     "scout_sistemi": "REBUILT 2026 SCOUTING SYSTEM: Gelişmiş veri analizi, Otonom ve Teleop periyot analitikleri ve takım stratejisi planlama üzerine kuruludur."
   },
   "etkinlikler": [
-    { "ad": "Kick-off Röportajları", "aciklama": "FIRST topluluğunu yakından tanımak ve farklı bakış açılarını dinlemek bizim için çok değerliydi." },
-    { "ad": "İZAYDAŞ Gezisi", "aciklama": "İZAYDAŞ kurumuna gerçekleştirdiğimiz ziyarette atık yönetimi ve geri dönüşüm konuları hakkında bilinçlendik." },
-    { "ad": "Takım Kahvaltısı", "aciklama": "Gulf Tech olarak bir araya gelip keyifli bir pazar kahvaltısı yaptık." },
-    { "ad": "Çocuk Kasabası Ziyareti", "aciklama": "Minik kalplerle büyük hayaller üzerine konuştuk." },
-    { "ad": "FRC Takımlarıyla Toplantılar", "aciklama": "FRC takımlarıyla bilgilerimizi paylaştığımız samimi ve keyifli toplantılar gerçekleştiriyoruz." }
+    {
+      "ad": "Kick-off Röportajları",
+      "aciklama": "FIRST topluluğunu yakından tanımak ve farklı bakış açılarını dinlemek bizim için çok değerliydi."
+    },
+    {
+      "ad": "İZAYDAŞ Gezisi",
+      "aciklama": "İZAYDAŞ kurumuna gerçekleştirdiğimiz ziyarette atık yönetimi ve geri dönüşüm konuları hakkında bilinçlendik."
+    },
+    {
+      "ad": "Takım Kahvaltısı",
+      "aciklama": "Gulf Tech olarak bir araya gelip keyifli bir pazar kahvaltısı yaptık."
+    },
+    {
+      "ad": "Çocuk Kasabası Ziyareti",
+      "aciklama": "Minik kalplerle büyük hayaller üzerine konuştuk."
+    },
+    {
+      "ad": "FRC Takımlarıyla Toplantılar",
+      "aciklama": "FRC takımlarıyla bilgilerimizi paylaştığımız samimi ve keyifli toplantılar gerçekleştiriyoruz."
+    }
   ],
   "yarisma_hafizasi": {
-    "sezon": "2026 REBUILT (Presented by Haas)",
+    "sezon": "2026 REBUILT",
     "oyun_ozeti": "REBUILT oyununda robotlar 'fuel' (yakıt) toplayıp 'hub'a fırlatır ve maç sonunda 'tower' (kule) tırmanışını gerçekleştirir.",
     "puanlama": [
       "Hub Puanları: Fuel (yakıt) öğelerini hub'a ulaştırarak puan kazanılır.",

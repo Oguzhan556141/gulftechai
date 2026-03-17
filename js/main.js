@@ -69,6 +69,7 @@ function bindEvents() {
     UI.chatInput.addEventListener('input', () => {
         UI.sendBtn.disabled = !UI.chatInput.value.trim();
         UI.autoResizeInput();
+        updateInlineSuggestions();
     });
 
     // Sidebar
@@ -102,14 +103,51 @@ function bindEvents() {
 
     // Suggestion Chips Delegation (Global)
     document.addEventListener('click', (e) => {
-        const chip = e.target.closest('.suggestion-chip');
+        const chip = e.target.closest('.suggestion-chip, .inline-chip');
         if (chip) {
             const text = chip.getAttribute('data-prompt') || chip.textContent.trim();
             UI.chatInput.value = text;
             handleSend();
+            if (chip.classList.contains('inline-chip')) {
+                UI.inlineSuggestions.classList.remove('visible');
+            }
         }
     });
 }
+
+function updateInlineSuggestions() {
+    const val = UI.chatInput.value.trim().toLowerCase();
+    const container = UI.inlineSuggestions;
+    
+    if (val.length < 2) {
+        container.classList.remove('visible');
+        return;
+    }
+
+    const keywords = [
+        { key: 'frc', prompt: 'FRC nedir, açıklar mısın?', label: '🤖 FRC Nedir?' },
+        { key: 'takım', prompt: 'Takım kadrosunu tanıtır mısın?', label: '👥 Takımımız' },
+        { key: 'üye', prompt: 'Takım kadrosunu tanıtır mısın?', label: '👥 Üyeler' },
+        { key: 'iletişim', prompt: 'İletişim bilgilerini paylaşır mısın?', label: '🔗 İletişim' },
+        { key: 'tarih', prompt: 'Takım tarihçesini anlatır mısın?', label: '📖 Tarihçemiz' },
+        { key: 'etkinlik', prompt: 'Etkinliklerinizden bahseder misiniz?', label: '📅 Etkinlikler' },
+        { key: 'robot', prompt: 'Teknik altyapınızdan bahseder misiniz?', label: '⚙️ Teknik' },
+        { key: 'sponsor', prompt: 'Sponsorlarınız kimler?', label: '🤝 Sponsorlar' },
+        { key: 'rebuilt', prompt: 'REBUILT oyun kurallarını açıklar mısın?', label: '🏗️ REBUILT' }
+    ];
+
+    const matches = keywords.filter(k => k.key.includes(val) || k.label.toLowerCase().includes(val));
+
+    if (matches.length > 0) {
+        container.innerHTML = matches.map(m => `
+            <div class="inline-chip" data-prompt="${m.prompt}">${m.label}</div>
+        `).join('');
+        container.classList.add('visible');
+    } else {
+        container.classList.remove('visible');
+    }
+}
+
 
 
 function openScheduleModal() {

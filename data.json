@@ -15,15 +15,14 @@
       "Kocaeli Büyükşehir Belediyesi"
     ],
     "departments": {
-      "mentor": "Ensar İnce",
+      "mentor": "Ensar İnce, Ümran Kayaoğlu",
       "captains": "Levent Yiğit (Mekanik), Tuğra Kerem Kaya (PR), İrem Ünver (Yazılım)",
       "software": {
         "captain": "İrem Ünver",
         "members": [
           "Oğuzhan Aşkın",
           "Zeynep Sude Çakmak",
-          "Elif Başuslu",
-          "Nilgün Hilal Karataş"
+          "Elif Başuslu"
         ]
       },
       "mechanical": {
@@ -45,7 +44,8 @@
       },
       "design": {
         "members": [
-          "Eren Özgüler (Onshape)"
+          "Eren Özgüler",
+          "Muhammet Ali Sardoğan"
         ]
       },
       "electronics": {
@@ -60,7 +60,7 @@
     }
   },
   "frc2026": {
-    "theme": "REBUILT (Presented by Haas)",
+    "theme": "REBUILT",
     "concept": "Geçmişi yeniden hayal et",
     "game": "Hub'lara yakıt atma, Tower'a tırmanma (L1-L3), otonom ilk 20sn.",
     "rules": [

@@ -6,6 +6,7 @@ export const $$ = (sel) => document.querySelectorAll(sel);
 export const UI = {
     chatMessages: $('#chatMessages'),
     chatInput: $('#chatInput'),
+    inlineSuggestions: $('#inlineSuggestions'),
     sendBtn: $('#sendBtn'),
     sidebar: $('#sidebar'),
     menuBtn: $('#menuBtn'),

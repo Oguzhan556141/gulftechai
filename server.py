@@ -5,7 +5,7 @@ import json
 import os
 
 # Port settings
-PORT = 3001
+PORT = 3000
 
 class ProxyHandler(http.server.SimpleHTTPRequestHandler):
     def load_env(self):

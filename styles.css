@@ -365,11 +365,13 @@ a:hover {
 
 /* Liquid Glass Feature */
 .liquid-glass {
-    background: var(--bg-card);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid var(--border);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(25px) saturate(200%);
+    -webkit-backdrop-filter: blur(25px) saturate(200%);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    box-shadow: 
+        0 8px 32px 0 rgba(0, 0, 0, 0.45),
+        inset 0 0 1px 1px rgba(255, 255, 255, 0.08);
     position: relative;
     overflow: hidden;
 }
@@ -400,16 +402,65 @@ a:hover {
     }
 
     20% {
-        opacity: 0.15;
+        opacity: 0.25;
     }
 
     80% {
-        opacity: 0.15;
+        opacity: 0.25;
     }
 
     100% {
         transform: translate(50%, 50%) rotate(25deg);
         opacity: 0;
+    }
+}
+
+/* Inline Suggestions */
+.inline-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0 12px 10px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+}
+
+.inline-suggestions.visible {
+    max-height: 100px;
+    opacity: 1;
+    padding-top: 10px;
+}
+
+.inline-chip {
+    padding: 6px 12px;
+    border-radius: 12px;
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    animation: fadeInScale 0.2s ease forwards;
+}
+
+.inline-chip:hover {
+    background: rgba(56, 189, 248, 0.2);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(56, 189, 248, 0.2);
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(5px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
     }
 }
 
