@@ -14,8 +14,8 @@
     },
     "frc_nedir": {
       "tanim": "Zeka için Spor: Gençlerin bilim ve teknoloji ile ilgilenmeleri için tasarlanmış, dünyanın en prestijli robotik yarışması.",
-      "tarihce_turkiye": "FRC'nin Türkiye serüveni 2015 yılında Fikret Yüksel Vakfı tarafından düzenlenen ilk off-season etkinliği ile başladı. 2-5 Aralık 2015'te Ülker Spor Arena'da yapılan bu ilk etkinlikten sonra Türkiye, dünya genelinde %37'lik büyüme oranıyla en hızlı büyüyen FRC ülkesi haline geldi.",
-      "more_than_robots": "FRC, lise öğrencilerinin belirli kaynaklarla, kısıtlı zaman diliminde bir robot inşa ettikleri ortamdır. Sadece robot yapmayı değil; markalaşmayı, iş birliğini ve 'Duyarlı Profesyonellik' (Gracious Professionalism) kavramını öğretir.",
+      "tarihce_turkiye": "FRC'nin Türkiye serüveni 2015 yılında Fikret Yüksel Vakfı tarafından düzenlenen ilk off-season etkinliği ile başladı. 2-5 Aralık 2015'te Ülker Spor Arena'da yapılan bu ilk etkinlikten sonra Türkiye, dünya genelinde %37'lik büyüme oranıyla en hızlı büyüyen FRC ülkesi haline geldi. 2026 sezonu teması 'REBUILT presented by Haas' olarak belirlenmiştir.",
+      "more_than_robots": "FRC, lise öğrencilerinin belirli kaynaklarla, bazı kurallar altında ve kısıtlı zaman diliminde bir robot inşa ettikleri heyecan dolu bir süreçtir. Sadece robot yapmayı değil; markalaşmayı, iş birliğini ve 'Duyarlı Profesyonellik' (Gracious Professionalism) kavramını öğretir.",
       "ileri_muhendislik": "Endüstriyel seviyede donanım ve yazılım kullanarak gerçek dünya problemlerine çözümler üretiyoruz.",
       "takim_ruhu": "Mekanik, yazılım ve PR birimlerimizle bir şirket gibi organize oluyoruz."
     },
@@ -114,12 +114,16 @@
       {
         "ad": "Bilsem",
         "kategori": "Kurumsal Çatı"
+      },
+      {
+        "ad": "Kocaeli Büyükşehir Belediyesi",
+        "kategori": "Yerel Destekçi"
       }
     ],
     "sosyal_aglar": {
       "website": "https://gulftechrobotic.com.tr",
-      "instagram": "https://www.instagram.com/gulftech11392",
-      "youtube": "https://www.youtube.com/@gulf_tech"
+      "instagram": "https://www.instagram.com/gulftechtr",
+      "youtube": "https://www.youtube.com/@gulftechtr"
     }
   },
   "teknik_hafiza": {
