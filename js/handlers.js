@@ -233,11 +233,21 @@ export const handlers = [
     },
     {
         name: 'etkinlikler',
-        match: /etkinlik|yapıyorsunuz|neler.*yaptınız/i,
+        match: (msg) => trMatch(msg, /etkinlik|proje|zamanın mekaniği|huzurevi|stem|scout|yeşil vatan|devotion/),
         handle: async (msg, data, knowledge) => {
-            const etkinlikler = knowledge.etkinlikler || [];
-            return `### 📅 Etkinliklerimiz\n\nEkip olarak sadece robot yapmıyor, çevremizi de aydınlatıyoruz:\n\n` +
-                etkinlikler.map(e => `- **${e.ad}**: ${e.aciklama}`).join('\n') +
+            const list = knowledge.etkinlikler || [];
+            
+            // Check if user is asking about a specific project
+            for (const e of list) {
+                if (trMatch(msg, new RegExp(e.ad, 'i'))) {
+                    let resp = `### 🚀 ${e.ad}\n\n${e.aciklama}\n\n`;
+                    if (e.url) resp += `🔗 **Detaylar:** [Buraya Tıklayın](${e.url})\n\n`;
+                    return resp + `Başka hangi projemizi merak ediyorsun? 🦈`;
+                }
+            }
+
+            return `### 📅 Etkinliklerimiz ve Projelerimiz\n\nEkip olarak sadece robot yapmıyor, çevremizi de aydınlatıyoruz:\n\n` +
+                list.map(e => `- **${e.ad}**: ${e.aciklama}${e.url ? ` ([Link](${e.url}))` : ''}`).join('\n') +
                 `\n\nFaaliyetlerimiz hız kesmeden devam ediyor! 🚀`;
         }
     },
