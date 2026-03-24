@@ -1,0 +1,180 @@
+{
+  "first_vakfi": {
+    "tam_ad": "For Inspiration and Recognition of Science and Technology (FIRST)",
+    "kurucu": "Dean Kamen",
+    "kurulus_yili": 1989,
+    "merkez": "Manchester, New Hampshire, ABD",
+    "tur": "Küresel kar amacı gütmeyen sivil toplum kuruluşu",
+    "misyon": "Gençlere hayat değiştiren robotik programlar sunarak onlara daha iyi bir dünya inşa etmeleri için gereken becerileri, özgüveni ve dayanıklılığı kazandırmak.",
+    "vizyon": "Bilim ve teknolojinin kutlandığı ve gençlerin bilim ve teknoloji liderleri olmayı hayal ettiği bir dünya yaratarak kültürümüzü dönüştürmek.",
+    "slogan": "More Than Robots (Robotlardan Fazlası)",
+    "degerler": {
+      "gracious_professionalism": "Duyarlı Profesyonellik - Dostça sportmenlik, takım çalışması ve karşılıklı saygıyı vurgulayan FIRST felsefesi. Katılımcılar birbirleriyle saygılı ilişkiler kurarken en iyi performanslarını sergilemeye teşvik edilir.",
+      "coopertition": "Rekabetçi İşbirliği (Cooperation + Competition) - Rakip takımlarla bile işbirliği yaparak herkesin kazanmasını hedefleyen yaklaşım. FIRST topluluğunun temel değerlerinden biri."
+    },
+    "tarihce": {
+      "1989": "Dean Kamen tarafından FIRST kuruldu. Amacı, gençlerin bilim ve teknolojiye olan ilgisini artırmak ve onları STEM liderliğine teşvik etmek.",
+      "1992": "İlk FIRST Robotics Competition (FRC) düzenlendi. 28 lise takımı New Hampshire'da bir spor salonunda yarıştı. ABD Başkanı George H.W. Bush ilk etkinliğe katıldı.",
+      "1995": "İlk FIRST Championship Walt Disney World'ün Epcot Center'ında Orlando, Florida'da düzenlendi.",
+      "1998": "FIRST ve LEGO Group ortaklaşa junior robotik programı FIRST LEGO League'i (FLL) pilot olarak başlattı. LEGO Mindstorms kitlerini kullanan bu program daha genç öğrenciler için tasarlandı.",
+      "2004": "FIRST LEGO League Explore (FLLE) pilot program olarak başladı, 2007'de resmi olarak lansmanı yapıldı.",
+      "2005": "FIRST Tech Challenge (FTC) pilot program olarak tanıtıldı. Başlangıçta FIRST Vex Challenge (FVC) olarak bilindi.",
+      "2007": "FVC, FIRST Tech Challenge (FTC) olarak yeniden adlandırıldı.",
+      "2015": "Türkiye'de ilk FRC off-season etkinliği Fikret Yüksel Vakfı tarafından düzenlendi (2-5 Aralık 2015, İstanbul Ülker Spor Arena).",
+      "2018": "Türkiye, resmi FIRST Robotics Competition (FRC) turnuvalarına ev sahipliği yapmaya başladı.",
+      "2025": "FRC REEFSCAPE sezonu oynandı - Mercan ve yosun parçalarıyla puan kazanma ve tırmanma.",
+      "2026": "FRC REBUILT sezonu - Hub'lara yakıt atma ve kule tırmanma temalı oyun."
+    },
+    "programlar": {
+      "frc": {
+        "tam_ad": "FIRST Robotics Competition",
+        "baslangic": 1992,
+        "yas_grubu": "14-18 yaş (lise)",
+        "aciklama": "Lise öğrencilerinin endüstriyel boyutlarda robotlar tasarlayıp inşa ettikleri, her yıl yeni bir oyun kuralıyla yarıştıkları dünyanın en prestijli robotik yarışması. Takımlar 6 hafta içinde bir robot tasarlar ve inşa eder.",
+        "kazanimlar": "Mühendislik becerileri, takım çalışması, liderlik, inovasyon, iş birliği, proje yönetimi ve markalaşma.",
+        "turkiye_buyume": "Türkiye, dünya genelinde %37'lik büyüme oranıyla en hızlı büyüyen FRC ülkesi haline geldi."
+      },
+      "ftc": {
+        "tam_ad": "FIRST Tech Challenge",
+        "baslangic": 2005,
+        "yas_grubu": "12-18 yaş",
+        "aciklama": "Öğrencilerin daha küçük ölçekli robotlar tasarlayıp programladıkları, ittifak bazlı yarışma. FRC'ye geçiş için ideal bir basamak."
+      },
+      "fll": {
+        "tam_ad": "FIRST LEGO League",
+        "baslangic": 1998,
+        "yas_grubu": "4-16 yaş",
+        "aciklama": "LEGO robotlarıyla gerçek dünya problemlerine çözüm arayan takımların yarıştığı program. Challenge ve Explore olmak üzere iki alt kategorisi var.",
+        "not": "2026-2027 sezonunun sonunda FIRST ve LEGO Education arasındaki ortaklık sona erecek."
+      }
+    },
+    "global_etki": {
+      "takim_sayisi": "Dünya genelinde binlerce takım",
+      "ulke_sayisi": "80'den fazla ülkede aktif",
+      "ogrenci_sayisi": "Milyonlarca öğrenci etkilenmiştir",
+      "burs_imkanlari": "FIRST katılımcılarına yılda 80 milyon dolardan fazla burs imkanı sunulur"
+    }
+  },
+  "fikret_yuksel_vakfi": {
+    "tam_ad": "Fikret Yüksel Vakfı (Fikret Yüksel Foundation)",
+    "kurucu": "Fikret Yüksel",
+    "kurulus_yili": 1998,
+    "merkez": "ABD",
+    "tur": "Eğitim vakfı",
+    "misyon": "Türk öğrencilerin eğitimini desteklemek ve onları FIRST programlarına dahil ederek 21. yüzyıl becerileriyle donatmak.",
+    "finans": "Yüksel A.Ş.'nin kârları ve kurumsal sponsorluklarla finanse edilir.",
+    "kurucu_hakkinda": {
+      "isim": "Fikret Yüksel",
+      "egitim": "Darüşşafaka mezunu. İstanbul Teknik Üniversitesi, MIT (Massachusetts Institute of Technology) ve Harvard'da İnşaat, Yapı ve Zemin Mühendisliği alanlarında eğitim görmüştür.",
+      "kariyer": "Türkiye ve ABD'de muhtelif mühendislik projelerinde görev almıştır. Alaska Boru Hattı'nın önemli bölümlerinin tasarımına katkıda bulunmuştur.",
+      "is_hayati": "Mühendislik kariyerinin ardından kızı Susan Burchard ile emlak sektörüne girerek Yüksel A.Ş.'yi kurmuştur.",
+      "vasiyet": "Vefatından sonra, şirketinin kârlarının Darüşşafaka başta olmak üzere Türk öğrencilerin eğitimini destekleyen bir vakfa aktarılmasını vasiyet etmiştir."
+    },
+    "first_ile_iliski": {
+      "baslangic": "2005 yılında Fikret Yüksel'in kızı Susan Burchard ve eşi Gary'nin oğulları Alex'in lisede FIRST Robotics Competition ile tanışmasıyla vakfın FIRST'e yönelimi hız kazandı.",
+      "darus_destegi": "2008'den itibaren vakfın Darüşşafaka'ya yaptığı yıllık bağışlar, özellikle bir FIRST Robotics Competition Takımı'nın kurulması ve desteklenmesi için kullanıldı.",
+      "turkiye_rolu": "Vakıf, Türkiye'de FIRST programlarının yaygınlaşmasında öncü bir rol oynamaktadır. Takımlara eğitim, finansman ve danışmanlık desteği sağlamanın yanı sıra yarışmaların düzenlenmesine de katkıda bulunmaktadır.",
+      "desteklenen_programlar": "FRC, FTC ve FLL olmak üzere FIRST'ün her üç seviyesinde yüzlerce takımın yarışmasına yardımcı olmuştur.",
+      "ilk_etkinlik": "2-5 Aralık 2015'te İstanbul Ülker Spor Arena'da Türkiye'deki ilk FRC off-season etkinliğini düzenledi."
+    },
+    "turkiye_etkisi": {
+      "aciklama": "Fikret Yüksel Vakfı, Türkiye'de FIRST hareketinin en büyük destekçilerinden biridir.",
+      "buyume": "Türkiye, vakfın desteğiyle dünya genelinde en hızlı büyüyen FRC ülkelerinden biri olmuştur.",
+      "resmi_turnuvalar": "2018'den beri Türkiye, önemli FIRST Robotics Competition turnuvalarına ev sahipliği yapmaktadır.",
+      "destek_alanlari": [
+        "Takımlara doğrudan finansman desteği",
+        "Eğitim ve mentorluk programları",
+        "Yarışma organizasyonu",
+        "Teknik danışmanlık",
+        "Kit ve ekipman desteği"
+      ]
+    },
+    "web_sitesi": "https://fikretyukselfoundation.org"
+  },
+  "frc_turkiye": {
+    "baslangic": "2015 (off-season), 2018 (resmi turnuvalar)",
+    "ilk_etkinlik": {
+      "tarih": "2-5 Aralık 2015",
+      "mekan": "Ülker Spor Arena, İstanbul",
+      "organizator": "Fikret Yüksel Vakfı"
+    },
+    "buyume": "Türkiye, dünya genelinde %37'lik büyüme oranıyla en hızlı büyüyen FRC ülkesi",
+    "2026_bolgesel_turnuvalar": [
+      {
+        "ad": "Istanbul Regional",
+        "tarih": "3-5 Mart 2026",
+        "mekan": "Başakşehir Spor Kompleksi, İstanbul"
+      },
+      {
+        "ad": "Bosphorus Regional",
+        "tarih": "6-8 Mart 2026",
+        "mekan": "Başakşehir Spor Kompleksi, İstanbul"
+      },
+      {
+        "ad": "Yeditepe Regional",
+        "tarih": "9-11 Mart 2026",
+        "mekan": "Başakşehir Spor Kompleksi, İstanbul"
+      },
+      {
+        "ad": "Haliç Regional",
+        "tarih": "25-27 Mart 2026",
+        "mekan": "TAF Atletizm Salonu, Ataköy, İstanbul"
+      },
+      {
+        "ad": "Marmara Regional",
+        "tarih": "28-30 Mart 2026",
+        "mekan": "TAF Atletizm Salonu, Ataköy, İstanbul"
+      },
+      {
+        "ad": "Ankara Regional",
+        "tarih": "7-9 Nisan 2026",
+        "mekan": "Devlet Bahçeli Eğitim, Yaşam ve Spor Kompleksi, Ankara"
+      }
+    ],
+    "oduller": {
+      "aciklama": "FRC yarışmalarında takımlara verilen prestijli ödüller",
+      "kategoriler": [
+        {
+          "ad": "FIRST Impact Award",
+          "aciklama": "En prestijli ödül. FIRST misyonunu en iyi temsil eden takıma verilir. Eski adı Chairman's Award."
+        },
+        {
+          "ad": "Rookie All-Star Award",
+          "aciklama": "Yılın en iyi rookie (çaylak) takımına verilir. Takımın ilk yılındaki başarısını ödüllendirir."
+        },
+        {
+          "ad": "Engineering Inspiration Award",
+          "aciklama": "Mühendislik kültürünü toplumda yaygınlaştıran ve çevresine ilham veren takıma verilir."
+        },
+        {
+          "ad": "Autonomous Award",
+          "aciklama": "En iyi otonom performansını gösteren takıma verilir."
+        },
+        {
+          "ad": "Quality Award",
+          "aciklama": "Sağlam, güvenilir ve kaliteli robot tasarımı için verilir."
+        },
+        {
+          "ad": "Industrial Design Award",
+          "aciklama": "Endüstriyel tasarım mükemmelliği gösteren takıma verilir."
+        },
+        {
+          "ad": "Creativity Award",
+          "aciklama": "Yaratıcı tasarım veya strateji kullanan takıma verilir."
+        },
+        {
+          "ad": "Innovation in Control Award",
+          "aciklama": "Kontrol sisteminde yenilikçi çözümler sunan takıma verilir."
+        },
+        {
+          "ad": "Gracious Professionalism Award",
+          "aciklama": "FIRST'ün Duyarlı Profesyonellik değerini en iyi temsil eden takıma verilir."
+        },
+        {
+          "ad": "Judges Award",
+          "aciklama": "Jüri tarafından özel olarak seçilen ve diğer kategorilere girmeyen başarıyı ödüllendiren takıma verilir."
+        }
+      ]
+    }
+  }
+}

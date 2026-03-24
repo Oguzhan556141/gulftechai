@@ -3,8 +3,8 @@
     "isim": "Gulf Tech #11392",
     "kurum": "Gölcük BİLSEM (Yücel Koyuncu Bilim ve Sanat Merkezi)",
     "konum": "Gölcük, Kocaeli, Türkiye",
-    "motto": "The Blue Wave (Mavi Dalga)",
-    "miras": "FLL’den FRC’ye uzanan yolculuğumuzda, Eskişehir’de bir tutku olarak başlayan ve kıtalar ötesinde, Avustralya’da devam eden FLL ruhunu FRC’ye yansıtma kararı aldık. Yücel Koyuncu Bilim ve Sanat Merkezi olarak First Lego League (FLL) yarışmasında 'Robogobi' takımıyla 5 yıllık muazzam bir deneyim kazandık. Bu süreçte kazandığımız ulusal ve uluslararası başarıları, gerçek mühendislik süreçlerini daha profesyonelce deneyimlemek ve çevremize ilham olmak amacıyla FRC arena'sına taşımaya karar verdik. Gulf Tech #11392, bu güçlü mirasın ve 'The Blue Wave' ruhunun temsilcisidir.",
+    "motto": "Teknoloji ve İnovasyon Yolculuğu",
+    "miras": "FLL’den FRC’ye uzanan yolculuğumuzda, Eskişehir’de bir tutku olarak başlayan ve kıtalar ötesinde, Avustralya’da devam eden FLL ruhunu FRC’ye yansıtma kararı aldık. Yücel Koyuncu Bilim ve Sanat Merkezi olarak First Lego League (FLL) yarışmasında 'Robogobi' takımıyla 5 yıllık muazzam bir deneyim kazandık. Bu süreçte kazandığımız ulusal ve uluslararası başarıları, gerçek mühendislik süreçlerini daha profesyonelce deneyimlemek ve çevremize ilham olmak amacıyla FRC arena'sına taşımaya karar verdik. Gulf Tech #11392, bu güçlü mirasın temsilcisidir.",
     "vizyon": "Bilim ve teknolojiye duyulan saygıyı artırmak, gençleri STEM liderleri olmaya teşvik etmek.",
     "ismin_kaynagi": "“Gulf Tech” ismiyle İzmit Körfezi’ne olan bağlılığımızı vurgularken, Körfez'in (Gulf) teknolojik gücünü (Tech) temsil ediyoruz.",
     "logo_anlami": {
@@ -194,13 +194,13 @@
       {
         "ad": "Ankara Regional",
         "tarih": "7-9 Nisan",
-        "mekan": "Devlet Bahçeli Kompleksi"
+        "mekan": "Devlet Bahçeli Eğitim, Yaşam ve Spor Kompleksi"
       }
     ]
   },
   "sosyal_etkilesim": {
     "ovgu_ve_tebrik": [
-      "Teşekkür et ve Mavi Dalga ruhuyla karşılık ver.",
+      "Teşekkür et ve nezaketle karşılık ver.",
       "Takım üyelerinin motivasyonunu dile getir.",
       "Destekleri için minnettar olduğunu belirt (#GulfTechFamily)."
     ],
