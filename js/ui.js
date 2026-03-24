@@ -14,7 +14,7 @@ export const UI = {
     newChatBtn: $('#newChatBtn'),
     sidebarBrand: $('#sidebarBrand'),
     historyList: $('#historyList'),
-    settingsBtn: $('#settingsBtn'),
+    settingsBtn: null, // Removed
     settingsModal: $('#settingsModal'),
     settingsClose: $('#settingsClose'),
     saveApiKeyBtn: $('#saveApiKey'),

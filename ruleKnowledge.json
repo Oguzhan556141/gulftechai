@@ -104,9 +104,9 @@
   },
   "robot_kurallari": {
     "boyut_sınırlari": {
-      "cevre": "Maksimum 110 inç çevre",
-      "yukseklik": "Maksimum 30 inç yükseklik (oyun boyunca sabit)",
-      "genisleme": "Tek bir yönde maksimum 12 inç genişleme, aynı anda yalnızca bir yönde"
+      "cevre": "Maksimum 110 inç (279,4 cm) çevre",
+      "yukseklik": "Maksimum 30 inç (76,2 cm) yükseklik (oyun boyunca sabit)",
+      "genisleme": "Tek bir yönde maksimum 12 inç (30,5 cm) genişleme, aynı anda yalnızca bir yönde"
     },
     "tampon_kurallari": {
       "aciklama": "Tamponlar köşelerde sarılabilir",
@@ -133,9 +133,9 @@
     "2025_reefscape_vs_2026_rebuilt": {
       "mac_suresi": "REEFSCAPE: 2dk 30sn → REBUILT: 2dk 40sn",
       "otonom_suresi": "REEFSCAPE: 15sn → REBUILT: 20sn",
-      "robot_cevresi": "REEFSCAPE: 120 inç → REBUILT: 110 inç",
-      "yukseklik": "REEFSCAPE: 42 inç genişleme → REBUILT: 30 inç sabit",
-      "genisleme": "REEFSCAPE: 18 inç → REBUILT: 12 inç",
+      "robot_cevresi": "REEFSCAPE: 120 inç (304,8 cm) → REBUILT: 110 inç (279,4 cm)",
+      "yukseklik": "REEFSCAPE: 42 inç (106,7 cm) genişleme → REBUILT: 30 inç (76,2 cm) sabit",
+      "genisleme": "REEFSCAPE: 18 inç (45,7 cm) → REBUILT: 12 inç (30,5 cm)",
       "ceza_puanlari": "REEFSCAPE: Minor 2, Major 6 → REBUILT: Minor 5, Major 15",
       "oyun_parcasi_tasima": "REEFSCAPE: 1 Coral + 1 Algae → REBUILT: Sınırsız yakıt (8 preload)"
     }

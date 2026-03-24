@@ -122,8 +122,11 @@ function bindEvents() {
         startNewChat();
     });
 
-    // Settings
-    UI.settingsBtn.addEventListener('click', () => UI.settingsModal.classList.add('visible'));
+    // Settings - guard in case button is removed
+    const settingsBtn = document.getElementById('settingsBtn');
+    if (settingsBtn) {
+        settingsBtn.addEventListener('click', () => UI.settingsModal.classList.add('visible'));
+    }
     UI.settingsClose.addEventListener('click', () => UI.settingsModal.classList.remove('visible'));
     UI.saveApiKeyBtn.addEventListener('click', saveSettings);
     UI.toggleApiVis.addEventListener('click', () => {
@@ -163,22 +166,41 @@ function updateInlineSuggestions() {
         return;
     }
 
+    // Turkish-aware normalization
+    const norm = val.replace(/ı/g, 'i').replace(/ü/g, 'u').replace(/ö/g, 'o').replace(/ş/g, 's').replace(/ç/g, 'c').replace(/ğ/g, 'g');
+
     const keywords = [
         { key: 'frc', prompt: 'FRC nedir, açıklar mısın?', label: '🤖 FRC Nedir?' },
         { key: 'takım', prompt: 'Takım kadrosunu tanıtır mısın?', label: '👥 Takımımız' },
-        { key: 'üye', prompt: 'Takım kadrosunu tanıtır mısın?', label: '👥 Üyeler' },
-        { key: 'iletişim', prompt: 'iletişim bilgilerini paylaşır mısın?', label: '🔗 İletişim' },
+        { key: 'uye', prompt: 'Takım kadrosunu tanıtır mısın?', label: '👥 Üyeler' },
+        { key: 'iletisim', prompt: 'İletişim bilgilerini paylaşır mısın?', label: '🔗 İletişim' },
         { key: 'tarih', prompt: 'Takım tarihçesini anlatır mısın?', label: '📖 Tarihçemiz' },
-        { key: 'etkinlik', prompt: 'Etkinliklerinizden bahseder misiniz?', label: '📅 Etkinlikler' },
+        { key: 'etkinlik', prompt: 'Projelerinizden ve etkinliklerinizden bahseder misiniz?', label: '📅 Etkinlikler' },
         { key: 'robot', prompt: 'Teknik altyapınızdan bahseder misiniz?', label: '⚙️ Teknik' },
         { key: 'sponsor', prompt: 'Sponsorlarınız kimler?', label: '🤝 Sponsorlar' },
-        { key: 'rebuilt', prompt: 'REBUILT oyun kurallarını açıklar mısın?', label: '🏗️ REBUILT' }
+        { key: 'rebuilt', prompt: 'REBUILT oyunundaki puanlama sistemi nasıl çalışıyor?', label: '🏗️ REBUILT' },
+        { key: 'first', prompt: 'FIRST vakfı hakkında bilgi verir misin?', label: '🌐 FIRST Vakfı' },
+        { key: 'fikret', prompt: 'Fikret Yüksel Vakfı hakkında bilgi verir misin?', label: '🏢 Fikret Yüksel' },
+        { key: 'vakif', prompt: 'FIRST vakfı ve Fikret Yüksel Vakfı hakkında bilgi verir misin?', label: '🌐 Vakıflar' },
+        { key: 'kural', prompt: 'REBUILT oyun kurallarını açıklar mısın?', label: '📜 Kurallar' },
+        { key: 'puan', prompt: 'REBUILT puanlama sistemini açıklar mısın?', label: '🎯 Puanlama' },
+        { key: 'hub', prompt: 'REBUILT oyunundaki hub nedir?', label: '🛢️ Hub' },
+        { key: 'tower', prompt: 'REBUILT oyunundaki kule tırmanışı nasıl çalışıyor?', label: '🗼 Kule' },
+        { key: 'otonom', prompt: 'REBUILT otonom periyodu nasıl çalışıyor?', label: '🤖 Otonom' },
+        { key: 'dizivyon', prompt: 'Takım divizyonlarını tanıtır mısın?', label: '⚙️ Divizyonlar' },
+        { key: 'proje', prompt: 'Projelerinizden bahseder misiniz?', label: '🚀 Projeler' },
+        { key: 'oyun', prompt: 'REBUILT oyun kurallarını açıklar mısın?', label: '🎮 REBUILT Oyunu' },
+        { key: 'turnuva', prompt: 'Turnuva takvimini gösterir misin?', label: '📍 Turnuva Takvimi' },
+        { key: 'odul', prompt: 'FRC ödüllerinden bahseder misin?', label: '🏆 Ödüller' }
     ];
 
-    const matches = keywords.filter(k => k.key.includes(val) || k.label.toLowerCase().includes(val));
+    const matches = keywords.filter(k => {
+        const normKey = k.key.replace(/ı/g, 'i').replace(/ü/g, 'u').replace(/ö/g, 'o').replace(/ş/g, 's').replace(/ç/g, 'c').replace(/ğ/g, 'g');
+        return normKey.includes(norm) || k.label.toLowerCase().includes(norm);
+    });
 
     if (matches.length > 0) {
-        container.innerHTML = matches.map(m => `
+        container.innerHTML = matches.slice(0, 6).map(m => `
             <div class="inline-chip" data-prompt="${m.prompt}">${m.label}</div>
         `).join('');
         container.classList.add('visible');
