@@ -14,17 +14,56 @@ let model = localStorage.getItem(CONFIG.MODEL_STORAGE_KEY) || CONFIG.DEFAULT_MOD
 async function init() {
     console.log('App initializing...');
     try {
-        const [dataRes, knowRes] = await Promise.all([
+        const [dataRes, teamRes, ruleRes, firstRes] = await Promise.all([
             fetch(CONFIG.DATA_PATH),
-            fetch('knowledge.json')
+            fetch('teamKnowledge.json'),
+            fetch('ruleKnowledge.json'),
+            fetch('firstKnowledge.json')
         ]);
-        
+
         if (!dataRes.ok) throw new Error(`Data loading failed: ${dataRes.status}`);
-        if (!knowRes.ok) throw new Error(`Knowledge loading failed: ${knowRes.status}`);
+        if (!teamRes.ok) throw new Error(`Team knowledge loading failed: ${teamRes.status}`);
+        if (!ruleRes.ok) throw new Error(`Rule knowledge loading failed: ${ruleRes.status}`);
+        if (!firstRes.ok) throw new Error(`FIRST knowledge loading failed: ${firstRes.status}`);
 
         appData = await dataRes.json();
-        window.appKnowledge = await knowRes.json();
-        console.log('Data loaded successfully');
+        const teamKnowledge = await teamRes.json();
+        const ruleKnowledge = await ruleRes.json();
+        const firstKnowledge = await firstRes.json();
+
+        // Merge all knowledge into one object for backward compatibility
+        window.appKnowledge = {
+            takim_kimligi: teamKnowledge.takim_kimligi,
+            yonetim_ve_mentorlar: teamKnowledge.yonetim_ve_mentorlar,
+            kaptanlar: teamKnowledge.kaptanlar,
+            ekip_uyeleri: teamKnowledge.ekip_uyeleri,
+            divizyonlar: teamKnowledge.divizyonlar,
+            teknik_hafiza: teamKnowledge.teknik_hafiza,
+            etkinlikler: teamKnowledge.projeler_ve_etkinlikler,
+            sponsorlar: teamKnowledge.sponsorlar,
+            iletisim: teamKnowledge.iletisim,
+            sosyal_aglar: teamKnowledge.sosyal_aglar,
+            hedefler: teamKnowledge.hedefler,
+            playlistler: teamKnowledge.playlistler,
+            web_sitesi_sayfalari: teamKnowledge.web_sitesi_sayfalari,
+            sosyal_etkilesim: teamKnowledge.sosyal_etkilesim,
+            yarisma_hafizasi: {
+                sezon: ruleKnowledge.oyun_bilgisi.sezon + ' ' + ruleKnowledge.oyun_bilgisi.oyun_adi,
+                oyun_bilgisi: ruleKnowledge.oyun_bilgisi,
+                oyun_parcalari: ruleKnowledge.oyun_parcalari,
+                saha_elemanlari: ruleKnowledge.saha_elemanlari,
+                mac_yapisi: ruleKnowledge.mac_yapisi,
+                puanlama_sistemi: ruleKnowledge.puanlama_sistemi,
+                siralama_puanlari: ruleKnowledge.siralama_puanlari,
+                robot_kurallari: ruleKnowledge.robot_kurallari,
+                strateji_notlari: ruleKnowledge.strateji_notlari,
+                onemli_terimler: ruleKnowledge.onemli_terimler
+            },
+            first_bilgisi: firstKnowledge.first_vakfi,
+            fikret_yuksel_vakfi: firstKnowledge.fikret_yuksel_vakfi,
+            frc_turkiye: firstKnowledge.frc_turkiye
+        };
+        console.log('All knowledge files loaded successfully');
     } catch (err) {
         console.error('Initial load error:', err);
         UI.appendMessage('ai', '⚠️ Hafıza yüklenirken hata oluştu: ' + err.message);
@@ -34,7 +73,7 @@ async function init() {
     loadHistory();
     bindEvents();
     UI.autoResizeInput();
-    
+
     // Register Service Worker for PWA/Offline Support
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
@@ -52,7 +91,7 @@ async function init() {
 
     // Initial Mascot Animation Setup
     setupMascotInteractions();
-    
+
     // Dynamic background effects
     initDynamicStars();
 }
@@ -69,6 +108,7 @@ function bindEvents() {
     UI.chatInput.addEventListener('input', () => {
         UI.sendBtn.disabled = !UI.chatInput.value.trim();
         UI.autoResizeInput();
+        updateInlineSuggestions();
     });
 
     // Sidebar
@@ -82,8 +122,11 @@ function bindEvents() {
         startNewChat();
     });
 
-    // Settings
-    UI.settingsBtn.addEventListener('click', () => UI.settingsModal.classList.add('visible'));
+    // Settings - guard in case button is removed
+    const settingsBtn = document.getElementById('settingsBtn');
+    if (settingsBtn) {
+        settingsBtn.addEventListener('click', () => UI.settingsModal.classList.add('visible'));
+    }
     UI.settingsClose.addEventListener('click', () => UI.settingsModal.classList.remove('visible'));
     UI.saveApiKeyBtn.addEventListener('click', saveSettings);
     UI.toggleApiVis.addEventListener('click', () => {
@@ -102,14 +145,70 @@ function bindEvents() {
 
     // Suggestion Chips Delegation (Global)
     document.addEventListener('click', (e) => {
-        const chip = e.target.closest('.suggestion-chip');
+        const chip = e.target.closest('.suggestion-chip, .inline-chip');
         if (chip) {
             const text = chip.getAttribute('data-prompt') || chip.textContent.trim();
             UI.chatInput.value = text;
             handleSend();
+            if (chip.classList.contains('inline-chip')) {
+                UI.inlineSuggestions.classList.remove('visible');
+            }
         }
     });
 }
+
+function updateInlineSuggestions() {
+    const val = UI.chatInput.value.trim().toLowerCase();
+    const container = UI.inlineSuggestions;
+
+    if (val.length < 2) {
+        container.classList.remove('visible');
+        return;
+    }
+
+    // Turkish-aware normalization
+    const norm = val.replace(/ı/g, 'i').replace(/ü/g, 'u').replace(/ö/g, 'o').replace(/ş/g, 's').replace(/ç/g, 'c').replace(/ğ/g, 'g');
+
+    const keywords = [
+        { key: 'frc', prompt: 'FRC nedir, açıklar mısın?', label: '🤖 FRC Nedir?' },
+        { key: 'takım', prompt: 'Takım kadrosunu tanıtır mısın?', label: '👥 Takımımız' },
+        { key: 'uye', prompt: 'Takım kadrosunu tanıtır mısın?', label: '👥 Üyeler' },
+        { key: 'iletisim', prompt: 'İletişim bilgilerini paylaşır mısın?', label: '🔗 İletişim' },
+        { key: 'tarih', prompt: 'Takım tarihçesini anlatır mısın?', label: '📖 Tarihçemiz' },
+        { key: 'etkinlik', prompt: 'Projelerinizden ve etkinliklerinizden bahseder misiniz?', label: '📅 Etkinlikler' },
+        { key: 'robot', prompt: 'Teknik altyapınızdan bahseder misiniz?', label: '⚙️ Teknik' },
+        { key: 'sponsor', prompt: 'Sponsorlarınız kimler?', label: '🤝 Sponsorlar' },
+        { key: 'rebuilt', prompt: 'REBUILT oyunundaki puanlama sistemi nasıl çalışıyor?', label: '🏗️ REBUILT' },
+        { key: 'first', prompt: 'FIRST vakfı hakkında bilgi verir misin?', label: '🌐 FIRST Vakfı' },
+        { key: 'fikret', prompt: 'Fikret Yüksel Vakfı hakkında bilgi verir misin?', label: '🏢 Fikret Yüksel' },
+        { key: 'vakif', prompt: 'FIRST vakfı ve Fikret Yüksel Vakfı hakkında bilgi verir misin?', label: '🌐 Vakıflar' },
+        { key: 'kural', prompt: 'REBUILT oyun kurallarını açıklar mısın?', label: '📜 Kurallar' },
+        { key: 'puan', prompt: 'REBUILT puanlama sistemini açıklar mısın?', label: '🎯 Puanlama' },
+        { key: 'hub', prompt: 'REBUILT oyunundaki hub nedir?', label: '🛢️ Hub' },
+        { key: 'tower', prompt: 'REBUILT oyunundaki kule tırmanışı nasıl çalışıyor?', label: '🗼 Kule' },
+        { key: 'otonom', prompt: 'REBUILT otonom periyodu nasıl çalışıyor?', label: '🤖 Otonom' },
+        { key: 'dizivyon', prompt: 'Takım divizyonlarını tanıtır mısın?', label: '⚙️ Divizyonlar' },
+        { key: 'proje', prompt: 'Projelerinizden bahseder misiniz?', label: '🚀 Projeler' },
+        { key: 'oyun', prompt: 'REBUILT oyun kurallarını açıklar mısın?', label: '🎮 REBUILT Oyunu' },
+        { key: 'turnuva', prompt: 'Turnuva takvimini gösterir misin?', label: '📍 Turnuva Takvimi' },
+        { key: 'odul', prompt: 'FRC ödüllerinden bahseder misin?', label: '🏆 Ödüller' }
+    ];
+
+    const matches = keywords.filter(k => {
+        const normKey = k.key.replace(/ı/g, 'i').replace(/ü/g, 'u').replace(/ö/g, 'o').replace(/ş/g, 's').replace(/ç/g, 'c').replace(/ğ/g, 'g');
+        return normKey.includes(norm) || k.label.toLowerCase().includes(norm);
+    });
+
+    if (matches.length > 0) {
+        container.innerHTML = matches.slice(0, 6).map(m => `
+            <div class="inline-chip" data-prompt="${m.prompt}">${m.label}</div>
+        `).join('');
+        container.classList.add('visible');
+    } else {
+        container.classList.remove('visible');
+    }
+}
+
 
 
 function openScheduleModal() {
@@ -171,7 +270,7 @@ function loadConversation(id) {
 
 function startNewChat() {
     currentConvId = null;
-    location.reload(); 
+    location.reload();
 }
 
 function initDynamicStars() {
@@ -196,12 +295,12 @@ function extractTopic(text) {
     if (lower.includes('turnuva') || lower.includes('takvim') || lower.includes('bölge')) return 'Yarışma Takvimi 📍';
     if (lower.includes('blue wave') || lower.includes('hikaye') || lower.includes('nedir')) return 'The Blue Wave 🌊';
     if (lower.includes('başarı') || lower.includes('tebrik')) return 'Teşekkür Mesajı ❤️';
-    
+
     return text.length > 25 ? text.slice(0, 22) + '...' : text;
 }
 
 async function handleSend() {
-    const text = UI.chatInput.value.trim();
+    let text = UI.chatInput.value.trim().toLowerCase();
     if (!text || isResponding) return;
 
     if (!currentConvId) {
@@ -213,7 +312,7 @@ async function handleSend() {
     $('#welcomeScreen')?.remove();
     conversations[currentConvId].messages.push({ role: 'user', content: text });
     UI.appendMessage('user', text);
-    
+
     UI.chatInput.value = '';
     UI.sendBtn.disabled = true;
     UI.autoResizeInput();
@@ -223,20 +322,20 @@ async function handleSend() {
     const typingIndicator = UI.showTypingIndicator();
 
     try {
-        const responseText = apiKey 
+        const responseText = apiKey
             ? await callGeminiAPI(text, conversations[currentConvId].messages, apiKey, model, appData, window.appKnowledge)
             : await simulateResponse(text, appData, window.appKnowledge);
 
         typingIndicator.remove();
         const msgEl = UI.appendMessage('ai', '', true);
         const bodyEl = msgEl.querySelector('.message-body');
-        
+
         // Simple typewriter
         let i = 0;
         const words = responseText.split(' ');
         const interval = setInterval(() => {
             if (i < words.length) {
-                bodyEl.innerHTML = renderMarkdown(words.slice(0, i+1).join(' ')); 
+                bodyEl.innerHTML = renderMarkdown(words.slice(0, i + 1).join(' '));
                 i++;
                 UI.scrollToBottom();
             } else {

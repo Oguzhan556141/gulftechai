@@ -6,6 +6,7 @@ export const $$ = (sel) => document.querySelectorAll(sel);
 export const UI = {
     chatMessages: $('#chatMessages'),
     chatInput: $('#chatInput'),
+    inlineSuggestions: $('#inlineSuggestions'),
     sendBtn: $('#sendBtn'),
     sidebar: $('#sidebar'),
     menuBtn: $('#menuBtn'),
@@ -13,7 +14,7 @@ export const UI = {
     newChatBtn: $('#newChatBtn'),
     sidebarBrand: $('#sidebarBrand'),
     historyList: $('#historyList'),
-    settingsBtn: $('#settingsBtn'),
+    settingsBtn: null, // Removed
     settingsModal: $('#settingsModal'),
     settingsClose: $('#settingsClose'),
     saveApiKeyBtn: $('#saveApiKey'),

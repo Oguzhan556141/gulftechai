@@ -1,0 +1,163 @@
+{
+  "oyun_bilgisi": {
+    "sezon": "2026",
+    "oyun_adi": "REBUILT",
+    "sunucu": "Haas",
+    "tema": "Geçmişi yeniden hayal et, geleceği yeniden inşa et",
+    "ozet": "REBUILT oyununda iki ittifak (her biri 3 takım) 'fuel' (yakıt) toplayarak 'hub'lara atma ve maç sonunda 'tower' (kule) tırmanışı ile puan toplar. Oyun stratejik yakıt yönetimi, hassas atış ve tırmanma becerisi gerektirir.",
+    "sure": "Toplam 2 dakika 40 saniye (160 saniye)"
+  },
+  "oyun_parcalari": {
+    "fuel": {
+      "tanim": "Yakıt adı verilen top şeklindeki oyun parçaları",
+      "kullanim": "Hub'lara atılarak puan kazanılır",
+      "baslangic_yukleme": "Her robot başlangıçta en fazla 8 yakıt ile yüklenebilir",
+      "tasima_limiti": "Başlangıç ön yüklemesi dışında robotta taşınabilecek yakıt sayısında sınır yoktur"
+    }
+  },
+  "saha_elemanlari": {
+    "hub": {
+      "tanim": "Her ittifak için bir tane olmak üzere sahada iki hub bulunur (kırmızı ve mavi)",
+      "aktiflik": "Hub'lar aktif veya pasif olabilir; aktif olan hub ışıkla belirtilir",
+      "puanlama": "Aktif hub'a atılan her yakıt 1 puan değerindedir"
+    },
+    "depot": {
+      "tanim": "Robotların ek yakıt toplayabilecekleri alan"
+    },
+    "outpost": {
+      "tanim": "İnsan oyuncuların yakıt geçirebileceği alan",
+      "ozellik": "İnsan oyuncular outpost'tan hub'a yakıt fırlatabilir"
+    },
+    "tower": {
+      "tanim": "Kule - robotların endgame'de tırmandığı yapı",
+      "seviyeler": {
+        "level_1": "Düşük çubuk ile desteklenen robot (halıdan kalkmış) - 10 puan",
+        "level_2": "Tamponlar düşük çubuğun tamamen üstünde - 20 puan",
+        "level_3": "Tamponlar orta çubuğun tamamen üstünde - 30 puan"
+      }
+    },
+    "bump": {
+      "tanim": "Robotların aşarak nötr bölgeye geçebileceği tümsekler"
+    },
+    "trench": {
+      "tanim": "Robotların altından geçerek nötr bölgeye ulaşabileceği tüneller"
+    }
+  },
+  "mac_yapisi": {
+    "otonom_periyodu": {
+      "sure": "20 saniye",
+      "aciklama": "Robotlar tamamen otonom olarak çalışır, sürücü müdahalesi yoktur",
+      "ozellikler": [
+        "Her iki hub da aktiftir",
+        "Robotlar yakıt atarak puan kazanır",
+        "Robotlar kuleye Level 1 tırmanabilir",
+        "Otonom dönemde merkez çizgiyi geçen robotlar rakip ittifak robotlarına temas edemez",
+        "Atılan her yakıt 1 puan değerindedir"
+      ]
+    },
+    "teleop_periyodu": {
+      "sure": "2 dakika 20 saniye (140 saniye)",
+      "aciklama": "Sürücüler robotları manuel olarak kontrol eder",
+      "segmentler": [
+        "10 saniyelik geçiş periyodu",
+        "4 adet ittifak sırası (alliance shift) - Hub'lar sırayla aktif/pasif olur",
+        "Endgame (son 30 saniye)"
+      ],
+      "hub_rotasyonu": "Otonom dönemde en çok yakıt atan ittifakın hub'u ilk sırada pasif olur, diğer ittifakınki aktif olur. Hub'lar sırayla aktif/pasif olarak döner."
+    },
+    "endgame": {
+      "sure": "Son 30 saniye",
+      "aciklama": "Her iki hub tekrar aktif olur. Takımlar kuleye tırmanmaya odaklanır.",
+      "koruma_kurali": "Son 30 saniyede kendi kule bölgesindeki bir robota rakip robotlar temas edemez",
+      "tırmanma_yasagi": "Robotlar birbirlerinin üstüne tırmanamaz"
+    }
+  },
+  "puanlama_sistemi": {
+    "hub_puanlari": {
+      "aktif_hub": "Her yakıt = 1 puan",
+      "pasif_hub": "Puan kazanılmaz"
+    },
+    "tower_puanlari": {
+      "level_1": "10 puan (robot halıdan kalkmış, düşük çubuk desteği)",
+      "level_2": "20 puan (tamponlar düşük çubuğun tamamen üstünde)",
+      "level_3": "30 puan (tamponlar orta çubuğun tamamen üstünde)"
+    },
+    "ceza_puanlari": {
+      "minor_foul": "5 puan ceza",
+      "major_foul": "15 puan ceza"
+    }
+  },
+  "siralama_puanlari": {
+    "aciklama": "Ranking Points (RP) takımların turnuva sıralamasını belirler",
+    "kazanma": "Maç kazanma = 3 RP",
+    "beraberlik": "Beraberlik = 1 RP",
+    "kaybetme": "Mağlubiyet = 0 RP",
+    "energized_rp": {
+      "aciklama": "Belirli miktarda yakıt atarak kazanılır (ör. district etkinliğinde 100 yakıt)"
+    },
+    "supercharged_rp": {
+      "aciklama": "Daha yüksek miktarda yakıt atarak kazanılır (ör. toplam 360 yakıt)"
+    },
+    "traversal_rp": {
+      "aciklama": "Belirli miktarda kule puanı toplayarak kazanılır (ör. 50 kule puanı)"
+    }
+  },
+  "robot_kurallari": {
+    "boyut_sınırlari": {
+      "cevre": "Maksimum 110 inç (279,4 cm) çevre",
+      "yukseklik": "Maksimum 30 inç (76,2 cm) yükseklik (oyun boyunca sabit)",
+      "genisleme": "Tek bir yönde maksimum 12 inç (30,5 cm) genişleme, aynı anda yalnızca bir yönde"
+    },
+    "tampon_kurallari": {
+      "aciklama": "Tamponlar köşelerde sarılabilir",
+      "takim_numarasi": "Takım numarası tamponlarda en az 3 farklı noktada görünür olmalıdır"
+    },
+    "genel_kurallar": [
+      "Robotlar yalnızca kendi ittifak bölgesinde iken puan atabilir",
+      "Rakip robotlara yakıt fırlatmak yasaktır (Major Foul)",
+      "Oyun parçalarını sahadan çıkarmak yasaktır (Major Foul)",
+      "Oyun parçalarıyla rakip erişimi engellemek yasaktır (Major Foul)",
+      "Son 30 saniyede rakip kulesindeki robota temas yasaktır (Major Foul)",
+      "Robotlar birbirlerinin üstüne tırmanamaz"
+    ]
+  },
+  "strateji_notlari": {
+    "yakit_yonetimi": "Otonom dönemde mümkün olduğunca çok yakıt atarak hub kontrolü sağlamak kritik",
+    "hub_rotasyonu_stratejisi": "Otonom'da daha az yakıt atarak ilk alliance shift'te hub'ın aktif olmasını sağlama stratejisi düşünülebilir",
+    "tirmanma_stratejisi": "Endgame'de Level 3 tırmanış 30 puan ile en yüksek değere sahip, ancak risk de yüksek",
+    "insan_oyuncusu": "İnsan oyuncularından outpost üzerinden yakıt almak ve hub'a fırlatmak ekstra puan fırsatı sunar",
+    "savunma": "Rakip robotları hub'a yaklaşmaktan engelleyerek puanlama kapasitelerini düşürme",
+    "isbirligi": "3 robotun koordineli çalışması, yakıt toplama ve atma döngüsünün optimize edilmesi gerekir"
+  },
+  "onceki_sezonlar_karsilastirma": {
+    "2025_reefscape_vs_2026_rebuilt": {
+      "mac_suresi": "REEFSCAPE: 2dk 30sn → REBUILT: 2dk 40sn",
+      "otonom_suresi": "REEFSCAPE: 15sn → REBUILT: 20sn",
+      "robot_cevresi": "REEFSCAPE: 120 inç (304,8 cm) → REBUILT: 110 inç (279,4 cm)",
+      "yukseklik": "REEFSCAPE: 42 inç (106,7 cm) genişleme → REBUILT: 30 inç (76,2 cm) sabit",
+      "genisleme": "REEFSCAPE: 18 inç (45,7 cm) → REBUILT: 12 inç (30,5 cm)",
+      "ceza_puanlari": "REEFSCAPE: Minor 2, Major 6 → REBUILT: Minor 5, Major 15",
+      "oyun_parcasi_tasima": "REEFSCAPE: 1 Coral + 1 Algae → REBUILT: Sınırsız yakıt (8 preload)"
+    }
+  },
+  "onemli_terimler": {
+    "fuel": "Yakıt - top şeklindeki oyun parçası",
+    "hub": "Hub - yakıtın atıldığı merkez hedef yapısı",
+    "tower": "Kule - robotların endgame'de tırmandığı yapı",
+    "depot": "Depo - sahada bulunan yakıt toplama noktası",
+    "outpost": "Karakol - insan oyuncuların yakıt geçtiği alan",
+    "bump": "Tümsek - saha ortasındaki engel yapıları",
+    "trench": "Hendek/Tünel - robotların altından geçebildiği yapılar",
+    "alliance_shift": "İttifak sırası - hub'ların aktif/pasif döndüğü dönem",
+    "endgame": "Son oyun - maçın son 30 saniyesi",
+    "ranking_point": "Sıralama puanı - turnuva sıralamasını belirleyen puan",
+    "gracious_professionalism": "Duyarlı Profesyonellik - FIRST'ün temel değeri",
+    "coopertition": "Rekabetçi İşbirliği - rakiplerle bile saygılı işbirliği"
+  },
+  "kaynak": {
+    "dosya": "2026GameManual.pdf",
+    "url": "https://firstfrc.blob.core.windows.net/frc2026/Manual/2026GameManual.pdf",
+    "resmi_site": "https://www.firstinspires.org/robotics/frc",
+    "kural_sorgulama": "https://frc-qa.firstinspires.org/"
+  }
+}

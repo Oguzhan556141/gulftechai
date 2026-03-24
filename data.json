@@ -3,17 +3,19 @@
     "name": "Gulf Tech #11392",
     "foundedAt": 2026,
     "location": "Gölcük BİLSEM, Kocaeli, Türkiye",
-    "background": "5 yıllık FLL tecrübesi üzerine kurulmuş profesyonel bir FRC takımı.",
+    "background": "Yücel Koyuncu BİLSEM'in 5 yıllık 'Robogobi' FLL tecrübesi üzerine kurulmuş, Eskişehir'den Avustralya'ya uzanan bir başarı hikayesine sahip profesyonel FRC takımı.",
     "mascot": "Köpek balığı (Mavi: Derinlik, Sarı/Altın: Enerji)",
     "supporters": [
       "Boeing",
       "Gölcük Belediyesi",
       "Fikret Yüksel Vakfı",
       "TEKSA",
-      "Teknorova"
+      "Teknorova",
+      "İZAYDAŞ",
+      "Kocaeli Büyükşehir Belediyesi"
     ],
     "departments": {
-      "mentor": "Ensar İnce",
+      "mentor": "Ensar İnce, Ümran Kayaoğlu",
       "captains": "Levent Yiğit (Mekanik), Tuğra Kerem Kaya (PR), İrem Ünver (Yazılım)",
       "software": {
         "captain": "İrem Ünver",
@@ -42,14 +44,15 @@
       },
       "design": {
         "members": [
-          "Eren Özgüler (Onshape)"
+          "Eren Özgüler",
+          "Muhammet Ali Sardoğan"
         ]
       },
       "electronics": {
         "description": "Donanım ve kablolama ekibi"
       }
     },
-    "history": "GulfTech #11392, 'The Blue Wave' (Mavi Dalga) olarak 2026 yılında FRC sahnesine giriş yaptı. Gölcük BİLSEM'in 5 yıllık köklü FLL tecrübesini, FRC'nin dev robot arena ve mühendislik vizyonuyla birleştiriyoruz. Köpek balığı maskotumuz, denizin derinliklerindeki kararlılığı ve sarı/altın detaylar ise teknolojiye olan tutkumuzu simgeliyor. 🦈⚡",
+    "history": "GulfTech #11392, 2026 yılında FRC sahnesine giriş yaptı. Gölcük BİLSEM'in 5 yıllık köklü FLL tecrübesini, FRC'nin dev robot arena ve mühendislik vizyonuyla birleştiriyoruz. Köpek balığı maskotumuz, denizin derinliklerindeki kararlılığı ve sarı/altın detaylar ise teknolojiye olan tutkumuzu simgeliyor. 🦈⚡",
     "social": {
       "instagram": "https://www.instagram.com/gulftechtr/",
       "youtube": "https://www.youtube.com/@gulftechtr",
@@ -57,7 +60,7 @@
     }
   },
   "frc2026": {
-    "theme": "REBUILT (Presented by Haas)",
+    "theme": "REBUILT",
     "concept": "Geçmişi yeniden hayal et",
     "game": "Hub'lara yakıt atma, Tower'a tırmanma (L1-L3), otonom ilk 20sn.",
     "rules": [

@@ -9,7 +9,9 @@ const ASSETS_TO_CACHE = [
   './js/ui.js',
   './js/utils.js',
   './data.json',
-  './knowledge.json',
+  './teamKnowledge.json',
+  './ruleKnowledge.json',
+  './firstKnowledge.json',
   './assets/ai-mascot.png'
 ];
 

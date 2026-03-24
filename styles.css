@@ -365,11 +365,15 @@ a:hover {
 
 /* Liquid Glass Feature */
 .liquid-glass {
-    background: var(--bg-card);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid var(--border);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    background: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(30px) saturate(220%);
+    -webkit-backdrop-filter: blur(30px) saturate(220%);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    box-shadow: 
+        0 8px 32px 0 rgba(0, 0, 0, 0.45),
+        inset 0 1px 2px 0 rgba(255, 255, 255, 0.12),
+        inset 0 0 1px 1px rgba(255, 255, 255, 0.08),
+        0 0 15px rgba(56, 189, 248, 0.08);
     position: relative;
     overflow: hidden;
 }
@@ -383,12 +387,12 @@ a:hover {
     height: 400%;
     background: linear-gradient(45deg,
             transparent 0%,
-            rgba(14, 165, 233, 0.03) 40%,
-            rgba(251, 191, 36, 0.07) 50%,
-            rgba(14, 165, 233, 0.03) 60%,
+            rgba(14, 165, 233, 0.06) 35%,
+            rgba(251, 191, 36, 0.12) 50%,
+            rgba(14, 165, 233, 0.06) 65%,
             transparent 100%);
     transform: rotate(25deg);
-    animation: liquidShimmer 12s infinite linear;
+    animation: liquidShimmer 8s infinite linear;
     pointer-events: none;
     z-index: -1;
 }
@@ -400,16 +404,86 @@ a:hover {
     }
 
     20% {
-        opacity: 0.15;
+        opacity: 0.5;
     }
 
     80% {
-        opacity: 0.15;
+        opacity: 0.5;
     }
 
     100% {
         transform: translate(50%, 50%) rotate(25deg);
         opacity: 0;
+    }
+}
+
+/* Glassmorphism Button Effect */
+.glass-btn {
+    background: rgba(15, 23, 42, 0.5) !important;
+    backdrop-filter: blur(20px) saturate(200%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(200%) !important;
+    border: 1px solid rgba(56, 189, 248, 0.2) !important;
+    box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.3),
+        inset 0 1px 1px rgba(255, 255, 255, 0.1) !important;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+.glass-btn:hover {
+    background: rgba(56, 189, 248, 0.12) !important;
+    border-color: rgba(56, 189, 248, 0.5) !important;
+    box-shadow:
+        0 8px 25px rgba(56, 189, 248, 0.2),
+        inset 0 1px 2px rgba(255, 255, 255, 0.15) !important;
+    transform: translateY(-3px) scale(1.02);
+}
+
+/* Inline Suggestions */
+.inline-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0 12px 10px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+}
+
+.inline-suggestions.visible {
+    max-height: 100px;
+    opacity: 1;
+    padding-top: 10px;
+}
+
+.inline-chip {
+    padding: 6px 12px;
+    border-radius: 12px;
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    animation: fadeInScale 0.2s ease forwards;
+}
+
+.inline-chip:hover {
+    background: rgba(56, 189, 248, 0.2);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(56, 189, 248, 0.2);
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(5px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
     }
 }
 
@@ -1104,9 +1178,9 @@ a:hover {
 /* Suggestion Chips */
 .suggestions {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
-    max-width: 620px;
+    max-width: 480px;
     width: 100%;
 }
 
@@ -1636,15 +1710,33 @@ a:hover {
     animation-delay: 1s;
 }
 
+@keyframes orionGlimmer {
+    0%, 100% { opacity: 0.6; filter: drop-shadow(0 0 2px rgba(135, 206, 235, 0.3)); }
+    50% { opacity: 1; filter: drop-shadow(0 0 8px rgba(135, 206, 235, 0.8)); }
+}
+
+.orion-star {
+    fill: #e0f7fa;
+    opacity: 0.7;
+    animation: orionGlimmer 4s infinite ease-in-out;
+}
+
+.orion-star.bright {
+    fill: #fff;
+    filter: drop-shadow(0 0 6px #4fc3f7);
+    opacity: 0.9;
+    animation: orionGlimmer 3s infinite ease-in-out;
+}
+
+.orion-star.belt {
+    fill: #b3e5fc;
+    animation: orionGlimmer 5s infinite ease-in-out;
+}
+
 .orion-star.dim {
     fill: #e1bee7;
     opacity: 0.5;
-    animation-duration: 5s;
-}
-
-@keyframes twinkleStar {
-    0% { opacity: 0.3; transform: scale(0.8); }
-    100% { opacity: 1; transform: scale(1.2); }
+    animation: orionGlimmer 6s infinite ease-in-out;
 }
 
 

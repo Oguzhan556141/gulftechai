@@ -1,0 +1,308 @@
+{
+  "takim_kimligi": {
+    "isim": "Gulf Tech #11392",
+    "kurum": "Gölcük BİLSEM (Yücel Koyuncu Bilim ve Sanat Merkezi)",
+    "konum": "Gölcük, Kocaeli, Türkiye",
+    "kurulus_yili": 2026,
+    "motto": "Teknoloji ve İnovasyon Yolculuğu",
+    "hakkimizda": "Takımımız, gençlerin STEM (Bilim, Teknoloji, Mühendislik ve Matematik) alanlarına olan ilgisini artırmak ve bu alanlarda kendimizi geliştirmek amacıyla kuruldu. FIRST organizasyonunun, Yücel Koyuncu Bilim ve Sanat Merkezi olarak First Lego League yarışmasında 5 yıllık bir deneyimi olan bir takımı da bulunan kurumumuza ve öğrencilerimize kattığı deneyimle birlikte gerçek mühendislik süreçlerini daha iyi deneyimlemek, takım olarak karmaşık projeler geliştirmek, liderlik ve strateji becerilerini geliştirmek nedenleri neticesinde bir FRC takımı kurmaya karar verdik.",
+    "miras": "FLL'den FRC'ye uzanan yolculuğumuzda, Eskişehir'de bir tutku olarak başlayan ve kıtalar ötesinde, Avustralya'da devam eden FLL ruhunu FRC'ye yansıtma kararı aldık. Yücel Koyuncu Bilim ve Sanat Merkezi olarak First Lego League (FLL) yarışmasında 'Robogobi' takımıyla 5 yıllık muazzam bir deneyim kazandık. Bu süreçte kazandığımız ulusal ve uluslararası başarıları, gerçek mühendislik süreçlerini daha profesyonelce deneyimlemek ve çevremize ilham olmak amacıyla FRC arena'sına taşımaya karar verdik. Gulf Tech #11392, bu güçlü mirasın temsilcisidir.",
+    "fll_den_frc_ye": "FLL'den FRC'ye uzanan yolculuğumuzda, pek çok maceranın içinde yer aldık ve kendimize sayısız deneyim kazandırdık. Bu süreçte kimimiz kendini yeniden keşfetti, kimimiz ise bambaşka yönlerini fark etti. Tüm bu anılar, bugün geriye dönüp baktığımızda bizler için unutulmaz ve çok değerli hatıralar olarak kaldı. Edindiğimiz bilgi ve beceriler, hayatımızın geri kalanında bize büyük avantajlar sağladı. Bu kazanımlar, FLL'de edindiğimiz deneyimleri FRC'ye taşımak için en büyük motivasyon kaynağımız oldu.",
+    "vizyon": "Bilim ve teknolojiye duyulan saygıyı artırmak, gençleri STEM liderleri olmaya teşvik etmek.",
+    "ismin_kaynagi": "\"Gulf Tech\" ismiyle İzmit Körfezi'ne olan bağlılığımızı vurgularken, Körfez'in (Gulf) teknolojik gücünü (Tech) temsil ediyoruz.",
+    "logo_anlami": {
+      "kopek_baligi": "Öz güven, potansiyel ve mücadele gücü. İzmit Körfezi ile olan bağlantımızı temsil eden ana maskotumuzdur.",
+      "mavi_tonlari": "Derinlik, kararlılık ve denizin gücü.",
+      "sarı_tonlar": "Enerji, yaratıcılık ve teknolojik parıltı."
+    },
+    "takim_adi_hikaye": "Takım adımızı ve logomuzu belirleme süreci, aslında yalnızca bir isim ya da görsel seçmekten çok daha fazlasıydı. Bu çalışmalar, kim olduğumuzu, nereden geldiğimizi ve neyi temsil ettiğimizi keşfettiğimiz bir yolculuğa dönüştü. 'Gulf Tech' ismiyle İzmit Körfezi'ne olan bağlılığımızı vurgularken, logomuzdaki köpek balığı figürüyle de öz güvenimizi, potansiyelimizi ve mücadele gücümüzü sembolize ettik. Mavinin tonlarıyla derinliği ve kararlılığı, sarının tonlarıyla enerjimizi ve görünürlüğümüzü ifade ettik.",
+    "frc_nedir": {
+      "tanim": "Zeka için Spor: Gençlerin bilim ve teknoloji ile ilgilenmeleri için tasarlanmış, dünyanın en prestijli robotik yarışması.",
+      "more_than_robots": "FRC, lise öğrencilerinin belirli kaynaklarla, bazı kurallar altında ve kısıtlı zaman diliminde bir robot inşa ettikleri heyecan dolu bir süreçtir. Takımlar burada sadece robot yapmayı değil; markalaşmayı, iş birliğini ve 'Duyarlı Profesyonellik' (Gracious Professionalism) kavramını öğrenirler. Bir takım olarak FRC'yi seçmemizin nedeni, onun sadece bir yarışma değil, aynı zamanda bir 'topluluk' olmasıdır.",
+      "ileri_muhendislik": "Endüstriyel seviyede donanım ve yazılım kullanarak gerçek dünya problemlerine çözümler üretiyoruz.",
+      "takim_ruhu": "Mekanik, yazılım ve PR birimlerimizle bir şirket gibi organize oluyoruz.",
+      "inovasyon": "Yaratıcılığımızı kullanarak oyun stratejileri geliştiriyor ve robot tasarımları yapıyoruz."
+    }
+  },
+  "yonetim_ve_mentorlar": [
+    {
+      "isim": "Ümran Kayaoğlu",
+      "rol": "Takım Mentörü"
+    },
+    {
+      "isim": "Ensar İnce",
+      "rol": "Takım Mentörü"
+    }
+  ],
+  "kaptanlar": [
+    {
+      "isim": "Levent Yiğit",
+      "rol": "Takım Kaptanı & Mekanik Kaptanı"
+    },
+    {
+      "isim": "Tuğra Kerem Kaya",
+      "rol": "Takım Kaptanı & PR Kaptanı"
+    },
+    {
+      "isim": "İrem Ünver",
+      "rol": "Yazılım Kaptanı",
+      "linkedin": "https://www.linkedin.com/in/irem-%C3%BCnver-326aa9390/"
+    }
+  ],
+  "ekip_uyeleri": [
+    {
+      "isim": "Arda Furkan Aygenoğlu",
+      "rol": "Mekanik & PR Üyesi"
+    },
+    {
+      "isim": "Oğuzhan Aşkın",
+      "rol": "Yazılım Üyesi",
+      "not": "GulfTech AI sisteminin yaratıcısı ve geliştiricisi"
+    },
+    {
+      "isim": "Elif Başuslu",
+      "rol": "PR & Elektronik & Yazılım Üyesi"
+    },
+    {
+      "isim": "Muhammet Ali Sardoğan",
+      "rol": "Mekanik & Tasarım Üyesi"
+    },
+    {
+      "isim": "Tufan Gülmez",
+      "rol": "Mekanik Üyesi",
+      "linkedin": "https://www.linkedin.com/in/tufan-g%C3%BClmez-253a123b6"
+    },
+    {
+      "isim": "Beray Erenel",
+      "rol": "PR Üyesi",
+      "linkedin": "https://www.linkedin.com/in/beray-erenel-63b927395"
+    },
+    {
+      "isim": "Ege Göllü",
+      "rol": "PR Üyesi"
+    },
+    {
+      "isim": "Zeynep Sude Çakmak",
+      "rol": "PR & Elektronik & Yazılım Üyesi",
+      "linkedin": "https://www.linkedin.com/in/zeynep-%C3%A7akmak-442525399"
+    },
+    {
+      "isim": "Eren Özgüler",
+      "rol": "Mekanik & Tasarım Üyesi"
+    }
+  ],
+  "divizyonlar": {
+    "PR": {
+      "aciklama": "Takımımızın dış dünya ile olan ilişkisini düzenleyen ekiptir. Sponsorluk görüşmeleri, proje yönetimi, sosyal medya yönetimi ve takım imajından sorumludur.",
+      "kaptan": "Tuğra Kerem Kaya",
+      "uyeler": ["Beray Erenel", "Ege Göllü", "Zeynep Sude Çakmak", "Elif Başuslu", "Arda Furkan Aygenoğlu"]
+    },
+    "Mekanik": {
+      "aciklama": "Robotumuzun temellerini atıp fiziksel olarak düzenleyen ekiptir. Şasi üretimi ve geliştirilen eklentilerin yapımından sorumludur.",
+      "kaptan": "Levent Yiğit",
+      "uyeler": ["Tufan Gülmez", "Arda Furkan Aygenoğlu", "Muhammet Ali Sardoğan", "Eren Özgüler"]
+    },
+    "Elektronik": {
+      "aciklama": "Robotun bir nevi beynini ve sinir sistemini oluşturan ekiptir. Kablolama ve sensör kontrolü onların sorumluluğudur.",
+      "uyeler": ["Zeynep Sude Çakmak", "Elif Başuslu"]
+    },
+    "Yazılım": {
+      "aciklama": "Robotun beynini kodlayan ekiptir. Otonom sürüş ve kontrol algoritmalarını yazmaktan sorumludur.",
+      "kaptan": "İrem Ünver",
+      "uyeler": ["Oğuzhan Aşkın", "Zeynep Sude Çakmak", "Elif Başuslu"]
+    },
+    "Tasarım": {
+      "aciklama": "Robotun dijital ortamda planlamasını yapan ekiptir. 3D modelleme ve teknik çizimler yapmaktan sorumludur.",
+      "uyeler": ["Eren Özgüler", "Muhammet Ali Sardoğan"]
+    }
+  },
+  "teknik_hafiza": {
+    "sezon": "2026 REBUILT",
+    "yazilim_stack": "Java, WPILib, PathPlanner, Command-Based Programming",
+    "donanim": "RoboRIO 2.0, CAN tabanlı motor sürücüleri (REV Sparkmax)",
+    "strateji": "Hızlı döngü süreleri, hassas otonom navigasyon ve veri analitiği",
+    "scout_sistemi": "REBUILT 2026 SCOUTING SYSTEM: Maç sırasında stratejik veri toplamak ve analiz etmek için geliştirilen araç. Robot performansları, oyun taktikleri ve saha dinamikleri kaydedilir, yorumlanır ve takımın bilinçli kararlar almasına yardımcı olur. Stratejileri güçlendirir, taktiksel farkındalık sağlar ve sahadaki performansı maksimize eder.",
+    "scout_url": "https://gulftechrobotic.com.tr/scout.html"
+  },
+  "projeler_ve_etkinlikler": [
+    {
+      "ad": "Gulf Tech AI",
+      "aciklama": "Gulf Tech AI merak edilen sorulara yanıt veren, teknik dökümanları anlamlandırmayı kolaylaştıran ve eğitim yolculuğunda yol gösteren dijital bir asistandır.",
+      "url": "https://oguzhan556141.github.io/gulftechai/",
+      "gelistirici": "Oğuzhan Aşkın"
+    },
+    {
+      "ad": "FRC Eğitim Portalı",
+      "aciklama": "Eğitim Portalı, robotik ve mühendislik alanlarında bilgi paylaşımını artırmak amacıyla oluşturduğumuz bir içerik alanıdır. Yazılım, elektronik ve mekanik gibi süreç içerisinde önemli olan konular temel prensipleriyle birlikte ele alınır. Amacımız yalnızca kendi takımımızın gelişimine katkı sağlamak değil, aynı zamanda robotik alanına ilgi duyan öğrenciler için anlaşılır ve öğretici bir kaynak sunmaktır.",
+      "url": "https://gulftechrobotic.com.tr/egitim.html",
+      "konular": ["Çark oranı (Gear Ratio)", "RPM", "Tork", "Aktüatör", "Elektronik Temelleri", "3D Modelleme"]
+    },
+    {
+      "ad": "Pollution at Gulf (Oyun)",
+      "aciklama": "Su altındaki köpekbalığını kontrol ederek denizdeki plastik atıklardan kaçılan bir farkındalık oyunu. Hızlanan oyunda atıklara değmemeye çalışmak, oyunculara denizlerdeki kirliliğin boyutlarını hissettiren ve çevre bilincini oyunun içinde deneyimleten bir macera sunuyor.",
+      "url": "https://gulftechrobotic.com.tr/game.html"
+    },
+    {
+      "ad": "Scout Sistemi",
+      "aciklama": "Maç sırasında stratejik veri toplamak ve analiz etmek için geliştirdiğimiz araç. Robot performansları, oyun taktikleri ve saha dinamikleri kaydedilir, yorumlanır ve takımın bilinçli kararlar almasına yardımcı olur. Stratejileri güçlendirir, taktiksel farkındalık sağlar ve sahadaki performansı maksimize eder.",
+      "url": "https://gulftechrobotic.com.tr/scout.html"
+    },
+    {
+      "ad": "Zamanın Mekaniği Serisi",
+      "aciklama": "Sadece robot yapmakla kalmayıp tarihten bilgiler de aktarılan Instagram içerik serisi.",
+      "url": "https://www.instagram.com/reel/DVQoa6biIMF/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+    },
+    {
+      "ad": "Gölcük Piyalepaşa İlkokulu STEM Etkinliği",
+      "aciklama": "STEM'i ve FIRST vakfının değerlerini çevreye yaymak için gerçekleştirilen etkinlik. Amacımız REBUILT sezonunda sadece robotumuzu değil genç zihinleri de yeniden inşa etmek.",
+      "url": "https://www.instagram.com/p/DV3zTA-iOSh/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+    },
+    {
+      "ad": "Çocuk Kasabası STEM Etkinliği",
+      "aciklama": "FLL bilgilerini yeni zihinlere FIRST'ü tanıtmak için yeniden inşa edilen etkinlik. Amaç yalnızca robot yapmak değil; bilim, teknoloji, mühendislik ve matematiğe ilgi duyan yeni nesilleri desteklemek ve FIRST kültürünü yaymak.",
+      "url": "https://www.instagram.com/reel/DVofbpBCFNk/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+    },
+    {
+      "ad": "Yücel Koyuncu BİLSEM STEM Etkinliği",
+      "aciklama": "FIRST'ü tanıtarak FIRST dünyasının heyecanı paylaşıldı. FRC'nin teknik ve sosyal kazanımları anlatılırken, yeni bir FTC takımı kurulması yolundaki teşviklerle çevremizdeki robotik topluluğunun genişlemesine öncülük etme amacı güdüldü.",
+      "url": "https://www.instagram.com/p/DV53uDfiFBe/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+    },
+    {
+      "ad": "Huzurevi Bayramlaşması",
+      "aciklama": "Gölcük Prof. Dr. İsmail Barış Huzurevi Müdürlüğü'nde gerçekleştirilen bayramlaşma. Çalışırken asıl motivasyonumuzun yarışmak veya kazanmak yerine insanlarla beraber olmak, yardımlaşmak ve neşemizi paylaşmak olduğunu size hissettirmek istedik.",
+      "url": "https://www.instagram.com/p/DWMEQScCAno/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+    },
+    {
+      "ad": "Gulf Tech X Yeşil Vatan",
+      "aciklama": "Kurumda pet şişeler kaldırılıp yerine bir su sebili açarak öğrenciler ve öğretmenler su sebilini kullanmaya ve plastik kullanımını azaltmaya teşvik edildi.",
+      "url": "https://gulftechrobotic.com.tr/etkinlik.html"
+    },
+    {
+      "ad": "Gulf Tech X GFL Robotics Green Alliance",
+      "aciklama": "Green Alliance projesi kapsamında çevre kirliliği, sürdürülebilirlik ve gelecekte hayata geçirebilecek ortak projeler üzerine verimli bir fikir alışverişi. Daha sürdürülebilir bir gelecek için birlikte atılabilecek adımlar değerlendirildi.",
+      "url": "https://www.instagram.com/p/DWKJVB2DGk6/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+    },
+    {
+      "ad": "Devotion Projesi",
+      "aciklama": "Her şey bir hayalle başladı... Hikayenin yeni bölümünü başkaları için çabalayarak yazma projesi.",
+      "url": "https://www.instagram.com/p/DUqzahTiBG6/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+    },
+    {
+      "ad": "Kick-off Röportajları",
+      "aciklama": "FIRST topluluğunu yakından tanımak ve farklı bakış açılarını dinlemek için gerçekleştirilen röportaj serisi.",
+      "url": "https://www.youtube.com/watch?v=gNPLx_AMXqE"
+    },
+    {
+      "ad": "FRC Takımlarıyla Toplantılar",
+      "aciklama": "FRC takımlarıyla bilgilerimizi paylaştığımız samimi ve keyifli toplantılar.",
+      "url": "https://www.instagram.com/gulftechtr/"
+    },
+    {
+      "ad": "İZAYDAŞ Gezisi",
+      "aciklama": "İZAYDAŞ kurumuna gerçekleştirilen ziyarette atık yönetimi ve geri dönüşüm konuları hakkında bilinçlenildi.",
+      "url": "https://www.instagram.com/p/DR4xufmCImI/?igsh=MXZzbXIycHBodjN2Mg=="
+    },
+    {
+      "ad": "Takım Kahvaltısı",
+      "aciklama": "Gulf Tech olarak bir araya gelip keyifli bir pazar kahvaltısı yapıldı.",
+      "url": "https://www.instagram.com/p/DSQSlW6iFTq/?igsh=YjVrcnIzdnNva2M2"
+    }
+  ],
+  "playlistler": [
+    {
+      "ad": "Tech the Halls",
+      "aciklama": "Klasikleşmiş 'Deck the Halls' şarkısına Gulf Tech ruhu katılarak yeni yıl heyecanı mühendislik vizyonuyla birleştirildi."
+    },
+    {
+      "ad": "Charge Up FEBRUARY",
+      "aciklama": "Takımın sevdiği ve enerjisini yükselten şarkılardan derlenen playlist."
+    }
+  ],
+  "spotify": "https://open.spotify.com/user/31zm7t6crjkwhwmfjsuortjjhqq4",
+  "sponsorlar": [
+    {
+      "ad": "Boeing",
+      "kategori": "Global Destekçi"
+    },
+    {
+      "ad": "Fikret Yüksel Foundation",
+      "kategori": "Eğitim ve Altyapı"
+    },
+    {
+      "ad": "Teksa Metal",
+      "kategori": "Teknik Üretim"
+    },
+    {
+      "ad": "Teknorova",
+      "kategori": "Yazılım ve Teknoloji"
+    },
+    {
+      "ad": "Gölcük Belediyesi",
+      "kategori": "Yerel Destekçi"
+    },
+    {
+      "ad": "İZAYDAŞ",
+      "kategori": "Sürdürülebilirlik"
+    },
+    {
+      "ad": "Bilsem",
+      "kategori": "Kurumsal Çatı"
+    },
+    {
+      "ad": "Kocaeli Büyükşehir Belediyesi",
+      "kategori": "Yerel Destekçi"
+    }
+  ],
+  "iletisim": {
+    "email": "gulftechtr@gmail.com",
+    "telefon_1": "+90 (537) 692 6558",
+    "telefon_2": "+90 (544) 552 0919"
+  },
+  "sosyal_aglar": {
+    "website": "https://gulftechrobotic.com.tr",
+    "instagram": {
+      "url": "https://www.instagram.com/gulftechtr",
+      "kullanici_adi": "@gulftechtr",
+      "takipci": 791,
+      "takip": 139,
+      "gonderi": 90
+    },
+    "youtube": {
+      "url": "https://www.youtube.com/@gulftechtr",
+      "kullanici_adi": "@gulftechtr"
+    },
+    "linkedin": {
+      "url": "https://www.linkedin.com/in/gulf-tech-280625398/",
+      "isim": "Gulf Tech Team"
+    }
+  },
+  "web_sitesi_sayfalari": {
+    "ana_sayfa": "https://gulftechrobotic.com.tr/index.html",
+    "frc_nedir": "https://gulftechrobotic.com.tr/frcnedir.html",
+    "takim_uyeleri": "https://gulftechrobotic.com.tr/team.html",
+    "projeler_etkinlikler": "https://gulftechrobotic.com.tr/etkinlik.html",
+    "galeri": "https://gulftechrobotic.com.tr/galeri.html",
+    "playlistler": "https://gulftechrobotic.com.tr/playlist.html",
+    "destekçiler": "https://gulftechrobotic.com.tr/sponsor.html",
+    "iletisim": "https://gulftechrobotic.com.tr/contact.html",
+    "egitim_portali": "https://gulftechrobotic.com.tr/egitim.html",
+    "oyun": "https://gulftechrobotic.com.tr/game.html",
+    "scout": "https://gulftechrobotic.com.tr/scout.html"
+  },
+  "hedefler": [
+    "Toplumda cinsiyet eşitliğini sağlamak",
+    "Çevremize faydalı olmak",
+    "Çocuklara robotik ve mühendislik sevgisini aşılamak",
+    "Sürdürülebilirlik projeleri geliştirmek",
+    "FIRST kültürünü yaygınlaştırmak",
+    "Yeni FTC ve FLL takımlarının kurulmasına öncülük etmek"
+  ],
+  "sosyal_etkilesim": {
+    "ovgu_ve_tebrik": [
+      "Teşekkür et ve nezaketle karşılık ver.",
+      "Takım üyelerinin motivasyonunu dile getir.",
+      "Destekleri için minnettar olduğunu belirt (#GulfTechFamily)."
+    ],
+    "kisilik": "Samimi, enerjik, profesyonel ama bir o kadar da içten bir FRC asistanı."
+  }
+}

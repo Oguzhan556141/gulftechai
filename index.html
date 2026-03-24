@@ -97,13 +97,6 @@
                 <div class="status-dot offline"></div>
                 <span>Simüle</span>
             </div>
-            <button class="settings-btn" id="settingsBtn" title="API Ayarları">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="3" />
-                    <path
-                        d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
-                </svg>
-            </button>
         </div>
     </aside>
 
@@ -185,41 +178,21 @@
                 </p>
 
                 <div class="suggestions" id="suggestions">
-                    <button class="suggestion-chip" data-prompt="FRC 2026 REBUILT oyun kurallarını açıkla">
+                    <button class="suggestion-chip glass-btn" data-prompt="REBUILT oyunundaki puanlama sistemi nasıl çalışıyor?">
                         <span class="chip-icon">🏗️</span>
-                        <span>REBUILT Kuralları</span>
+                        <span>REBUILT Puanlama</span>
                     </button>
-                    <button class="suggestion-chip" data-prompt="FRC ödülleri nelerdir?">
-                        <span class="chip-icon">🏆</span>
-                        <span>FRC Ödülleri</span>
-                    </button>
-                    <button class="suggestion-chip" data-prompt="Turnuva takvimi nedir?">
-                        <span class="chip-icon">📍</span>
-                        <span>Turnuva Takvimi</span>
-                    </button>
-                    <button class="suggestion-chip" data-prompt="Takım üyelerini tanıt">
-                        <span class="chip-icon">🦈</span>
+                    <button class="suggestion-chip glass-btn" data-prompt="Takım kadrosunu tanıtır mısın?">
+                        <span class="chip-icon">👥</span>
                         <span>Takım Kadrosu</span>
                     </button>
-                    <button class="suggestion-chip" data-prompt="Yazılım ekibini anlat">
-                        <span class="chip-icon">💻</span>
-                        <span>Yazılım Ekibi</span>
+                    <button class="suggestion-chip glass-btn" data-prompt="FIRST vakfı ve Fikret Yüksel Vakfı hakkında bilgi verir misin?">
+                        <span class="chip-icon">🌐</span>
+                        <span>FIRST & FYV</span>
                     </button>
-                    <button class="suggestion-chip" data-prompt="Tarihçemizi anlat">
-                        <span class="chip-icon">📖</span>
-                        <span>Tarihçemiz</span>
-                    </button>
-                    <button class="suggestion-chip" data-prompt="FRC Nedir?">
-                        <span class="chip-icon">🤖</span>
-                        <span>FRC Nedir?</span>
-                    </button>
-                    <button class="suggestion-chip" data-prompt="Etkinlikleriniz Neler?">
-                        <span class="chip-icon">📅</span>
-                        <span>Etkinliklerimiz</span>
-                    </button>
-                    <button class="suggestion-chip" data-prompt="Divizyonlarınız Nelerdir?">
-                        <span class="chip-icon">⚙️</span>
-                        <span>Divizyonlarımız</span>
+                    <button class="suggestion-chip glass-btn" data-prompt="Projelerinizden ve etkinliklerinizden bahseder misiniz?">
+                        <span class="chip-icon">🚀</span>
+                        <span>Projelerimiz</span>
                     </button>
                 </div>
             </div>
@@ -227,6 +200,7 @@
 
         <!-- Input Area -->
         <div class="chat-input-wrapper">
+            <div class="inline-suggestions" id="inlineSuggestions"></div>
             <div class="chat-input-container liquid-glass" id="chatInputContainer">
                 <textarea id="chatInput" placeholder="GulfTech AI'ya mesajınızı yazın..." rows="1" autofocus></textarea>
                 <button class="send-btn" id="sendBtn" disabled aria-label="Gönder">
