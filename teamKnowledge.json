@@ -133,9 +133,9 @@
     },
     {
       "ad": "FRC Eğitim Portalı",
-      "aciklama": "Robotik ve mühendislik alanlarında bilgi paylaşımını artırmak amacıyla oluşturulan bir içerik alanı. Yazılım, elektronik ve mekanik konuları temel prensipleriyle birlikte ele alınır. Amacı yalnızca kendi takımın gelişimine katkı sağlamak değil, robotik alanına ilgi duyan öğrenciler için anlaşılır ve öğretici bir kaynak sunmaktır.",
-      "konular": ["Çark oranı (Gear Ratio)", "RPM", "Tork", "Aktüatör", "Elektronik Temelleri", "3D Modelleme"],
-      "url": "https://gulftechrobotic.com.tr/egitim.html"
+      "aciklama": "Eğitim Portalı, robotik ve mühendislik alanlarında bilgi paylaşımını artırmak amacıyla oluşturduğumuz bir içerik alanıdır. Yazılım, elektronik ve mekanik gibi süreç içerisinde önemli olan konular temel prensipleriyle birlikte ele alınır. Amacımız yalnızca kendi takımımızın gelişimine katkı sağlamak değil, aynı zamanda robotik alanına ilgi duyan öğrenciler için anlaşılır ve öğretici bir kaynak sunmaktır.",
+      "url": "https://gulftechrobotic.com.tr/egitim.html",
+      "konular": ["Çark oranı (Gear Ratio)", "RPM", "Tork", "Aktüatör", "Elektronik Temelleri", "3D Modelleme"]
     },
     {
       "ad": "Pollution at Gulf (Oyun)",
@@ -144,40 +144,48 @@
     },
     {
       "ad": "Scout Sistemi",
-      "aciklama": "REBUILT 2026 Scouting System - Maç sırasında stratejik veri toplamak ve analiz etmek için geliştirilen araç.",
+      "aciklama": "Maç sırasında stratejik veri toplamak ve analiz etmek için geliştirdiğimiz araç. Robot performansları, oyun taktikleri ve saha dinamikleri kaydedilir, yorumlanır ve takımın bilinçli kararlar almasına yardımcı olur. Stratejileri güçlendirir, taktiksel farkındalık sağlar ve sahadaki performansı maksimize eder.",
       "url": "https://gulftechrobotic.com.tr/scout.html"
     },
     {
       "ad": "Zamanın Mekaniği Serisi",
-      "aciklama": "Sadece robot yapmakla kalmayıp tarihten bilgiler de aktarılan Instagram içerik serisi."
+      "aciklama": "Sadece robot yapmakla kalmayıp tarihten bilgiler de aktarılan Instagram içerik serisi.",
+      "url": "https://www.instagram.com/reel/DVQoa6biIMF/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
     },
     {
       "ad": "Gölcük Piyalepaşa İlkokulu STEM Etkinliği",
-      "aciklama": "STEM'i ve FIRST vakfının değerlerini çevreye yaymak için gerçekleştirilen etkinlik. Amacı REBUILT sezonunda sadece robotumuzu değil genç zihinleri de yeniden inşa etmek."
+      "aciklama": "STEM'i ve FIRST vakfının değerlerini çevreye yaymak için gerçekleştirilen etkinlik. Amacımız REBUILT sezonunda sadece robotumuzu değil genç zihinleri de yeniden inşa etmek.",
+      "url": "https://www.instagram.com/p/DV3zTA-iOSh/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
     },
     {
       "ad": "Çocuk Kasabası STEM Etkinliği",
-      "aciklama": "FLL bilgilerini yeni zihinlere FIRST'ü tanıtmak için yeniden inşa edilen etkinlik. Amaç yalnızca robot yapmak değil; bilim, teknoloji, mühendislik ve matematiğe ilgi duyan yeni nesilleri desteklemek ve FIRST kültürünü yaymak."
+      "aciklama": "FLL bilgilerini yeni zihinlere FIRST'ü tanıtmak için yeniden inşa edilen etkinlik. Amaç yalnızca robot yapmak değil; bilim, teknoloji, mühendislik ve matematiğe ilgi duyan yeni nesilleri desteklemek ve FIRST kültürünü yaymak.",
+      "url": "https://www.instagram.com/reel/DVofbpBCFNk/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
     },
     {
       "ad": "Yücel Koyuncu BİLSEM STEM Etkinliği",
-      "aciklama": "FIRST'ü tanıtarak FIRST dünyasının heyecanı paylaşıldı. FRC'nin teknik ve sosyal kazanımları anlatılırken, yeni bir FTC takımı kurulması yolundaki teşviklerle çevremizdeki robotik topluluğunun genişlemesine öncülük etme amacı güdüldü."
+      "aciklama": "FIRST'ü tanıtarak FIRST dünyasının heyecanı paylaşıldı. FRC'nin teknik ve sosyal kazanımları anlatılırken, yeni bir FTC takımı kurulması yolundaki teşviklerle çevremizdeki robotik topluluğunun genişlemesine öncülük etme amacı güdüldü.",
+      "url": "https://www.instagram.com/p/DV53uDfiFBe/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
     },
     {
       "ad": "Huzurevi Bayramlaşması",
-      "aciklama": "Gölcük Prof. Dr. İsmail Barış Huzurevi Müdürlüğü'nde gerçekleştirilen bayramlaşma. FRC sadece bir robot yarışması değil, bir yardımlaşma ve farkındalık yolculuğudur. Asıl motivasyon yarışmak veya kazanmak yerine insanlarla beraber olmak, yardımlaşmak ve neşeyi paylaşmak."
+      "aciklama": "Gölcük Prof. Dr. İsmail Barış Huzurevi Müdürlüğü'nde gerçekleştirilen bayramlaşma. Çalışırken asıl motivasyonumuzun yarışmak veya kazanmak yerine insanlarla beraber olmak, yardımlaşmak ve neşemizi paylaşmak olduğunu size hissettirmek istedik.",
+      "url": "https://www.instagram.com/p/DWMEQScCAno/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
     },
     {
       "ad": "Gulf Tech X Yeşil Vatan",
-      "aciklama": "Kurumda pet şişeler kaldırılıp yerine bir su sebili açılarak öğrenciler ve öğretmenler su sebilini kullanmaya ve plastik kullanımını azaltmaya teşvik edildi."
+      "aciklama": "Kurumda pet şişeler kaldırılıp yerine bir su sebili açarak öğrenciler ve öğretmenler su sebilini kullanmaya ve plastik kullanımını azaltmaya teşvik edildi.",
+      "url": "https://gulftechrobotic.com.tr/etkinlik.html"
     },
     {
       "ad": "Gulf Tech X GFL Robotics Green Alliance",
-      "aciklama": "Green Alliance projesi kapsamında çevre kirliliği, sürdürülebilirlik ve gelecekte hayata geçirebilecek ortak projeler üzerine verimli bir fikir alışverişi. Daha sürdürülebilir bir gelecek için birlikte atılabilecek adımlar değerlendirildi."
+      "aciklama": "Green Alliance projesi kapsamında çevre kirliliği, sürdürülebilirlik ve gelecekte hayata geçirebilecek ortak projeler üzerine verimli bir fikir alışverişi. Daha sürdürülebilir bir gelecek için birlikte atılabilecek adımlar değerlendirildi.",
+      "url": "https://www.instagram.com/p/DWKJVB2DGk6/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
     },
     {
       "ad": "Devotion Projesi",
-      "aciklama": "Her şey bir hayalle başladı... Hikayenin yeni bölümünü başkaları için çabalayarak yazma projesi."
+      "aciklama": "Her şey bir hayalle başladı... Hikayenin yeni bölümünü başkaları için çabalayarak yazma projesi.",
+      "url": "https://www.instagram.com/p/DUqzahTiBG6/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
     },
     {
       "ad": "Kick-off Röportajları",
@@ -186,15 +194,18 @@
     },
     {
       "ad": "FRC Takımlarıyla Toplantılar",
-      "aciklama": "FRC takımlarıyla bilgilerimizi paylaştığımız samimi ve keyifli toplantılar."
+      "aciklama": "FRC takımlarıyla bilgilerimizi paylaştığımız samimi ve keyifli toplantılar.",
+      "url": "https://www.instagram.com/gulftechtr/"
     },
     {
       "ad": "İZAYDAŞ Gezisi",
-      "aciklama": "İZAYDAŞ kurumuna gerçekleştirilen ziyarette atık yönetimi ve geri dönüşüm konuları hakkında bilinçlenildi."
+      "aciklama": "İZAYDAŞ kurumuna gerçekleştirilen ziyarette atık yönetimi ve geri dönüşüm konuları hakkında bilinçlenildi.",
+      "url": "https://www.instagram.com/p/DR4xufmCImI/?igsh=MXZzbXIycHBodjN2Mg=="
     },
     {
       "ad": "Takım Kahvaltısı",
-      "aciklama": "Gulf Tech olarak bir araya gelip keyifli bir pazar kahvaltısı yapıldı."
+      "aciklama": "Gulf Tech olarak bir araya gelip keyifli bir pazar kahvaltısı yapıldı.",
+      "url": "https://www.instagram.com/p/DSQSlW6iFTq/?igsh=YjVrcnIzdnNva2M2"
     }
   ],
   "playlistler": [
