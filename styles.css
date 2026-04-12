@@ -392,7 +392,7 @@ a:hover {
             rgba(14, 165, 233, 0.06) 65%,
             transparent 100%);
     transform: rotate(25deg);
-    animation: liquidShimmer 8s infinite linear;
+    animation: liquidShimmer 16s infinite linear;
     pointer-events: none;
     z-index: -1;
 }
@@ -1572,6 +1572,35 @@ a:hover {
         width: 28px;
         height: 28px;
     }
+
+    .countdown-container {
+        padding: 16px 20px;
+        margin-bottom: 24px;
+    }
+
+    .cd-num {
+        font-size: 1.4rem;
+        min-width: 48px;
+        padding: 8px 4px;
+    }
+
+    .cd-sep {
+        font-size: 1rem;
+        margin-bottom: 14px;
+    }
+
+    .countdown-digits {
+        gap: 6px;
+    }
+
+    .orion-wrapper {
+        bottom: 10px;
+        left: 10px;
+        right: auto;
+        width: 80px;
+        height: 110px;
+        opacity: 0.3;
+    }
 }
 
 /* Sidebar overlay for mobile */
@@ -2021,5 +2050,306 @@ a:hover {
 
     100% {
         transform: translate(-100px, -50px) scale(0.9);
+    }
+}
+
+/* ========================================
+   LANGUAGE SWITCH BUTTON
+   ======================================== */
+.lang-switch-btn {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: var(--font-body);
+}
+
+.lang-switch-btn:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+}
+
+/* ========================================
+   ORION OS — DEVELOPER MODE THEME
+   ======================================== */
+
+/* Nebula Overlay (behind content, in front of bg) */
+.orion-nebula-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+}
+
+.orion-nebula-overlay.active {
+    opacity: 1;
+}
+
+.orion-nebula-overlay canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Hero constellation centered */
+.orion-center-constellation {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 320px;
+    height: 480px;
+    opacity: 0;
+    transition: opacity 2s ease 0.5s;
+    pointer-events: none;
+}
+
+.orion-nebula-overlay.active .orion-center-constellation {
+    opacity: 0.25;
+}
+
+.orion-hero-svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 20px rgba(100, 150, 255, 0.3));
+}
+
+.orion-hero-line {
+    fill: none;
+    stroke: rgba(150, 180, 255, 0.3);
+    stroke-width: 1.5;
+    stroke-dasharray: 8 4;
+    animation: orionLineGlow 6s infinite ease-in-out;
+}
+
+@keyframes orionLineGlow {
+    0%, 100% { stroke: rgba(150, 180, 255, 0.2); }
+    50% { stroke: rgba(150, 180, 255, 0.5); }
+}
+
+.orion-hero-star {
+    fill: #c8dcff;
+    animation: orionHeroTwinkle 4s infinite ease-in-out;
+}
+
+.orion-hero-star.betelgeuse {
+    fill: #ffb347;
+    filter: drop-shadow(0 0 10px rgba(255, 179, 71, 0.6));
+    animation: orionHeroTwinkle 3s infinite ease-in-out;
+}
+
+.orion-hero-star.rigel {
+    fill: #a0c4ff;
+    filter: drop-shadow(0 0 12px rgba(160, 196, 255, 0.6));
+    animation: orionHeroTwinkle 3.5s infinite ease-in-out;
+}
+
+.orion-hero-star.belt {
+    fill: #b8d4ff;
+    filter: drop-shadow(0 0 6px rgba(184, 212, 255, 0.4));
+    animation: orionHeroTwinkle 5s infinite ease-in-out;
+}
+
+.orion-hero-star.dim {
+    fill: #d4b8ff;
+    opacity: 0.6;
+}
+
+.orion-hero-star.nebula-core {
+    fill: #e8b0ff;
+    filter: drop-shadow(0 0 15px rgba(232, 176, 255, 0.5));
+    animation: nebulaCorePulse 4s infinite ease-in-out;
+}
+
+.orion-nebula-glow {
+    fill: none;
+    stroke: rgba(200, 150, 255, 0.08);
+    stroke-width: 30;
+    filter: blur(10px);
+    animation: nebulaGlow 8s infinite ease-in-out;
+}
+
+@keyframes orionHeroTwinkle {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; filter: drop-shadow(0 0 8px rgba(200, 220, 255, 0.8)); }
+}
+
+@keyframes nebulaCorePulse {
+    0%, 100% { opacity: 0.4; r: 3; }
+    50% { opacity: 0.9; r: 5; }
+}
+
+@keyframes nebulaGlow {
+    0%, 100% { opacity: 0.3; stroke-width: 25; }
+    50% { opacity: 0.6; stroke-width: 35; }
+}
+
+/* ===== OrionOS Mode — Body Theme Override ===== */
+body.orion-mode {
+    --bg-primary: #010318;
+    --bg-secondary: rgba(20, 10, 60, 0.08);
+    --bg-sidebar: rgba(5, 2, 30, 0.95);
+    --accent: #7b8cff;
+    --accent-gold: #c792ff;
+    --accent-glow: rgba(123, 140, 255, 0.4);
+    --gold-glow: rgba(199, 146, 255, 0.3);
+    --bg-dark: #020118;
+    --bg-card: rgba(10, 8, 40, 0.6);
+    --sidebar-bg: rgba(3, 2, 20, 0.9);
+    --border: rgba(123, 140, 255, 0.15);
+    --gold-border: rgba(199, 146, 255, 0.2);
+    --bg-input: rgba(30, 20, 80, 0.08);
+    --bg-hover: rgba(100, 80, 255, 0.1);
+    --bg-active: rgba(100, 80, 255, 0.15);
+    --accent-bright: #a0b4ff;
+    --gradient-logo: linear-gradient(135deg, #7b8cff 0%, #c792ff 100%);
+}
+
+body.orion-mode .bg-blobs {
+    background: radial-gradient(ellipse at 30% 50%, #0a0525 0%, #010318 50%, #000010 100%);
+}
+
+body.orion-mode .blob-1 {
+    background: #5b4dff;
+    opacity: 0.15;
+}
+
+body.orion-mode .blob-2 {
+    background: #9b59ff;
+    opacity: 0.1;
+}
+
+body.orion-mode .blob-3 {
+    background: #3a2dff;
+    opacity: 0.08;
+}
+
+/* OrionOS — Orion constellation becomes prominent */
+body.orion-mode .orion-wrapper {
+    opacity: 0.9;
+    width: 350px;
+    height: 500px;
+    bottom: 20px;
+    right: 20px;
+    transition: all 1s ease;
+}
+
+body.orion-mode .orion-star {
+    animation-duration: 2.5s;
+}
+
+body.orion-mode .orion-star.bright {
+    filter: drop-shadow(0 0 12px #7b8cff);
+    r: 4;
+}
+
+body.orion-mode .orion-line {
+    stroke: rgba(123, 140, 255, 0.35);
+    stroke-width: 1.5;
+}
+
+/* OrionOS — Sidebar glow */
+body.orion-mode .sidebar {
+    background: rgba(5, 2, 30, 0.85) !important;
+    border-right-color: rgba(123, 140, 255, 0.15);
+}
+
+body.orion-mode .brand-name,
+body.orion-mode .welcome-screen h1 {
+    background: linear-gradient(135deg, #c8dcff 30%, #7b8cff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+body.orion-mode .brand-name .accent,
+body.orion-mode .welcome-screen h1 .accent {
+    background: linear-gradient(135deg, #c792ff 0%, #e0b0ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* OrionOS — Badge style */
+.model-badge.orion-badge {
+    background: rgba(123, 140, 255, 0.15);
+    color: #a0b4ff;
+    border-color: rgba(123, 140, 255, 0.3);
+    animation: orionBadgePulse 3s infinite ease-in-out;
+}
+
+@keyframes orionBadgePulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(123, 140, 255, 0); }
+    50% { box-shadow: 0 0 12px 2px rgba(123, 140, 255, 0.3); }
+}
+
+/* OrionOS — Countdown */
+body.orion-mode .countdown-container {
+    border-color: rgba(123, 140, 255, 0.2);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5), 0 0 20px rgba(123, 140, 255, 0.08);
+}
+
+body.orion-mode .cd-num {
+    border-color: rgba(123, 140, 255, 0.3);
+}
+
+body.orion-mode .cd-sep {
+    color: var(--accent);
+}
+
+/* OrionOS — Chat header */
+body.orion-mode .chat-header {
+    background: rgba(5, 2, 30, 0.85);
+}
+
+/* OrionOS — Input */
+body.orion-mode .chat-input-container {
+    border-color: rgba(123, 140, 255, 0.2);
+}
+
+body.orion-mode .chat-input-container:focus-within {
+    border-color: #7b8cff;
+    box-shadow: 0 0 0 3px rgba(123, 140, 255, 0.1);
+}
+
+/* OrionOS — Stars become purple/blue tinted */
+body.orion-mode .star-node {
+    background: #c8d4ff;
+}
+
+/* OrionOS — Suggestion chips */
+body.orion-mode .suggestion-chip {
+    border-color: rgba(123, 140, 255, 0.2) !important;
+}
+
+body.orion-mode .suggestion-chip:hover {
+    border-color: #7b8cff !important;
+    box-shadow: 0 8px 25px rgba(123, 140, 255, 0.2) !important;
+    background: rgba(123, 140, 255, 0.1) !important;
+}
+
+/* OrionOS — Mobile adjustments */
+@media (max-width: 520px) {
+    body.orion-mode .orion-wrapper {
+        width: 120px;
+        height: 170px;
+        bottom: 10px;
+        left: 10px;
+        right: auto;
+        opacity: 0.5;
+    }
+
+    body.orion-mode .orion-center-constellation {
+        width: 200px;
+        height: 300px;
     }
 }

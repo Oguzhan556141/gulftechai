@@ -150,27 +150,27 @@
     {
       "ad": "Zamanın Mekaniği Serisi",
       "aciklama": "Sadece robot yapmakla kalmayıp tarihten bilgiler de aktarılan Instagram içerik serisi.",
-      "url": "https://www.instagram.com/reel/DVQoa6biIMF/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+      "url": "https://www.instagram.com/reel/DVQoa6biIMF/"
     },
     {
       "ad": "Gölcük Piyalepaşa İlkokulu STEM Etkinliği",
       "aciklama": "STEM'i ve FIRST vakfının değerlerini çevreye yaymak için gerçekleştirilen etkinlik. Amacımız REBUILT sezonunda sadece robotumuzu değil genç zihinleri de yeniden inşa etmek.",
-      "url": "https://www.instagram.com/p/DV3zTA-iOSh/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+      "url": "https://www.instagram.com/p/DV3zTA-iOSh/"
     },
     {
       "ad": "Çocuk Kasabası STEM Etkinliği",
       "aciklama": "FLL bilgilerini yeni zihinlere FIRST'ü tanıtmak için yeniden inşa edilen etkinlik. Amaç yalnızca robot yapmak değil; bilim, teknoloji, mühendislik ve matematiğe ilgi duyan yeni nesilleri desteklemek ve FIRST kültürünü yaymak.",
-      "url": "https://www.instagram.com/reel/DVofbpBCFNk/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+      "url": "https://www.instagram.com/reel/DVofbpBCFNk/"
     },
     {
       "ad": "Yücel Koyuncu BİLSEM STEM Etkinliği",
       "aciklama": "FIRST'ü tanıtarak FIRST dünyasının heyecanı paylaşıldı. FRC'nin teknik ve sosyal kazanımları anlatılırken, yeni bir FTC takımı kurulması yolundaki teşviklerle çevremizdeki robotik topluluğunun genişlemesine öncülük etme amacı güdüldü.",
-      "url": "https://www.instagram.com/p/DV53uDfiFBe/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+      "url": "https://www.instagram.com/p/DV53uDfiFBe/"
     },
     {
       "ad": "Huzurevi Bayramlaşması",
       "aciklama": "Gölcük Prof. Dr. İsmail Barış Huzurevi Müdürlüğü'nde gerçekleştirilen bayramlaşma. Çalışırken asıl motivasyonumuzun yarışmak veya kazanmak yerine insanlarla beraber olmak, yardımlaşmak ve neşemizi paylaşmak olduğunu size hissettirmek istedik.",
-      "url": "https://www.instagram.com/p/DWMEQScCAno/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+      "url": "https://www.instagram.com/p/DWMEQScCAno/"
     },
     {
       "ad": "Gulf Tech X Yeşil Vatan",
@@ -180,12 +180,12 @@
     {
       "ad": "Gulf Tech X GFL Robotics Green Alliance",
       "aciklama": "Green Alliance projesi kapsamında çevre kirliliği, sürdürülebilirlik ve gelecekte hayata geçirebilecek ortak projeler üzerine verimli bir fikir alışverişi. Daha sürdürülebilir bir gelecek için birlikte atılabilecek adımlar değerlendirildi.",
-      "url": "https://www.instagram.com/p/DWKJVB2DGk6/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+      "url": "https://www.instagram.com/p/DWKJVB2DGk6/"
     },
     {
       "ad": "Devotion Projesi",
       "aciklama": "Her şey bir hayalle başladı... Hikayenin yeni bölümünü başkaları için çabalayarak yazma projesi.",
-      "url": "https://www.instagram.com/p/DUqzahTiBG6/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+      "url": "https://www.instagram.com/p/DUqzahTiBG6/"
     },
     {
       "ad": "Kick-off Röportajları",
@@ -200,12 +200,12 @@
     {
       "ad": "İZAYDAŞ Gezisi",
       "aciklama": "İZAYDAŞ kurumuna gerçekleştirilen ziyarette atık yönetimi ve geri dönüşüm konuları hakkında bilinçlenildi.",
-      "url": "https://www.instagram.com/p/DR4xufmCImI/?igsh=MXZzbXIycHBodjN2Mg=="
+      "url": "https://www.instagram.com/p/DR4xufmCImI/"
     },
     {
       "ad": "Takım Kahvaltısı",
       "aciklama": "Gulf Tech olarak bir araya gelip keyifli bir pazar kahvaltısı yapıldı.",
-      "url": "https://www.instagram.com/p/DSQSlW6iFTq/?igsh=YjVrcnIzdnNva2M2"
+      "url": "https://www.instagram.com/p/DSQSlW6iFTq/"
     }
   ],
   "playlistler": [
@@ -263,9 +263,9 @@
     "instagram": {
       "url": "https://www.instagram.com/gulftechtr",
       "kullanici_adi": "@gulftechtr",
-      "takipci": 791,
-      "takip": 139,
-      "gonderi": 90
+      "takipci": 991,
+      "takip": 153,
+      "gonderi": 96
     },
     "youtube": {
       "url": "https://www.youtube.com/@gulftechtr",
@@ -304,5 +304,29 @@
       "Destekleri için minnettar olduğunu belirt (#GulfTechFamily)."
     ],
     "kisilik": "Samimi, enerjik, profesyonel ama bir o kadar da içten bir FRC asistanı."
+  },
+  "instagram_icerik": {
+    "hesap": "@gulftechtr",
+    "takipci": 991,
+    "takip": 153,
+    "gonderi": 96,
+    "bio": "Gulf Tech FRC Team #11392 | Gölcük BİLSEM | Kocaeli, Türkiye",
+    "son_guncelleme": "2026-04-04",
+    "yayin_kategorileri": [
+      "STEM Etkinlikleri",
+      "Zamanın Mekaniği Serisi",
+      "Takım Tanıtımları",
+      "Robot Geliştirme Süreci",
+      "Yarışma Hazırlıkları",
+      "Toplumsal Sorumluluk Projeleri",
+      "Kick-off Röportajları"
+    ],
+    "one_cikan_icerikleri": [
+      "Zamanın Mekaniği Serisi — Tarihten bilgiler aktaran eğitici içerik serisi",
+      "STEM Etkinlikleri — İlkokul ve ortaokullarda yapılan robotik tanıtım etkinlikleri",
+      "Devotion Projesi — Toplumsal fayda odaklı gönüllülük projesi",
+      "Green Alliance — Çevre sürdürülebilirliği üzerine takımlar arası işbirliği",
+      "Huzurevi Bayramlaşması — Toplumsal sorumluluk ve paylaşım etkinliği"
+    ]
   }
 }

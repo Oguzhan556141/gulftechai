@@ -3,6 +3,7 @@ import { UI, $, $$ } from './ui.js';
 import { getNextRegional, delay, renderMarkdown } from './utils.js';
 import { callGeminiAPI, simulateResponse } from './api.js';
 import { renderMap, MapComponent } from './map.js';
+import { initI18n, toggleLanguage, t } from './i18n.js';
 
 let appData = null;
 let conversations = JSON.parse(localStorage.getItem(CONFIG.CONV_STORAGE_KEY) || '{}');
@@ -10,6 +11,10 @@ let currentConvId = null;
 let isResponding = false;
 let apiKey = localStorage.getItem(CONFIG.API_KEY_STORAGE_KEY) || '';
 let model = localStorage.getItem(CONFIG.MODEL_STORAGE_KEY) || CONFIG.DEFAULT_MODEL;
+let isOrionMode = localStorage.getItem('gt_orion_mode') === 'true';
+
+// ===== ORION OS SECRET PASSPHRASE =====
+const ORION_PASSPHRASE = 'mortal demon';
 
 async function init() {
     console.log('App initializing...');
@@ -47,6 +52,7 @@ async function init() {
             playlistler: teamKnowledge.playlistler,
             web_sitesi_sayfalari: teamKnowledge.web_sitesi_sayfalari,
             sosyal_etkilesim: teamKnowledge.sosyal_etkilesim,
+            instagram_icerik: teamKnowledge.instagram_icerik,
             yarisma_hafizasi: {
                 sezon: ruleKnowledge.oyun_bilgisi.sezon + ' ' + ruleKnowledge.oyun_bilgisi.oyun_adi,
                 oyun_bilgisi: ruleKnowledge.oyun_bilgisi,
@@ -57,7 +63,9 @@ async function init() {
                 siralama_puanlari: ruleKnowledge.siralama_puanlari,
                 robot_kurallari: ruleKnowledge.robot_kurallari,
                 strateji_notlari: ruleKnowledge.strateji_notlari,
-                onemli_terimler: ruleKnowledge.onemli_terimler
+                onemli_terimler: ruleKnowledge.onemli_terimler,
+                pit_alani: ruleKnowledge.pit_alani,
+                bolgesel_turnuvalar: ruleKnowledge.bolgesel_turnuvalar || []
             },
             first_bilgisi: firstKnowledge.first_vakfi,
             fikret_yuksel_vakfi: firstKnowledge.fikret_yuksel_vakfi,
@@ -69,10 +77,16 @@ async function init() {
         UI.appendMessage('ai', '⚠️ Hafıza yüklenirken hata oluştu: ' + err.message);
     }
 
+    initI18n();
     UI.updateApiStatus(apiKey, model);
     loadHistory();
     bindEvents();
     UI.autoResizeInput();
+
+    // Apply OrionOS mode if saved
+    if (isOrionMode) {
+        applyOrionMode(true);
+    }
 
     // Register Service Worker for PWA/Offline Support
     if ('serviceWorker' in navigator) {
@@ -143,6 +157,19 @@ function bindEvents() {
         if (e.target === UI.mapModal) UI.mapModal.classList.remove('visible');
     });
 
+    // Language Switch
+    if (UI.langSwitchBtn) {
+        UI.langSwitchBtn.addEventListener('click', () => {
+            toggleLanguage();
+            UI.updateApiStatus(apiKey, model);
+            // Re-render countdown
+            if (UI.countdownTimer) {
+                UI.countdownTimer.innerHTML = '';
+                UI.updateCountdown(getNextRegional(appData?.regionals));
+            }
+        });
+    }
+
     // Suggestion Chips Delegation (Global)
     document.addEventListener('click', (e) => {
         const chip = e.target.closest('.suggestion-chip, .inline-chip');
@@ -191,7 +218,9 @@ function updateInlineSuggestions() {
         { key: 'proje', prompt: 'Projelerinizden bahseder misiniz?', label: '🚀 Projeler' },
         { key: 'oyun', prompt: 'REBUILT oyun kurallarını açıklar mısın?', label: '🎮 REBUILT Oyunu' },
         { key: 'turnuva', prompt: 'Turnuva takvimini gösterir misin?', label: '📍 Turnuva Takvimi' },
-        { key: 'odul', prompt: 'FRC ödüllerinden bahseder misin?', label: '🏆 Ödüller' }
+        { key: 'odul', prompt: 'FRC ödüllerinden bahseder misin?', label: '🏆 Ödüller' },
+        { key: 'pit', prompt: 'Pit alanı nasıl çalışır?', label: '🔧 Pit Alanı' },
+        { key: 'strateji', prompt: 'REBUILT strateji notlarını paylaşır mısın?', label: '🎯 Strateji' }
     ];
 
     const matches = keywords.filter(k => {
@@ -231,7 +260,7 @@ function loadHistory() {
     const ids = Object.keys(conversations).sort((a, b) => (conversations[b].updatedAt || 0) - (conversations[a].updatedAt || 0));
 
     if (ids.length === 0) {
-        UI.historyList.innerHTML = '<div style="padding:12px;color:var(--text-muted);font-size:0.82rem;text-align:center;">Henüz sohbet yok</div>';
+        UI.historyList.innerHTML = `<div style="padding:12px;color:var(--text-muted);font-size:0.82rem;text-align:center;">${t('noChats')}</div>`;
         return;
     }
 
@@ -241,8 +270,8 @@ function loadHistory() {
         item.className = 'history-item' + (id === currentConvId ? ' active' : '');
         item.innerHTML = `
             <svg class="history-item-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            <span class="history-item-text">${conv.title || 'Yeni Sohbet'}</span>
-            <button class="history-item-delete" title="Sil">
+            <span class="history-item-text">${conv.title || t('newChat')}</span>
+            <button class="history-item-delete" title="${t('deleteChat')}">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-2 14H7L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
             </button>
         `;
@@ -287,31 +316,167 @@ function initDynamicStars() {
     }
 }
 
-function extractTopic(text) {
-    const lower = text.toLowerCase();
-    if (lower.includes('ekip') || lower.includes('kadro') || lower.includes('kimler')) return 'Takım Kadrosu 👥';
-    if (lower.includes('yazılım') || lower.includes('software')) return 'Yazılım Ekibi 💻';
-    if (lower.includes('mekanik') || lower.includes('robot')) return 'Mekanik & Robot ⚙️';
-    if (lower.includes('turnuva') || lower.includes('takvim') || lower.includes('bölge')) return 'Yarışma Takvimi 📍';
-    if (lower.includes('blue wave') || lower.includes('hikaye') || lower.includes('nedir')) return 'The Blue Wave 🌊';
-    if (lower.includes('başarı') || lower.includes('tebrik')) return 'Teşekkür Mesajı ❤️';
+// ===== IMPROVED TOPIC EXTRACTION =====
+function extractTopic(userText, aiResponse) {
+    const lower = userText.toLowerCase();
+    
+    // Check known topic keywords first
+    if (/ekip|kadro|kimler|üye/.test(lower)) return 'Takım Kadrosu 👥';
+    if (/yazılım|software/.test(lower)) return 'Yazılım Ekibi 💻';
+    if (/mekanik|robot/.test(lower)) return 'Mekanik & Robot ⚙️';
+    if (/turnuva|takvim|bölge/.test(lower)) return 'Yarışma Takvimi 📍';
+    if (/rebuilt|oyun|puan|hub|tower|kule/.test(lower)) return 'REBUILT 2026 🏗️';
+    if (/sponsor|destek/.test(lower)) return 'Sponsorlar 🤝';
+    if (/first.*vak|first.*found/.test(lower)) return 'FIRST Vakfı 🌐';
+    if (/fikret|yüksel/.test(lower)) return 'Fikret Yüksel Vakfı 🏢';
+    if (/iletişim|link|instagram|sosyal/.test(lower)) return 'İletişim 🔗';
+    if (/etkinlik|proje/.test(lower)) return 'Projeler & Etkinlikler 🚀';
+    if (/teknik|donanım|scout/.test(lower)) return 'Teknik Altyapı ⚙️';
+    if (/strateji|taktik/.test(lower)) return 'Strateji 🎯';
+    if (/ödül|award/.test(lower)) return 'FRC Ödülleri 🏆';
+    if (/pit|alan/.test(lower)) return 'Pit Alanı 🔧';
+    if (/kural|boyut|tampon/.test(lower)) return 'Robot Kuralları 📏';
+    if (/tarih|geçmiş|logo/.test(lower)) return 'Tarihçemiz 📖';
+    if (/frc|first.*robot/.test(lower)) return 'FRC Nedir? 🤖';
+    if (/başarı|tebrik|helal/.test(lower)) return 'Teşekkür ❤️';
 
-    return text.length > 25 ? text.slice(0, 22) + '...' : text;
+    // If AI response is available, try to extract from first heading or first sentence
+    if (aiResponse) {
+        const headingMatch = aiResponse.match(/###?\s+(.{3,40})/);
+        if (headingMatch) {
+            let heading = headingMatch[1].replace(/[#*]/g, '').trim();
+            if (heading.length > 30) heading = heading.slice(0, 27) + '...';
+            return heading;
+        }
+    }
+
+    // Fallback: truncate user message
+    return userText.length > 25 ? userText.slice(0, 22) + '...' : userText;
+}
+
+// ===== ORION OS MODE =====
+function applyOrionMode(enable) {
+    isOrionMode = enable;
+    localStorage.setItem('gt_orion_mode', String(enable));
+    document.body.classList.toggle('orion-mode', enable);
+    
+    const nebula = document.getElementById('orionNebula');
+    if (nebula) {
+        nebula.classList.toggle('active', enable);
+    }
+
+    // Generate starfield canvas for OrionOS
+    if (enable) {
+        initOrionStarfield();
+        // Show settings access in OrionOS
+        UI.modelBadge.textContent = 'OrionOS';
+        UI.modelBadge.classList.add('orion-badge');
+    } else {
+        UI.modelBadge.classList.remove('orion-badge');
+        UI.updateApiStatus(apiKey, model);
+        // Clear starfield
+        const canvas = document.getElementById('orionStarfield');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+    }
+}
+
+function initOrionStarfield() {
+    const canvas = document.getElementById('orionStarfield');
+    if (!canvas) return;
+    
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const ctx = canvas.getContext('2d');
+    
+    const stars = [];
+    for (let i = 0; i < 200; i++) {
+        stars.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            radius: Math.random() * 1.5 + 0.5,
+            opacity: Math.random() * 0.8 + 0.2,
+            speed: Math.random() * 0.002 + 0.001
+        });
+    }
+
+    function animateStars() {
+        if (!isOrionMode) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        stars.forEach(star => {
+            star.opacity += Math.sin(Date.now() * star.speed) * 0.005;
+            star.opacity = Math.max(0.1, Math.min(1, star.opacity));
+            
+            ctx.beginPath();
+            ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(200, 220, 255, ${star.opacity})`;
+            ctx.fill();
+            
+            // Subtle glow
+            ctx.beginPath();
+            ctx.arc(star.x, star.y, star.radius * 3, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(100, 150, 255, ${star.opacity * 0.1})`;
+            ctx.fill();
+        });
+        
+        requestAnimationFrame(animateStars);
+    }
+    
+    animateStars();
+    
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+}
+
+// Check if message is the OrionOS passphrase
+function isOrionPassphrase(text) {
+    return text.trim().toLowerCase() === ORION_PASSPHRASE;
 }
 
 async function handleSend() {
-    let text = UI.chatInput.value.trim().toLowerCase();
+    let text = UI.chatInput.value.trim();
+    const textLower = text.toLowerCase();
     if (!text || isResponding) return;
+
+    // ===== ORION OS SECRET TOGGLE =====
+    if (isOrionPassphrase(text)) {
+        const willEnable = !isOrionMode;
+        applyOrionMode(willEnable);
+        
+        UI.chatInput.value = '';
+        UI.sendBtn.disabled = true;
+        UI.autoResizeInput();
+        
+        // Show activation/deactivation message
+        const msg = willEnable ? t('orionActivated') : t('orionDeactivated');
+        
+        if (!currentConvId) {
+            currentConvId = 'conv_' + Date.now();
+            conversations[currentConvId] = { title: willEnable ? 'OrionOS 🌌' : t('newChat'), messages: [], updatedAt: Date.now() };
+        }
+        
+        $('#welcomeScreen')?.remove();
+        UI.appendMessage('ai', msg);
+        conversations[currentConvId].messages.push({ role: 'ai', content: msg });
+        localStorage.setItem(CONFIG.CONV_STORAGE_KEY, JSON.stringify(conversations));
+        loadHistory();
+        return;
+    }
 
     if (!currentConvId) {
         currentConvId = 'conv_' + Date.now();
-        const title = extractTopic(text);
+        const title = extractTopic(text, null);
         conversations[currentConvId] = { title: title, messages: [], updatedAt: Date.now() };
     }
 
     $('#welcomeScreen')?.remove();
-    conversations[currentConvId].messages.push({ role: 'user', content: text });
-    UI.appendMessage('user', text);
+    conversations[currentConvId].messages.push({ role: 'user', content: textLower });
+    UI.appendMessage('user', textLower);
 
     UI.chatInput.value = '';
     UI.sendBtn.disabled = true;
@@ -323,12 +488,18 @@ async function handleSend() {
 
     try {
         const responseText = apiKey
-            ? await callGeminiAPI(text, conversations[currentConvId].messages, apiKey, model, appData, window.appKnowledge)
-            : await simulateResponse(text, appData, window.appKnowledge);
+            ? await callGeminiAPI(textLower, conversations[currentConvId].messages, apiKey, model, appData, window.appKnowledge)
+            : await simulateResponse(textLower, appData, window.appKnowledge);
 
         typingIndicator.remove();
         const msgEl = UI.appendMessage('ai', '', true);
         const bodyEl = msgEl.querySelector('.message-body');
+
+        // Update title with AI response context (topic summarization)
+        if (conversations[currentConvId].messages.length <= 2) {
+            const betterTitle = extractTopic(textLower, responseText);
+            conversations[currentConvId].title = betterTitle;
+        }
 
         // Simple typewriter
         let i = 0;
@@ -341,7 +512,7 @@ async function handleSend() {
             } else {
                 clearInterval(interval);
                 // If it's regional info, append the map
-                if (/bölge|regional|turnuva|takvim/i.test(text)) {
+                if (/bölge|regional|turnuva|takvim/i.test(textLower)) {
                     bodyEl.appendChild(renderMap(appData));
                 }
                 conversations[currentConvId].messages.push({ role: 'ai', content: responseText });
