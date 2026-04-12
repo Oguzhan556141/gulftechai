@@ -154,6 +154,90 @@
     "gracious_professionalism": "Duyarlı Profesyonellik - FIRST'ün temel değeri",
     "coopertition": "Rekabetçi İşbirliği - rakiplerle bile saygılı işbirliği"
   },
+  "pit_alani": {
+    "tanim": "Pit alanı, yarışma süresince takımların robotlarını hazırladığı, tamir ettiği ve stratejilerini planladığı çalışma alanıdır. Her takıma yaklaşık 10x10 feet (3x3 metre) alan ayrılır.",
+    "kurallar": [
+      "Pit alanında güvenlik gözlüğü (safety glasses) zorunludur.",
+      "Çalışma alanı düzenli ve güvenli tutulmalıdır.",
+      "Robot bataryaları güvenli şekilde depolanmalı, şarj kurallarına uyulmalıdır.",
+      "Elektrikli aletlerin kullanımında dikkatli olunmalıdır.",
+      "Pit alanı en fazla 10x10 feet (3x3m) olabilir.",
+      "Takım numarası ve logo pit önünde görünür olmalıdır.",
+      "Hakem veya güvenlik görevlilerinin talimatlarına uyulmalıdır."
+    ],
+    "yarisma_akisi": [
+      "1. Robot Muayenesi (Inspection) — Robot boyut, ağırlık ve güvenlik kontrolünden geçer.",
+      "2. Practice Maçları — Takımlar robotu sahada test eder ve strateji geliştirir.",
+      "3. Eleme Maçları (Qualification) — Rastgele ittifaklarla sıralama maçları oynanır.",
+      "4. İttifak Seçimi (Alliance Selection) — İlk 8 sıradaki takım kendi ittifaklarını oluşturur.",
+      "5. Playoff Maçları — İttifaklar çeyrek final, yarı final ve finalde yarışır.",
+      "6. Ödül Töreni — Performans ve topluluk ödülleri verilir."
+    ],
+    "takim_hiyerarsisi": {
+      "drive_team": "Saha içinde robotu kontrol eden 4-5 kişilik ekip (1 Sürücü, 1 Operatör, 1 İnsan Oyuncusu, 1 Koç, 1 Teknisyen)",
+      "pit_crew": "Pit alanında robotu tamir, bakım ve güncelleme yapan ekip",
+      "scout_ekibi": "Diğer takımların performansını izleyen ve veri toplayan ekip",
+      "strateji_ekibi": "Maç stratejileri ve ittifak kararları veren ekip",
+      "pr_ekibi": "Ödül sunumları, jüri görüşmeleri ve takım tanıtımından sorumlu ekip"
+    }
+  },
+  "bolgesel_turnuvalar": [
+    {
+      "ad": "Istanbul Regional",
+      "tarih": "3-5 Mart 2026",
+      "mekan": "Başakşehir Spor Kompleksi, İstanbul"
+    },
+    {
+      "ad": "Bosphorus Regional",
+      "tarih": "6-8 Mart 2026",
+      "mekan": "Başakşehir Spor Kompleksi, İstanbul"
+    },
+    {
+      "ad": "Yeditepe Regional",
+      "tarih": "9-11 Mart 2026",
+      "mekan": "Başakşehir Spor Kompleksi, İstanbul"
+    },
+    {
+      "ad": "Haliç Regional",
+      "tarih": "25-27 Mart 2026",
+      "mekan": "TAF Atletizm Salonu, Ataköy, İstanbul"
+    },
+    {
+      "ad": "Marmara Regional",
+      "tarih": "28-30 Mart 2026",
+      "mekan": "TAF Atletizm Salonu, Ataköy, İstanbul"
+    },
+    {
+      "ad": "Eurasia Regional",
+      "tarih": "31 Mart - 2 Nisan 2026",
+      "mekan": "TAF Atletizm Salonu, Ataköy, İstanbul"
+    },
+    {
+      "ad": "Ankara Regional",
+      "tarih": "7-9 Nisan 2026",
+      "mekan": "Devlet Bahçeli Eğitim, Yaşam ve Spor Kompleksi, Ankara"
+    },
+    {
+      "ad": "Capital Regional",
+      "tarih": "10-12 Nisan 2026",
+      "mekan": "Devlet Bahçeli Eğitim, Yaşam ve Spor Kompleksi, Ankara"
+    },
+    {
+      "ad": "İzmir Regional",
+      "tarih": "17-19 Nisan 2026",
+      "mekan": "Fuar İzmir, Gaziemir, İzmir"
+    },
+    {
+      "ad": "Mersin Regional",
+      "tarih": "22-24 Nisan 2026",
+      "mekan": "Servet Tazegül Spor Salonu, Mersin"
+    },
+    {
+      "ad": "FIRST Championship",
+      "tarih": "29 Nisan - 2 Mayıs 2026",
+      "mekan": "George R. Brown Convention Center, Houston, TX, ABD"
+    }
+  ],
   "kaynak": {
     "dosya": "2026GameManual.pdf",
     "url": "https://firstfrc.blob.core.windows.net/frc2026/Manual/2026GameManual.pdf",

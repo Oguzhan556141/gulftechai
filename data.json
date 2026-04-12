@@ -19,40 +19,24 @@
       "captains": "Levent Yiğit (Mekanik), Tuğra Kerem Kaya (PR), İrem Ünver (Yazılım)",
       "software": {
         "captain": "İrem Ünver",
-        "members": [
-          "Oğuzhan Aşkın",
-          "Zeynep Sude Çakmak",
-          "Elif Başuslu"
-        ]
+        "members": ["Oğuzhan Aşkın", "Zeynep Sude Çakmak", "Elif Başuslu"]
       },
       "mechanical": {
         "captain": "Levent Yiğit",
-        "members": [
-          "Tufan Gülmez",
-          "Arda Furkan Aygenoğlu",
-          "Muhammet Ali Sardoğan"
-        ]
+        "members": ["Tufan Gülmez", "Arda Furkan Aygenoğlu", "Muhammet Ali Sardoğan"]
       },
       "pr": {
         "captain": "Tuğra Kerem Kaya",
-        "members": [
-          "Beray Erenel",
-          "Ege Göllü",
-          "Zeynep Sude Çakmak",
-          "Elif Başuslu"
-        ]
+        "members": ["Beray Erenel", "Ege Göllü", "Zeynep Sude Çakmak", "Elif Başuslu"]
       },
       "design": {
-        "members": [
-          "Eren Özgüler",
-          "Muhammet Ali Sardoğan"
-        ]
+        "members": ["Eren Özgüler", "Muhammet Ali Sardoğan"]
       },
       "electronics": {
         "description": "Donanım ve kablolama ekibi"
       }
     },
-    "history": "GulfTech #11392, 2026 yılında FRC sahnesine giriş yaptı. Gölcük BİLSEM'in 5 yıllık köklü FLL tecrübesini, FRC'nin dev robot arena ve mühendislik vizyonuyla birleştiriyoruz. Köpek balığı maskotumuz, denizin derinliklerindeki kararlılığı ve sarı/altın detaylar ise teknolojiye olan tutkumuzu simgeliyor. 🦈⚡",
+    "history": "GulfTech #11392, 2026 yılında FRC sahnesine giriş yaptı. Gölcük BİLSEM'in 5 yıllık köklü FLL tecrübesini, FRC'nin dev robot arena ve mühendislik vizyonuyla birleştiriyoruz.",
     "social": {
       "instagram": "https://www.instagram.com/gulftechtr/",
       "youtube": "https://www.youtube.com/@gulftechtr",
@@ -126,9 +110,28 @@
       "name": "Capital Regional",
       "date": "2026-04-10T09:00:00+03:00",
       "location": "Etimesgut, Ankara"
+    },
+    {
+      "name": "İzmir Regional",
+      "date": "2026-04-17T09:00:00+03:00",
+      "location": "İzmir"
+    },
+    {
+      "name": "Mersin Regional",
+      "date": "2026-04-22T09:00:00+03:00",
+      "location": "Mersin"
+    },
+    {
+      "name": "FIRST Championship",
+      "date": "2026-04-29T09:00:00-05:00",
+      "location": "Houston, TX, ABD"
     }
   ],
   "awards": [
+    {
+      "name": "FIRST Impact Award",
+      "desc": "En prestijli ödül. FIRST misyonunu en iyi temsil eden takıma."
+    },
     {
       "name": "Rookie All-Star",
       "desc": "Yılın en iyi rookie takımına verilir."
@@ -138,16 +141,40 @@
       "desc": "Mühendislik kültürünü toplumda yaygınlaştıran takıma."
     },
     {
-      "name": "FIRST Impact Award",
-      "desc": "En prestijli ödül. FIRST misyonunu en iyi temsil eden takıma."
-    },
-    {
       "name": "Autonomous Award",
       "desc": "En iyi otonom performansı gösteren takıma."
     },
     {
       "name": "Quality Award",
       "desc": "Sağlam ve güvenilir robot tasarımı için."
+    },
+    {
+      "name": "Industrial Design Award",
+      "desc": "Endüstriyel tasarım mükemmelliği gösteren takıma."
+    },
+    {
+      "name": "Creativity Award",
+      "desc": "Yaratıcı tasarım veya strateji kullanan takıma."
+    },
+    {
+      "name": "Innovation in Control Award",
+      "desc": "Kontrol sisteminde yenilikçi çözümler sunan takıma."
+    },
+    {
+      "name": "Gracious Professionalism Award",
+      "desc": "Duyarlı Profesyonellik değerini en iyi temsil eden takıma."
+    },
+    {
+      "name": "Team Spirit Award",
+      "desc": "Büyük coşku ve sportmenlik sergileyen takıma."
+    },
+    {
+      "name": "Imagery Award",
+      "desc": "Marka imajı ve görsel sunumda üstün başarı gösteren takıma."
+    },
+    {
+      "name": "Judges Award",
+      "desc": "Jüri tarafından özel olarak seçilen benzersiz başarıyı ödüllendiren ödül."
     }
   ],
   "venues": {
@@ -224,6 +251,21 @@
         "field": "B Holü Merkezi",
         "stands": "Modüler tribün sistemleri",
         "food": "Holler arası geçiş koridorları"
+      }
+    },
+    "Houston, TX, ABD": {
+      "name": "George R. Brown Convention Center",
+      "address": "Houston, Texas, ABD",
+      "logistics": {
+        "transport": "METRORail veya taksi/uber.",
+        "accommodation": "Downtown Houston otelleri.",
+        "notes": "FIRST Championship ana mekanı. Dünyanın en büyük robotik etkinliği."
+      },
+      "floorPlan": {
+        "pits": "Birden fazla hall'da dağıtılmış pit alanları",
+        "field": "Çoklu yarışma sahaları",
+        "stands": "Geniş tribün kapasitesi",
+        "food": "Çoklu yemek alanları ve food court"
       }
     }
   }

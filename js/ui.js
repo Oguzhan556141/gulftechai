@@ -1,4 +1,5 @@
 import { renderMarkdown, escapeHtml } from './utils.js';
+import { t } from './i18n.js';
 
 export const $ = (sel) => document.querySelector(sel);
 export const $$ = (sel) => document.querySelectorAll(sel);
@@ -29,6 +30,7 @@ export const UI = {
     mapModalClose: $('#mapModalClose'),
     mapModalBody: $('#mapModalBody'),
     backToTurkey: $('#backToTurkey'),
+    langSwitchBtn: $('#langSwitchBtn'),
 
     toggleSidebar(show) {
         this.sidebar.classList.toggle('open', show);
@@ -55,8 +57,8 @@ export const UI = {
             badge.classList.add('live');
         } else {
             dot.className = 'status-dot offline';
-            label.textContent = 'Simüle Mod';
-            badge.textContent = 'Simüle Mod';
+            label.textContent = t('userMode');
+            badge.textContent = t('userMode');
             badge.classList.remove('live');
         }
     },
@@ -115,7 +117,7 @@ export const UI = {
         const diff = nextDate - now;
         
         if (diff <= 0) {
-            this.countdownTimer.innerHTML = `<div class="countdown-label">🚀 <strong>${next.name}</strong> Başladı!</div>`;
+            this.countdownTimer.innerHTML = `<div class="countdown-label">🚀 <strong>${next.name}</strong> ${t('started')}</div>`;
             return;
         }
 
@@ -131,13 +133,13 @@ export const UI = {
             this.countdownTimer.innerHTML = `
                 <div class="countdown-label">🏟️ <strong>${next.name}</strong> — ${next.location}</div>
                 <div class="countdown-digits">
-                    <span class="cd-block"><span class="cd-num" id="cd-d"></span><span class="cd-unit">gün</span></span>
+                    <span class="cd-block"><span class="cd-num" id="cd-d"></span><span class="cd-unit">${t('days')}</span></span>
                     <span class="cd-sep">:</span>
-                    <span class="cd-block"><span class="cd-num" id="cd-h"></span><span class="cd-unit">saat</span></span>
+                    <span class="cd-block"><span class="cd-num" id="cd-h"></span><span class="cd-unit">${t('hours')}</span></span>
                     <span class="cd-sep">:</span>
-                    <span class="cd-block"><span class="cd-num" id="cd-m"></span><span class="cd-unit">dk</span></span>
+                    <span class="cd-block"><span class="cd-num" id="cd-m"></span><span class="cd-unit">${t('minutes')}</span></span>
                     <span class="cd-sep">:</span>
-                    <span class="cd-block"><span class="cd-num" id="cd-s"></span><span class="cd-unit">sn</span></span>
+                    <span class="cd-block"><span class="cd-num" id="cd-s"></span><span class="cd-unit">${t('seconds')}</span></span>
                 </div>`;
         }
 
