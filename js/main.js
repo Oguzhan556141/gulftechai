@@ -319,7 +319,7 @@ function initDynamicStars() {
 // ===== IMPROVED TOPIC EXTRACTION =====
 function extractTopic(userText, aiResponse) {
     const lower = userText.toLowerCase();
-    
+
     // Check known topic keywords first
     if (/ekip|kadro|kimler|üye/.test(lower)) return 'Takım Kadrosu 👥';
     if (/yazılım|software/.test(lower)) return 'Yazılım Ekibi 💻';
@@ -359,7 +359,7 @@ function applyOrionMode(enable) {
     isOrionMode = enable;
     localStorage.setItem('gt_orion_mode', String(enable));
     document.body.classList.toggle('orion-mode', enable);
-    
+
     const nebula = document.getElementById('orionNebula');
     if (nebula) {
         nebula.classList.toggle('active', enable);
@@ -386,11 +386,11 @@ function applyOrionMode(enable) {
 function initOrionStarfield() {
     const canvas = document.getElementById('orionStarfield');
     if (!canvas) return;
-    
+
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     const ctx = canvas.getContext('2d');
-    
+
     const stars = [];
     for (let i = 0; i < 200; i++) {
         stars.push({
@@ -405,28 +405,28 @@ function initOrionStarfield() {
     function animateStars() {
         if (!isOrionMode) return;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
+
         stars.forEach(star => {
             star.opacity += Math.sin(Date.now() * star.speed) * 0.005;
             star.opacity = Math.max(0.1, Math.min(1, star.opacity));
-            
+
             ctx.beginPath();
             ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
             ctx.fillStyle = `rgba(200, 220, 255, ${star.opacity})`;
             ctx.fill();
-            
+
             // Subtle glow
             ctx.beginPath();
             ctx.arc(star.x, star.y, star.radius * 3, 0, Math.PI * 2);
             ctx.fillStyle = `rgba(100, 150, 255, ${star.opacity * 0.1})`;
             ctx.fill();
         });
-        
+
         requestAnimationFrame(animateStars);
     }
-    
+
     animateStars();
-    
+
     window.addEventListener('resize', () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
@@ -447,19 +447,19 @@ async function handleSend() {
     if (isOrionPassphrase(text)) {
         const willEnable = !isOrionMode;
         applyOrionMode(willEnable);
-        
+
         UI.chatInput.value = '';
         UI.sendBtn.disabled = true;
         UI.autoResizeInput();
-        
+
         // Show activation/deactivation message
         const msg = willEnable ? t('orionActivated') : t('orionDeactivated');
-        
+
         if (!currentConvId) {
             currentConvId = 'conv_' + Date.now();
             conversations[currentConvId] = { title: willEnable ? 'OrionOS 🌌' : t('newChat'), messages: [], updatedAt: Date.now() };
         }
-        
+
         $('#welcomeScreen')?.remove();
         UI.appendMessage('ai', msg);
         conversations[currentConvId].messages.push({ role: 'ai', content: msg });
