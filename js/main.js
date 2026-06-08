@@ -19,22 +19,25 @@ const ORION_PASSPHRASE = 'mortal demon';
 async function init() {
     console.log('App initializing...');
     try {
-        const [dataRes, teamRes, ruleRes, firstRes] = await Promise.all([
+        const [dataRes, teamRes, ruleRes, firstRes, generalRes] = await Promise.all([
             fetch(CONFIG.DATA_PATH),
             fetch('teamKnowledge.json'),
             fetch('ruleKnowledge.json'),
-            fetch('firstKnowledge.json')
+            fetch('firstKnowledge.json'),
+            fetch('generalKnowledge.json')
         ]);
 
         if (!dataRes.ok) throw new Error(`Data loading failed: ${dataRes.status}`);
         if (!teamRes.ok) throw new Error(`Team knowledge loading failed: ${teamRes.status}`);
         if (!ruleRes.ok) throw new Error(`Rule knowledge loading failed: ${ruleRes.status}`);
         if (!firstRes.ok) throw new Error(`FIRST knowledge loading failed: ${firstRes.status}`);
+        if (!generalRes.ok) throw new Error(`General knowledge loading failed: ${generalRes.status}`);
 
         appData = await dataRes.json();
         const teamKnowledge = await teamRes.json();
         const ruleKnowledge = await ruleRes.json();
         const firstKnowledge = await firstRes.json();
+        const generalKnowledge = await generalRes.json();
 
         // Merge all knowledge into one object for backward compatibility
         window.appKnowledge = {
@@ -69,7 +72,8 @@ async function init() {
             },
             first_bilgisi: firstKnowledge.first_vakfi,
             fikret_yuksel_vakfi: firstKnowledge.fikret_yuksel_vakfi,
-            frc_turkiye: firstKnowledge.frc_turkiye
+            frc_turkiye: firstKnowledge.frc_turkiye,
+            genel_kultur: generalKnowledge
         };
         console.log('All knowledge files loaded successfully');
     } catch (err) {
@@ -220,7 +224,11 @@ function updateInlineSuggestions() {
         { key: 'turnuva', prompt: 'Turnuva takvimini gösterir misin?', label: '📍 Turnuva Takvimi' },
         { key: 'odul', prompt: 'FRC ödüllerinden bahseder misin?', label: '🏆 Ödüller' },
         { key: 'pit', prompt: 'Pit alanı nasıl çalışır?', label: '🔧 Pit Alanı' },
-        { key: 'strateji', prompt: 'REBUILT strateji notlarını paylaşır mısın?', label: '🎯 Strateji' }
+        { key: 'strateji', prompt: 'REBUILT strateji notlarını paylaşır mısın?', label: '🎯 Strateji' },
+        { key: 'bilgi', prompt: 'Bana ilginç bir genel kültür bilgisi verir misin?', label: '🧠 Genel Kültür' },
+        { key: 'tarih', prompt: 'Önemli tarihi olaylar nelerdir?', label: '📜 Tarih' },
+        { key: 'bilim', prompt: 'Kuantum fiziği hakkında bilgi verir misin?', label: '🔬 Bilim' },
+        { key: 'sanat', prompt: 'Rönesans sanatı hakkında ne biliyorsun?', label: '🎨 Sanat' }
     ];
 
     const matches = keywords.filter(k => {
