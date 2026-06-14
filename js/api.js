@@ -72,7 +72,7 @@ YANITLAMA KURALLARI:
         generationConfig: { temperature: 0.7, topP: 0.9, maxOutputTokens: 2048 }
     };
 
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+    const url = `/api/gemini/v1beta/models/${model}:generateContent`;
     const res = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -115,5 +115,5 @@ export async function simulateResponse(userMessage, data, knowledge) {
     }
 
     await delay(1000);
-    return `Anlıyorum! Sana şu konularda yardımcı olabilirim:\n- 🤖 FRC Nedir?\n- 📖 Tarihçemiz\n- 👥 Takım Kadrosu & Divizyonlarımız\n- 📅 Etkinliklerimiz\n- ⚙️ Teknik Altyapı & Scout\n- 🤝 Sponsorlarımız\n- 🏗️ 2026 REBUILT Sezon Detayları\n- 📍 Turnuva Takvimi\n- 🔧 Pit Alanı İşleyişi\n- 🏆 FRC Ödülleri\n- 🧠 Genel Kültür (Tarih, Bilim, Sanat vb.)\n\nHangi konuda bilgi istersin?`;
+    return null;
 }

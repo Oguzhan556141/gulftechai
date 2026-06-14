@@ -577,8 +577,8 @@ a:hover {
 }
 
 .brand-text .accent {
-    color: var(--accent-gold);
-    text-shadow: 0 0 10px var(--gold-glow);
+    color: inherit;
+    text-shadow: none;
 }
 
 .brand-name {
@@ -1904,7 +1904,7 @@ a:hover {
 
 .venue-map-title {
     margin-bottom: 10px;
-    color: var(--accent-gold);
+    color: var(--accent);
     font-size: 0.95rem;
 }
 
@@ -2006,11 +2006,11 @@ a:hover {
 
 .brand-name .accent,
 .welcome-screen h1 .accent {
-    background: linear-gradient(135deg, var(--accent-gold) 0%, #fde68a 100%);
+    background: linear-gradient(135deg, #ffffff 0%, var(--accent) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 15px var(--gold-glow) !important;
+    text-shadow: 0 0 15px var(--accent-glow) !important;
 }
 
 /* Suggestion Chips - Liquid Glass */
@@ -2053,7 +2053,7 @@ a:hover {
 .blob-2 {
     width: 500px;
     height: 500px;
-    background: var(--accent-gold);
+    background: var(--accent);
     bottom: -150px;
     left: -150px;
     animation-duration: 35s;

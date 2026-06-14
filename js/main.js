@@ -82,7 +82,7 @@ async function init() {
     }
 
     initI18n();
-    UI.updateApiStatus(apiKey, model);
+    UI.updateApiStatus(true, model);
     loadHistory();
     bindEvents();
     UI.autoResizeInput();
@@ -104,8 +104,11 @@ async function init() {
     if (apiKey) UI.apiKeyInput.value = apiKey;
     UI.modelSelect.value = model;
 
-    UI.updateCountdown(getNextRegional(appData?.regionals));
-    setInterval(() => UI.updateCountdown(getNextRegional(appData?.regionals)), 1000);
+    const KICKOFF_DATE = '2027-01-09T19:00:00+03:00';
+    const kickoffInfo = { name: 'Kickoff 2027', date: KICKOFF_DATE, location: 'Worldwide' };
+    
+    UI.updateCountdown(kickoffInfo);
+    setInterval(() => UI.updateCountdown(kickoffInfo), 1000);
 
     // Initial Mascot Animation Setup
     setupMascotInteractions();
@@ -165,7 +168,7 @@ function bindEvents() {
     if (UI.langSwitchBtn) {
         UI.langSwitchBtn.addEventListener('click', () => {
             toggleLanguage();
-            UI.updateApiStatus(apiKey, model);
+            UI.updateApiStatus(true, model);
             // Re-render countdown
             if (UI.countdownTimer) {
                 UI.countdownTimer.innerHTML = '';
@@ -259,7 +262,7 @@ function saveSettings() {
     model = UI.modelSelect.value;
     localStorage.setItem(CONFIG.API_KEY_STORAGE_KEY, apiKey);
     localStorage.setItem(CONFIG.MODEL_STORAGE_KEY, model);
-    UI.updateApiStatus(apiKey, model);
+    UI.updateApiStatus(true, model);
     UI.settingsModal.classList.remove('visible');
 }
 
@@ -381,7 +384,7 @@ function applyOrionMode(enable) {
         UI.modelBadge.classList.add('orion-badge');
     } else {
         UI.modelBadge.classList.remove('orion-badge');
-        UI.updateApiStatus(apiKey, model);
+        UI.updateApiStatus(true, model);
         // Clear starfield
         const canvas = document.getElementById('orionStarfield');
         if (canvas) {
@@ -495,9 +498,12 @@ async function handleSend() {
     const typingIndicator = UI.showTypingIndicator();
 
     try {
-        const responseText = apiKey
-            ? await callGeminiAPI(textLower, conversations[currentConvId].messages, apiKey, model, appData, window.appKnowledge)
-            : await simulateResponse(textLower, appData, window.appKnowledge);
+        let responseText = await simulateResponse(textLower, appData, window.appKnowledge);
+        
+        // If no local handler matched, fallback to Gemini API
+        if (responseText === null) {
+            responseText = await callGeminiAPI(textLower, conversations[currentConvId].messages, null, model, appData, window.appKnowledge);
+        }
 
         typingIndicator.remove();
         const msgEl = UI.appendMessage('ai', '', true);

@@ -53,8 +53,7 @@
     },
     {
       "isim": "İrem Ünver",
-      "rol": "Yazılım Kaptanı",
-      "linkedin": "https://www.linkedin.com/in/irem-%C3%BCnver-326aa9390/"
+      "rol": "Yazılım Kaptanı"
     }
   ],
   "ekip_uyeleri": [
@@ -69,13 +68,11 @@
     },
     {
       "isim": "Tufan Gülmez",
-      "rol": "Mekanik Üyesi",
-      "linkedin": "https://www.linkedin.com/in/tufan-g%C3%BClmez-253a123b6"
+      "rol": "Mekanik Üyesi"
     },
     {
       "isim": "Beray Erenel",
-      "rol": "PR Üyesi",
-      "linkedin": "https://www.linkedin.com/in/beray-erenel-63b927395"
+      "rol": "PR Üyesi"
     },
     {
       "isim": "Ege Göllü",
@@ -83,10 +80,8 @@
     },
     {
       "isim": "Zeynep Sude Çakmak",
-      "rol": "PR Üyesi",
-      "linkedin": "https://www.linkedin.com/in/zeynep-%C3%A7akmak-442525399"
-    },
-    {}
+      "rol": "PR Üyesi"
+    }
   ],
   "divizyonlar": {
     "PR": {
