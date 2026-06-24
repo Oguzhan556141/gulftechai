@@ -1461,7 +1461,7 @@ a:hover {
 
 .chat-input-container:focus-within {
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.08);
+    box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.1), 0 0 15px rgba(251, 191, 36, 0.1);
 }
 
 #chatInput {
@@ -1606,6 +1606,23 @@ a:hover {
     .cd-sep {
         font-size: 1rem;
         margin-bottom: 14px;
+    }
+
+    /* OrionOS — Mobile adjustments */
+    @media (max-width: 520px) {
+        body.orion-mode .orion-wrapper {
+            width: 120px;
+            height: 170px;
+            bottom: 10px;
+            left: 10px;
+            right: auto;
+            opacity: 0.5;
+        }
+
+        body.orion-mode .orion-center-constellation {
+            width: 200px;
+            height: 300px;
+        }
     }
 
     .countdown-digits {
@@ -2006,11 +2023,13 @@ a:hover {
 
 .brand-name .accent,
 .welcome-screen h1 .accent {
-    background: linear-gradient(135deg, #ffffff 0%, var(--accent) 100%);
+    /* User Mode: Logo-based Cyan to Gold splash */
+    background: linear-gradient(135deg, #38bdf8 0%, #ffffff 50%, var(--accent-gold) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 15px var(--accent-glow) !important;
+    text-shadow: 0 0 15px rgba(251, 191, 36, 0.4) !important;
+    font-weight: 900;
 }
 
 /* Suggestion Chips - Liquid Glass */
@@ -2053,19 +2072,22 @@ a:hover {
 .blob-2 {
     width: 500px;
     height: 500px;
-    background: var(--accent);
+    background: #4f46e5; /* Indigo shark shadow */
     bottom: -150px;
     left: -150px;
+    opacity: 0.2;
     animation-duration: 35s;
 }
 
 .blob-3 {
     width: 300px;
     height: 300px;
-    background: #7c4dff;
+    background: var(--accent-gold); /* Gold nebula sync */
     top: 40%;
     left: 40%;
 }
+
+
 
 @keyframes blobTour {
     0% {
@@ -2406,18 +2428,3 @@ body.orion-mode .suggestion-chip:hover {
 }
 
 /* OrionOS — Mobile adjustments */
-@media (max-width: 520px) {
-    body.orion-mode .orion-wrapper {
-        width: 120px;
-        height: 170px;
-        bottom: 10px;
-        left: 10px;
-        right: auto;
-        opacity: 0.5;
-    }
-
-    body.orion-mode .orion-center-constellation {
-        width: 200px;
-        height: 300px;
-    }
-}
