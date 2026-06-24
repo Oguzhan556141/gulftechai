@@ -10,7 +10,7 @@ const translations = {
         // Header
         appTitle: 'GulfTech AI',
         // Modes
-        userMode: 'v1.0',
+        userMode: 'v1.1',
         // Settings Modal
         apiSettings: 'API Ayarları',
         apiDesc: 'Gerçek AI yanıtları için bir Google Gemini API anahtarı girin. Anahtar olmadan simüle modda çalışır.',
@@ -57,7 +57,7 @@ const translations = {
         noChats: 'No chats yet',
         deleteChat: 'Delete',
         appTitle: 'GulfTech AI',
-        userMode: 'v1.0',
+        userMode: 'v1.1',
         apiSettings: 'API Settings',
         apiDesc: 'Enter a Google Gemini API key for real AI responses. Without a key, it runs in simulation mode.',
         apiKeyLabel: 'Gemini API Key',

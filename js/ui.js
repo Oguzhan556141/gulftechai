@@ -44,16 +44,15 @@ export const UI = {
         overlay.classList.toggle('visible', show);
     },
 
-    updateApiStatus(apiKey, model) {
+    updateApiStatus(isServerSecured, model) {
         const dot = this.apiStatus.querySelector('.status-dot');
         const label = this.apiStatus.querySelector('span:last-child');
         const badge = this.modelBadge;
 
-        if (apiKey) {
+        if (isServerSecured) {
             dot.className = 'status-dot online';
-            label.textContent = model;
-            const modelName = model.split('-').slice(0, 2).join(' ').replace('gemini', 'Gemini');
-            badge.textContent = modelName;
+            label.textContent = 'v1.1';
+            badge.textContent = 'v1.1';
             badge.classList.add('live');
         } else {
             dot.className = 'status-dot offline';
@@ -131,7 +130,7 @@ export const UI = {
         // If the inner structure isn't ready (first run or fallback), create it
         if (!this.countdownTimer.querySelector('.countdown-digits')) {
             this.countdownTimer.innerHTML = `
-                <div class="countdown-label">🏟️ <strong>${next.name}</strong> — ${next.location}</div>
+                <div class="countdown-label">🎮 <strong>Kickoff'a Kalan Zaman</strong></div>
                 <div class="countdown-digits">
                     <span class="cd-block"><span class="cd-num" id="cd-d"></span><span class="cd-unit">${t('days')}</span></span>
                     <span class="cd-sep">:</span>

@@ -33,6 +33,9 @@ Sponsorlar:
 \${JSON.stringify(knowledge.iletisim || {}, null, 2)}
 \${JSON.stringify(knowledge.sosyal_aglar || {}, null, 2)}
 
+Genel Kültür Bilgisi:
+\${JSON.stringify(knowledge.genel_kultur || {}, null, 2)}
+
 Instagram İçerik Bilgisi:
 \${JSON.stringify(knowledge.instagram_icerik || {}, null, 2)}
 
@@ -52,9 +55,11 @@ YANITLAMA KURALLARI:
 10. REBUILT oyun kuralları hakkında teknik, doğru ve detaylı bilgi ver.
 11. Metrik sistemi (cm, kg) kullan. İnç/pound ölçülerini parantez içinde karşılığıyla ver.
 12. Duyarlı Profesyonellik (Gracious Professionalism) çerçevesinde yanıtla.
-13. Üye bilgilerinde LinkedIn linki varsa paylaş.
-14. Pit alanı, yarışma işleyişi ve takım hiyerarşisi hakkında bilgi ver.
-15. Kırık veya uygunsuz link paylaşma.`;
+13. Genel Kültür Soruları: Sana sağlanan "Genel Kültür Bilgisi" bölümünü ve kendi geniş bilgi birikimini kullanarak tarih, sanat, bilim, coğrafya gibi konulardaki sorulara profesyonelce cevap ver.
+14. Üye bilgilerinde LinkedIn linki varsa paylaş.
+15. Pit alanı, yarışma işleyişi ve takım hiyerarşisi hakkında bilgi ver.
+16. Kırık veya uygunsuz link paylaşma.
+17. Yanıtların GulfTech AI kimliğini yansıtsın; bilgili, yardımsever ve teknoloji meraklısı bir asistan gibi davran.`;
 
     const contents = history.map(msg => ({
         role: msg.role === 'user' ? 'user' : 'model',
@@ -67,7 +72,7 @@ YANITLAMA KURALLARI:
         generationConfig: { temperature: 0.7, topP: 0.9, maxOutputTokens: 2048 }
     };
 
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+    const url = `/api/gemini/v1beta/models/${model}:generateContent`;
     const res = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -110,5 +115,5 @@ export async function simulateResponse(userMessage, data, knowledge) {
     }
 
     await delay(1000);
-    return `Anlıyorum! Sana şu konularda yardımcı olabilirim:\n- 🤖 FRC Nedir?\n- 📖 Tarihçemiz\n- 👥 Takım Kadrosu & Divizyonlarımız\n- 📅 Etkinliklerimiz\n- ⚙️ Teknik Altyapı & Scout\n- 🤝 Sponsorlarımız\n- 🏗️ 2026 REBUILT Sezon Detayları\n- 📍 Turnuva Takvimi\n- 🔧 Pit Alanı İşleyişi\n- 🏆 FRC Ödülleri\n\nHangi konuda bilgi istersin?`;
+    return null;
 }

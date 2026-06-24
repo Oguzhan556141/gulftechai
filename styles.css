@@ -369,7 +369,7 @@ a:hover {
     backdrop-filter: blur(30px) saturate(220%);
     -webkit-backdrop-filter: blur(30px) saturate(220%);
     border: 1px solid rgba(56, 189, 248, 0.3);
-    box-shadow: 
+    box-shadow:
         0 8px 32px 0 rgba(0, 0, 0, 0.45),
         inset 0 1px 2px 0 rgba(255, 255, 255, 0.12),
         inset 0 0 1px 1px rgba(255, 255, 255, 0.08),
@@ -423,7 +423,7 @@ a:hover {
     backdrop-filter: blur(20px) saturate(200%) !important;
     -webkit-backdrop-filter: blur(20px) saturate(200%) !important;
     border: 1px solid rgba(56, 189, 248, 0.2) !important;
-    box-shadow: 
+    box-shadow:
         0 4px 16px rgba(0, 0, 0, 0.3),
         inset 0 1px 1px rgba(255, 255, 255, 0.1) !important;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
@@ -481,6 +481,7 @@ a:hover {
         opacity: 0;
         transform: scale(0.9) translateY(5px);
     }
+
     to {
         opacity: 1;
         transform: scale(1) translateY(0);
@@ -576,8 +577,8 @@ a:hover {
 }
 
 .brand-text .accent {
-    color: var(--accent-gold);
-    text-shadow: 0 0 10px var(--gold-glow);
+    color: inherit;
+    text-shadow: none;
 }
 
 .brand-name {
@@ -1099,8 +1100,15 @@ a:hover {
 }
 
 @keyframes borderGlow {
-    0% { border-color: rgba(14, 165, 233, 0.2); box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4), 0 0 15px rgba(14, 165, 233, 0.05); }
-    100% { border-color: rgba(14, 165, 233, 0.5); box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4), 0 0 30px rgba(14, 165, 233, 0.15); }
+    0% {
+        border-color: rgba(14, 165, 233, 0.2);
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4), 0 0 15px rgba(14, 165, 233, 0.05);
+    }
+
+    100% {
+        border-color: rgba(14, 165, 233, 0.5);
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4), 0 0 30px rgba(14, 165, 233, 0.15);
+    }
 }
 
 @keyframes glowPulse {
@@ -1155,9 +1163,20 @@ a:hover {
 }
 
 @keyframes digitFlip {
-    0% { transform: scale(1); filter: brightness(1); }
-    40% { transform: scale(0.9) translateY(-2px); filter: brightness(1.5); }
-    100% { transform: scale(1); filter: brightness(1); }
+    0% {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+
+    40% {
+        transform: scale(0.9) translateY(-2px);
+        filter: brightness(1.5);
+    }
+
+    100% {
+        transform: scale(1);
+        filter: brightness(1);
+    }
 }
 
 .cd-unit {
@@ -1442,7 +1461,7 @@ a:hover {
 
 .chat-input-container:focus-within {
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.08);
+    box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.1), 0 0 15px rgba(251, 191, 36, 0.1);
 }
 
 #chatInput {
@@ -1587,6 +1606,23 @@ a:hover {
     .cd-sep {
         font-size: 1rem;
         margin-bottom: 14px;
+    }
+
+    /* OrionOS — Mobile adjustments */
+    @media (max-width: 520px) {
+        body.orion-mode .orion-wrapper {
+            width: 120px;
+            height: 170px;
+            bottom: 10px;
+            left: 10px;
+            right: auto;
+            opacity: 0.5;
+        }
+
+        body.orion-mode .orion-center-constellation {
+            width: 200px;
+            height: 300px;
+        }
     }
 
     .countdown-digits {
@@ -1740,8 +1776,17 @@ a:hover {
 }
 
 @keyframes orionGlimmer {
-    0%, 100% { opacity: 0.6; filter: drop-shadow(0 0 2px rgba(135, 206, 235, 0.3)); }
-    50% { opacity: 1; filter: drop-shadow(0 0 8px rgba(135, 206, 235, 0.8)); }
+
+    0%,
+    100% {
+        opacity: 0.6;
+        filter: drop-shadow(0 0 2px rgba(135, 206, 235, 0.3));
+    }
+
+    50% {
+        opacity: 1;
+        filter: drop-shadow(0 0 8px rgba(135, 206, 235, 0.8));
+    }
 }
 
 .orion-star {
@@ -1876,7 +1921,7 @@ a:hover {
 
 .venue-map-title {
     margin-bottom: 10px;
-    color: var(--accent-gold);
+    color: var(--accent);
     font-size: 0.95rem;
 }
 
@@ -1978,11 +2023,13 @@ a:hover {
 
 .brand-name .accent,
 .welcome-screen h1 .accent {
-    background: linear-gradient(135deg, var(--accent-gold) 0%, #fde68a 100%);
+    /* User Mode: Logo-based Cyan to Gold splash */
+    background: linear-gradient(135deg, #38bdf8 0%, #ffffff 50%, var(--accent-gold) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 15px var(--gold-glow) !important;
+    text-shadow: 0 0 15px rgba(251, 191, 36, 0.4) !important;
+    font-weight: 900;
 }
 
 /* Suggestion Chips - Liquid Glass */
@@ -2025,19 +2072,22 @@ a:hover {
 .blob-2 {
     width: 500px;
     height: 500px;
-    background: var(--accent-gold);
+    background: #4f46e5; /* Indigo shark shadow */
     bottom: -150px;
     left: -150px;
+    opacity: 0.2;
     animation-duration: 35s;
 }
 
 .blob-3 {
     width: 300px;
     height: 300px;
-    background: #7c4dff;
+    background: var(--accent-gold); /* Gold nebula sync */
     top: 40%;
     left: 40%;
 }
+
+
 
 @keyframes blobTour {
     0% {
@@ -2132,8 +2182,15 @@ a:hover {
 }
 
 @keyframes orionLineGlow {
-    0%, 100% { stroke: rgba(150, 180, 255, 0.2); }
-    50% { stroke: rgba(150, 180, 255, 0.5); }
+
+    0%,
+    100% {
+        stroke: rgba(150, 180, 255, 0.2);
+    }
+
+    50% {
+        stroke: rgba(150, 180, 255, 0.5);
+    }
 }
 
 .orion-hero-star {
@@ -2179,18 +2236,44 @@ a:hover {
 }
 
 @keyframes orionHeroTwinkle {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; filter: drop-shadow(0 0 8px rgba(200, 220, 255, 0.8)); }
+
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+        filter: drop-shadow(0 0 8px rgba(200, 220, 255, 0.8));
+    }
 }
 
 @keyframes nebulaCorePulse {
-    0%, 100% { opacity: 0.4; r: 3; }
-    50% { opacity: 0.9; r: 5; }
+
+    0%,
+    100% {
+        opacity: 0.4;
+        r: 3;
+    }
+
+    50% {
+        opacity: 0.9;
+        r: 5;
+    }
 }
 
 @keyframes nebulaGlow {
-    0%, 100% { opacity: 0.3; stroke-width: 25; }
-    50% { opacity: 0.6; stroke-width: 35; }
+
+    0%,
+    100% {
+        opacity: 0.3;
+        stroke-width: 25;
+    }
+
+    50% {
+        opacity: 0.6;
+        stroke-width: 35;
+    }
 }
 
 /* ===== OrionOS Mode — Body Theme Override ===== */
@@ -2288,8 +2371,15 @@ body.orion-mode .welcome-screen h1 .accent {
 }
 
 @keyframes orionBadgePulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(123, 140, 255, 0); }
-    50% { box-shadow: 0 0 12px 2px rgba(123, 140, 255, 0.3); }
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(123, 140, 255, 0);
+    }
+
+    50% {
+        box-shadow: 0 0 12px 2px rgba(123, 140, 255, 0.3);
+    }
 }
 
 /* OrionOS — Countdown */
@@ -2338,18 +2428,3 @@ body.orion-mode .suggestion-chip:hover {
 }
 
 /* OrionOS — Mobile adjustments */
-@media (max-width: 520px) {
-    body.orion-mode .orion-wrapper {
-        width: 120px;
-        height: 170px;
-        bottom: 10px;
-        left: 10px;
-        right: auto;
-        opacity: 0.5;
-    }
-
-    body.orion-mode .orion-center-constellation {
-        width: 200px;
-        height: 300px;
-    }
-}

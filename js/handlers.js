@@ -22,6 +22,64 @@ function trMatch(msg, pattern) {
 
 export const handlers = [
     {
+        name: 'genel_kultur',
+        // Comprehensive list of keywords to catch general knowledge queries
+        match: (msg) => trMatch(msg, /\b(bilgi|kultur|nedir|kimdir|cografya|tarih|bilim|sanat|edebiyat|spor|mitoloji|felsefe|psikoloji|ekonomi|saglik|mutfak|fizik|biyoloji|astronomi|einstein|foton|kuantum|mona lisa|periyodik|ataturk|everest|nil|nehir|dag|gol|deniz|kitai|asya|avrupa|afrika|amerika|tablo|eser|ressam|yazar|kitap|klasik|olimpiyat|dunya kupasi|enflasyon|vitamin|protein|karbonhidrat|dna|evrim|yapay zeka|internet|blokzincir)\b/i),
+        handle: async (msg, data, knowledge) => {
+            const gk = knowledge.genel_kultur || {};
+            const normMsg = trNorm(msg);
+
+            const findMatch = (obj) => {
+                for (const [key, val] of Object.entries(obj)) {
+                    const normKey = trNorm(key);
+                    const keyParts = normKey.split('_');
+
+                    // 1. Match against partial keys (e.g. "einstein" matches "albert_einstein")
+                    const isKeyMatch = normMsg.includes(normKey) || (keyParts.length > 1 && keyParts.some(p => p.length > 3 && normMsg.includes(p)));
+
+                    if (isKeyMatch && typeof val === 'string' && val.length > 10) {
+                        return { title: key, body: val };
+                    }
+                    
+                    // 2. Match in arrays (objects with olay, eser, ad, isim, etc.)
+                    if (Array.isArray(val)) {
+                        const match = val.find(item => {
+                            const name = item.olay || item.eser || item.ad || item.isim || item.sanatci;
+                            if (!name) return false;
+                            const normName = trNorm(name);
+                            return normMsg.includes(normName) || (normName.split(' ').some(p => p.length > 3 && normMsg.includes(p)));
+                        });
+                        if (match) {
+                            return { 
+                                title: match.olay || match.eser || match.ad || match.isim || match.sanatci, 
+                                body: (match.yil ? `**Yıl:** ${match.yil}\n` : '') + 
+                                      (match.sanatci ? `**Sanatçı:** ${match.sanatci}\n` : '') + 
+                                      (match.onem || match.aciklama || match.tanim || '')
+                            };
+                        }
+                    }
+
+                    // 3. Recursive search in objects
+                    if (typeof val === 'object' && val !== null) {
+                        if (isKeyMatch && (val.aciklama || val.tanim || val.ozet)) {
+                            return { title: key, body: val.aciklama || val.tanim || val.ozet };
+                        }
+                        const subMatch = findMatch(val);
+                        if (subMatch) return subMatch;
+                    }
+                }
+                return null;
+            };
+
+            const result = findMatch(gk);
+            if (result) {
+                return `### 🧠 ${result.title.charAt(0).toUpperCase() + result.title.slice(1).replace(/_/g, ' ')}\n\n${result.body}`;
+            }
+
+            return `Genel kültür hafızamda birçok bilgi var! Coğrafya, tarih, bilim, sanat veya felsefe gibi konularda sorular sorabilirsin. Örneğin: "Einstein kimdir?", "Mona Lisa nedir?" veya "Kuantum fiziği hakkında bilgi verir misin?"`;
+        }
+    },
+    {
         name: 'iletisim',
         match: (msg) => trMatch(msg, /iletisim|sosyal|medya|instagram|site|link|ulasim|irtibat/),
         handle: async (msg, data, knowledge) => {

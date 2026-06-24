@@ -19,22 +19,25 @@ const ORION_PASSPHRASE = 'mortal demon';
 async function init() {
     console.log('App initializing...');
     try {
-        const [dataRes, teamRes, ruleRes, firstRes] = await Promise.all([
+        const [dataRes, teamRes, ruleRes, firstRes, generalRes] = await Promise.all([
             fetch(CONFIG.DATA_PATH),
             fetch('teamKnowledge.json'),
             fetch('ruleKnowledge.json'),
-            fetch('firstKnowledge.json')
+            fetch('firstKnowledge.json'),
+            fetch('generalKnowledge.json')
         ]);
 
         if (!dataRes.ok) throw new Error(`Data loading failed: ${dataRes.status}`);
         if (!teamRes.ok) throw new Error(`Team knowledge loading failed: ${teamRes.status}`);
         if (!ruleRes.ok) throw new Error(`Rule knowledge loading failed: ${ruleRes.status}`);
         if (!firstRes.ok) throw new Error(`FIRST knowledge loading failed: ${firstRes.status}`);
+        if (!generalRes.ok) throw new Error(`General knowledge loading failed: ${generalRes.status}`);
 
         appData = await dataRes.json();
         const teamKnowledge = await teamRes.json();
         const ruleKnowledge = await ruleRes.json();
         const firstKnowledge = await firstRes.json();
+        const generalKnowledge = await generalRes.json();
 
         // Merge all knowledge into one object for backward compatibility
         window.appKnowledge = {
@@ -69,7 +72,8 @@ async function init() {
             },
             first_bilgisi: firstKnowledge.first_vakfi,
             fikret_yuksel_vakfi: firstKnowledge.fikret_yuksel_vakfi,
-            frc_turkiye: firstKnowledge.frc_turkiye
+            frc_turkiye: firstKnowledge.frc_turkiye,
+            genel_kultur: generalKnowledge
         };
         console.log('All knowledge files loaded successfully');
     } catch (err) {
@@ -78,7 +82,7 @@ async function init() {
     }
 
     initI18n();
-    UI.updateApiStatus(apiKey, model);
+    UI.updateApiStatus(true, model);
     loadHistory();
     bindEvents();
     UI.autoResizeInput();
@@ -100,8 +104,11 @@ async function init() {
     if (apiKey) UI.apiKeyInput.value = apiKey;
     UI.modelSelect.value = model;
 
-    UI.updateCountdown(getNextRegional(appData?.regionals));
-    setInterval(() => UI.updateCountdown(getNextRegional(appData?.regionals)), 1000);
+    const KICKOFF_DATE = '2027-01-09T19:00:00+03:00';
+    const kickoffInfo = { name: 'Kickoff 2027', date: KICKOFF_DATE, location: 'Worldwide' };
+    
+    UI.updateCountdown(kickoffInfo);
+    setInterval(() => UI.updateCountdown(kickoffInfo), 1000);
 
     // Initial Mascot Animation Setup
     setupMascotInteractions();
@@ -161,7 +168,7 @@ function bindEvents() {
     if (UI.langSwitchBtn) {
         UI.langSwitchBtn.addEventListener('click', () => {
             toggleLanguage();
-            UI.updateApiStatus(apiKey, model);
+            UI.updateApiStatus(true, model);
             // Re-render countdown
             if (UI.countdownTimer) {
                 UI.countdownTimer.innerHTML = '';
@@ -220,7 +227,11 @@ function updateInlineSuggestions() {
         { key: 'turnuva', prompt: 'Turnuva takvimini gösterir misin?', label: '📍 Turnuva Takvimi' },
         { key: 'odul', prompt: 'FRC ödüllerinden bahseder misin?', label: '🏆 Ödüller' },
         { key: 'pit', prompt: 'Pit alanı nasıl çalışır?', label: '🔧 Pit Alanı' },
-        { key: 'strateji', prompt: 'REBUILT strateji notlarını paylaşır mısın?', label: '🎯 Strateji' }
+        { key: 'strateji', prompt: 'REBUILT strateji notlarını paylaşır mısın?', label: '🎯 Strateji' },
+        { key: 'bilgi', prompt: 'Bana ilginç bir genel kültür bilgisi verir misin?', label: '🧠 Genel Kültür' },
+        { key: 'tarih', prompt: 'Önemli tarihi olaylar nelerdir?', label: '📜 Tarih' },
+        { key: 'bilim', prompt: 'Kuantum fiziği hakkında bilgi verir misin?', label: '🔬 Bilim' },
+        { key: 'sanat', prompt: 'Rönesans sanatı hakkında ne biliyorsun?', label: '🎨 Sanat' }
     ];
 
     const matches = keywords.filter(k => {
@@ -251,7 +262,7 @@ function saveSettings() {
     model = UI.modelSelect.value;
     localStorage.setItem(CONFIG.API_KEY_STORAGE_KEY, apiKey);
     localStorage.setItem(CONFIG.MODEL_STORAGE_KEY, model);
-    UI.updateApiStatus(apiKey, model);
+    UI.updateApiStatus(true, model);
     UI.settingsModal.classList.remove('visible');
 }
 
@@ -319,7 +330,7 @@ function initDynamicStars() {
 // ===== IMPROVED TOPIC EXTRACTION =====
 function extractTopic(userText, aiResponse) {
     const lower = userText.toLowerCase();
-    
+
     // Check known topic keywords first
     if (/ekip|kadro|kimler|üye/.test(lower)) return 'Takım Kadrosu 👥';
     if (/yazılım|software/.test(lower)) return 'Yazılım Ekibi 💻';
@@ -359,7 +370,7 @@ function applyOrionMode(enable) {
     isOrionMode = enable;
     localStorage.setItem('gt_orion_mode', String(enable));
     document.body.classList.toggle('orion-mode', enable);
-    
+
     const nebula = document.getElementById('orionNebula');
     if (nebula) {
         nebula.classList.toggle('active', enable);
@@ -373,7 +384,7 @@ function applyOrionMode(enable) {
         UI.modelBadge.classList.add('orion-badge');
     } else {
         UI.modelBadge.classList.remove('orion-badge');
-        UI.updateApiStatus(apiKey, model);
+        UI.updateApiStatus(true, model);
         // Clear starfield
         const canvas = document.getElementById('orionStarfield');
         if (canvas) {
@@ -386,11 +397,11 @@ function applyOrionMode(enable) {
 function initOrionStarfield() {
     const canvas = document.getElementById('orionStarfield');
     if (!canvas) return;
-    
+
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     const ctx = canvas.getContext('2d');
-    
+
     const stars = [];
     for (let i = 0; i < 200; i++) {
         stars.push({
@@ -405,28 +416,28 @@ function initOrionStarfield() {
     function animateStars() {
         if (!isOrionMode) return;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
+
         stars.forEach(star => {
             star.opacity += Math.sin(Date.now() * star.speed) * 0.005;
             star.opacity = Math.max(0.1, Math.min(1, star.opacity));
-            
+
             ctx.beginPath();
             ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
             ctx.fillStyle = `rgba(200, 220, 255, ${star.opacity})`;
             ctx.fill();
-            
+
             // Subtle glow
             ctx.beginPath();
             ctx.arc(star.x, star.y, star.radius * 3, 0, Math.PI * 2);
             ctx.fillStyle = `rgba(100, 150, 255, ${star.opacity * 0.1})`;
             ctx.fill();
         });
-        
+
         requestAnimationFrame(animateStars);
     }
-    
+
     animateStars();
-    
+
     window.addEventListener('resize', () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
@@ -447,19 +458,19 @@ async function handleSend() {
     if (isOrionPassphrase(text)) {
         const willEnable = !isOrionMode;
         applyOrionMode(willEnable);
-        
+
         UI.chatInput.value = '';
         UI.sendBtn.disabled = true;
         UI.autoResizeInput();
-        
+
         // Show activation/deactivation message
         const msg = willEnable ? t('orionActivated') : t('orionDeactivated');
-        
+
         if (!currentConvId) {
             currentConvId = 'conv_' + Date.now();
             conversations[currentConvId] = { title: willEnable ? 'OrionOS 🌌' : t('newChat'), messages: [], updatedAt: Date.now() };
         }
-        
+
         $('#welcomeScreen')?.remove();
         UI.appendMessage('ai', msg);
         conversations[currentConvId].messages.push({ role: 'ai', content: msg });
@@ -487,9 +498,12 @@ async function handleSend() {
     const typingIndicator = UI.showTypingIndicator();
 
     try {
-        const responseText = apiKey
-            ? await callGeminiAPI(textLower, conversations[currentConvId].messages, apiKey, model, appData, window.appKnowledge)
-            : await simulateResponse(textLower, appData, window.appKnowledge);
+        let responseText = await simulateResponse(textLower, appData, window.appKnowledge);
+        
+        // If no local handler matched, fallback to Gemini API
+        if (responseText === null) {
+            responseText = await callGeminiAPI(textLower, conversations[currentConvId].messages, null, model, appData, window.appKnowledge);
+        }
 
         typingIndicator.remove();
         const msgEl = UI.appendMessage('ai', '', true);

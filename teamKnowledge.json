@@ -37,22 +37,29 @@
   "kaptanlar": [
     {
       "isim": "Levent Yiğit",
-      "rol": "Takım Kaptanı & Mekanik Kaptanı"
+      "rol": "Takım Kaptanı"
     },
     {
       "isim": "Tuğra Kerem Kaya",
-      "rol": "Takım Kaptanı & PR Kaptanı"
+      "rol": "Elektronik Kaptanı"
+    },
+    {
+      "isim": "Muhammet Ali Sardoğan",
+      "rol": "Mekanik Kaptanı"
+    },
+    {
+      "isim": "Elif Başuslu",
+      "rol": "PR Kaptanı"
     },
     {
       "isim": "İrem Ünver",
-      "rol": "Yazılım Kaptanı",
-      "linkedin": "https://www.linkedin.com/in/irem-%C3%BCnver-326aa9390/"
+      "rol": "Yazılım Kaptanı"
     }
   ],
   "ekip_uyeleri": [
     {
       "isim": "Arda Furkan Aygenoğlu",
-      "rol": "Mekanik & PR Üyesi"
+      "rol": "PR Üyesi"
     },
     {
       "isim": "Oğuzhan Aşkın",
@@ -60,22 +67,12 @@
       "not": "GulfTech AI sisteminin yaratıcısı ve geliştiricisi"
     },
     {
-      "isim": "Elif Başuslu",
-      "rol": "PR & Elektronik & Yazılım Üyesi"
-    },
-    {
-      "isim": "Muhammet Ali Sardoğan",
-      "rol": "Mekanik & Tasarım Üyesi"
-    },
-    {
       "isim": "Tufan Gülmez",
-      "rol": "Mekanik Üyesi",
-      "linkedin": "https://www.linkedin.com/in/tufan-g%C3%BClmez-253a123b6"
+      "rol": "Mekanik Üyesi"
     },
     {
       "isim": "Beray Erenel",
-      "rol": "PR Üyesi",
-      "linkedin": "https://www.linkedin.com/in/beray-erenel-63b927395"
+      "rol": "PR Üyesi"
     },
     {
       "isim": "Ege Göllü",
@@ -83,37 +80,38 @@
     },
     {
       "isim": "Zeynep Sude Çakmak",
-      "rol": "PR & Elektronik & Yazılım Üyesi",
-      "linkedin": "https://www.linkedin.com/in/zeynep-%C3%A7akmak-442525399"
-    },
-    {
-      "isim": "Eren Özgüler",
-      "rol": "Mekanik & Tasarım Üyesi"
+      "rol": "PR Üyesi"
     }
   ],
   "divizyonlar": {
     "PR": {
       "aciklama": "Takımımızın dış dünya ile olan ilişkisini düzenleyen ekiptir. Sponsorluk görüşmeleri, proje yönetimi, sosyal medya yönetimi ve takım imajından sorumludur.",
-      "kaptan": "Tuğra Kerem Kaya",
-      "uyeler": ["Beray Erenel", "Ege Göllü", "Zeynep Sude Çakmak", "Elif Başuslu", "Arda Furkan Aygenoğlu"]
+      "kaptan": "Elif Başuslu",
+      "uyeler": [
+        "Beray Erenel",
+        "Ege Göllü",
+        "Zeynep Sude Çakmak",
+        "Arda Furkan Aygenoğlu"
+      ]
     },
     "Mekanik": {
       "aciklama": "Robotumuzun temellerini atıp fiziksel olarak düzenleyen ekiptir. Şasi üretimi ve geliştirilen eklentilerin yapımından sorumludur.",
-      "kaptan": "Levent Yiğit",
-      "uyeler": ["Tufan Gülmez", "Arda Furkan Aygenoğlu", "Muhammet Ali Sardoğan", "Eren Özgüler"]
+      "kaptan": "Muhammet Ali Sardoğan",
+      "uyeler": [
+        "Tufan Gülmez"
+      ]
     },
     "Elektronik": {
       "aciklama": "Robotun bir nevi beynini ve sinir sistemini oluşturan ekiptir. Kablolama ve sensör kontrolü onların sorumluluğudur.",
-      "uyeler": ["Zeynep Sude Çakmak", "Elif Başuslu"]
+      "kaptan": "Tuğra Kerem Kaya",
+      "uyeler": []
     },
     "Yazılım": {
       "aciklama": "Robotun beynini kodlayan ekiptir. Otonom sürüş ve kontrol algoritmalarını yazmaktan sorumludur.",
       "kaptan": "İrem Ünver",
-      "uyeler": ["Oğuzhan Aşkın", "Zeynep Sude Çakmak", "Elif Başuslu"]
-    },
-    "Tasarım": {
-      "aciklama": "Robotun dijital ortamda planlamasını yapan ekiptir. 3D modelleme ve teknik çizimler yapmaktan sorumludur.",
-      "uyeler": ["Eren Özgüler", "Muhammet Ali Sardoğan"]
+      "uyeler": [
+        "Oğuzhan Aşkın"
+      ]
     }
   },
   "teknik_hafiza": {
@@ -135,7 +133,14 @@
       "ad": "FRC Eğitim Portalı",
       "aciklama": "Eğitim Portalı, robotik ve mühendislik alanlarında bilgi paylaşımını artırmak amacıyla oluşturduğumuz bir içerik alanıdır. Yazılım, elektronik ve mekanik gibi süreç içerisinde önemli olan konular temel prensipleriyle birlikte ele alınır. Amacımız yalnızca kendi takımımızın gelişimine katkı sağlamak değil, aynı zamanda robotik alanına ilgi duyan öğrenciler için anlaşılır ve öğretici bir kaynak sunmaktır.",
       "url": "https://gulftechrobotic.com.tr/egitim.html",
-      "konular": ["Çark oranı (Gear Ratio)", "RPM", "Tork", "Aktüatör", "Elektronik Temelleri", "3D Modelleme"]
+      "konular": [
+        "Çark oranı (Gear Ratio)",
+        "RPM",
+        "Tork",
+        "Aktüatör",
+        "Elektronik Temelleri",
+        "3D Modelleme"
+      ]
     },
     {
       "ad": "Pollution at Gulf (Oyun)",
