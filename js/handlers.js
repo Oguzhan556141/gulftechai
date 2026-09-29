@@ -182,7 +182,7 @@ export const handlers = [
     },
     {
         name: 'divizyonlar',
-        match: (msg) => trMatch(msg, /divizyon|departman|bolum|pr|mekanik|elektronik|yazilim|tasarim/),
+        match: (msg) => trMatch(msg, /divizyon|departman|bolum|\bpr\b|mekanik|elektronik|yazilim|tasarim/),
         handle: async (msg, data, knowledge) => {
             const k = knowledge.takim_kimligi;
             const divizyonlar = k.divizyonlar || {};
@@ -383,33 +383,74 @@ export const handlers = [
     },
     {
         name: 'etkinlikler',
-        match: (msg) => trMatch(msg, /etkinlik|proje|zamanın mekaniği|huzurevi|stem|scout|yeşil vatan|devotion/),
+        match: (msg) => trMatch(msg, /etkinlik|proje|zamanin mekani|huzurevi|stem|yeşil vatan|devotion|green alliance|izaydas|pollution|egitim portali/),
         handle: async (msg, data, knowledge) => {
             const list = knowledge.etkinlikler || [];
             const wp = knowledge.web_sitesi_sayfalari || {};
             const normMsg = trNorm(msg);
             
-            // Check if user is asking about ONE specific single project (e.g. "zamanın mekaniği nedir")
-            const specificProjects = ['zamanın mekaniği', 'huzurevi', 'yeşil vatan', 'devotion', 'green alliance'];
-            const matchedSpecific = specificProjects.find(sp => normMsg.includes(sp));
+            // Check if user is asking about ONE specific single project
+            const specificMap = [
+                { keywords: ['zamanin mekani'], field: 'zamanın mekaniği' },
+                { keywords: ['huzurevi', 'bayramlasma'], field: 'huzurevi' },
+                { keywords: ['yesil vatan'], field: 'yeşil vatan' },
+                { keywords: ['devotion'], field: 'devotion' },
+                { keywords: ['green alliance', 'gfl'], field: 'green alliance' },
+                { keywords: ['izaydas'], field: 'izaydaş' },
+                { keywords: ['pollution', 'oyun'], field: 'pollution' },
+                { keywords: ['egitim portali'], field: 'eğitim portalı' },
+                { keywords: ['scout sistemi'], field: 'scout' },
+                { keywords: ['kick-off roportaj', 'kickoff roportaj'], field: 'kick-off' },
+            ];
             
-            if (matchedSpecific) {
-                const e = list.find(item => trNorm(item.ad).includes(matchedSpecific));
-                if (e) {
-                    let resp = `### 🚀 ${e.ad}\n\n${e.aciklama}\n\n`;
-                    if (e.url) resp += `🔗 **Proje Bağlantısı:** [Detaylı İncele](${e.url})\n\n`;
-                    resp += `🌐 Tüm projelerimizi [GulfTech Etkinlik Sayfası](${wp.projeler_etkinlikler || 'https://gulftechrobotic.com.tr/etkinlik.html'}) üzerinden görüntüleyebilirsiniz.`;
-                    return resp;
+            for (const sp of specificMap) {
+                if (sp.keywords.some(k => normMsg.includes(k))) {
+                    const e = list.find(item => trNorm(item.ad).includes(trNorm(sp.field)));
+                    if (e) {
+                        let resp = `### 🚀 ${e.ad}\n\n${e.aciklama}\n\n`;
+                        if (e.konular) {
+                            resp += `**Öne Çıkan Başlıklar:**\n` + e.konular.map(t => `- ${t}`).join('\n') + `\n\n`;
+                        }
+                        if (e.gelistirici) {
+                            resp += `👨‍💻 **Geliştirici:** ${e.gelistirici}\n\n`;
+                        }
+                        if (e.url) resp += `🔗 **Detaylı İncele:** [${e.ad}](${e.url})\n\n`;
+                        resp += `🌐 Tüm projelerimizi [GulfTech Etkinlik Portalı](${wp.projeler_etkinlikler || 'https://gulftechrobotic.com.tr/etkinlik.html'}) üzerinden görüntüleyebilirsiniz.`;
+                        return resp;
+                    }
                 }
             }
 
-            return `### 📅 GulfTech #11392 Etkinliklerimiz ve Sosyal Sorumluluk Projelerimiz\n\n` +
-                `GulfTech ailesi olarak sadece güçlü bir robot üretmekle kalmıyor, toplumda bilimin, teknolojinin, sürdürülebilirliğin ve toplumsal dayanışmanın yaygınlaşması için kapsamlı projeler yürütüyoruz:\n\n` +
-                list.map(e => `- **${e.ad}:** ${e.aciklama}${e.url ? ` ([Detaylar](${e.url}))` : ''}`).join('\n\n') +
-                `\n\n📌 **Detaylı İnceleme & Medya Bağlantıları:**\n` +
-                `- 🌐 Proje detayları ve galeri için: [GulfTech Etkinlik Portalı](${wp.projeler_etkinlikler || 'https://gulftechrobotic.com.tr/etkinlik.html'})\n` +
-                `- 📸 Etkinliklerimizden anlık kareler ve hikayeler için: [Instagram Hesabımız (@gulftechtr)](https://www.instagram.com/gulftechtr/)\n` +
-                `- 🎥 Video serilerimiz için: [GulfTech YouTube Kanalı](https://www.youtube.com/@gulftechtr)`;
+            return `### 📅 GulfTech #11392 Projelerimiz ve Etkinliklerimiz\n\n` +
+                `GulfTech ailesi olarak yalnızca rekabetçi bir robot üretmekle yetinmiyor; FIRST değerlerini, bilim ve teknoloji sevgisini, çevre bilincini ve toplumsal dayanışmayı toplumun her kesimine ulaştırmak için çok yönlü projeler yürütüyoruz. [GulfTech Etkinlik Portalı](https://gulftechrobotic.com.tr/etkinlik.html) üzerinde yer alan tüm temel proje ve etkinliklerimiz:\n\n` +
+                `---\n\n` +
+                `#### 💻 1. Dijital Projeler ve Yazılım Araçlarımız\n\n` +
+                `- 🤖 **Gulf Tech AI:** FRC dökümanlarını anlamlandırmayı kolaylaştıran, takım ve yarışma kuralları hakkında anlık yanıtlar sunan yapay zeka asistanımız (Geliştirici: *Oğuzhan Aşkın*). — [Asistanı Kullan](https://oguzhan556141.github.io/gulftechai/)\n` +
+                `- 📚 **FRC Eğitim Portalı:** Robotik ve mühendislik alanında bilgi paylaşımını artırmak amacıyla kurduğumuz platform. Çark oranları (Gear Ratio), RPM, tork, aktüatörler, temel elektronik ve 3D CAD modelleme konularında açık kaynaklı eğitim sunar. — [Eğitim Portalına Git](https://gulftechrobotic.com.tr/egitim.html)\n` +
+                `- 🎮 **Pollution at Gulf (Oyun):** Su altındaki köpekbalığını kontrol ederek denizlerdeki plastik atıklardan kaçılan çevre farkındalık oyunu. Oyunculara deniz kirliliğinin ciddiyetini eğlenceli bir macera ile hissettirir. — [Oyunu Oyna](https://gulftechrobotic.com.tr/game.html)\n` +
+                `- 📊 **Scout Sistemi (REBUILT 2026):** Maç sırasında canlı veri toplayıp analiz eden strateji aracımız. Rakip ve ittifak robotlarının performanslarını, taktiklerini ve saha verilerini sayısal olarak işleyerek bilinçli kararlar almamızı sağlar. — [Scout Sistemini İncele](https://gulftechrobotic.com.tr/scout.html)\n\n` +
+                `---\n\n` +
+                `#### 🔬 2. STEM ve FIRST Yaygınlaştırma Etkinliklerimiz\n\n` +
+                `- 🏫 **Gölcük Piyalepaşa İlkokulu STEM Etkinliği:** Küçük yaştaki öğrencileri bilim ve robotikle buluşturduğumuz, REBUILT sezonunda sadece robotumuzu değil genç zihinleri de inşa etme vizyonumuzun bir parçası. — [İncele](https://www.instagram.com/p/DV3zTA-iOSh/)\n` +
+                `- 🧩 **Çocuk Kasabası STEM Etkinliği:** 5 yıllık FLL mirasımızı yeni zihinlere aktarmak, FIRST kültürünü ve mühendislik disiplinini erken yaşta aşılamak amacıyla gerçekleştirdiğimiz atölye çalışması. — [İncele](https://www.instagram.com/reel/DVofbpBCFNk/)\n` +
+                `- 💡 **Yücel Koyuncu BİLSEM STEM Etkinliği:** FRC ve FTC dünyasının heyecanını paylaştığımız, yeni bir FTC takımı kurulmasına öncülük ve mentorluk ettiğimiz kapsamlı tanıtım buluşması. — [İncele](https://www.instagram.com/p/DV53uDfiFBe/)\n\n` +
+                `---\n\n` +
+                `#### 🌱 3. Sosyal Sorumluluk ve Çevre Projelerimiz\n\n` +
+                `- 🧓 **Huzurevi Bayramlaşması (Gölcük Prof. Dr. İsmail Barış Huzurevi):** Robotikten öte, asıl motivasyonumuzun insanlarla bir arada olmak ve sevgiyle yardımlaşmak olduğunu hissettiren anlamlı bayram ziyaretimiz. — [İncele](https://www.instagram.com/p/DWMEQScCAno/)\n` +
+                `- 💧 **Gulf Tech X Yeşil Vatan (Su Sebili Projesi):** Kurumumuzda tek kullanımlık pet şişeleri kaldırıp yerine su sebili kurarak plastik atık oluşumunu önlediğimiz çevre hareketi.\n` +
+                `- 🌿 **Gulf Tech X GFL Robotics Green Alliance:** FRC takımları arasında sürdürülebilirlik, çevre kirliliğiyle mücadele ve ortak yeşil projeler geliştirme amacıyla kurulan iş birliği platformu. — [İncele](https://www.instagram.com/p/DWKJVB2DGk6/)\n` +
+                `- ❤️ **Devotion Projesi:** *"Her şey bir hayalle başladı..."* diyerek yola çıktığımız, başkalarının hayatına değer katmak ve gönüllülük bilincini yükseltmek için başlattığımız sosyal sorumluluk projesi. — [İncele](https://www.instagram.com/p/DUqzahTiBG6/)\n` +
+                `- ♻️ **İZAYDAŞ Gezisi:** Kocaeli Atık ve Artıkları Arıtma, Yakma ve Değerlendirme A.Ş. tesislerine yaptığımız teknik gezi ile endüstriyel atık yönetimi ve geri dönüşüm süreçlerini yerinde inceledik. — [İncele](https://www.instagram.com/p/DR4xufmCImI/)\n\n` +
+                `---\n\n` +
+                `#### 🤝 4. Topluluk ve İçerik Üretimi\n\n` +
+                `- ⏳ **Zamanın Mekaniği Serisi:** Sadece robot yapmakla kalmayıp bilim ve mekanik tarihinden ilham verici bilgileri aktardığımız Instagram video serimiz. — [İzle](https://www.instagram.com/reel/DVQoa6biIMF/)\n` +
+                `- 🎙️ **Kick-off Röportajları:** FIRST topluluğunu yakından tanımak ve farklı takımların bakış açılarını kayıt altına almak için hazırladığımız söyleşi serisi. — [YouTube'da İzle](https://www.youtube.com/watch?v=gNPLx_AMXqE)\n` +
+                `- 🤝 **FRC Takımlarıyla Ortak Toplantılar:** Bilgi ve tecrübe paylaşımı amacıyla FRC takımlarıyla düzenli gerçekleştirdiğimiz çevrim içi ve yüz yüze oturumlar.\n` +
+                `- 🥐 **Takım Kahvaltısı & Birlik Buluşmaları:** Takım ruhunu, motivasyonu ve aile bağlarımızı diri tutan sosyal etkinliklerimiz.\n\n` +
+                `📌 **Tüm İçerik ve Güncel Detaylar:**\n` +
+                `- 🌐 **Etkinlik Sayfamız:** [gulftechrobotic.com.tr/etkinlik.html](${wp.projeler_etkinlikler || 'https://gulftechrobotic.com.tr/etkinlik.html'})\n` +
+                `- 📸 **Resmi Instagram Hesabımız:** [@gulftechtr](https://www.instagram.com/gulftechtr/)\n` +
+                `- 🎥 **YouTube:** [@gulftechtr](https://www.youtube.com/@gulftechtr)`;
         }
     },
     {
