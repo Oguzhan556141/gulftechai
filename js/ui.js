@@ -110,43 +110,29 @@ export const UI = {
     },
 
     updateCountdown(next) {
-        if (!this.countdownTimer || !next) return;
+        if (!next) return;
         const now = new Date();
-        const nextDate = new Date(next.date);
-        const diff = nextDate - now;
-        
+        const diff = new Date(next.date) - now;
+
         if (diff <= 0) {
-            this.countdownTimer.innerHTML = `<div class="countdown-label">🚀 <strong>${next.name}</strong> ${t('started')}</div>`;
+            const lbl = document.getElementById('countdownTimer');
+            if (lbl) lbl.innerHTML = `<div class="countdown-label">🚀 <strong>${next.name}</strong> başladı!</div>`;
             return;
         }
 
-        const values = {
+        const vals = {
             d: Math.floor(diff / 86400000),
             h: String(Math.floor((diff % 86400000) / 3600000)).padStart(2, '0'),
             m: String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0'),
             s: String(Math.floor((diff % 60000) / 1000)).padStart(2, '0')
         };
 
-        // If the inner structure isn't ready (first run or fallback), create it
-        if (!this.countdownTimer.querySelector('.countdown-digits')) {
-            this.countdownTimer.innerHTML = `
-                <div class="countdown-label">🎮 <strong>Kickoff'a Kalan Zaman</strong></div>
-                <div class="countdown-digits">
-                    <span class="cd-block"><span class="cd-num" id="cd-d"></span><span class="cd-unit">${t('days')}</span></span>
-                    <span class="cd-sep">:</span>
-                    <span class="cd-block"><span class="cd-num" id="cd-h"></span><span class="cd-unit">${t('hours')}</span></span>
-                    <span class="cd-sep">:</span>
-                    <span class="cd-block"><span class="cd-num" id="cd-m"></span><span class="cd-unit">${t('minutes')}</span></span>
-                    <span class="cd-sep">:</span>
-                    <span class="cd-block"><span class="cd-num" id="cd-s"></span><span class="cd-unit">${t('seconds')}</span></span>
-                </div>`;
-        }
-
-        // Update individual units
         ['d', 'h', 'm', 's'].forEach(unit => {
-            const el = $(`#cd-${unit}`);
-            if (el && el.textContent !== String(values[unit])) {
-                el.textContent = values[unit];
+            const el = document.getElementById(`cd-${unit}`);
+            if (!el) return;
+            const v = String(vals[unit]);
+            if (el.textContent !== v) {
+                el.textContent = v;
                 el.classList.add('updating');
                 setTimeout(() => el.classList.remove('updating'), 500);
             }

@@ -18,6 +18,12 @@ class ProxyHandler(http.server.SimpleHTTPRequestHandler):
                         env[k] = v
         return env
 
+    def do_GET(self):
+        if self.path.startswith('/api/gemini'):
+            self.do_POST()
+        else:
+            super().do_GET()
+
     def do_POST(self):
         if self.path == '/api/chat':
             try:
@@ -66,13 +72,6 @@ class ProxyHandler(http.server.SimpleHTTPRequestHandler):
 
         elif self.path.startswith('/api/gemini'):
             try:
-                query = self.path.split('?')[-1] if '?' in self.path else ''
-                # Specifically extract model from path or query if needed, 
-                # but for now we'll just handle the primary model redirection
-                
-                content_length = int(self.headers.get('Content-Length', 0))
-                post_data = self.rfile.read(content_length)
-                
                 env = self.load_env()
                 gemini_key = env.get('GEMINI_API_KEY')
 
@@ -83,22 +82,20 @@ class ProxyHandler(http.server.SimpleHTTPRequestHandler):
                     self.wfile.write(b'{"error": "GEMINI_API_KEY missing in .env"}')
                     return
 
-                # In Gemini, the key is usually a query param
-                # The frontend will send the model as part of the body or path
-                # Let's assume the frontend sends the full path needed AFTER /api/gemini
-                # e.g., /api/gemini/v1beta/models/gemini-pro:generateContent
-                
                 remote_path = self.path.replace('/api/gemini', '')
                 if '?' in remote_path:
                     url = f"https://generativelanguage.googleapis.com{remote_path}&key={gemini_key}"
                 else:
                     url = f"https://generativelanguage.googleapis.com{remote_path}?key={gemini_key}"
 
+                content_length = int(self.headers.get('Content-Length', 0))
+                post_data = self.rfile.read(content_length) if content_length > 0 else None
+
                 req = urllib.request.Request(
                     url,
                     data=post_data,
-                    headers={'Content-Type': 'application/json'},
-                    method='POST'
+                    headers={'Content-Type': 'application/json'} if post_data else {},
+                    method=self.command
                 )
 
                 with urllib.request.urlopen(req) as response:
@@ -109,9 +106,17 @@ class ProxyHandler(http.server.SimpleHTTPRequestHandler):
                     self.end_headers()
                     self.wfile.write(res_body)
 
+            except urllib.error.HTTPError as e:
+                err_body = e.read()
+                self.send_response(e.code)
+                self.send_header('Content-Type', 'application/json')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(err_body)
             except Exception as e:
                 self.send_response(500)
                 self.send_header('Content-Type', 'application/json')
+                self.send_header('Access-Control-Allow-Origin', '*')
                 self.end_headers()
                 self.wfile.write(json.dumps({"error": str(e)}).encode())
         else:

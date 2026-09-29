@@ -103,11 +103,7 @@ async function init() {
     if (apiKey) UI.apiKeyInput.value = apiKey;
     UI.modelSelect.value = model;
 
-    const KICKOFF_DATE = '2027-01-09T19:00:00+03:00';
-    const kickoffInfo = { name: 'Kickoff 2027', date: KICKOFF_DATE, location: 'Worldwide' };
-    
-    UI.updateCountdown(kickoffInfo);
-    setInterval(() => UI.updateCountdown(kickoffInfo), 1000);
+
 
     // Initial Mascot Animation Setup
     setupMascotInteractions();
@@ -168,11 +164,7 @@ function bindEvents() {
         UI.langSwitchBtn.addEventListener('click', () => {
             toggleLanguage();
             UI.updateApiStatus(true, model);
-            // Re-render countdown
-            if (UI.countdownTimer) {
-                UI.countdownTimer.innerHTML = '';
-                UI.updateCountdown(getNextRegional(appData?.regionals));
-            }
+
         });
     }
 
@@ -483,8 +475,8 @@ async function handleSend() {
     }
 
     $('#welcomeScreen')?.remove();
-    conversations[currentConvId].messages.push({ role: 'user', content: textLower });
-    UI.appendMessage('user', textLower);
+    conversations[currentConvId].messages.push({ role: 'user', content: text });
+    UI.appendMessage('user', text);
 
     UI.chatInput.value = '';
     UI.sendBtn.disabled = true;

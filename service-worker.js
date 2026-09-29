@@ -1,4 +1,4 @@
-const CACHE_NAME = 'gulftech-ai-v1';
+const CACHE_NAME = 'gulftech-ai-v2';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
