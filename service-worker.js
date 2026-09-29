@@ -1,4 +1,4 @@
-const CACHE_NAME = 'gulftech-ai-v1';
+const CACHE_NAME = 'gulftech-ai-v4';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -8,6 +8,7 @@ const ASSETS_TO_CACHE = [
   './js/handlers.js',
   './js/ui.js',
   './js/utils.js',
+  './js/i18n.js',
   './data.json',
   './teamKnowledge.json',
   './ruleKnowledge.json',
@@ -43,29 +44,21 @@ self.addEventListener('fetch', (event) => {
     // Only cache GET requests
     if (event.request.method !== 'GET') return;
     
-    // Ignore external APIs like Google Gemini or TBA for basic caching
-    if (event.request.url.includes('generativelanguage.googleapis.com')) return;
+    // Ignore external APIs like Google Gemini, TBA, or proxy
+    if (event.request.url.includes('generativelanguage.googleapis.com') || event.request.url.includes('/api/')) return;
 
+    // Network-first for HTML, JS and JSON so users immediately see changes
     event.respondWith(
-        caches.match(event.request).then((response) => {
-            // Serve from cache if found, otherwise fetch from network
-            return response || fetch(event.request).then((fetchResponse) => {
-                // Don't cache if not a valid success response
-                if (!fetchResponse || fetchResponse.status !== 200 || fetchResponse.type !== 'basic') {
-                    return fetchResponse;
-                }
-                
-                // Clone response and cache it
+        fetch(event.request).then((fetchResponse) => {
+            if (fetchResponse && fetchResponse.status === 200) {
                 const responseToCache = fetchResponse.clone();
                 caches.open(CACHE_NAME).then((cache) => {
                     cache.put(event.request, responseToCache);
                 });
-                
-                return fetchResponse;
-            }).catch(() => {
-                // If offline and not in cache, we could return a fallback HTML if it was a navigation request
-                return new Response("Offline", { status: 503, statusText: "Offline" });
-            });
+            }
+            return fetchResponse;
+        }).catch(() => {
+            return caches.match(event.request);
         })
     );
 });

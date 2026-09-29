@@ -369,7 +369,7 @@ a:hover {
     backdrop-filter: blur(30px) saturate(220%);
     -webkit-backdrop-filter: blur(30px) saturate(220%);
     border: 1px solid rgba(56, 189, 248, 0.3);
-    box-shadow: 
+    box-shadow:
         0 8px 32px 0 rgba(0, 0, 0, 0.45),
         inset 0 1px 2px 0 rgba(255, 255, 255, 0.12),
         inset 0 0 1px 1px rgba(255, 255, 255, 0.08),
@@ -423,7 +423,7 @@ a:hover {
     backdrop-filter: blur(20px) saturate(200%) !important;
     -webkit-backdrop-filter: blur(20px) saturate(200%) !important;
     border: 1px solid rgba(56, 189, 248, 0.2) !important;
-    box-shadow: 
+    box-shadow:
         0 4px 16px rgba(0, 0, 0, 0.3),
         inset 0 1px 1px rgba(255, 255, 255, 0.1) !important;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
@@ -481,6 +481,7 @@ a:hover {
         opacity: 0;
         transform: scale(0.9) translateY(5px);
     }
+
     to {
         opacity: 1;
         transform: scale(1) translateY(0);
@@ -576,8 +577,8 @@ a:hover {
 }
 
 .brand-text .accent {
-    color: var(--accent-gold);
-    text-shadow: 0 0 10px var(--gold-glow);
+    color: inherit;
+    text-shadow: none;
 }
 
 .brand-name {
@@ -1099,8 +1100,15 @@ a:hover {
 }
 
 @keyframes borderGlow {
-    0% { border-color: rgba(14, 165, 233, 0.2); box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4), 0 0 15px rgba(14, 165, 233, 0.05); }
-    100% { border-color: rgba(14, 165, 233, 0.5); box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4), 0 0 30px rgba(14, 165, 233, 0.15); }
+    0% {
+        border-color: rgba(14, 165, 233, 0.2);
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4), 0 0 15px rgba(14, 165, 233, 0.05);
+    }
+
+    100% {
+        border-color: rgba(14, 165, 233, 0.5);
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4), 0 0 30px rgba(14, 165, 233, 0.15);
+    }
 }
 
 @keyframes glowPulse {
@@ -1155,9 +1163,20 @@ a:hover {
 }
 
 @keyframes digitFlip {
-    0% { transform: scale(1); filter: brightness(1); }
-    40% { transform: scale(0.9) translateY(-2px); filter: brightness(1.5); }
-    100% { transform: scale(1); filter: brightness(1); }
+    0% {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+
+    40% {
+        transform: scale(0.9) translateY(-2px);
+        filter: brightness(1.5);
+    }
+
+    100% {
+        transform: scale(1);
+        filter: brightness(1);
+    }
 }
 
 .cd-unit {
@@ -1442,7 +1461,7 @@ a:hover {
 
 .chat-input-container:focus-within {
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.08);
+    box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.1), 0 0 15px rgba(251, 191, 36, 0.1);
 }
 
 #chatInput {
@@ -1587,6 +1606,23 @@ a:hover {
     .cd-sep {
         font-size: 1rem;
         margin-bottom: 14px;
+    }
+
+    /* OrionOS — Mobile adjustments */
+    @media (max-width: 520px) {
+        body.orion-mode .orion-wrapper {
+            width: 120px;
+            height: 170px;
+            bottom: 10px;
+            left: 10px;
+            right: auto;
+            opacity: 0.5;
+        }
+
+        body.orion-mode .orion-center-constellation {
+            width: 200px;
+            height: 300px;
+        }
     }
 
     .countdown-digits {
@@ -1740,8 +1776,17 @@ a:hover {
 }
 
 @keyframes orionGlimmer {
-    0%, 100% { opacity: 0.6; filter: drop-shadow(0 0 2px rgba(135, 206, 235, 0.3)); }
-    50% { opacity: 1; filter: drop-shadow(0 0 8px rgba(135, 206, 235, 0.8)); }
+
+    0%,
+    100% {
+        opacity: 0.6;
+        filter: drop-shadow(0 0 2px rgba(135, 206, 235, 0.3));
+    }
+
+    50% {
+        opacity: 1;
+        filter: drop-shadow(0 0 8px rgba(135, 206, 235, 0.8));
+    }
 }
 
 .orion-star {
@@ -1876,7 +1921,7 @@ a:hover {
 
 .venue-map-title {
     margin-bottom: 10px;
-    color: var(--accent-gold);
+    color: var(--accent);
     font-size: 0.95rem;
 }
 
@@ -1978,11 +2023,13 @@ a:hover {
 
 .brand-name .accent,
 .welcome-screen h1 .accent {
-    background: linear-gradient(135deg, var(--accent-gold) 0%, #fde68a 100%);
+    /* User Mode: Logo-based Cyan to Gold splash */
+    background: linear-gradient(135deg, #38bdf8 0%, #ffffff 50%, var(--accent-gold) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 15px var(--gold-glow) !important;
+    text-shadow: 0 0 15px rgba(251, 191, 36, 0.4) !important;
+    font-weight: 900;
 }
 
 /* Suggestion Chips - Liquid Glass */
@@ -2025,19 +2072,22 @@ a:hover {
 .blob-2 {
     width: 500px;
     height: 500px;
-    background: var(--accent-gold);
+    background: #4f46e5; /* Indigo shark shadow */
     bottom: -150px;
     left: -150px;
+    opacity: 0.2;
     animation-duration: 35s;
 }
 
 .blob-3 {
     width: 300px;
     height: 300px;
-    background: #7c4dff;
+    background: var(--accent-gold); /* Gold nebula sync */
     top: 40%;
     left: 40%;
 }
+
+
 
 @keyframes blobTour {
     0% {
@@ -2054,25 +2104,102 @@ a:hover {
 }
 
 /* ========================================
-   LANGUAGE SWITCH BUTTON
+   LANGUAGE SELECTOR DROPDOWN
    ======================================== */
-.lang-switch-btn {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid var(--border);
-    color: var(--text-secondary);
-    font-size: 0.75rem;
+.lang-dropdown-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.lang-dropdown-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(15, 23, 42, 0.65) !important;
+    border: 1px solid rgba(56, 189, 248, 0.25) !important;
+    color: var(--text-primary);
+    font-size: 0.8rem;
     font-weight: 600;
-    padding: 5px 10px;
-    border-radius: 8px;
+    padding: 6px 12px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.lang-dropdown-btn:hover {
+    border-color: var(--accent) !important;
+    background: rgba(56, 189, 248, 0.15) !important;
+    box-shadow: 0 4px 16px rgba(56, 189, 248, 0.25);
+    transform: translateY(-1px);
+}
+
+.lang-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: rgba(10, 22, 40, 0.95);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 12px;
+    padding: 6px;
+    min-width: 140px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(56, 189, 248, 0.1);
+    z-index: 250;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px) scale(0.96);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.lang-dropdown-wrapper.open .lang-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.sidebar-footer .lang-dropdown-menu {
+    top: auto;
+    bottom: calc(100% + 8px);
+    right: 0;
+}
+
+.lang-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.15s ease;
+    width: 100%;
     font-family: var(--font-body);
 }
 
-.lang-switch-btn:hover {
-    background: var(--accent);
-    color: #fff;
-    border-color: var(--accent);
+.lang-dropdown-item:hover {
+    background: rgba(56, 189, 248, 0.12);
+    color: var(--text-primary);
+    transform: translateX(2px);
+}
+
+.lang-dropdown-item.active {
+    background: rgba(56, 189, 248, 0.2);
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.lang-flag {
+    font-size: 1rem;
+    line-height: 1;
 }
 
 /* ========================================
@@ -2132,8 +2259,15 @@ a:hover {
 }
 
 @keyframes orionLineGlow {
-    0%, 100% { stroke: rgba(150, 180, 255, 0.2); }
-    50% { stroke: rgba(150, 180, 255, 0.5); }
+
+    0%,
+    100% {
+        stroke: rgba(150, 180, 255, 0.2);
+    }
+
+    50% {
+        stroke: rgba(150, 180, 255, 0.5);
+    }
 }
 
 .orion-hero-star {
@@ -2179,18 +2313,44 @@ a:hover {
 }
 
 @keyframes orionHeroTwinkle {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; filter: drop-shadow(0 0 8px rgba(200, 220, 255, 0.8)); }
+
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+        filter: drop-shadow(0 0 8px rgba(200, 220, 255, 0.8));
+    }
 }
 
 @keyframes nebulaCorePulse {
-    0%, 100% { opacity: 0.4; r: 3; }
-    50% { opacity: 0.9; r: 5; }
+
+    0%,
+    100% {
+        opacity: 0.4;
+        r: 3;
+    }
+
+    50% {
+        opacity: 0.9;
+        r: 5;
+    }
 }
 
 @keyframes nebulaGlow {
-    0%, 100% { opacity: 0.3; stroke-width: 25; }
-    50% { opacity: 0.6; stroke-width: 35; }
+
+    0%,
+    100% {
+        opacity: 0.3;
+        stroke-width: 25;
+    }
+
+    50% {
+        opacity: 0.6;
+        stroke-width: 35;
+    }
 }
 
 /* ===== OrionOS Mode — Body Theme Override ===== */
@@ -2288,8 +2448,15 @@ body.orion-mode .welcome-screen h1 .accent {
 }
 
 @keyframes orionBadgePulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(123, 140, 255, 0); }
-    50% { box-shadow: 0 0 12px 2px rgba(123, 140, 255, 0.3); }
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(123, 140, 255, 0);
+    }
+
+    50% {
+        box-shadow: 0 0 12px 2px rgba(123, 140, 255, 0.3);
+    }
 }
 
 /* OrionOS — Countdown */
@@ -2338,18 +2505,3 @@ body.orion-mode .suggestion-chip:hover {
 }
 
 /* OrionOS — Mobile adjustments */
-@media (max-width: 520px) {
-    body.orion-mode .orion-wrapper {
-        width: 120px;
-        height: 170px;
-        bottom: 10px;
-        left: 10px;
-        right: auto;
-        opacity: 0.5;
-    }
-
-    body.orion-mode .orion-center-constellation {
-        width: 200px;
-        height: 300px;
-    }
-}

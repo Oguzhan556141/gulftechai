@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#0ea5e9">
-    <title>GulfTech AI #11392</title>
+    <title>GulfTech AI #11392 | 2027 Season</title>
     <!-- Favicon & PWA Manifest -->
     <link rel="icon" type="image/png" href="assets/ai-mascot.png">
     <link rel="manifest" href="manifest.json">
     <meta name="description"
-        content="GulfTech AI is an intelligent assistant for FRC Team #11392. Get help with robotics, FRC strategy, programming, and more.">
+        content="GulfTech AI is an intelligent assistant for FRC Team #11392. Get help with the 2027 season, robotics, strategy, and more.">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
         rel="stylesheet">
@@ -29,23 +29,32 @@
     <div class="orion-wrapper" aria-hidden="true">
         <svg class="orion-svg" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
             <!-- Constellation lines -->
-            <path d="M 50,40 L 150,70 L 100,150 L 120,165 L 80,180 L 100,150" class="orion-line" />
-            <path d="M 80,180 L 40,250" class="orion-line" />
-            <path d="M 120,165 L 160,260" class="orion-line" />
-            
+            <!-- Shoulders & Upper Body -->
+            <path d="M 55,45 L 145,55" class="orion-line" />
+            <path d="M 55,45 L 85,150" class="orion-line" />
+            <path d="M 145,55 L 115,150" class="orion-line" />
+            <!-- Orion Belt -->
+            <path d="M 85,150 L 100,150 L 115,150" class="orion-line" style="stroke: rgba(147, 197, 253, 0.4); stroke-width: 1.2;" />
+            <!-- Lower Body & Legs -->
+            <path d="M 85,150 L 60,255" class="orion-line" />
+            <path d="M 115,150 L 140,245" class="orion-line" />
+            <path d="M 60,255 L 140,245" class="orion-line" />
+
             <!-- Stars -->
-            <circle cx="50" cy="40" r="3" class="orion-star bright" /> <!-- Betelgeuse -->
-            <circle cx="150" cy="70" r="2.5" class="orion-star" /> <!-- Bellatrix -->
-            <circle cx="100" cy="150" r="2" class="orion-star belt" /> <!-- Mintaka -->
-            <circle cx="110" cy="158" r="2" class="orion-star belt" /> <!-- Alnilam -->
-            <circle cx="120" cy="165" r="2" class="orion-star belt" /> <!-- Alnitak -->
-            <circle cx="40" cy="250" r="2.5" class="orion-star" /> <!-- Saiph -->
-            <circle cx="160" cy="260" r="3" class="orion-star bright" /> <!-- Rigel -->
+            <!-- Betelgeuse (Alpha Orionis - Top Left, Red Supergiant) -->
+            <circle cx="55" cy="45" r="3.5" class="orion-star bright" style="fill: #ffb07c; filter: drop-shadow(0 0 6px rgba(255, 140, 60, 0.9));" />
+            <!-- Bellatrix (Gamma Orionis - Top Right) -->
+            <circle cx="145" cy="55" r="3" class="orion-star" style="fill: #dbeafe; filter: drop-shadow(0 0 4px #93c5fd);" />
             
-            <!-- Sword -->
-            <circle cx="110" cy="180" r="1.5" class="orion-star dim" />
-            <circle cx="108" cy="195" r="1.5" class="orion-star dim" />
-            <circle cx="105" cy="210" r="1.5" class="orion-star dim" />
+            <!-- Orion Belt: Alnitak, Alnilam, Mintaka -->
+            <circle cx="85" cy="150" r="2.3" class="orion-star belt" />
+            <circle cx="100" cy="150" r="2.3" class="orion-star belt" />
+            <circle cx="115" cy="150" r="2.3" class="orion-star belt" />
+            
+            <!-- Saiph (Kappa Orionis - Bottom Left) -->
+            <circle cx="60" cy="255" r="2.8" class="orion-star" style="fill: #dbeafe; filter: drop-shadow(0 0 4px #93c5fd);" />
+            <!-- Rigel (Beta Orionis - Bottom Right, Bright Blue Supergiant) -->
+            <circle cx="140" cy="245" r="3.8" class="orion-star bright" style="fill: #ffffff; filter: drop-shadow(0 0 8px #60a5fa);" />
         </svg>
     </div>
 
@@ -55,23 +64,25 @@
         <div class="orion-center-constellation">
             <svg viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg" class="orion-hero-svg">
                 <!-- Hero Constellation lines -->
-                <path d="M 100,80 L 300,140 L 200,300 L 240,330 L 160,360 L 200,300" class="orion-hero-line" />
-                <path d="M 160,360 L 80,500" class="orion-hero-line" />
-                <path d="M 240,330 L 320,520" class="orion-hero-line" />
-                <!-- Nebula glow circles -->
-                <circle cx="200" cy="300" r="60" class="orion-nebula-glow" />
+                <path d="M 110,90 L 290,110" class="orion-hero-line" />
+                <path d="M 110,90 L 170,300" class="orion-hero-line" />
+                <path d="M 290,110 L 230,300" class="orion-hero-line" />
+                <path d="M 170,300 L 200,300 L 230,300" class="orion-hero-line" />
+                <path d="M 170,300 L 120,510" class="orion-hero-line" />
+                <path d="M 230,300 L 280,490" class="orion-hero-line" />
+                <path d="M 120,510 L 280,490" class="orion-hero-line" />
+                
+                <!-- Nebula glow circles (Orion Nebula M42) -->
+                <circle cx="200" cy="340" r="50" class="orion-nebula-glow" style="fill: radial-gradient(circle, rgba(236, 72, 153, 0.4) 0%, rgba(99, 102, 241, 0.2) 60%, transparent 100%);" />
+                
                 <!-- Stars -->
-                <circle cx="100" cy="80" r="5" class="orion-hero-star betelgeuse" />
-                <circle cx="300" cy="140" r="4.5" class="orion-hero-star" />
-                <circle cx="200" cy="300" r="3.5" class="orion-hero-star belt" />
-                <circle cx="220" cy="316" r="3.5" class="orion-hero-star belt" />
-                <circle cx="240" cy="330" r="3.5" class="orion-hero-star belt" />
-                <circle cx="80" cy="500" r="4.5" class="orion-hero-star" />
-                <circle cx="320" cy="520" r="5" class="orion-hero-star rigel" />
-                <!-- Sword/Nebula -->
-                <circle cx="220" cy="360" r="2.5" class="orion-hero-star dim" />
-                <circle cx="218" cy="390" r="2.5" class="orion-hero-star dim" />
-                <circle cx="215" cy="420" r="3" class="orion-hero-star nebula-core" />
+                <circle cx="110" cy="90" r="6" class="orion-hero-star betelgeuse" style="fill: #ffb07c; filter: drop-shadow(0 0 12px rgba(255, 140, 60, 0.9));" />
+                <circle cx="290" cy="110" r="5" class="orion-hero-star" />
+                <circle cx="170" cy="300" r="4" class="orion-hero-star belt" />
+                <circle cx="200" cy="300" r="4" class="orion-hero-star belt" />
+                <circle cx="230" cy="300" r="4" class="orion-hero-star belt" />
+                <circle cx="120" cy="510" r="5" class="orion-hero-star" />
+                <circle cx="280" cy="490" r="6.5" class="orion-hero-star rigel" style="fill: #ffffff; filter: drop-shadow(0 0 14px #60a5fa);" />
             </svg>
         </div>
     </div>
@@ -106,7 +117,10 @@
             <div class="sidebar-nav">
                 <button class="nav-item" id="navSchedule">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                        <line x1="16" y1="2" x2="16" y2="6" />
+                        <line x1="8" y1="2" x2="8" y2="6" />
+                        <line x1="3" y1="10" x2="21" y2="10" />
                     </svg>
                     <span data-i18n="tournamentCalendar">Turnuva Takvimi</span>
                 </button>
@@ -122,9 +136,23 @@
         <div class="sidebar-footer">
             <div class="api-status" id="apiStatus">
                 <div class="status-dot offline"></div>
-                <span data-i18n="userMode">v1.0</span>
+                <span data-i18n="userMode">v1.1</span>
             </div>
-            <button class="lang-switch-btn" id="langSwitchBtn" title="Change Language" data-i18n="langSwitch">🇬🇧 EN</button>
+            <div class="lang-dropdown-wrapper">
+                <button class="lang-dropdown-btn glass-btn" id="sidebarLangBtn" aria-label="Dil Seçimi">
+                    <span class="lang-current-label">🇹🇷 TR</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div class="lang-dropdown-menu liquid-glass" id="sidebarLangMenu">
+                    <button class="lang-dropdown-item" data-lang="tr"><span class="lang-flag">🇹🇷</span> Türkçe</button>
+                    <button class="lang-dropdown-item" data-lang="en"><span class="lang-flag">🇬🇧</span> English</button>
+                    <button class="lang-dropdown-item" data-lang="de"><span class="lang-flag">🇩🇪</span> Deutsch</button>
+                    <button class="lang-dropdown-item" data-lang="fr"><span class="lang-flag">🇫🇷</span> Français</button>
+                    <button class="lang-dropdown-item" data-lang="es"><span class="lang-flag">🇪🇸</span> Español</button>
+                </div>
+            </div>
         </div>
     </aside>
 
@@ -141,7 +169,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p class="modal-desc" data-i18n="apiDesc">Gerçek AI yanıtları için bir Google Gemini API anahtarı girin. Anahtar olmadan
+                <p class="modal-desc" data-i18n="apiDesc">Gerçek AI yanıtları için bir Google Gemini API anahtarı girin.
+                    Anahtar olmadan
                     simüle modda çalışır.</p>
                 <div class="form-field">
                     <label for="apiKeyInput" data-i18n="apiKeyLabel">Gemini API Anahtarı</label>
@@ -159,9 +188,9 @@
                 <div class="form-field">
                     <label for="modelSelect" data-i18n="modelLabel">Model</label>
                     <select id="modelSelect">
-                        <option value="gemini-2.0-flash" data-i18n="modelFlash">Gemini 2.0 Flash (Hızlı)</option>
-                        <option value="gemini-2.0-pro" data-i18n="modelPro">Gemini 2.0 Pro (Gelişmiş)</option>
-                        <option value="gemini-1.5-pro" data-i18n="model15Pro">Gemini 1.5 Pro</option>
+                        <option value="gemini-3.8-flash" selected data-i18n="modelFlash">Gemini 3.8 Flash (Hızlı &
+                            Güncel)</option>
+                        <option value="gemini-3.5-pro" data-i18n="modelPro">Gemini 3.5 Pro (Gelişmiş)</option>
                     </select>
                 </div>
                 <button class="btn-save" id="saveApiKey" data-i18n="save">Kaydet</button>
@@ -182,8 +211,25 @@
             </button>
             <div class="chat-header-title">
                 <span>GulfTech AI</span>
-                <span class="model-badge" id="modelBadge" data-i18n="userMode">v1.0</span>
+                <span class="model-badge" id="modelBadge" data-i18n="userMode">v1.1</span>
             </div>
+            <!-- Language Dropdown in Header -->
+            <div class="lang-dropdown-wrapper">
+                <button class="lang-dropdown-btn glass-btn" id="langDropdownBtn" aria-label="Dil Seçimi / Select Language">
+                    <span class="lang-current-label">🇹🇷 TR</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div class="lang-dropdown-menu liquid-glass" id="langDropdownMenu">
+                    <button class="lang-dropdown-item" data-lang="tr"><span class="lang-flag">🇹🇷</span> Türkçe</button>
+                    <button class="lang-dropdown-item" data-lang="en"><span class="lang-flag">🇬🇧</span> English</button>
+                    <button class="lang-dropdown-item" data-lang="de"><span class="lang-flag">🇩🇪</span> Deutsch</button>
+                    <button class="lang-dropdown-item" data-lang="fr"><span class="lang-flag">🇫🇷</span> Français</button>
+                    <button class="lang-dropdown-item" data-lang="es"><span class="lang-flag">🇪🇸</span> Español</button>
+                </div>
+            </div>
+
             <a href="https://gulftechrobotic.com.tr/" target="_blank" class="team-link"
                 title="GulfTech Robotic Website">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -201,12 +247,41 @@
                 <img src="assets/ai-mascot.png" alt="GulfTech AI" class="welcome-mascot clean-logo">
                 <h1>Gulf<span class="accent">Tech</span> AI</h1>
                 <p data-i18n="welcomeSub">FRC #11392 Yapay Zeka Asistanı</p>
-                <div class="countdown-container" id="countdownTimer"></div>
-                <p class="welcome-sub" data-i18n="welcomeDesc">Robotik, FRC stratejisi, takım bilgisi ve daha fazlası hakkında sorularınızı sorun.
+                <div class="countdown-container" id="countdownTimer">
+                    <div class="countdown-label">🎮 <strong>FRC 2027 Kickoff'a Kalan Zaman</strong></div>
+                    <div class="countdown-digits">
+                        <span class="cd-block"><span class="cd-num" id="cd-d">--</span><span class="cd-unit">Gün</span></span>
+                        <span class="cd-sep">:</span>
+                        <span class="cd-block"><span class="cd-num" id="cd-h">--</span><span class="cd-unit">Saat</span></span>
+                        <span class="cd-sep">:</span>
+                        <span class="cd-block"><span class="cd-num" id="cd-m">--</span><span class="cd-unit">Dakika</span></span>
+                        <span class="cd-sep">:</span>
+                        <span class="cd-block"><span class="cd-num" id="cd-s">--</span><span class="cd-unit">Saniye</span></span>
+                    </div>
+                </div>
+                <script>
+                (function(){
+                    var target = new Date('2027-01-09T19:00:00+03:00').getTime();
+                    function tick(){
+                        var diff = target - Date.now();
+                        if(diff<=0){document.getElementById('countdownTimer').innerHTML='<div class="countdown-label">🚀 FRC 2027 Kickoff Başladı!</div>';return;}
+                        var d=Math.floor(diff/86400000), h=Math.floor((diff%86400000)/3600000), m=Math.floor((diff%3600000)/60000), s=Math.floor((diff%60000)/1000);
+                        document.getElementById('cd-d').textContent=d;
+                        document.getElementById('cd-h').textContent=String(h).padStart(2,'0');
+                        document.getElementById('cd-m').textContent=String(m).padStart(2,'0');
+                        document.getElementById('cd-s').textContent=String(s).padStart(2,'0');
+                    }
+                    tick();
+                    setInterval(tick,1000);
+                })();
+                </script>
+                <p class="welcome-sub" data-i18n="welcomeDesc">Robotik, FRC stratejisi, takım bilgisi ve daha fazlası
+                    hakkında sorularınızı sorun.
                 </p>
 
                 <div class="suggestions" id="suggestions">
-                    <button class="suggestion-chip glass-btn" data-prompt="REBUILT oyunundaki puanlama sistemi nasıl çalışıyor?">
+                    <button class="suggestion-chip glass-btn"
+                        data-prompt="REBUILT oyunundaki puanlama sistemi nasıl çalışıyor?">
                         <span class="chip-icon">🏗️</span>
                         <span data-i18n="chipRebuilt">REBUILT Puanlama</span>
                     </button>
@@ -214,11 +289,13 @@
                         <span class="chip-icon">👥</span>
                         <span data-i18n="chipTeam">Takım Kadrosu</span>
                     </button>
-                    <button class="suggestion-chip glass-btn" data-prompt="FIRST vakfı ve Fikret Yüksel Vakfı hakkında bilgi verir misin?">
+                    <button class="suggestion-chip glass-btn"
+                        data-prompt="FIRST vakfı ve Fikret Yüksel Vakfı hakkında bilgi verir misin?">
                         <span class="chip-icon">🌐</span>
                         <span data-i18n="chipFirst">FIRST & FYV</span>
                     </button>
-                    <button class="suggestion-chip glass-btn" data-prompt="Projelerinizden ve etkinliklerinizden bahseder misiniz?">
+                    <button class="suggestion-chip glass-btn"
+                        data-prompt="Projelerinizden ve etkinliklerinizden bahseder misiniz?">
                         <span class="chip-icon">🚀</span>
                         <span data-i18n="chipProjects">Projelerimiz</span>
                     </button>
@@ -230,7 +307,8 @@
         <div class="chat-input-wrapper">
             <div class="inline-suggestions" id="inlineSuggestions"></div>
             <div class="chat-input-container liquid-glass" id="chatInputContainer">
-                <textarea id="chatInput" data-i18n="inputPlaceholder" placeholder="GulfTech AI'ya mesajınızı yazın..." rows="1" autofocus></textarea>
+                <textarea id="chatInput" data-i18n="inputPlaceholder" placeholder="GulfTech AI'ya mesajınızı yazın..."
+                    rows="1" autofocus></textarea>
                 <button class="send-btn" id="sendBtn" disabled aria-label="Gönder">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2.5">
@@ -239,8 +317,9 @@
                     </svg>
                 </button>
             </div>
-            <p class="input-hint"><span data-i18n="inputHint">GulfTech AI hata yapabilir. Önemli bilgileri doğrulayın.</span> <span
-                    class="powered-by" data-i18n="poweredBy">Powered by Gulf Tech #11392</span></p>
+            <p class="input-hint"><span data-i18n="inputHint">GulfTech AI hata yapabilir. Önemli bilgileri
+                    doğrulayın.</span> <span class="powered-by" data-i18n="poweredBy">Powered by Gulf Tech #11392</span>
+            </p>
         </div>
     </main>
 
@@ -251,7 +330,8 @@
                 <h3 data-i18n="mapTitle">Bölge Haritası & Salon Planı</h3>
                 <button class="modal-close" id="mapModalClose">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
                     </svg>
                 </button>
             </div>
@@ -259,7 +339,8 @@
                 <!-- Dynamically populated from map.js -->
             </div>
             <div class="modal-footer" id="mapModalFooter">
-                <button class="btn-back-map" id="backToTurkey" style="display:none;" data-i18n="backToTurkey">← Türkiye Haritasına Dön</button>
+                <button class="btn-back-map" id="backToTurkey" style="display:none;" data-i18n="backToTurkey">← Türkiye
+                    Haritasına Dön</button>
             </div>
         </div>
     </div>

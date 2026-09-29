@@ -22,6 +22,67 @@ function trMatch(msg, pattern) {
 
 export const handlers = [
     {
+        name: 'genel_kultur',
+        match: (msg) => {
+            const norm = trNorm(msg);
+            if (norm.includes('first') || norm.includes('fikret') || norm.includes('yuksel') || norm.includes('vakif')) return false;
+            return trMatch(msg, /\b(bilgi|kultur|nedir|kimdir|cografya|tarih|bilim|sanat|edebiyat|spor|mitoloji|felsefe|psikoloji|ekonomi|saglik|mutfak|fizik|biyoloji|astronomi|einstein|foton|kuantum|mona lisa|periyodik|ataturk|everest|nil|nehir|dag|gol|deniz|kitai|asya|avrupa|afrika|amerika|tablo|eser|ressam|yazar|kitap|klasik|olimpiyat|dunya kupasi|enflasyon|vitamin|protein|karbonhidrat|dna|evrim|yapay zeka|internet|blokzincir)\b/i);
+        },
+        handle: async (msg, data, knowledge) => {
+            const gk = knowledge.genel_kultur || {};
+            const normMsg = trNorm(msg);
+
+            const findMatch = (obj) => {
+                for (const [key, val] of Object.entries(obj)) {
+                    const normKey = trNorm(key);
+                    const keyParts = normKey.split('_');
+
+                    // 1. Match against partial keys (e.g. "einstein" matches "albert_einstein")
+                    const isKeyMatch = normMsg.includes(normKey) || (keyParts.length > 1 && keyParts.some(p => p.length > 3 && normMsg.includes(p)));
+
+                    if (isKeyMatch && typeof val === 'string' && val.length > 10) {
+                        return { title: key, body: val };
+                    }
+                    
+                    // 2. Match in arrays (objects with olay, eser, ad, isim, etc.)
+                    if (Array.isArray(val)) {
+                        const match = val.find(item => {
+                            const name = item.olay || item.eser || item.ad || item.isim || item.sanatci;
+                            if (!name) return false;
+                            const normName = trNorm(name);
+                            return normMsg.includes(normName) || (normName.split(' ').some(p => p.length > 3 && normMsg.includes(p)));
+                        });
+                        if (match) {
+                            return { 
+                                title: match.olay || match.eser || match.ad || match.isim || match.sanatci, 
+                                body: (match.yil ? `**Yıl:** ${match.yil}\n` : '') + 
+                                      (match.sanatci ? `**Sanatçı:** ${match.sanatci}\n` : '') + 
+                                      (match.onem || match.aciklama || match.tanim || '')
+                            };
+                        }
+                    }
+
+                    // 3. Recursive search in objects
+                    if (typeof val === 'object' && val !== null) {
+                        if (isKeyMatch && (val.aciklama || val.tanim || val.ozet)) {
+                            return { title: key, body: val.aciklama || val.tanim || val.ozet };
+                        }
+                        const subMatch = findMatch(val);
+                        if (subMatch) return subMatch;
+                    }
+                }
+                return null;
+            };
+
+            const result = findMatch(gk);
+            if (result) {
+                return `### 🧠 ${result.title.charAt(0).toUpperCase() + result.title.slice(1).replace(/_/g, ' ')}\n\n${result.body}`;
+            }
+
+            return `Genel kültür hafızamda birçok bilgi var! Coğrafya, tarih, bilim, sanat veya felsefe gibi konularda sorular sorabilirsin. Örneğin: "Einstein kimdir?", "Mona Lisa nedir?" veya "Kuantum fiziği hakkında bilgi verir misin?"`;
+        }
+    },
+    {
         name: 'iletisim',
         match: (msg) => trMatch(msg, /iletisim|sosyal|medya|instagram|site|link|ulasim|irtibat/),
         handle: async (msg, data, knowledge) => {
@@ -46,13 +107,20 @@ export const handlers = [
         handle: async (msg, data, knowledge) => {
             const k = knowledge.takim_kimligi;
             const frc = k.frc_nedir || {};
+            const wp = knowledge.web_sitesi_sayfalari || {};
+
             return `### 🤖 FRC (FIRST Robotics Competition) Nedir?\n\n` +
-                `**${frc.tanim || ''}**\n\n` +
-                `- 🇹🇷 **Türkiye Serüveni:** ${frc.tarihce_turkiye || ''}\n` +
-                `- 💡 **More Than Robots:** ${frc.more_than_robots || ''}\n` +
-                `- ⚙️ **İleri Mühendislik:** ${frc.ileri_muhendislik || ''}\n` +
-                `- 🤝 **Takım Ruhu:** ${frc.takim_ruhu || ''}\n\n` +
-                `*Duyarlı Profesyonellik* ile geleceği inşa ediyoruz! 🦈`;
+                `**${frc.tanim || 'Zeka için Spor: Gençlerin bilim ve teknoloji ile ilgilenmeleri için tasarlanmış dünyanın en prestijli robotik yarışması.'}**\n\n` +
+                `FRC, lise öğrencilerinin kısıtlı zaman ve kaynaklarla endüstriyel standartlarda robotlar tasarlayıp inşa ettikleri uluslararası bir organizasyondur.\n\n` +
+                `--- \n\n` +
+                `#### 🌟 Öne Çıkan Değerler ve Kazanımlar:\n` +
+                `- 🇹🇷 **Türkiye Serüveni:** ${frc.tarihce_turkiye || 'Türkiye\'de her yıl binlerce gence ilham veren bölgesel turnuvalarla büyüyen büyük bir ekosistem.'}\n` +
+                `- 💡 **More Than Robots (Robotlardan Fazlası):** ${frc.more_than_robots || 'Sadece bir yarışma değil; markalaşma, takım çalışması ve toplumsal etki oluşturma platformu.'}\n` +
+                `- ⚙️ **İleri Mühendislik:** ${frc.ileri_muhendislik || 'Java, C++, CAD tasarımı, CNC/3D üretim ve otonom vizyon işleme gibi endüstriyel beceriler.'}\n` +
+                `- 🤝 **Duyarlı Profesyonellik (Gracious Professionalism):** Saygı, rekabetçi iş birliği ve bilgi paylaşımı ilkeleriyle geleceği inşa etmek.\n\n` +
+                `📌 **Daha Fazlası İçin:**\n` +
+                `- 🌐 Web sitemizdeki FRC rehberine göz atın: [GulfTech FRC Nedir Sayfası](${wp.frc_nedir || 'https://gulftechrobotic.com.tr/frcnedir.html'})\n` +
+                `- 📸 Sezon hikayelerimizi [Instagram Hesabımızda (@gulftechtr)](https://www.instagram.com/gulftechtr/) takip edin!`;
         }
     },
     {
@@ -63,6 +131,7 @@ export const handlers = [
             const mentors = knowledge.yonetim_ve_mentorlar || [];
             const captains = knowledge.kaptanlar || k.kaptanlar || [];
             const members = [...(knowledge.ekip_uyeleri || k.ekip_uyeleri || [])];
+            const wp = knowledge.web_sitesi_sayfalari || {};
 
             // Shuffle members randomly
             for (let i = members.length - 1; i > 0; i--) {
@@ -81,30 +150,39 @@ export const handlers = [
             // Format captains with LinkedIn
             const captainLines = captains.map(c => {
                 let line = `- **${c.isim}**: ${c.rol}`;
-                if (c.linkedin) line += ` — [LinkedIn](${c.linkedin})`;
+                if (c.linkedin) line += ` — [LinkedIn Profili](${c.linkedin})`;
                 return line;
             }).join('\n');
 
             // Format members with LinkedIn
             const memberLines = members.map(m => {
                 let line = `- **${m.isim}**: ${m.rol}`;
-                if (m.linkedin) line += ` — [LinkedIn](${m.linkedin})`;
+                if (m.linkedin) line += ` — [LinkedIn Profili](${m.linkedin})`;
                 return line;
             }).join('\n');
 
-            return `### 🔱 ${k.isim || 'GulfTech'}\n\n` +
-                `**Mentörlerimiz:**\n` +
+            return `### 🔱 ${k.isim || 'GulfTech #11392'} Takım Kadromuz\n\n` +
+                `GulfTech #11392; Kocaeli Gölcük BİLSEM çatısı altında yetişen gençlerin liderlik, mekanik, elektronik, yazılım ve PR alanlarında disiplinler arası bir sinerjiyle oluşturduğu güçlü bir FRC takımıdır.\n\n` +
+                `**🎓 Mentörlerimiz:**\n` +
                 mentorText + `\n\n` +
                 `**⭐ Kaptanlarımız:**\n` +
                 captainLines + `\n\n` +
-                `**👥 Ekibimiz:**\n` +
+                `**👥 Ekip Üyelerimiz:**\n` +
                 memberLines + `\n\n` +
+                `**💡 Divizyon Yapımız:**\n` +
+                `- **Mekanik:** Robot şasesi, yürüyen aksam ve mekanizmaların CAD ortamında tasarımı ve üretimi.\n` +
+                `- **Elektronik:** RoboRIO 2.0, CAN veri hattı, motor sürücüler ve sensör entegrasyonu.\n` +
+                `- **Yazılım:** Otonom rotaları, vizyon işleme (AprilTag) ve sürücü kontrol sistemleri.\n` +
+                `- **PR & Kurumsal:** Sponsorluk ilişkileri, marka yönetimi, sosyal sorumluluk projeleri ve topluluk iletişimi.\n\n` +
+                `📌 **Detaylı Takım İncelemesi ve Bağlantılar:**\n` +
+                `- 🌐 [GulfTech Takım Sayfası](${wp.takim_uyeleri || 'https://gulftechrobotic.com.tr/team.html'})\n` +
+                `- 📸 Ekibimizin günlük çalışmalarını ve hikayelerini [Instagram Hesabımızda (@gulftechtr)](https://www.instagram.com/gulftechtr/) takip edebilirsiniz!\n\n` +
                 `*${k.miras || ''}*`;
         }
     },
     {
         name: 'divizyonlar',
-        match: (msg) => trMatch(msg, /divizyon|departman|bolum|pr|mekanik|elektronik|yazilim|tasarim/),
+        match: (msg) => trMatch(msg, /divizyon|departman|bolum|\bpr\b|mekanik|elektronik|yazilim|tasarim/),
         handle: async (msg, data, knowledge) => {
             const k = knowledge.takim_kimligi;
             const divizyonlar = k.divizyonlar || {};
@@ -279,38 +357,100 @@ export const handlers = [
             const otonom = ms.otonom_periyodu || {};
             const endgame = ms.endgame || {};
             const tp = ps.tower_puanlari || {};
-            return `### 🏗️ FRC 2026: REBUILT\n\n` +
-                `**${ob.tema || ''}**\n\n` +
-                `${ob.ozet || ''}\n\n` +
-                `**⏱️ Maç Süresi:** ${ob.sure || '2 dk 40 sn'}\n\n` +
-                `**🤖 Otonom Periyodu (${otonom.sure || '20sn'}):** ${otonom.aciklama || ''}\n\n` +
-                `**🎯 Hub Puanları:** ${ps.hub_puanlari ? ps.hub_puanlari.aktif_hub : 'Her yakıt = 1 puan'}\n\n` +
-                `**🗼 Kule Puanları:**\n` +
-                `- Level 1: ${tp.level_1 || '10 puan'}\n` +
-                `- Level 2: ${tp.level_2 || '20 puan'}\n` +
-                `- Level 3: ${tp.level_3 || '30 puan'}\n\n` +
-                `**🏁 Endgame (${endgame.sure || 'Son 30sn'}):** ${endgame.aciklama || ''}\n\n` +
-                `Bu sezon robotumuzu REBUILT görevini en verimli şekilde tamamlayacak şekilde optimize ediyoruz! 🦈`;
+            const wp = knowledge.web_sitesi_sayfalari || {};
+
+            return `### 🏗️ FRC 2026 Sezonu: REBUILT Detaylı Oyun Analizi\n\n` +
+                `**Tema & Konsept:** ${ob.tema || 'Geleceği ve Toplumu Yeniden İnşa Etme'}\n\n` +
+                `${ob.ozet || 'REBUILT oyununda takımlar, sahada bulunan dinamik Hub yapılarını besleyerek ve yüksek Kule tırmanışları yaparak puan toplarlar.'}\n\n` +
+                `--- \n\n` +
+                `#### ⏱️ Maç Akışı ve Zaman Çizelgesi\n` +
+                `- **Toplam Süre:** ${ob.sure || '2 dakika 40 saniye'}\n` +
+                `- **🤖 Otonom Periyot (${otonom.sure || '20 saniye'}):** ${otonom.aciklama || 'Robotlar önceden kodlanmış otonom rotaları ve vizyon işleme (AprilTag) sistemlerini kullanarak hareket eder, sahadaki ilk yakıt yüklemelerini tamamlar.'}\n` +
+                `- **🎮 Sürücü Kontrollü Periyot (2 dakika 20 saniye):** Sürücüler ve operatörler robotu doğrudan kontrol ederek Hub hedeflerini besler ve stratejik savunma/hücum manevraları yapar.\n` +
+                `- **🏁 Endgame (${endgame.sure || 'Son 30 saniye'}):** ${endgame.aciklama || 'Takımlar kuleye tırmanış yaparak yüksek seviye puanlama elde etmeye çalışır.'}\n\n` +
+                `--- \n\n` +
+                `#### 🎯 Puanlama Mantığı ve Hedefler\n` +
+                `- **🛢️ Hub Puanları:** ${ps.hub_puanlari ? ps.hub_puanlari.aktif_hub : 'Aktif Hub bölgelerine aktarılan her yakıt parçası takıma doğrudan puan kazandırır.'}\n` +
+                `- **🗼 Kule Tırmanış Seviyeleri:**\n` +
+                `  - **Level 1:** ${tp.level_1 || '10 Puan'}\n` +
+                `  - **Level 2:** ${tp.level_2 || '20 Puan'}\n` +
+                `  - **Level 3 (Zirve Tırmanış):** ${tp.level_3 || '30 Puan'}\n\n` +
+                `📌 **Daha Fazla Bilgi ve İnteraktif Oyun Simülasyonu:**\n` +
+                `- 🌐 Web sitemizin oyun portalını ziyaret edin: [GulfTech Oyun Sayfası](${wp.oyun || 'https://gulftechrobotic.com.tr/game.html'})\n` +
+                `- 📊 Strateji ve Scout takip detaylarımız için: [GulfTech Scout Portalı](${wp.scout || 'https://gulftechrobotic.com.tr/scout.html'})\n` +
+                `- 📸 Antrenman ve test videolarımızı [Instagram Hesabımızda (@gulftechtr)](https://www.instagram.com/gulftechtr/) inceleyebilirsiniz!`;
         }
     },
     {
         name: 'etkinlikler',
-        match: (msg) => trMatch(msg, /etkinlik|proje|zamanın mekaniği|huzurevi|stem|scout|yeşil vatan|devotion/),
+        match: (msg) => trMatch(msg, /etkinlik|proje|zamanin mekani|huzurevi|stem|yeşil vatan|devotion|green alliance|izaydas|pollution|egitim portali/),
         handle: async (msg, data, knowledge) => {
             const list = knowledge.etkinlikler || [];
+            const wp = knowledge.web_sitesi_sayfalari || {};
+            const normMsg = trNorm(msg);
             
-            // Check if user is asking about a specific project
-            for (const e of list) {
-                if (trMatch(msg, new RegExp(e.ad, 'i'))) {
-                    let resp = `### 🚀 ${e.ad}\n\n${e.aciklama}\n\n`;
-                    if (e.url) resp += `🔗 **Detaylar:** [Buraya Tıklayın](${e.url})\n\n`;
-                    return resp + `Başka hangi projemizi merak ediyorsun?`;
+            // Check if user is asking about ONE specific single project
+            const specificMap = [
+                { keywords: ['zamanin mekani'], field: 'zamanın mekaniği' },
+                { keywords: ['huzurevi', 'bayramlasma'], field: 'huzurevi' },
+                { keywords: ['yesil vatan'], field: 'yeşil vatan' },
+                { keywords: ['devotion'], field: 'devotion' },
+                { keywords: ['green alliance', 'gfl'], field: 'green alliance' },
+                { keywords: ['izaydas'], field: 'izaydaş' },
+                { keywords: ['pollution', 'oyun'], field: 'pollution' },
+                { keywords: ['egitim portali'], field: 'eğitim portalı' },
+                { keywords: ['scout sistemi'], field: 'scout' },
+                { keywords: ['kick-off roportaj', 'kickoff roportaj'], field: 'kick-off' },
+            ];
+            
+            for (const sp of specificMap) {
+                if (sp.keywords.some(k => normMsg.includes(k))) {
+                    const e = list.find(item => trNorm(item.ad).includes(trNorm(sp.field)));
+                    if (e) {
+                        let resp = `### 🚀 ${e.ad}\n\n${e.aciklama}\n\n`;
+                        if (e.konular) {
+                            resp += `**Öne Çıkan Başlıklar:**\n` + e.konular.map(t => `- ${t}`).join('\n') + `\n\n`;
+                        }
+                        if (e.gelistirici) {
+                            resp += `👨‍💻 **Geliştirici:** ${e.gelistirici}\n\n`;
+                        }
+                        if (e.url) resp += `🔗 **Detaylı İncele:** [${e.ad}](${e.url})\n\n`;
+                        resp += `🌐 Tüm projelerimizi [GulfTech Etkinlik Portalı](${wp.projeler_etkinlikler || 'https://gulftechrobotic.com.tr/etkinlik.html'}) üzerinden görüntüleyebilirsiniz.`;
+                        return resp;
+                    }
                 }
             }
 
-            return `### 📅 Etkinliklerimiz ve Projelerimiz\n\nEkip olarak sadece robot yapmıyor, çevremizi de aydınlatıyoruz:\n\n` +
-                list.map(e => `- **${e.ad}**: ${e.aciklama}${e.url ? ` ([Link](${e.url}))` : ''}`).join('\n') +
-                `\n\nFaaliyetlerimiz hız kesmeden devam ediyor! 🚀`;
+            return `### 📅 GulfTech #11392 Projelerimiz ve Etkinliklerimiz\n\n` +
+                `GulfTech ailesi olarak yalnızca rekabetçi bir robot üretmekle yetinmiyor; FIRST değerlerini, bilim ve teknoloji sevgisini, çevre bilincini ve toplumsal dayanışmayı toplumun her kesimine ulaştırmak için çok yönlü projeler yürütüyoruz. [GulfTech Etkinlik Portalı](https://gulftechrobotic.com.tr/etkinlik.html) üzerinde yer alan tüm temel proje ve etkinliklerimiz:\n\n` +
+                `---\n\n` +
+                `#### 💻 1. Dijital Projeler ve Yazılım Araçlarımız\n\n` +
+                `- 🤖 **Gulf Tech AI:** FRC dökümanlarını anlamlandırmayı kolaylaştıran, takım ve yarışma kuralları hakkında anlık yanıtlar sunan yapay zeka asistanımız (Geliştirici: *Oğuzhan Aşkın*). — [Asistanı Kullan](https://oguzhan556141.github.io/gulftechai/)\n` +
+                `- 📚 **FRC Eğitim Portalı:** Robotik ve mühendislik alanında bilgi paylaşımını artırmak amacıyla kurduğumuz platform. Çark oranları (Gear Ratio), RPM, tork, aktüatörler, temel elektronik ve 3D CAD modelleme konularında açık kaynaklı eğitim sunar. — [Eğitim Portalına Git](https://gulftechrobotic.com.tr/egitim.html)\n` +
+                `- 🎮 **Pollution at Gulf (Oyun):** Su altındaki köpekbalığını kontrol ederek denizlerdeki plastik atıklardan kaçılan çevre farkındalık oyunu. Oyunculara deniz kirliliğinin ciddiyetini eğlenceli bir macera ile hissettirir. — [Oyunu Oyna](https://gulftechrobotic.com.tr/game.html)\n` +
+                `- 📊 **Scout Sistemi (REBUILT 2026):** Maç sırasında canlı veri toplayıp analiz eden strateji aracımız. Rakip ve ittifak robotlarının performanslarını, taktiklerini ve saha verilerini sayısal olarak işleyerek bilinçli kararlar almamızı sağlar. — [Scout Sistemini İncele](https://gulftechrobotic.com.tr/scout.html)\n\n` +
+                `---\n\n` +
+                `#### 🔬 2. STEM ve FIRST Yaygınlaştırma Etkinliklerimiz\n\n` +
+                `- 🏫 **Gölcük Piyalepaşa İlkokulu STEM Etkinliği:** Küçük yaştaki öğrencileri bilim ve robotikle buluşturduğumuz, REBUILT sezonunda sadece robotumuzu değil genç zihinleri de inşa etme vizyonumuzun bir parçası. — [İncele](https://www.instagram.com/p/DV3zTA-iOSh/)\n` +
+                `- 🧩 **Çocuk Kasabası STEM Etkinliği:** 5 yıllık FLL mirasımızı yeni zihinlere aktarmak, FIRST kültürünü ve mühendislik disiplinini erken yaşta aşılamak amacıyla gerçekleştirdiğimiz atölye çalışması. — [İncele](https://www.instagram.com/reel/DVofbpBCFNk/)\n` +
+                `- 💡 **Yücel Koyuncu BİLSEM STEM Etkinliği:** FRC ve FTC dünyasının heyecanını paylaştığımız, yeni bir FTC takımı kurulmasına öncülük ve mentorluk ettiğimiz kapsamlı tanıtım buluşması. — [İncele](https://www.instagram.com/p/DV53uDfiFBe/)\n\n` +
+                `---\n\n` +
+                `#### 🌱 3. Sosyal Sorumluluk ve Çevre Projelerimiz\n\n` +
+                `- 🧓 **Huzurevi Bayramlaşması (Gölcük Prof. Dr. İsmail Barış Huzurevi):** Robotikten öte, asıl motivasyonumuzun insanlarla bir arada olmak ve sevgiyle yardımlaşmak olduğunu hissettiren anlamlı bayram ziyaretimiz. — [İncele](https://www.instagram.com/p/DWMEQScCAno/)\n` +
+                `- 💧 **Gulf Tech X Yeşil Vatan (Su Sebili Projesi):** Kurumumuzda tek kullanımlık pet şişeleri kaldırıp yerine su sebili kurarak plastik atık oluşumunu önlediğimiz çevre hareketi.\n` +
+                `- 🌿 **Gulf Tech X GFL Robotics Green Alliance:** FRC takımları arasında sürdürülebilirlik, çevre kirliliğiyle mücadele ve ortak yeşil projeler geliştirme amacıyla kurulan iş birliği platformu. — [İncele](https://www.instagram.com/p/DWKJVB2DGk6/)\n` +
+                `- ❤️ **Devotion Projesi:** *"Her şey bir hayalle başladı..."* diyerek yola çıktığımız, başkalarının hayatına değer katmak ve gönüllülük bilincini yükseltmek için başlattığımız sosyal sorumluluk projesi. — [İncele](https://www.instagram.com/p/DUqzahTiBG6/)\n` +
+                `- ♻️ **İZAYDAŞ Gezisi:** Kocaeli Atık ve Artıkları Arıtma, Yakma ve Değerlendirme A.Ş. tesislerine yaptığımız teknik gezi ile endüstriyel atık yönetimi ve geri dönüşüm süreçlerini yerinde inceledik. — [İncele](https://www.instagram.com/p/DR4xufmCImI/)\n\n` +
+                `---\n\n` +
+                `#### 🤝 4. Topluluk ve İçerik Üretimi\n\n` +
+                `- ⏳ **Zamanın Mekaniği Serisi:** Sadece robot yapmakla kalmayıp bilim ve mekanik tarihinden ilham verici bilgileri aktardığımız Instagram video serimiz. — [İzle](https://www.instagram.com/reel/DVQoa6biIMF/)\n` +
+                `- 🎙️ **Kick-off Röportajları:** FIRST topluluğunu yakından tanımak ve farklı takımların bakış açılarını kayıt altına almak için hazırladığımız söyleşi serisi. — [YouTube'da İzle](https://www.youtube.com/watch?v=gNPLx_AMXqE)\n` +
+                `- 🤝 **FRC Takımlarıyla Ortak Toplantılar:** Bilgi ve tecrübe paylaşımı amacıyla FRC takımlarıyla düzenli gerçekleştirdiğimiz çevrim içi ve yüz yüze oturumlar.\n` +
+                `- 🥐 **Takım Kahvaltısı & Birlik Buluşmaları:** Takım ruhunu, motivasyonu ve aile bağlarımızı diri tutan sosyal etkinliklerimiz.\n\n` +
+                `📌 **Tüm İçerik ve Güncel Detaylar:**\n` +
+                `- 🌐 **Etkinlik Sayfamız:** [gulftechrobotic.com.tr/etkinlik.html](${wp.projeler_etkinlikler || 'https://gulftechrobotic.com.tr/etkinlik.html'})\n` +
+                `- 📸 **Resmi Instagram Hesabımız:** [@gulftechtr](https://www.instagram.com/gulftechtr/)\n` +
+                `- 🎥 **YouTube:** [@gulftechtr](https://www.youtube.com/@gulftechtr)`;
         }
     },
     {
@@ -370,39 +510,38 @@ export const handlers = [
     },
     {
         name: 'first_vakfi',
-        match: (msg) => trMatch(msg, /first vak|first.*vakif|dean kamen|first.*inspired|first.*kurulus/),
+        match: (msg) => trMatch(msg, /first|fikret|fyv|vakif|yuksel/),
         handle: async (msg, data, knowledge) => {
             const fi = knowledge.first_bilgisi || {};
             const progs = fi.programlar || {};
-            return `### 🌐 FIRST Vakfı (For Inspiration and Recognition of Science and Technology)\n\n` +
-                `**Kurucu:** ${fi.kurucu || 'Dean Kamen'} (${fi.kurulus_yili || 1989})\n` +
-                `**Misyon:** ${fi.misyon || ''}\n\n` +
-                `**Temel Değerler:**\n` +
-                `- 🤝 **GP:** ${fi.degerler?.gracious_professionalism || 'Duyarlı Profesyonellik'}\n` +
-                `- 🏆 **Coopertition:** ${fi.degerler?.coopertition || 'Rekabetçi İşbirliği'}\n\n` +
-                `**Programlar:**\n` +
-                `- 🤖 **FRC** (${progs.frc?.baslangic || 1992}): ${progs.frc?.aciklama || 'Lise robotik yarışması'}\n` +
-                `- ⚙️ **FTC** (${progs.ftc?.baslangic || 2005}): ${progs.ftc?.aciklama || 'Orta-lise robotik'}\n` +
-                `- 🧱 **FLL** (${progs.fll?.baslangic || 1998}): ${progs.fll?.aciklama || 'LEGO robotik programı'}\n\n` +
-                `*"More Than Robots" — Robotlardan Fazlası!*`;
-        }
-    },
-    {
-        name: 'fikret_yuksel',
-        match: (msg) => trMatch(msg, /fikret yuksel|fikret vak|fyv|darussfaka|yuksel vak/),
-        handle: async (msg, data, knowledge) => {
             const fyk = knowledge.fikret_yuksel_vakfi || {};
             const kh = fyk.kurucu_hakkinda || {};
-            return `### 🏢 Fikret Yüksel Vakfı\n\n` +
-                `**Kurucu:** ${kh.isim || 'Fikret Yüksel'} (${fyk.kurulus_yili || 1998})\n` +
-                `**Misyon:** ${fyk.misyon || ''}\n\n` +
-                `**Kurucu Hakkında:**\n` +
-                `- 🎓 ${kh.egitim || ''}\n` +
-                `- 💼 ${kh.kariyer || ''}\n\n` +
-                `**Türkiye'deki Etki:**\n` +
-                `- ${fyk.turkiye_etkisi?.buyume || ''}\n` +
-                (fyk.turkiye_etkisi?.destek_alanlari ? fyk.turkiye_etkisi.destek_alanlari.map(d => `- ${d}`).join('\n') : '') +
-                `\n\n*Türk gençlerinin teknoloji liderliğine yöneliminde öncü rol!*`;
+            const wp = knowledge.web_sitesi_sayfalari || {};
+
+            return `### 🌐 FIRST Vakfı & Fikret Yüksel Vakfı (FYV)\n\n` +
+                `#### 1. FIRST Vakfı (For Inspiration and Recognition of Science and Technology)\n` +
+                `**Kurucu:** ${fi.kurucu || 'Dean Kamen'} (1989, ABD)\n` +
+                `**Misyon:** Gençlere STEM (Bilim, Teknoloji, Mühendislik, Matematik) sevgisini ve liderlik becerilerini kazandırmak.\n` +
+                `**Slogan:** *"More Than Robots" (Robotlardan Fazlası)*\n\n` +
+                `**Temel Değerler & Programlar:**\n` +
+                `- 🤝 **Duyarlı Profesyonellik (Gracious Professionalism):** Saygı, yardımseverlik ve yüksek etik değerlerle yarışma felsefesi.\n` +
+                `- 🏆 **Rekabetçi İş Birliği (Coopertition):** Rakiplerle bilgi paylaşıp birlikte gelişme anlayışı.\n` +
+                `- 🤖 **FRC (FIRST Robotics Competition):** 14-18 yaş lise öğrencilerinin endüstriyel boyutlarda robot geliştirdiği lig.\n` +
+                `- ⚙️ **FTC (FIRST Tech Challenge):** 12-18 yaş esnek robotik ligi.\n` +
+                `- 🧱 **FLL (FIRST LEGO League):** 4-16 yaş LEGO tabanlı bilimsel araştırma programı.\n\n` +
+                `---\n\n` +
+                `#### 2. Fikret Yüksel Vakfı (FYV)\n` +
+                `**Kurucu:** Darüşşafaka ve İTÜ/MIT/Harvard mezunu **${kh.isim || 'Fikret Yüksel'}** (1998)\n` +
+                `**Misyon:** Türk gençlerinin eğitimini desteklemek ve onları FIRST robotik programları vasıtasıyla 21. yüzyıl becerileriyle buluşturmak.\n\n` +
+                `**Türkiye'deki Etkisi & Faaliyetleri:**\n` +
+                `- **Pioner Adım:** 2008'den itibaren Darüşşafaka'da FRC takımı kurulmasını destekleyerek Türkiye'de FRC kıvılcımını başlattı.\n` +
+                `- **Turnuvalar:** 2015'teki ilk Off-Season'ın ardından İstanbul, İzmir ve Ankara Bölgesel (Regional) turnuvalarını organize etmektedir.\n` +
+                `- **Büyüme:** Türkiye, %37'lik yıllık büyüme ile dünya genelinde en hızlı büyüyen FRC ülkesi konumuna gelmiştir.\n` +
+                `- **Destekler:** Takımlara malzeme/kit desteği, eğitim panelleri, yarışma organizasyonu ve mentorluk sunmaktadır.\n\n` +
+                `📌 **İnceleme & Resmi Bağlantılar:**\n` +
+                `- 🌐 Fikret Yüksel Vakfı Resmi Sitesi: [fikretyukselfoundation.org](https://fikretyukselfoundation.org)\n` +
+                `- 🌐 GulfTech FRC Rehberi: [GulfTech FRC Portalı](${wp.frc_nedir || 'https://gulftechrobotic.com.tr/frcnedir.html'})\n` +
+                `- 📸 Takımımızın FIRST/FYV ruhunu yansıtan paylaşımları için: [Instagram Hesabımız (@gulftechtr)](https://www.instagram.com/gulftechtr/)`;
         }
     },
     {

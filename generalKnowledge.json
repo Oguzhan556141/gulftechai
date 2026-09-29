@@ -1,0 +1,118 @@
+{
+  "cografya": {
+    "kitalar": {
+      "asya": "Dünyanın en büyük ve en kalabalık kıtasıdır. Everest Dağı (8,848m) burada bulunur.",
+      "avrupa": "Batı kültürünün beşiği olarak kabul edilir. Endüstri devriminin başladığı yerdir.",
+      "afrika": "İnsanlığın kökeni olarak bilinir. Sahra Çölü ve Nil Nehri buradadır.",
+      "kuzey_amerika": "Kanada, ABD ve Meksika'yı kapsar. Büyük Göller buradadır.",
+      "guney_amerika": "Amazon Yağmur Ormanları ve And Dağları'na ev sahipliği yapar.",
+      "antarktika": "Dünyanın en soğuk ve en kuru kıtasıdır. Yerli nüfusu yoktur.",
+      "okyanusya": "Avustralya, Yeni Zelanda ve binlerce adayı kapsar."
+    },
+    "enler": {
+      "en_yuksek_dag": "Everest Dağı (Himalayalar, Nepal/Çin Sınırı)",
+      "en_uzun_nehir": "Nil Nehri (Afrika) veya Amazon Nehri (Güney Amerika)",
+      "en_buyuk_gol": "Hazar Denizi",
+      "en_derin_nokta": "Mariana Çukuru (Büyük Okyanus)",
+      "en_buyuk_ada": "Grönland",
+      "en_kalabalik_sehir": "Tokyo (Japonya)"
+    }
+  },
+  "tarih": {
+    "onemli_olaylar": [
+      { "olay": "Fransız İhtilali", "yil": "1789", "onem": "Milliyetçilik ve demokrasi fikirlerinin yayılması." },
+      { "olay": "Sanayi Devrimi", "yil": "18. Yüzyıl", "onem": "Üretim tekniklerinde devrim ve şehirleşme." },
+      { "olay": "I. Dünya Savaşı", "yil": "1914-1918", "onem": "İmparatorlukların yıkılması ve yeni devletlerin kurulması." },
+      { "olay": "II. Dünya Savaşı", "yil": "1939-1945", "onem": "Nükleer silahların kullanımı ve BM'nin kurulması." },
+      { "olay": "Ay'a Ayak Basılması", "yil": "1969", "onem": "Uzay yarışında dönüm noktası (Apollo 11)." }
+    ],
+    "turkiye_tarihi": {
+      "kurulus": "29 Ekim 1923",
+      "kurucu": "Mustafa Kemal Atatürk",
+      "onemli_inkilaplar": ["Saltanatın kaldırılması", "Harf Devrimi", "Kadınlara Seçme ve Seçilme Hakkı", "Soyadı Kanunu"]
+    }
+  },
+  "bilim_ve_teknoloji": {
+    "fizik": {
+      "kuantum_fizigi": "Atom altı parçacıkların davranışlarını inceleyen fizik dalıdır. Olasılıklar üzerine kuruludur. Max Planck ve Niels Bohr öncülerindendir.",
+      "izafiyet_teorisi": "Albert Einstein tarafından geliştirilen, zaman ve uzayın birbirine bağlı olduğunu savunan teori. E=mc² denklemi ile kütle ve enerjinin eşdeğerliğini kanıtlar.",
+      "albert_einstein": "Modern fiziğin iki temel taşından biri olan genel görelilik kuramını geliştiren, 1921 Nobel Fizik Ödülü sahibi dahi fizikçi. Fotoelektrik etki açıklamasıyla kuantum mekaniğinin kurulmasında önemli rol oynamıştır.",
+      "kara_delikler": "Işığın bile kaçamayacağı kadar güçlü kütleçekimi olan gök cisimleri."
+    },
+    "biyoloji": {
+      "dna": "Deoksiribonükleik asit; canlıların genetik bilgilerini taşıyan molekül.",
+      "evrim": "Canlıların zamanla değişimi ve yeni türlerin oluşumu süreci.",
+      "fotosentez": "Bitkilerin güneş enerjisini kullanarak besin üretmesi."
+    },
+    "astronomi": {
+      "gunes_sistemi": "Güneş ve onun etrafında dönen 8 gezegenden (Merkür, Venüs, Dünya, Mars, Jüpiter, Satürn, Uranüs, Neptün) oluşur.",
+      "samanyolu": "İçinde bulunduğumuz çubuklu sarmal galaksi.",
+      "exoplanet": "Güneş sistemi dışındaki bir yıldızın etrafında dönen gezegen."
+    },
+    "bilisim": {
+      "yapay_zeka": "Bilgisayarların insan zekasını taklit etme yeteneği.",
+      "blokzincir": "Verilerin merkezi olmayan bir ağ üzerinde şifrelenmiş olarak tutulması.",
+      "internet": "Dünya genelindeki bilgisayar ağlarının birbirine bağlanmasıyla oluşan sistem."
+    }
+  },
+  "sanat_ve_edebiyat": {
+    "tablolar": [
+      { "eser": "Mona Lisa", "sanatci": "Leonardo da Vinci" },
+      { "eser": "Yıldızlı Gece", "sanatci": "Vincent van Gogh" },
+      { "eser": "Guernica", "sanatci": "Pablo Picasso" },
+      { "eser": "İnci Küpeli Kız", "sanatci": "Johannes Vermeer" }
+    ],
+    "edebiyat": {
+      "dunya_klasikleri": ["Sefiller", "Suç ve Ceza", "Savaş ve Barış", "Don Kişot"],
+      "turk_edebiyati": ["İnce Memed", "Saatleri Ayarlama Enstitüsü", "Aşk-ı Memnu", "Benim Adım Kırmızı"]
+    },
+    "akımlar": ["Rönesans", "Barok", "Romantizm", "Modernizm", "Sürrealizm"]
+  },
+  "spor": {
+    "olimpiyatlar": "Dört yılda bir düzenlenen dünyanın en kapsamlı spor organizasyonu.",
+    "dunya_kupasi": "FIFA tarafından düzenlenen, futbolun en prestijli turnuvası.",
+    "rekorlar": {
+      "100m_kosu": "Usain Bolt (9.58s)",
+      "basketbol_nba_sayi": "LeBron James"
+    }
+  },
+  "ekstra_bilgiler": {
+    "kimya_periyodik_tablo": "Elementlerin atom numaralarına göre sıralandığı tablo. İlk element Hidrojen'dir.",
+    "matematik_pi": "Dairenin çevresinin çapına oranı. Yaklaşık 3.14159.",
+    "muzik_nota": "Sesleri gösteren işaretler (Do, Re, Mi, Fa, Sol, La, Si).",
+    "gastronomi": "Dünya mutfakları: İtalyan (Pizza/Pasta), Fransız (Soslar), Türk (Kebap/Baklava), Japon (Sushi)."
+  },
+  "psikoloji_ve_felsefe": {
+    "felsefe": {
+      "stoisizm": "Dayanıklılık, erdem ve mantık üzerine kurulu antik Yunan felsefesi.",
+      "nihilizm": "Hayatın nesnel bir anlamı olmadığını savunan görüş.",
+      "varolusculuk": "Bireyin kendi değerlerini ve anlamını yaratma özgürlüğünü vurgulayan akım."
+    },
+    "psikoloji": {
+      "bilincdisi": "Sigmund Freud tarafından ortaya atılan, davranışları etkileyen farkında olunmayan zihinsel süreçler.",
+      "bireysel_psikoloji": "Alfred Adler'in aşağılık kompleksi ve üstünlük çabası üzerine kurulu kuramı."
+    }
+  },
+  "mitoloji": {
+    "yunan_mitolojisi": {
+      "zeus": "Göklerin ve tanrıların kralı.",
+      "poseidon": "Denizlerin tanrısı.",
+      "hades": "Yeraltı dünyasının tanrısı."
+    },
+    "iskandinav_mitolojisi": {
+      "odin": "Bilgelik ve savaş tanrısı.",
+      "thor": "Şimşek ve güç tanrısı.",
+      "loki": "Kurnazlık tanrısı."
+    }
+  },
+  "ekonomi": {
+    "enflasyon": "Fiyatlar genel düzeyindeki sürekli artış ve paranın alım gücünün düşmesi.",
+    "gsmh": "Gayri Safi Milli Hasıla; bir ülkenin belli bir sürede ürettiği toplam mal ve hizmet değeri.",
+    "kripto_paralar": "Dijital, merkezi olmayan takas araçları (Bitcoin, Ethereum)."
+  },
+  "saglik_ve_beslenme": {
+    "vitaminler": "Vücudun normal çalışması için gerekli organik bileşikler (A, B, C, D, E, K).",
+    "protein": "Vücudun yapı taşı; kas gelişimi için kritiktir.",
+    "karbonhidrat": "Vücudun temel enerji kaynağı."
+  }
+}

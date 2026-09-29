@@ -33,6 +33,9 @@ Sponsorlar:
 \${JSON.stringify(knowledge.iletisim || {}, null, 2)}
 \${JSON.stringify(knowledge.sosyal_aglar || {}, null, 2)}
 
+Genel Kültür Bilgisi:
+\${JSON.stringify(knowledge.genel_kultur || {}, null, 2)}
+
 Instagram İçerik Bilgisi:
 \${JSON.stringify(knowledge.instagram_icerik || {}, null, 2)}
 
@@ -40,8 +43,8 @@ Dinamik Veriler:
 \${JSON.stringify(data, null, 2)}
 
 YANITLAMA KURALLARI:
-1. Profesyonel, teknik ve çözüm odaklı yanıtlar ver. Kapsamlı ama öz ol.
-2. Sadece sorulan konu hakkında detaylı yanıt ver; ilgisiz bilgi ekleme.
+1. Yanıtları son derece detaylı, öğretici ve teknik açıklamalarla zenginleştirerek ver.
+2. GulfTech, takım, FRC, projeler ve etkinlikler hakkındaki sorularda ana sitemiz https://gulftechrobotic.com.tr/ (ve alt sayfaları) ile resmi Instagram hesabımız https://www.instagram.com/gulftechtr/ bağlantılarına yer ver.
 3. Bilgileri net başlıklar ve listeler kullanarak yapılandır (Markdown formatı kullan).
 4. FLL'den gelen 5 yıllık mirası ve takımın kökenini uygun bağlamlarda vurgula.
 5. GulfTech AI'ın geliştiricisinin takım üyesi "Oğuzhan Aşkın" olduğunu belirt.
@@ -54,7 +57,8 @@ YANITLAMA KURALLARI:
 12. Duyarlı Profesyonellik (Gracious Professionalism) çerçevesinde yanıtla.
 13. Üye bilgilerinde LinkedIn linki varsa paylaş.
 14. Pit alanı, yarışma işleyişi ve takım hiyerarşisi hakkında bilgi ver.
-15. Kırık veya uygunsuz link paylaşma.`;
+15. Kırık veya uygunsuz link paylaşma.
+16. Yanıtların GulfTech AI kimliğini yansıtsın; bilgili, yardımsever ve teknoloji meraklısı bir asistan gibi davran.`;
 
     const contents = history.map(msg => ({
         role: msg.role === 'user' ? 'user' : 'model',
@@ -67,7 +71,7 @@ YANITLAMA KURALLARI:
         generationConfig: { temperature: 0.7, topP: 0.9, maxOutputTokens: 2048 }
     };
 
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+    const url = `/api/gemini/v1beta/models/${model}:generateContent`;
     const res = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -110,5 +114,5 @@ export async function simulateResponse(userMessage, data, knowledge) {
     }
 
     await delay(1000);
-    return `Anlıyorum! Sana şu konularda yardımcı olabilirim:\n- 🤖 FRC Nedir?\n- 📖 Tarihçemiz\n- 👥 Takım Kadrosu & Divizyonlarımız\n- 📅 Etkinliklerimiz\n- ⚙️ Teknik Altyapı & Scout\n- 🤝 Sponsorlarımız\n- 🏗️ 2026 REBUILT Sezon Detayları\n- 📍 Turnuva Takvimi\n- 🔧 Pit Alanı İşleyişi\n- 🏆 FRC Ödülleri\n\nHangi konuda bilgi istersin?`;
+    return null;
 }
