@@ -3,7 +3,7 @@ import { UI, $, $$ } from './ui.js';
 import { getNextRegional, delay, renderMarkdown } from './utils.js';
 import { callGeminiAPI, simulateResponse } from './api.js';
 import { renderMap, MapComponent } from './map.js';
-import { initI18n, toggleLanguage, t } from './i18n.js';
+import { initI18n, toggleLanguage, setLanguage, t } from './i18n.js';
 
 let appData = null;
 let conversations = JSON.parse(localStorage.getItem(CONFIG.CONV_STORAGE_KEY) || '{}');
@@ -159,14 +159,45 @@ function bindEvents() {
         if (e.target === UI.mapModal) UI.mapModal.classList.remove('visible');
     });
 
-    // Language Switch
-    if (UI.langSwitchBtn) {
-        UI.langSwitchBtn.addEventListener('click', () => {
-            toggleLanguage();
-            UI.updateApiStatus(true, model);
+    // Language Dropdown Menus (Header & Sidebar)
+    const setupLangDropdown = (btnId) => {
+        const btn = document.getElementById(btnId);
+        if (!btn) return;
+        const wrapper = btn.closest('.lang-dropdown-wrapper');
+        if (!wrapper) return;
 
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            // Close other open wrappers first
+            document.querySelectorAll('.lang-dropdown-wrapper').forEach(w => {
+                if (w !== wrapper) w.classList.remove('open');
+            });
+            wrapper.classList.toggle('open');
         });
-    }
+    };
+
+    setupLangDropdown('langDropdownBtn');
+    setupLangDropdown('sidebarLangBtn');
+
+    // Language Selection Items
+    document.querySelectorAll('.lang-dropdown-item').forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const lang = item.getAttribute('data-lang');
+            if (lang) {
+                setLanguage(lang);
+                UI.updateApiStatus(true, model);
+            }
+            document.querySelectorAll('.lang-dropdown-wrapper').forEach(w => w.classList.remove('open'));
+        });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.lang-dropdown-wrapper')) {
+            document.querySelectorAll('.lang-dropdown-wrapper').forEach(w => w.classList.remove('open'));
+        }
+    });
 
     // Suggestion Chips Delegation (Global)
     document.addEventListener('click', (e) => {

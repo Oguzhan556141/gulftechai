@@ -1,4 +1,4 @@
-const CACHE_NAME = 'gulftech-ai-v3';
+const CACHE_NAME = 'gulftech-ai-v4';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -8,6 +8,7 @@ const ASSETS_TO_CACHE = [
   './js/handlers.js',
   './js/ui.js',
   './js/utils.js',
+  './js/i18n.js',
   './data.json',
   './teamKnowledge.json',
   './ruleKnowledge.json',
