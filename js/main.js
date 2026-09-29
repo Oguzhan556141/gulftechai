@@ -9,7 +9,6 @@ let appData = null;
 let conversations = JSON.parse(localStorage.getItem(CONFIG.CONV_STORAGE_KEY) || '{}');
 let currentConvId = null;
 let isResponding = false;
-let apiKey = localStorage.getItem(CONFIG.API_KEY_STORAGE_KEY) || '';
 let model = localStorage.getItem(CONFIG.MODEL_STORAGE_KEY) || CONFIG.DEFAULT_MODEL;
 let isOrionMode = localStorage.getItem('gt_orion_mode') === 'true';
 
@@ -258,9 +257,7 @@ function openScheduleModal() {
 }
 
 function saveSettings() {
-    apiKey = UI.apiKeyInput.value.trim();
     model = UI.modelSelect.value;
-    localStorage.setItem(CONFIG.API_KEY_STORAGE_KEY, apiKey);
     localStorage.setItem(CONFIG.MODEL_STORAGE_KEY, model);
     UI.updateApiStatus(true, model);
     UI.settingsModal.classList.remove('visible');

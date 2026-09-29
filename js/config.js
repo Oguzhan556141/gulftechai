@@ -1,7 +1,6 @@
 export const CONFIG = {
     CONV_STORAGE_KEY: 'gt_conversations',
-    API_KEY_STORAGE_KEY: 'gt_api_key',
     MODEL_STORAGE_KEY: 'gt_model',
-    DEFAULT_MODEL: 'gemini-2.0-flash',
+    DEFAULT_MODEL: 'gemini-flash-latest',
     DATA_PATH: 'data.json'
 };
