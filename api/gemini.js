@@ -18,13 +18,13 @@ export default async function handler(req, res) {
 
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
-        return res.status(500).json({ 
-            error: 'Sunucuda GEMINI_API_KEY ortam değişkeni tanımlanmamış. Lütfen Vercel / Cloudflare paneline ekleyin.' 
+        return res.status(500).json({
+            error: 'Sunucuda GEMINI_API_KEY ortam değişkeni tanımlanmamış. Lütfen Vercel / Cloudflare paneline ekleyin.'
         });
     }
 
     try {
-        const { model = 'gemini-2.0-flash', contents, system_instruction, generationConfig } = req.body;
+        let { model = 'gemini-3.8-flash', contents, system_instruction, generationConfig } = req.body;
 
         const targetUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
 
