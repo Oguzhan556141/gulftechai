@@ -25,8 +25,14 @@ export const handlers = [
         name: 'genel_kultur',
         match: (msg) => {
             const norm = trNorm(msg);
-            if (norm.includes('first') || norm.includes('fikret') || norm.includes('yuksel') || norm.includes('vakif')) return false;
-            return trMatch(msg, /\b(bilgi|kultur|nedir|kimdir|cografya|tarih|bilim|sanat|edebiyat|spor|mitoloji|felsefe|psikoloji|ekonomi|saglik|mutfak|fizik|biyoloji|astronomi|einstein|foton|kuantum|mona lisa|periyodik|ataturk|everest|nil|nehir|dag|gol|deniz|kitai|asya|avrupa|afrika|amerika|tablo|eser|ressam|yazar|kitap|klasik|olimpiyat|dunya kupasi|enflasyon|vitamin|protein|karbonhidrat|dna|evrim|yapay zeka|internet|blokzincir)\b/i);
+            // FIRST, FRC, FYV, Robotik, BIOCORE veya Takım soruları asla genel kültür radarına girmemeli
+            if (norm.includes('first') || norm.includes('frc') || norm.includes('ftc') || norm.includes('fll') ||
+                norm.includes('fikret') || norm.includes('yuksel') || norm.includes('vakif') || 
+                norm.includes('biocore') || norm.includes('canopy') || norm.includes('rebuilt') ||
+                norm.includes('robot') || norm.includes('gulftech') || norm.includes('kickoff')) {
+                return false;
+            }
+            return trMatch(msg, /\b(bilgi|kultur|kimdir|cografya|tarih|bilim|sanat|edebiyat|spor|mitoloji|felsefe|psikoloji|ekonomi|saglik|mutfak|fizik|biyoloji|astronomi|einstein|foton|kuantum|mona lisa|periyodik|ataturk|everest|nil|nehir|dag|gol|deniz|kitai|asya|avrupa|afrika|amerika|tablo|eser|ressam|yazar|kitap|klasik|olimpiyat|dunya kupasi|enflasyon|vitamin|protein|karbonhidrat|dna|evrim|blokzincir)\b/i);
         },
         handle: async (msg, data, knowledge) => {
             const gk = knowledge.genel_kultur || {};
@@ -79,7 +85,8 @@ export const handlers = [
                 return `### 🧠 ${result.title.charAt(0).toUpperCase() + result.title.slice(1).replace(/_/g, ' ')}\n\n${result.body}`;
             }
 
-            return `Genel kültür hafızamda birçok bilgi var! Coğrafya, tarih, bilim, sanat veya felsefe gibi konularda sorular sorabilirsin. Örneğin: "Einstein kimdir?", "Mona Lisa nedir?" veya "Kuantum fiziği hakkında bilgi verir misin?"`;
+            // Eğer lokal genel kültür verisinde tam eşleşme yoksa null dön ki Gemini API cevaplasın!
+            return null;
         }
     },
     {
@@ -89,11 +96,15 @@ export const handlers = [
             const k = knowledge.takim_kimligi;
             const sa = knowledge.sosyal_aglar || k.sosyal_aglar || {};
             const iletisim = knowledge.iletisim || {};
+            const igInfo = knowledge.instagram_icerik || {};
             const igUrl = typeof sa.instagram === 'object' ? sa.instagram.url : (sa.instagram || '');
             const ytUrl = typeof sa.youtube === 'object' ? sa.youtube.url : (sa.youtube || '');
             const webUrl = sa.website || '';
             const liUrl = typeof sa.linkedin === 'object' ? sa.linkedin.url : '';
-            let response = `### 🔗 GulfTech'e Ulaşın\n\n- 📸 [Instagram](${igUrl})\n- 📺 [YouTube](${ytUrl})\n- 🌐 [Web Sitesi](${webUrl})`;
+            
+            const followerStr = (igInfo.takipci || sa.instagram?.takipci) ? ` *(${igInfo.takipci || sa.instagram.takipci} takipçi / ${igInfo.gonderi || sa.instagram.gonderi || 96} gönderi)*` : '';
+            
+            let response = `### 🔗 GulfTech'e Ulaşın & Sosyal Medya\n\n- 📸 [Instagram (@gulftechtr)](${igUrl})${followerStr}\n- 📺 [YouTube](${ytUrl})\n- 🌐 [Web Sitesi](${webUrl})`;
             if (liUrl) response += `\n- 💼 [LinkedIn](${liUrl})`;
             if (iletisim.email) response += `\n- 📧 ${iletisim.email}`;
             if (iletisim.telefon_1) response += `\n- 📞 ${iletisim.telefon_1}`;
@@ -347,6 +358,30 @@ export const handlers = [
         }
     },
     {
+        name: 'biocore',
+        match: (msg) => trMatch(msg, /biocore|canopy|2027.*sezon|2027.*tema|2027.*oyun|bioglow|biobuzz/),
+        handle: async (msg, data, knowledge) => {
+            const fi = knowledge.first_bilgisi || {};
+            const bc = fi.sezon_2027_biocore || {};
+            return `### 🌿 FRC 2027 Sezonu: BIOCORE™ (FIRST® CANOPY™)\n\n` +
+                `**Tema & Konsept:** ${bc.ust_tema || 'FIRST® CANOPY™ (Biyoçeşitlilik, Doğa ve Yaşamı Destekleyen Sistemler)'}\n` +
+                `**Destekçi / Sponsor:** ${bc.destekci || 'Gene Haas Foundation'}\n` +
+                `**Dünya Kickoff Tarihi:** 📅 **${bc.kickoff_tarihi || '9 Ocak 2027'}**\n\n` +
+                `---\n\n` +
+                `#### 🌱 BIOCORE İsminin Anlamı ve Amacı\n` +
+                `${bc.anlam_ve_amac || 'BIOCORE; "Bio" (yaşam/biyoloji) ve "Core" (merkez/çekirdek) kelimelerinin birleşiminden oluşur. FIRST CANOPY sezonunun lise düzeyindeki (FRC) ana meydan okumasıdır. Gezegendeki biyoçeşitliliği, ekosistemleri ve yaşamı sürdürülebilir kılan temel mekanizmaları mühendislik bakış açısıyla anlamayı ve korumayı hedefler.'}\n\n` +
+                `---\n\n` +
+                `#### 🌐 FIRST® CANOPY™ Sezonunun Diğer Programları:\n` +
+                `- 🧱 **FIRST LEGO League (FLL):** *BIOGLOW™*\n` +
+                `- ⚙️ **FIRST Tech Challenge (FTC):** *BIOBUZZ™*\n` +
+                `- 🤖 **FIRST Robotics Competition (FRC):** *BIOCORE™*\n\n` +
+                `📌 **Detaylı Kaynak ve Resmi Bağlantılar:**\n` +
+                `- 🌐 FIRST Resmi FRC Portalı: [firstinspires.org/programs/frc](https://www.firstinspires.org/programs/frc/)\n` +
+                `- 🇹🇷 FRC Türkiye Resmi Sitesi: [frcturkiye.org](https://frcturkiye.org/)\n` +
+                `- ⏱️ Kickoff geri sayımımızı ana sayfamızdaki özel saatten canlı olarak takip edebilirsiniz! 🦈`;
+        }
+    },
+    {
         name: 'sezon',
         match: (msg) => trMatch(msg, /2026|rebuilt|oyun|mac|hub|fuel|yakit|kule|tower/),
         handle: async (msg, data, knowledge) => {
@@ -510,7 +545,7 @@ export const handlers = [
     },
     {
         name: 'first_vakfi',
-        match: (msg) => trMatch(msg, /first|fikret|fyv|vakif|yuksel/),
+        match: (msg) => trMatch(msg, /first|fikret|fyv|vakif|yuksel|frcturkiye/),
         handle: async (msg, data, knowledge) => {
             const fi = knowledge.first_bilgisi || {};
             const progs = fi.programlar || {};
@@ -520,28 +555,33 @@ export const handlers = [
 
             return `### 🌐 FIRST Vakfı & Fikret Yüksel Vakfı (FYV)\n\n` +
                 `#### 1. FIRST Vakfı (For Inspiration and Recognition of Science and Technology)\n` +
-                `**Kurucu:** ${fi.kurucu || 'Dean Kamen'} (1989, ABD)\n` +
-                `**Misyon:** Gençlere STEM (Bilim, Teknoloji, Mühendislik, Matematik) sevgisini ve liderlik becerilerini kazandırmak.\n` +
+                `**Kurucu:** ${fi.kurucu || 'Dean Kamen'} (1989, Manchester, ABD)\n` +
+                `**Misyon:** Gençlere STEM (Bilim, Teknoloji, Mühendislik, Matematik) sevgisini, liderlik becerilerini ve özgüveni kazandırmak.\n` +
                 `**Slogan:** *"More Than Robots" (Robotlardan Fazlası)*\n\n` +
                 `**Temel Değerler & Programlar:**\n` +
                 `- 🤝 **Duyarlı Profesyonellik (Gracious Professionalism):** Saygı, yardımseverlik ve yüksek etik değerlerle yarışma felsefesi.\n` +
                 `- 🏆 **Rekabetçi İş Birliği (Coopertition):** Rakiplerle bilgi paylaşıp birlikte gelişme anlayışı.\n` +
-                `- 🤖 **FRC (FIRST Robotics Competition):** 14-18 yaş lise öğrencilerinin endüstriyel boyutlarda robot geliştirdiği lig.\n` +
+                `- 🤖 **FRC (FIRST Robotics Competition):** 14-18 yaş lise öğrencilerinin endüstriyel boyutlarda robot geliştirdiği dünyanın en prestijli ligi.\n` +
                 `- ⚙️ **FTC (FIRST Tech Challenge):** 12-18 yaş esnek robotik ligi.\n` +
-                `- 🧱 **FLL (FIRST LEGO League):** 4-16 yaş LEGO tabanlı bilimsel araştırma programı.\n\n` +
+                `- 🧱 **FLL (FIRST LEGO League):** 4-16 yaş çocuklara yönelik araştırma ve LEGO ligi.\n\n` +
                 `---\n\n` +
-                `#### 2. Fikret Yüksel Vakfı (FYV)\n` +
-                `**Kurucu:** Darüşşafaka ve İTÜ/MIT/Harvard mezunu **${kh.isim || 'Fikret Yüksel'}** (1998)\n` +
+                `#### 2. Fikret Yüksel Vakfı (FYV) & FRC Türkiye\n` +
+                `**Kurucu:** Darüşşafaka ve İTÜ/MIT/Harvard mezunu vizyoner mühendis **${kh.isim || 'Fikret Yüksel'}** (1998)\n` +
                 `**Misyon:** Türk gençlerinin eğitimini desteklemek ve onları FIRST robotik programları vasıtasıyla 21. yüzyıl becerileriyle buluşturmak.\n\n` +
                 `**Türkiye'deki Etkisi & Faaliyetleri:**\n` +
-                `- **Pioner Adım:** 2008'den itibaren Darüşşafaka'da FRC takımı kurulmasını destekleyerek Türkiye'de FRC kıvılcımını başlattı.\n` +
-                `- **Turnuvalar:** 2015'teki ilk Off-Season'ın ardından İstanbul, İzmir ve Ankara Bölgesel (Regional) turnuvalarını organize etmektedir.\n` +
-                `- **Büyüme:** Türkiye, %37'lik yıllık büyüme ile dünya genelinde en hızlı büyüyen FRC ülkesi konumuna gelmiştir.\n` +
-                `- **Destekler:** Takımlara malzeme/kit desteği, eğitim panelleri, yarışma organizasyonu ve mentorluk sunmaktadır.\n\n` +
-                `📌 **İnceleme & Resmi Bağlantılar:**\n` +
-                `- 🌐 Fikret Yüksel Vakfı Resmi Sitesi: [fikretyukselfoundation.org](https://fikretyukselfoundation.org)\n` +
-                `- 🌐 GulfTech FRC Rehberi: [GulfTech FRC Portalı](${wp.frc_nedir || 'https://gulftechrobotic.com.tr/frcnedir.html'})\n` +
-                `- 📸 Takımımızın FIRST/FYV ruhunu yansıtan paylaşımları için: [Instagram Hesabımız (@gulftechtr)](https://www.instagram.com/gulftechtr/)`;
+                `- **Öncü Adım:** 2008'de Darüşşafaka'da Türkiye'nin ilk FRC takımı kurulmasını destekleyerek kıvılcımı başlattı.\n` +
+                `- **Resmi Turnuvalar:** 2015'teki ilk Off-Season'ın ardından 2018'den beri İstanbul, Ankara ve İzmir Bölgesel (Regional) turnuvalarını organize etmektedir.\n` +
+                `- **Büyüme:** Türkiye, %37'lik yıllık büyüme oranıyla dünya genelinde en hızlı büyüyen FRC ülkesidir.\n` +
+                `- **Destekler:** Takımlara burs, malzeme/kit desteği, eğitim panelleri, yarışma organizasyonu ve mentorluk sunar.\n\n` +
+                `---\n\n` +
+                `#### 🚀 Güncel & Gelecek Sezonlar:\n` +
+                `- **2026 Sezonu:** REBUILT (Fuel yakıtları ve kule tırmanışı)\n` +
+                `- **2027 Sezonu:** **BIOCORE™ (FIRST® CANOPY™)** — Biyoçeşitlilik ve yaşamı destekleyen sistemler odaklı yeni FRC sezonu (Kickoff: 9 Ocak 2027)\n\n` +
+                `📌 **Resmi Kaynaklar ve İnceleme:**\n` +
+                `- 🌐 FIRST Global Resmi Portalı: [firstinspires.org/programs/frc](https://www.firstinspires.org/programs/frc/)\n` +
+                `- 🇹🇷 FRC Türkiye Resmi Sitesi: [frcturkiye.org](https://frcturkiye.org/)\n` +
+                `- 🏢 Fikret Yüksel Vakfı: [fikretyukselfoundation.org](https://fikretyukselfoundation.org)\n` +
+                `- 🌐 GulfTech FRC Rehberi: [GulfTech FRC Portalı](${wp.frc_nedir || 'https://gulftechrobotic.com.tr/frcnedir.html'})`;
         }
     },
     {

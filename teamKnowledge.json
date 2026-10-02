@@ -44,7 +44,7 @@
       "rol": "Elektronik Kaptanı"
     },
     {
-      "isim": "Muhammet Ali Sardoğan",
+      "isim": "Zeynep Sude Çakmak",
       "rol": "Mekanik Kaptanı"
     },
     {
@@ -63,8 +63,8 @@
     },
     {
       "isim": "Oğuzhan Aşkın",
-      "rol": "Yazılım Üyesi",
-      "not": "GulfTech AI sisteminin yaratıcısı ve geliştiricisi"
+      "rol": "Yazılım Üyesi, Elektronik Üyesi",
+      "not": "GulfTech AI sisteminin yaratıcısı ve geliştiricisi (Orion)"
     },
     {
       "isim": "Tufan Gülmez",
@@ -79,8 +79,20 @@
       "rol": "PR Üyesi"
     },
     {
-      "isim": "Zeynep Sude Çakmak",
+      "isim": "Sarenur Zehra Beşaltı",
       "rol": "PR Üyesi"
+    },
+    {
+      "isim": "Muhammet Ali Sardoğan",
+      "rol": "Mekanik Üyesi"
+    },
+    {
+      "isim": "Arhan Güney",
+      "rol": "Mekanik Üyesi"
+    },
+    {
+      "isim": "Eren Özgüler",
+      "rol": "Elektronik Üyesi"
     }
   ],
   "divizyonlar": {
@@ -90,7 +102,7 @@
       "uyeler": [
         "Beray Erenel",
         "Ege Göllü",
-        "Zeynep Sude Çakmak",
+        "Sarenur Zehra Beşaltı",
         "Arda Furkan Aygenoğlu"
       ]
     },
@@ -244,6 +256,22 @@
     {
       "ad": "Gölcük Belediyesi",
       "kategori": "Yerel Destekçi"
+    },
+    {
+      "ad": "Çocuk Kasabası",
+      "kategori": "Eğitim"
+    },
+    {
+      "ad": "GAV Teknik El Aletleri",
+      "kategori": "Teknik Ekipman ve Donanım"
+    },
+    {
+      "ad": "Erdişli",
+      "kategori": "Mekanik ve İmalat"
+    },
+    {
+      "ad": "Flaş Oto",
+      "kategori": "Teknik Malzeme"
     },
     {
       "ad": "İZAYDAŞ",

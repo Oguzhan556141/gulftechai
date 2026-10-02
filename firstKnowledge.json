@@ -23,7 +23,16 @@
       "2015": "Türkiye'de ilk FRC off-season etkinliği Fikret Yüksel Vakfı tarafından düzenlendi (2-5 Aralık 2015, İstanbul Ülker Spor Arena).",
       "2018": "Türkiye, resmi FIRST Robotics Competition (FRC) turnuvalarına ev sahipliği yapmaya başladı.",
       "2025": "FRC REEFSCAPE sezonu oynandı - Mercan ve yosun parçalarıyla puan kazanma ve tırmanma.",
-      "2026": "FRC REBUILT sezonu - Hub'lara yakıt atma ve kule tırmanma temalı oyun."
+      "2026": "FRC REBUILT sezonu - Hub'lara yakıt atma ve kule tırmanma temalı oyun.",
+      "2027": "FRC BIOCORE sezonu (FIRST® CANOPY™) - Biyoçeşitlilik, doğa ve dünyadaki yaşamı ayakta tutan sistemleri temel alan, Gene Haas Foundation tarafından sunulan FRC 2027 sezonu. Kickoff tarihi: 9 Ocak 2027."
+    },
+    "sezon_2027_biocore": {
+      "oyun_adi": "BIOCORE™",
+      "ust_tema": "FIRST® CANOPY™ (Biyoçeşitlilik ve Doğa)",
+      "destekci": "Gene Haas Foundation",
+      "kickoff_tarihi": "9 Ocak 2027",
+      "anlam_ve_amac": "BIOCORE, FIRST CANOPY sezonunun FRC ayağıdır. 'Bio' (yaşam/biyoloji) ve 'Core' (çekirdek/merkez) kelimelerinin birleşiminden oluşur. Dünyamızdaki ekosistemleri, biyoçeşitliliği ve yaşamı ayakta tutan doğal dengeleri koruma ve mühendislik vizyonuyla yeniden anlama misyonunu simgeler. Genç mühendisler biyoçeşitliliğin ve biyolojik döngülerin temel unsurlarından ilham alan endüstriyel robotlar geliştirerek yarışırlar.",
+      "ilgili_programlar": "FIRST LEGO League: BIOGLOW, FIRST Tech Challenge: BIOBUZZ, FIRST Robotics Competition: BIOCORE"
     },
     "programlar": {
       "frc": {

@@ -2498,10 +2498,49 @@ body.orion-mode .suggestion-chip {
     border-color: rgba(123, 140, 255, 0.2) !important;
 }
 
-body.orion-mode .suggestion-chip:hover {
-    border-color: #7b8cff !important;
-    box-shadow: 0 8px 25px rgba(123, 140, 255, 0.2) !important;
-    background: rgba(123, 140, 255, 0.1) !important;
+/* OrionOS — Mobile adjustments */
+
+/* ===== ORION-OS ADMIN TERMINAL & HACKER CONSOLE STYLES ===== */
+body.orion-mode .message.orion-terminal-msg {
+    animation: orionTerminalGlow 0.4s ease-out;
 }
 
-/* OrionOS — Mobile adjustments */
+body.orion-mode .message.orion-terminal-msg .message-body pre {
+    background: rgba(3, 4, 18, 0.92) !important;
+    border: 1px solid rgba(123, 140, 255, 0.45) !important;
+    border-left: 4px solid #7b8cff !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(123, 140, 255, 0.08) !important;
+    color: #a5b4fc !important;
+    font-family: var(--font-mono), 'Consolas', 'Courier New', monospace !important;
+    font-size: 0.88rem !important;
+    line-height: 1.5 !important;
+    padding: 14px 16px !important;
+    border-radius: var(--radius-md) !important;
+}
+
+body.orion-mode .message.orion-terminal-msg .message-body code {
+    font-family: var(--font-mono), 'Consolas', 'Courier New', monospace !important;
+}
+
+body.orion-mode .model-badge.orion-badge {
+    background: linear-gradient(135deg, rgba(123, 140, 255, 0.25), rgba(192, 132, 252, 0.35)) !important;
+    border: 1px solid rgba(192, 132, 252, 0.5) !important;
+    color: #e0e7ff !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.5px !important;
+    box-shadow: 0 0 12px rgba(123, 140, 255, 0.4) !important;
+    text-transform: uppercase !important;
+}
+
+@keyframes orionTerminalGlow {
+    0% {
+        opacity: 0.5;
+        transform: translateY(6px);
+        filter: brightness(1.3);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: brightness(1);
+    }
+}

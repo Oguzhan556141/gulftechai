@@ -52,13 +52,14 @@ YANITLAMA KURALLARI:
 7. Türkçe veya İngilizce yanıt ver — kullanıcının dilini takip et.
 8. Emoji kullanımı minimal ve anlamlı olsun (başlıklarda veya vurgu noktalarında).
 9. Takım kadrosu sorulduğunda: önce mentörler, sonra kaptanlar, sonra üyeler (rastgele sıra).
-10. REBUILT oyun kuralları hakkında teknik, doğru ve detaylı bilgi ver.
-11. Metrik sistemi (cm, kg) kullan. İnç/pound ölçülerini parantez içinde karşılığıyla ver.
-12. Duyarlı Profesyonellik (Gracious Professionalism) çerçevesinde yanıtla.
-13. Üye bilgilerinde LinkedIn linki varsa paylaş.
-14. Pit alanı, yarışma işleyişi ve takım hiyerarşisi hakkında bilgi ver.
-15. Kırık veya uygunsuz link paylaşma.
-16. Yanıtların GulfTech AI kimliğini yansıtsın; bilgili, yardımsever ve teknoloji meraklısı bir asistan gibi davran.`;
+10. FRC Sezonları hakkında bilgi ver: 2026 sezonu REBUILT (Hub'lara yakıt atma ve kule tırmanma); 2027 sezonu BIOCORE™ (FIRST® CANOPY™ teması, Gene Haas Foundation sponsorluğunda, biyoçeşitlilik ve yaşamı destekleyen sistemler üzerine, Kickoff: 9 Ocak 2027).
+11. FRC ve Türkiye FRC ekosistemi sorularında https://frcturkiye.org/ ve https://www.firstinspires.org/programs/frc/ kaynaklarına atıfta bulun.
+12. Metrik sistemi (cm, kg) kullan. İnç/pound ölçülerini parantez içinde karşılığıyla ver.
+13. Duyarlı Profesyonellik (Gracious Professionalism) çerçevesinde yanıtla.
+14. Üye bilgilerinde LinkedIn linki varsa paylaş.
+15. Pit alanı, yarışma işleyişi ve takım hiyerarşisi hakkında bilgi ver.
+16. Kırık veya uygunsuz link paylaşma.
+17. Yanıtların GulfTech AI kimliğini yansıtsın; bilgili, yardımsever ve teknoloji meraklısı bir asistan gibi davran.`;
 
     const contents = history.map(msg => ({
         role: msg.role === 'user' ? 'user' : 'model',
@@ -72,6 +73,9 @@ YANITLAMA KURALLARI:
         generationConfig: { temperature: 0.7, topP: 0.9, maxOutputTokens: 2048 }
     };
 
+    window.__orionTelemetry = window.__orionTelemetry || { totalCalls: 0, lastLatency: null, totalCharsReceived: 0 };
+    const startTime = performance.now();
+
     // 1. Eğer kullanıcı kendi API anahtarını girdiyse doğrudan Google API'ye git
     if (apiKey) {
         const directUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
@@ -80,12 +84,18 @@ YANITLAMA KURALLARI:
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
         });
+        const elapsed = Math.round(performance.now() - startTime);
+        window.__orionTelemetry.lastLatency = elapsed;
+        window.__orionTelemetry.totalCalls++;
+
         if (!res.ok) {
             const errData = await res.json().catch(() => ({}));
             throw new Error(errData?.error?.message || `API hatası (${res.status})`);
         }
         const resData = await res.json();
-        return resData.candidates?.[0]?.content?.parts?.[0]?.text;
+        const textOut = resData.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (textOut) window.__orionTelemetry.totalCharsReceived += textOut.length;
+        return textOut;
     }
 
     // 2. Sunucu / Gateway üzerinden güvenli istek
@@ -103,6 +113,9 @@ YANITLAMA KURALLARI:
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body)
     });
+    const elapsed = Math.round(performance.now() - startTime);
+    window.__orionTelemetry.lastLatency = elapsed;
+    window.__orionTelemetry.totalCalls++;
 
     if (!res.ok) {
         const errData = await res.json().catch(() => ({}));
@@ -113,7 +126,9 @@ YANITLAMA KURALLARI:
     }
 
     const resData = await res.json();
-    return resData.candidates?.[0]?.content?.parts?.[0]?.text;
+    const textOut = resData.candidates?.[0]?.content?.parts?.[0]?.text;
+    if (textOut) window.__orionTelemetry.totalCharsReceived += textOut.length;
+    return textOut;
 }
 
 export async function simulateResponse(userMessage, data, knowledge) {

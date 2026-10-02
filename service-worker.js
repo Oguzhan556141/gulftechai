@@ -1,10 +1,11 @@
-const CACHE_NAME = 'gulftech-ai-v7';
+const CACHE_NAME = 'gulftech-ai-v10';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './styles.css',
   './js/main.js',
   './js/api.js',
+  './js/orion.js',
   './js/handlers.js',
   './js/ui.js',
   './js/utils.js',

@@ -4,6 +4,7 @@ import { getNextRegional, delay, renderMarkdown } from './utils.js';
 import { callGeminiAPI, simulateResponse } from './api.js';
 import { renderMap, MapComponent } from './map.js';
 import { initI18n, toggleLanguage, setLanguage, t } from './i18n.js';
+import { isOrionCommand, executeOrionCommand, applyStoredCustomKnowledge } from './orion.js';
 
 let appData = null;
 let conversations = JSON.parse(localStorage.getItem(CONFIG.CONV_STORAGE_KEY) || '{}');
@@ -74,6 +75,10 @@ async function init() {
             frc_turkiye: firstKnowledge.frc_turkiye,
             genel_kultur: generalKnowledge
         };
+
+        // Apply any live knowledge overrides previously set via OrionOS Live Editor
+        applyStoredCustomKnowledge();
+
         console.log('All knowledge files loaded successfully');
     } catch (err) {
         console.error('Initial load error:', err);
@@ -399,8 +404,7 @@ function applyOrionMode(enable) {
     // Generate starfield canvas for OrionOS
     if (enable) {
         initOrionStarfield();
-        // Show settings access in OrionOS
-        UI.modelBadge.textContent = 'OrionOS';
+        UI.modelBadge.textContent = 'OrionOS [ROOT]';
         UI.modelBadge.classList.add('orion-badge');
     } else {
         UI.modelBadge.classList.remove('orion-badge');
@@ -484,7 +488,13 @@ async function handleSend() {
         UI.autoResizeInput();
 
         // Show activation/deactivation message
-        const msg = willEnable ? t('orionActivated') : t('orionDeactivated');
+        let msg = willEnable 
+            ? `🌌 **OrionOS Yönetici / Terminal Modu Aktif Edildi.**\n\n` +
+              `> Yetki Seviyesi: \`ROOT / DEVELOPER\`\n` +
+              `> Komut Konsolu: \`AKTİF\`\n` +
+              `> Canlı Bilgi Düzenleyici (Live Editor): \`AKTİF\`\n\n` +
+              `Komut listesini ve yardım menüsünü görmek için \`/help\` yazabilirsiniz.`
+            : t('orionDeactivated');
 
         if (!currentConvId) {
             currentConvId = 'conv_' + Date.now();
@@ -496,6 +506,50 @@ async function handleSend() {
         conversations[currentConvId].messages.push({ role: 'ai', content: msg });
         localStorage.setItem(CONFIG.CONV_STORAGE_KEY, JSON.stringify(conversations));
         loadHistory();
+        return;
+    }
+
+    // ===== ORION OS CLI / ADMIN & LIVE KNOWLEDGE INTERCEPTOR =====
+    // ONLY executed when isOrionMode is true. If isOrionMode is false, commands are ignored
+    // and processed as normal chat messages (zero leak / complete stealth).
+    if (isOrionMode && isOrionCommand(text, isOrionMode)) {
+        if (!currentConvId) {
+            currentConvId = 'conv_' + Date.now();
+            conversations[currentConvId] = { title: 'OrionOS Terminal 📟', messages: [], updatedAt: Date.now() };
+        }
+
+        $('#welcomeScreen')?.remove();
+        conversations[currentConvId].messages.push({ role: 'user', content: text });
+        UI.appendMessage('user', text);
+
+        UI.chatInput.value = '';
+        UI.sendBtn.disabled = true;
+        UI.autoResizeInput();
+        UI.scrollToBottom();
+
+        isResponding = true;
+        const typingIndicator = UI.showTypingIndicator();
+
+        try {
+            const adminResponse = await executeOrionCommand(text, {
+                conversations,
+                currentConvId,
+                model
+            });
+
+            typingIndicator.remove();
+            const msgEl = UI.appendMessage('ai', adminResponse);
+            msgEl.classList.add('orion-terminal-msg');
+            conversations[currentConvId].messages.push({ role: 'ai', content: adminResponse });
+            localStorage.setItem(CONFIG.CONV_STORAGE_KEY, JSON.stringify(conversations));
+            loadHistory();
+            UI.scrollToBottom();
+        } catch (err) {
+            typingIndicator.remove();
+            UI.appendMessage('ai', '⚠️ Terminal Hatası: ' + err.message);
+        } finally {
+            isResponding = false;
+        }
         return;
     }
 
