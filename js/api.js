@@ -66,13 +66,39 @@ YANITLAMA KURALLARI:
     }));
 
     const body = {
+        model: model,
         system_instruction: { parts: [{ text: systemPrompt }] },
         contents: contents,
         generationConfig: { temperature: 0.7, topP: 0.9, maxOutputTokens: 2048 }
     };
 
-    const url = `/api/gemini/v1beta/models/${model}:generateContent`;
-    const res = await fetch(url, {
+    // 1. Eğer kullanıcı kendi API anahtarını girdiyse doğrudan Google API'ye git
+    if (apiKey) {
+        const directUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+        const res = await fetch(directUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+        });
+        if (!res.ok) {
+            const errData = await res.json().catch(() => ({}));
+            throw new Error(errData?.error?.message || `API hatası (${res.status})`);
+        }
+        const resData = await res.json();
+        return resData.candidates?.[0]?.content?.parts?.[0]?.text;
+    }
+
+    // 2. Sunucu / Gateway üzerinden güvenli istek
+    // CONFIG.GATEWAY_URL varsa oraya, yoksa göreceli /api/gemini adresine gönder
+    let targetEndpoint = '/api/gemini';
+    try {
+        const { CONFIG } = await import('./config.js');
+        if (CONFIG.GATEWAY_URL) {
+            targetEndpoint = CONFIG.GATEWAY_URL.replace(/\/$/, '') + '/api/gemini';
+        }
+    } catch (e) {}
+
+    const res = await fetch(targetEndpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body)
@@ -80,7 +106,10 @@ YANITLAMA KURALLARI:
 
     if (!res.ok) {
         const errData = await res.json().catch(() => ({}));
-        throw new Error(errData?.error?.message || `API hatası (${res.status})`);
+        if (res.status === 405) {
+            throw new Error("GitHub Pages statik bir sunucu olduğu için arka planda çalışan API sunucusu bulunamadı. Lütfen Vercel gateway adresinizi bağlayın veya ayarlardan kendi API anahtarınızı girin.");
+        }
+        throw new Error(errData?.error?.message || errData?.error || `API hatası (${res.status})`);
     }
 
     const resData = await res.json();
