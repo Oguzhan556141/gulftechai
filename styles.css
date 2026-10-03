@@ -2353,49 +2353,50 @@ a:hover {
     }
 }
 
-/* ===== OrionOS Mode — Body Theme Override ===== */
+/* ===== OrionOS Mode — Body Theme Override (Neon Cyber Red & Deep Obsidian) ===== */
 body.orion-mode {
-    --bg-primary: #010318;
-    --bg-secondary: rgba(20, 10, 60, 0.08);
-    --bg-sidebar: rgba(5, 2, 30, 0.95);
-    --accent: #7b8cff;
-    --accent-gold: #c792ff;
-    --accent-glow: rgba(123, 140, 255, 0.4);
-    --gold-glow: rgba(199, 146, 255, 0.3);
-    --bg-dark: #020118;
-    --bg-card: rgba(10, 8, 40, 0.6);
-    --sidebar-bg: rgba(3, 2, 20, 0.9);
-    --border: rgba(123, 140, 255, 0.15);
-    --gold-border: rgba(199, 146, 255, 0.2);
-    --bg-input: rgba(30, 20, 80, 0.08);
-    --bg-hover: rgba(100, 80, 255, 0.1);
-    --bg-active: rgba(100, 80, 255, 0.15);
-    --accent-bright: #a0b4ff;
-    --gradient-logo: linear-gradient(135deg, #7b8cff 0%, #c792ff 100%);
+    --bg-primary: #0a0a0a;
+    --bg-secondary: rgba(255, 7, 58, 0.05);
+    --bg-sidebar: rgba(10, 10, 10, 0.96);
+    --accent: #FF073A;
+    --accent-gold: #EE0000;
+    --accent-glow: rgba(255, 7, 58, 0.45);
+    --gold-glow: rgba(238, 0, 0, 0.35);
+    --bg-dark: #050505;
+    --bg-card: rgba(18, 18, 18, 0.75);
+    --sidebar-bg: rgba(10, 10, 10, 0.95);
+    --border: rgba(255, 7, 58, 0.22);
+    --gold-border: rgba(238, 0, 0, 0.3);
+    --bg-input: rgba(18, 18, 18, 0.85);
+    --bg-hover: rgba(255, 7, 58, 0.12);
+    --bg-active: rgba(255, 7, 58, 0.2);
+    --accent-bright: #ff335c;
+    --gradient-logo: linear-gradient(135deg, #FF073A 0%, #EE0000 100%);
+    background: #0a0a0a !important;
 }
 
 body.orion-mode .bg-blobs {
-    background: radial-gradient(ellipse at 30% 50%, #0a0525 0%, #010318 50%, #000010 100%);
+    background: radial-gradient(ellipse at 30% 50%, #160205 0%, #0a0a0a 60%, #050505 100%) !important;
 }
 
 body.orion-mode .blob-1 {
-    background: #5b4dff;
-    opacity: 0.15;
+    background: #EE0000 !important;
+    opacity: 0.12 !important;
 }
 
 body.orion-mode .blob-2 {
-    background: #9b59ff;
-    opacity: 0.1;
+    background: #FF073A !important;
+    opacity: 0.08 !important;
 }
 
 body.orion-mode .blob-3 {
-    background: #3a2dff;
-    opacity: 0.08;
+    background: #880000 !important;
+    opacity: 0.1 !important;
 }
 
-/* OrionOS — Orion constellation becomes prominent */
+/* OrionOS — Orion constellation becomes prominent with crimson neon */
 body.orion-mode .orion-wrapper {
-    opacity: 0.9;
+    opacity: 0.95;
     width: 350px;
     height: 500px;
     bottom: 20px;
@@ -2404,58 +2405,62 @@ body.orion-mode .orion-wrapper {
 }
 
 body.orion-mode .orion-star {
-    animation-duration: 2.5s;
+    animation-duration: 2.2s;
 }
 
 body.orion-mode .orion-star.bright {
-    filter: drop-shadow(0 0 12px #7b8cff);
+    filter: drop-shadow(0 0 14px #FF073A);
+    fill: #ff335c !important;
     r: 4;
 }
 
 body.orion-mode .orion-line {
-    stroke: rgba(123, 140, 255, 0.35);
+    stroke: rgba(255, 7, 58, 0.38) !important;
     stroke-width: 1.5;
 }
 
-/* OrionOS — Sidebar glow */
+/* OrionOS — Sidebar crimson accent */
 body.orion-mode .sidebar {
-    background: rgba(5, 2, 30, 0.85) !important;
-    border-right-color: rgba(123, 140, 255, 0.15);
+    background: rgba(10, 10, 10, 0.94) !important;
+    border-right-color: rgba(255, 7, 58, 0.25) !important;
 }
 
 body.orion-mode .brand-name,
 body.orion-mode .welcome-screen h1 {
-    background: linear-gradient(135deg, #c8dcff 30%, #7b8cff 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    background: linear-gradient(135deg, #ffffff 20%, #ff8097 60%, #FF073A 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
 }
 
 body.orion-mode .brand-name .accent,
 body.orion-mode .welcome-screen h1 .accent {
-    background: linear-gradient(135deg, #c792ff 0%, #e0b0ff 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    background: linear-gradient(135deg, #FF073A 0%, #EE0000 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    filter: drop-shadow(0 0 12px rgba(255, 7, 58, 0.6));
 }
 
-/* OrionOS — Badge style */
+/* OrionOS — Glowing Neon Red Badge style (#FF073A) */
 .model-badge.orion-badge {
-    background: rgba(123, 140, 255, 0.15);
-    color: #a0b4ff;
-    border-color: rgba(123, 140, 255, 0.3);
-    animation: orionBadgePulse 3s infinite ease-in-out;
+    background: rgba(255, 7, 58, 0.16) !important;
+    color: #ffffff !important;
+    border: 1px solid #FF073A !important;
+    animation: orionNeonRedPulse 2.2s infinite ease-in-out !important;
+    box-shadow: 0 0 14px rgba(255, 7, 58, 0.6), inset 0 0 8px rgba(238, 0, 0, 0.4) !important;
+    letter-spacing: 1px !important;
+    font-weight: 800 !important;
 }
 
-@keyframes orionBadgePulse {
-
-    0%,
-    100% {
-        box-shadow: 0 0 0 0 rgba(123, 140, 255, 0);
+@keyframes orionNeonRedPulse {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(255, 7, 58, 0.5), inset 0 0 5px rgba(255, 7, 58, 0.3);
+        border-color: #FF073A;
     }
-
     50% {
-        box-shadow: 0 0 12px 2px rgba(123, 140, 255, 0.3);
+        box-shadow: 0 0 22px rgba(255, 7, 58, 0.9), 0 0 35px rgba(238, 0, 0, 0.4), inset 0 0 12px rgba(255, 7, 58, 0.6);
+        border-color: #ff335c;
     }
 }
 
@@ -2484,21 +2489,49 @@ body.orion-mode .chat-input-container {
 }
 
 body.orion-mode .chat-input-container:focus-within {
-    border-color: #7b8cff;
-    box-shadow: 0 0 0 3px rgba(123, 140, 255, 0.1);
+    border-color: #FF073A !important;
+    box-shadow: 0 0 0 3px rgba(255, 7, 58, 0.2), 0 0 15px rgba(238, 0, 0, 0.25) !important;
 }
 
-/* OrionOS — Stars become purple/blue tinted */
+/* OrionOS — Stars become crimson neon tinted */
 body.orion-mode .star-node {
-    background: #c8d4ff;
+    background: #ff4d6d !important;
+    box-shadow: 0 0 6px #FF073A !important;
 }
 
 /* OrionOS — Suggestion chips */
 body.orion-mode .suggestion-chip {
-    border-color: rgba(123, 140, 255, 0.2) !important;
+    border-color: rgba(255, 7, 58, 0.25) !important;
+    background: rgba(18, 18, 18, 0.6) !important;
 }
 
-/* OrionOS — Mobile adjustments */
+body.orion-mode .suggestion-chip:hover {
+    border-color: #FF073A !important;
+    box-shadow: 0 8px 25px rgba(255, 7, 58, 0.25) !important;
+    background: rgba(255, 7, 58, 0.12) !important;
+}
+
+/* OrionOS Mascot Matrix / Quantum Core Glow */
+body.orion-mode .welcome-mascot,
+body.orion-mode .brand-logo {
+    filter: drop-shadow(0 0 18px rgba(255, 7, 58, 0.85)) drop-shadow(0 0 35px rgba(238, 0, 0, 0.5)) !important;
+    animation: quantumCorePulse 3s infinite alternate ease-in-out !important;
+}
+
+@keyframes quantumCorePulse {
+    0% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 14px rgba(255, 7, 58, 0.75));
+    }
+    50% {
+        transform: scale(1.03);
+        filter: drop-shadow(0 0 26px rgba(255, 7, 58, 1)) drop-shadow(0 0 45px rgba(238, 0, 0, 0.6));
+    }
+    100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 16px rgba(255, 7, 58, 0.8));
+    }
+}
 
 /* ===== ORION-OS ADMIN TERMINAL & HACKER CONSOLE STYLES ===== */
 body.orion-mode .message.orion-terminal-msg {
@@ -2506,11 +2539,11 @@ body.orion-mode .message.orion-terminal-msg {
 }
 
 body.orion-mode .message.orion-terminal-msg .message-body pre {
-    background: rgba(3, 4, 18, 0.92) !important;
-    border: 1px solid rgba(123, 140, 255, 0.45) !important;
-    border-left: 4px solid #7b8cff !important;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(123, 140, 255, 0.08) !important;
-    color: #a5b4fc !important;
+    background: #0A0A0A !important;
+    border: 1px solid rgba(255, 7, 58, 0.45) !important;
+    border-left: 4px solid #FF073A !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8), inset 0 0 18px rgba(255, 7, 58, 0.08) !important;
+    color: #ff94a6 !important;
     font-family: var(--font-mono), 'Consolas', 'Courier New', monospace !important;
     font-size: 0.88rem !important;
     line-height: 1.5 !important;
@@ -2520,27 +2553,139 @@ body.orion-mode .message.orion-terminal-msg .message-body pre {
 
 body.orion-mode .message.orion-terminal-msg .message-body code {
     font-family: var(--font-mono), 'Consolas', 'Courier New', monospace !important;
-}
-
-body.orion-mode .model-badge.orion-badge {
-    background: linear-gradient(135deg, rgba(123, 140, 255, 0.25), rgba(192, 132, 252, 0.35)) !important;
-    border: 1px solid rgba(192, 132, 252, 0.5) !important;
-    color: #e0e7ff !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.5px !important;
-    box-shadow: 0 0 12px rgba(123, 140, 255, 0.4) !important;
-    text-transform: uppercase !important;
+    color: #ffb8c5 !important;
 }
 
 @keyframes orionTerminalGlow {
     0% {
         opacity: 0.5;
         transform: translateY(6px);
-        filter: brightness(1.3);
+        filter: brightness(1.4);
     }
     100% {
         opacity: 1;
         transform: translateY(0);
         filter: brightness(1);
     }
+}
+
+/* ===== DEVELOPER DASHBOARD MODAL STYLES ===== */
+.orion-dev-modal {
+    max-width: 680px !important;
+    background: rgba(10, 10, 10, 0.95) !important;
+    border: 1px solid rgba(255, 7, 58, 0.35) !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 35px rgba(255, 7, 58, 0.25) !important;
+}
+
+.orion-tag {
+    font-size: 0.75rem;
+    color: #FF073A;
+    background: rgba(255, 7, 58, 0.12);
+    border: 1px solid rgba(255, 7, 58, 0.4);
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+}
+
+.dev-telemetry-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.dev-metric-card {
+    background: #121212;
+    border: 1px solid rgba(255, 7, 58, 0.2);
+    border-radius: var(--radius-md);
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.dev-metric-card .metric-title {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.dev-metric-card .metric-val {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #FF073A;
+    font-family: var(--font-mono);
+}
+
+.dev-section-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 16px 0 10px 0;
+    border-bottom: 1px solid rgba(255, 7, 58, 0.2);
+    padding-bottom: 6px;
+}
+
+.dev-actions-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.dev-btn {
+    background: #121212;
+    color: #ffffff;
+    border: 1px solid rgba(255, 7, 58, 0.35);
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.82rem;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    transition: all 0.2s ease;
+}
+
+.dev-btn:hover {
+    background: rgba(255, 7, 58, 0.15);
+    border-color: #FF073A;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 7, 58, 0.3);
+}
+
+.dev-btn.danger {
+    border-color: rgba(238, 0, 0, 0.5);
+    color: #ff6b81;
+}
+
+.dev-btn.danger:hover {
+    background: rgba(238, 0, 0, 0.25);
+    border-color: #EE0000;
+}
+
+.dev-status-box {
+    background: #0A0A0A;
+    border: 1px solid rgba(255, 7, 58, 0.2);
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    font-size: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-family: var(--font-mono);
+}
+
+.dev-status-box .status-line {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-item.orion-only-nav {
+    color: #ff6b81 !important;
+    border: 1px dashed rgba(255, 7, 58, 0.4) !important;
+    background: rgba(255, 7, 58, 0.08) !important;
+}
+
+.nav-item.orion-only-nav:hover {
+    background: rgba(255, 7, 58, 0.18) !important;
+    border-color: #FF073A !important;
+    box-shadow: 0 0 12px rgba(255, 7, 58, 0.35) !important;
 }

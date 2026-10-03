@@ -61,20 +61,7 @@ export function applyStoredCustomKnowledge() {
             });
         }
 
-        // Merge captains
-        if (Array.isArray(overrides.kaptanlar) && overrides.kaptanlar.length > 0) {
-            window.appKnowledge.kaptanlar = window.appKnowledge.kaptanlar || [];
-            overrides.kaptanlar.forEach(newCap => {
-                const existingIdx = window.appKnowledge.kaptanlar.findIndex(
-                    c => c.isim && c.isim.toLowerCase() === newCap.isim.toLowerCase()
-                );
-                if (existingIdx >= 0) {
-                    window.appKnowledge.kaptanlar[existingIdx] = newCap;
-                } else {
-                    window.appKnowledge.kaptanlar.push(newCap);
-                }
-            });
-        }
+        // (captains are now merged into ekip_uyeleri)
 
         // Generic custom key-values
         if (overrides.custom_fields) {
@@ -198,6 +185,7 @@ export async function executeOrionCommand(rawText, context) {
 
 [1. SİSTEM & TELEMETRİ KOMUTLARI]
   /stats                     -> Oturum konuşma sayısı, tahmini token, gecikme (latency)
+  /sync-ig                   -> Instagram verilerini (@gulftechtr) canlı ağdan otomatik çeker
   /clear-cache               -> Service Worker ve tarayıcı önbelleklerini temizler
   /dump-knowledge            -> Canlı sistem belleğindeki tüm bilgiyi JSON olarak indirir
   /clear-overrides           -> Canlı eklenen geçici bellek düzenlemelerini sıfırlar
@@ -247,8 +235,11 @@ export async function executeOrionCommand(rawText, context) {
         const k = window.appKnowledge || {};
         const sponsorCount = (k.sponsorlar || []).length;
         const mentorCount = (k.yonetim_ve_mentorlar || []).length;
-        const captainCount = (k.kaptanlar || []).length;
-        const memberCount = (k.ekip_uyeleri || []).length;
+        
+        const allMembers = k.ekip_uyeleri || [];
+        const captainCount = allMembers.filter(m => (m.rol || '').toLowerCase().includes('kaptan')).length;
+        const memberCount = allMembers.length - captainCount;
+        
         const generalCategories = Object.keys(k.genel_kultur || {}).length;
 
         // Custom memory count
@@ -511,7 +502,81 @@ Mentör listesi ve kişisel mentör sorguları artık bu bilgiyi anında döndü
     // COMMAND: orion: update-ig <Takipçi> [Takip] [Gönderi]
     // Also aliases: /update-ig, /sync-ig, orion: sync-ig
     // -------------------------------------------------------------
+    // -------------------------------------------------------------
+    // COMMAND: orion: update-ig <Takipçi> [Takip] [Gönderi]
+    // Also aliases: /update-ig, /sync-ig, orion: sync-ig
+    // -------------------------------------------------------------
     if (cmd === 'update-ig' || cmd === 'sync-ig') {
+        // Otomatik Çekme Modu: Eğer kullanıcı sayı vermeden sadece "/sync-ig" veya "orion: sync-ig" yazdıysa
+        if (!args && cmd === 'sync-ig') {
+            try {
+                let targetUrl = '/api/instagram';
+                try {
+                    const { CONFIG } = await import('./config.js');
+                    if (CONFIG.GATEWAY_URL) {
+                        targetUrl = CONFIG.GATEWAY_URL.replace(/\/$/, '') + '/api/instagram';
+                    }
+                } catch (e) {}
+
+                const fetchRes = await fetch(targetUrl);
+                if (fetchRes.ok) {
+                    const igData = await fetchRes.json();
+                    if (igData.success && igData.followers) {
+                        const todayStr = new Date().toISOString().slice(0, 10);
+                        window.appKnowledge = window.appKnowledge || {};
+                        window.appKnowledge.instagram_icerik = window.appKnowledge.instagram_icerik || {};
+                        window.appKnowledge.instagram_icerik.takipci = igData.followers;
+                        if (igData.following) window.appKnowledge.instagram_icerik.takip = igData.following;
+                        if (igData.posts) window.appKnowledge.instagram_icerik.gonderi = igData.posts;
+                        window.appKnowledge.instagram_icerik.son_guncelleme = todayStr;
+
+                        if (window.appKnowledge.sosyal_aglar && typeof window.appKnowledge.sosyal_aglar.instagram === 'object') {
+                            window.appKnowledge.sosyal_aglar.instagram.takipci = igData.followers;
+                            if (igData.following) window.appKnowledge.sosyal_aglar.instagram.takip = igData.following;
+                            if (igData.posts) window.appKnowledge.sosyal_aglar.instagram.gonderi = igData.posts;
+                        }
+
+                        persistCustomKnowledge('instagram_icerik', {
+                            takipci: igData.followers,
+                            takip: igData.following,
+                            gonderi: igData.posts,
+                            son_guncelleme: todayStr
+                        });
+
+                        return `\`\`\`bash
+[ORION-OS OTOMATİK INSTAGRAM SYNC: BAŞARILI]
+  ✓ Hedef Hesap:        @${igData.username || 'gulftechtr'}
+  ✓ Kaynak:             ${igData.source} (Canlı Ağ)
+  ✓ Takipçi Sayısı:     ${igData.followers.toLocaleString()}
+  ✓ Takip Edilen:       ${igData.following ?? '-'}
+  ✓ Gönderi Sayısı:     ${igData.posts ?? '-'}
+  ✓ Senkronizasyon:     ${todayStr}
+  ✓ Hafıza Durumu:      CANLI VE KALICI GÜNCELLENDİ
+\`\`\`
+OrionOS canlı Instagram verisini başarıyla senkronize etti!`;
+                    }
+                }
+            } catch (err) {
+                console.warn('OrionOS Auto-sync error:', err);
+            }
+
+            // Eğer otomatik çekme Instagram rate-limit/bot korumasına takıldıysa mevcut durumu göster ve yönlendir
+            const currentIg = window.appKnowledge?.instagram_icerik || {};
+            return `\`\`\`bash
+[ORION-OS INSTAGRAM SYNC BİLGİSİ]
+  • Durum:              Instagram genel ağı geçici bot korumasında.
+  • Mevcut Takipçi:     ${currentIg.takipci ?? 991}
+  • Mevcut Takip:       ${currentIg.takip ?? 153}
+  • Mevcut Gönderi:     ${currentIg.gonderi ?? 96}
+  • Son Güncelleme:     ${currentIg.son_guncelleme || 'Bilinmiyor'}
+
+Hızlı Canlı Güncelleme:
+  orion: update-ig <Takipçi> [Takip] [Gönderi]
+  Örnek: orion: update-ig 1050 160 102
+  (Tek sayı girilirse sadece takipçi güncellenir: orion: update-ig 1050)
+\`\`\``;
+        }
+
         if (!args) {
             const currentIg = window.appKnowledge?.instagram_icerik || {};
             return `\`\`\`bash
@@ -522,9 +587,8 @@ Mentör listesi ve kişisel mentör sorguları artık bu bilgiyi anında döndü
   • Son Güncelleme:     ${currentIg.son_guncelleme || 'Bilinmiyor'}
 
 Kullanım:
-  orion: update-ig <Takipçi> [Takip] [Gönderi]
-  Örnek: orion: update-ig 1050 160 102
-  (Tek sayı girilirse sadece takipçi güncellenir: orion: update-ig 1050)
+  /sync-ig                                     -> Otomatik canlı ağdan çekmeyi dener
+  orion: update-ig <Takipçi> [Takip] [Gönderi] -> Anında elle sayı işler (Örn: /update-ig 1050)
 \`\`\``;
         }
 

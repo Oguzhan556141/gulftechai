@@ -140,15 +140,21 @@ export const handlers = [
         handle: async (msg, data, knowledge) => {
             const k = knowledge.takim_kimligi;
             const mentors = knowledge.yonetim_ve_mentorlar || [];
-            const captains = knowledge.kaptanlar || k.kaptanlar || [];
             const members = [...(knowledge.ekip_uyeleri || k.ekip_uyeleri || [])];
             const wp = knowledge.web_sitesi_sayfalari || {};
 
+            // Separate captains and normal members for display
+            const captains = members.filter(m => m.rol.toLowerCase().includes('kaptan'));
+            const regularMembers = members.filter(m => !m.rol.toLowerCase().includes('kaptan'));
+
             // Shuffle members randomly
-            for (let i = members.length - 1; i > 0; i--) {
+            for (let i = regularMembers.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
-                [members[i], members[j]] = [members[j], members[i]];
+                [regularMembers[i], regularMembers[j]] = [regularMembers[j], regularMembers[i]];
             }
+            
+            // Re-combine them (captains first)
+            const sortedMembers = [...captains, ...regularMembers];
 
             let mentorText = '';
             if (mentors.length > 0) {
@@ -158,16 +164,10 @@ export const handlers = [
                 mentorText = `- **${ym.takim_mentoru1 || 'Ümran Kayaoğlu'}**: Takım Mentörü\n- **${ym.takim_mentoru2 || 'Ensar İnce'}**: Takım Mentörü`;
             }
 
-            // Format captains with LinkedIn
-            const captainLines = captains.map(c => {
-                let line = `- **${c.isim}**: ${c.rol}`;
-                if (c.linkedin) line += ` — [LinkedIn Profili](${c.linkedin})`;
-                return line;
-            }).join('\n');
-
-            // Format members with LinkedIn
-            const memberLines = members.map(m => {
-                let line = `- **${m.isim}**: ${m.rol}`;
+            // Format all members with LinkedIn
+            const memberLines = sortedMembers.map(m => {
+                let prefix = m.rol.toLowerCase().includes('kaptan') ? '⭐' : '👤';
+                let line = `- ${prefix} **${m.isim}**: ${m.rol}`;
                 if (m.linkedin) line += ` — [LinkedIn Profili](${m.linkedin})`;
                 return line;
             }).join('\n');
@@ -176,8 +176,6 @@ export const handlers = [
                 `GulfTech #11392; Kocaeli Gölcük BİLSEM çatısı altında yetişen gençlerin liderlik, mekanik, elektronik, yazılım ve PR alanlarında disiplinler arası bir sinerjiyle oluşturduğu güçlü bir FRC takımıdır.\n\n` +
                 `**🎓 Mentörlerimiz:**\n` +
                 mentorText + `\n\n` +
-                `**⭐ Kaptanlarımız:**\n` +
-                captainLines + `\n\n` +
                 `**👥 Ekip Üyelerimiz:**\n` +
                 memberLines + `\n\n` +
                 `**💡 Divizyon Yapımız:**\n` +
@@ -213,9 +211,9 @@ export const handlers = [
                 normMsg.includes('umran') || normMsg.includes('kayaoglu')) return true;
 
             // Member check
-            const captains = (knowledge && knowledge.kaptanlar) || k.kaptanlar || [];
+            // Member check
             const members = (knowledge && knowledge.ekip_uyeleri) || k.ekip_uyeleri || [];
-            const allPartners = [...captains, ...members];
+            const allPartners = members;
 
             return allPartners.some(p => {
                 if (!p.isim) return false;
@@ -233,12 +231,13 @@ export const handlers = [
                 return `**Ümran Kayaoğlu**, GulfTech #11392 takımımızın **Takım Mentörü**. Takımımızın kurumsal ve eğitim süreçlerinde yanımızda yer almaktadır.`;
             }
 
-            const captains = knowledge.kaptanlar || k.kaptanlar || [];
             const members = knowledge.ekip_uyeleri || k.ekip_uyeleri || [];
-            const allPartners = [
-                ...captains.map(c => ({ name: c.isim, role: c.rol, type: 'captain', linkedin: c.linkedin })),
-                ...members.map(m => ({ name: m.isim, role: m.rol, type: 'member', linkedin: m.linkedin }))
-            ];
+            const allPartners = members.map(m => ({ 
+                name: m.isim, 
+                role: m.rol, 
+                type: (m.rol || '').toLowerCase().includes('kaptan') ? 'captain' : 'member', 
+                linkedin: m.linkedin 
+            }));
 
             for (const p of allPartners) {
                 if (!p.name) continue;

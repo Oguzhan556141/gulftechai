@@ -34,7 +34,7 @@
       "rol": "Takım Mentörü"
     }
   ],
-  "kaptanlar": [
+  "ekip_uyeleri": [
     {
       "isim": "Levent Yiğit",
       "rol": "Takım Kaptanı"
@@ -54,9 +54,7 @@
     {
       "isim": "İrem Ünver",
       "rol": "Yazılım Kaptanı"
-    }
-  ],
-  "ekip_uyeleri": [
+    },
     {
       "isim": "Arda Furkan Aygenoğlu",
       "rol": "PR Üyesi"
@@ -108,15 +106,20 @@
     },
     "Mekanik": {
       "aciklama": "Robotumuzun temellerini atıp fiziksel olarak düzenleyen ekiptir. Şasi üretimi ve geliştirilen eklentilerin yapımından sorumludur.",
-      "kaptan": "Muhammet Ali Sardoğan",
+      "kaptan": "Zeynep Sude Çakmak",
       "uyeler": [
-        "Tufan Gülmez"
+        "Tufan Gülmez",
+        "Muhammet Ali Sardoğan",
+        "Arhan Güney"
       ]
     },
     "Elektronik": {
       "aciklama": "Robotun bir nevi beynini ve sinir sistemini oluşturan ekiptir. Kablolama ve sensör kontrolü onların sorumluluğudur.",
       "kaptan": "Tuğra Kerem Kaya",
-      "uyeler": []
+      "uyeler": [
+        "Eren Özgüler",
+        "Oğuzhan Aşkın"
+      ]
     },
     "Yazılım": {
       "aciklama": "Robotun beynini kodlayan ekiptir. Otonom sürüş ve kontrol algoritmalarını yazmaktan sorumludur.",
@@ -138,8 +141,8 @@
     {
       "ad": "Gulf Tech AI",
       "aciklama": "Gulf Tech AI merak edilen sorulara yanıt veren, teknik dökümanları anlamlandırmayı kolaylaştıran ve eğitim yolculuğunda yol gösteren dijital bir asistandır.",
-      "url": "https://oguzhan556141.github.io/gulftechai/",
-      "gelistirici": "Oğuzhan Aşkın"
+      "url": "https://gulftechai.vercel.app/",
+      "gelistirici": "Oğuzhan Aşkın (Orion)"
     },
     {
       "ad": "FRC Eğitim Portalı",
