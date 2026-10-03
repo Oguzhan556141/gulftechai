@@ -300,11 +300,10 @@ export const handlers = [
             if (data && data.regionals) {
                 data.regionals.forEach(r => {
                     // Skip if already in the list
-                    const exists = list.some(l => l.ad === r.name);
+                    const exists = list.some(l => l.ad.toLowerCase() === r.name.toLowerCase());
                     if (!exists) {
-                        const d = new Date(r.date);
-                        const dateStr = `${d.getDate()}-${d.getDate()+2} ${['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'][d.getMonth()]} ${d.getFullYear()}`;
-                        table += `| ${r.name} | ${dateStr} | ${r.location} |\n`;
+                        const dateStr = r.dateDisplay || `${new Date(r.date).toLocaleDateString('tr-TR')}`;
+                        table += `| ${r.name} | ${dateStr} | ${r.venue || r.location} |\n`;
                     }
                 });
             }

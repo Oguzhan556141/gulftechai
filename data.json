@@ -72,59 +72,160 @@
   },
   "regionals": [
     {
-      "name": "Istanbul Regional",
-      "date": "2026-03-03T09:00:00+03:00",
-      "location": "Başakşehir, İstanbul"
-    },
-    {
-      "name": "Bosphorus Regional",
-      "date": "2026-03-06T09:00:00+03:00",
-      "location": "Başakşehir, İstanbul"
-    },
-    {
-      "name": "Yeditepe Regional",
-      "date": "2026-03-09T09:00:00+03:00",
-      "location": "Başakşehir, İstanbul"
-    },
-    {
-      "name": "Haliç Regional",
-      "date": "2026-03-25T09:00:00+03:00",
-      "location": "Ataköy, İstanbul"
-    },
-    {
-      "name": "Marmara Regional",
-      "date": "2026-03-28T09:00:00+03:00",
-      "location": "Ataköy, İstanbul"
-    },
-    {
-      "name": "Eurasia Regional",
-      "date": "2026-03-31T09:00:00+03:00",
-      "location": "Ataköy, İstanbul"
-    },
-    {
+      "code": "TUAK",
       "name": "Ankara Regional",
-      "date": "2026-04-07T09:00:00+03:00",
-      "location": "Etimesgut, Ankara"
+      "season": 2027,
+      "category": "turkey",
+      "date": "2027-03-19T09:00:00+03:00",
+      "endDate": "2027-03-21T18:00:00+03:00",
+      "dateDisplay": "19 - 21 Mart 2027",
+      "location": "Çankaya, Ankara",
+      "venue": "ODTÜ GVO Lisesi Spor Salonu",
+      "address": "ODTÜ GVO Spor Salonu, Üniversiteler Mahallesi İhsan Doğramacı Bulvarı No:5, Çankaya / Ankara, 06 Türkiye",
+      "mapQuery": "ODTÜ GVO Spor Salonu, Üniversiteler Mahallesi İhsan Doğramacı Bulvarı No:5, Çankaya / Ankara, Türkiye"
     },
     {
-      "name": "Capital Regional",
-      "date": "2026-04-10T09:00:00+03:00",
-      "location": "Etimesgut, Ankara"
+      "code": "TUIS",
+      "name": "İstanbul Regional",
+      "season": 2027,
+      "category": "turkey",
+      "date": "2027-03-26T09:00:00+03:00",
+      "endDate": "2027-03-28T18:00:00+03:00",
+      "dateDisplay": "26 - 28 Mart 2027",
+      "location": "Bakırköy, İstanbul",
+      "venue": "Türkiye Atletizm Federasyonu Atletizm Salonu",
+      "address": "Zuhuratbaba, Dr. Remzi Kazancıgil Cd. No:32, Bakırköy / İstanbul, 34 Türkiye",
+      "mapQuery": "Türkiye Atletizm Federasyonu Ataköy Atletizm Salonu, Zuhuratbaba Dr. Remzi Kazancıgil Cd. No:32, Bakırköy / İstanbul, Türkiye"
     },
     {
+      "code": "TUIS2",
+      "name": "Bosphorus Regional",
+      "season": 2027,
+      "category": "turkey",
+      "date": "2027-03-26T09:00:00+03:00",
+      "endDate": "2027-03-28T18:00:00+03:00",
+      "dateDisplay": "26 - 28 Mart 2027",
+      "location": "Bakırköy, İstanbul",
+      "venue": "Türkiye Atletizm Federasyonu Atletizm Salonu",
+      "address": "Zuhuratbaba, Dr. Remzi Kazancıgil Cd. No:32, Bakırköy / İstanbul, 34 Türkiye",
+      "mapQuery": "Türkiye Atletizm Federasyonu Ataköy Atletizm Salonu, Zuhuratbaba Dr. Remzi Kazancıgil Cd. No:32, Bakırköy / İstanbul, Türkiye"
+    },
+    {
+      "code": "TUHC",
+      "name": "Haliç Regional",
+      "season": 2027,
+      "category": "turkey",
+      "date": "2027-04-02T09:00:00+03:00",
+      "endDate": "2027-04-04T18:00:00+03:00",
+      "dateDisplay": "2 - 4 Nisan 2027",
+      "location": "Bakırköy, İstanbul",
+      "venue": "Türkiye Atletizm Federasyonu Atletizm Salonu",
+      "address": "Zuhuratbaba, Dr. Remzi Kazancıgil Cd. No:32, Bakırköy / İstanbul, 34 Türkiye",
+      "mapQuery": "Türkiye Atletizm Federasyonu Ataköy Atletizm Salonu, Zuhuratbaba Dr. Remzi Kazancıgil Cd. No:32, Bakırköy / İstanbul, Türkiye"
+    },
+    {
+      "code": "TUIS3",
+      "name": "Marmara Regional",
+      "season": 2027,
+      "category": "turkey",
+      "date": "2027-04-02T09:00:00+03:00",
+      "endDate": "2027-04-04T18:00:00+03:00",
+      "dateDisplay": "2 - 4 Nisan 2027",
+      "location": "Bakırköy, İstanbul",
+      "venue": "Türkiye Atletizm Federasyonu Atletizm Salonu",
+      "address": "Zuhuratbaba, Dr. Remzi Kazancıgil Cd. No:32, Bakırköy / İstanbul, 34 Türkiye",
+      "mapQuery": "Türkiye Atletizm Federasyonu Ataköy Atletizm Salonu, Zuhuratbaba Dr. Remzi Kazancıgil Cd. No:32, Bakırköy / İstanbul, Türkiye"
+    },
+    {
+      "code": "TUIZ",
       "name": "İzmir Regional",
-      "date": "2026-04-17T09:00:00+03:00",
-      "location": "İzmir"
+      "season": 2027,
+      "category": "turkey",
+      "date": "2027-04-09T09:00:00+03:00",
+      "endDate": "2027-04-11T18:00:00+03:00",
+      "dateDisplay": "9 - 11 Nisan 2027",
+      "location": "Urla, İzmir",
+      "venue": "İYTE Kapalı Spor Salonu",
+      "address": "İYTE Kapalı Spor Salonu, Gülbahçe Mahallesi Gülbahçe Caddesi (Kampüs alanı içi), Urla / İzmir, 35 Türkiye",
+      "mapQuery": "İYTE Kapalı Spor Salonu, Gülbahçe Caddesi, Urla / İzmir, Türkiye"
     },
     {
-      "name": "Mersin Regional",
-      "date": "2026-04-22T09:00:00+03:00",
-      "location": "Mersin"
+      "code": "FCMP",
+      "name": "FIRST Championship 2027",
+      "season": 2027,
+      "category": "championship",
+      "date": "2027-04-28T09:00:00-05:00",
+      "endDate": "2027-05-01T18:00:00-05:00",
+      "dateDisplay": "28 Nisan - 1 Mayıs 2027",
+      "location": "Houston, TX, ABD",
+      "venue": "George R. Brown Convention Center",
+      "address": "1001 Avenida De Las Americas, Houston, TX 77010, ABD",
+      "mapQuery": "George R. Brown Convention Center, Houston, Texas"
     },
     {
-      "name": "FIRST Championship",
-      "date": "2026-04-29T09:00:00-05:00",
-      "location": "Houston, TX, ABD"
+      "code": "AUSC",
+      "name": "Southern Cross Regional",
+      "season": 2027,
+      "category": "international",
+      "date": "2027-03-12T09:00:00+11:00",
+      "endDate": "2027-03-14T18:00:00+11:00",
+      "dateDisplay": "12 - 14 Mart 2027",
+      "location": "Sydney, NSW, Avustralya",
+      "venue": "Quaycentre, Sydney Olympic Park",
+      "address": "Olympic Blvd, Sydney Olympic Park NSW 2127, Avustralya",
+      "mapQuery": "Quaycentre, Sydney Olympic Park, Australia"
+    },
+    {
+      "code": "ILCH",
+      "name": "Midwest Regional",
+      "season": 2027,
+      "category": "international",
+      "date": "2027-03-24T09:00:00-05:00",
+      "endDate": "2027-03-27T18:00:00-05:00",
+      "dateDisplay": "24 - 27 Mart 2027",
+      "location": "Chicago, IL, ABD",
+      "venue": "Credit Union 1 Arena at UIC",
+      "address": "525 S Racine Ave, Chicago, IL 60607, ABD",
+      "mapQuery": "Credit Union 1 Arena, Chicago, IL"
+    },
+    {
+      "code": "NVLV",
+      "name": "Las Vegas Regional",
+      "season": 2027,
+      "category": "international",
+      "date": "2027-03-31T09:00:00-07:00",
+      "endDate": "2027-04-03T18:00:00-07:00",
+      "dateDisplay": "31 Mart - 3 Nisan 2027",
+      "location": "Las Vegas, NV, ABD",
+      "venue": "Thomas & Mack Center",
+      "address": "4505 S Maryland Pkwy, Las Vegas, NV 89154, ABD",
+      "mapQuery": "Thomas & Mack Center, Las Vegas, NV"
+    },
+    {
+      "code": "BRSP",
+      "name": "Regional Brazil - SESI Indaiatuba",
+      "season": 2027,
+      "category": "international",
+      "date": "2027-03-04T09:00:00-03:00",
+      "endDate": "2027-03-06T18:00:00-03:00",
+      "dateDisplay": "4 - 6 Mart 2027",
+      "location": "Indaiatuba, SP, Brezilya",
+      "venue": "SESI Indaiatuba",
+      "address": "R. Maria José de Campos, 550, Indaiatuba - SP, 13340-420, Brezilya",
+      "mapQuery": "SESI Indaiatuba, São Paulo, Brazil"
+    },
+    {
+      "code": "CTTC",
+      "name": "Taipei City Regional",
+      "season": 2027,
+      "category": "international",
+      "date": "2027-03-12T09:00:00+08:00",
+      "endDate": "2027-03-14T18:00:00+08:00",
+      "dateDisplay": "12 - 14 Mart 2027",
+      "location": "Taipei City, Tayvan",
+      "venue": "Taipei Heping Basketball Gymnasium",
+      "address": "No. 240, Sec. 3, Xinhai Rd., Da’an Dist., Taipei City, Tayvan",
+      "mapQuery": "Taipei Heping Basketball Gymnasium, Taipei, Taiwan"
     }
   ],
   "awards": [
@@ -178,11 +279,76 @@
     }
   ],
   "venues": {
-    "Başakşehir, İstanbul": {
-      "name": "Başakşehir Spor Kompleksi",
-      "address": "Başakşehir, İstanbul",
+    "Başakşehir Spor Salonu": {
+      "name": "Başakşehir Spor Salonu",
+      "address": "Başakşehir 2. Kısım, Başakşehir Spor Salonu, 34488 Başakşehir/İstanbul",
+      "mapQuery": "Başakşehir Spor Salonu, Başakşehir, İstanbul",
       "logistics": {
-        "transport": "M3 Metro hattı veya İETT otobüsleri.",
+        "transport": "M3 Kirazlı-Metrokent Metro hattı (Başakşehir Metrokent istasyonu) veya İETT otobüsleri.",
+        "accommodation": "Başakşehir, Kayaşehir ve Mall of Istanbul çevresindeki oteller.",
+        "notes": "Modern ve geniş spor salonu; pit alanı ve seyirci kapasitesi oldukça yüksektir."
+      },
+      "floorPlan": {
+        "pits": "Giriş katı, ana pit ve takım hazırlık alanı",
+        "field": "Merkez arena maç sahası",
+        "stands": "Üst kat seyirci ve takım tribünleri",
+        "food": "Kafeterya ve mola alanı"
+      }
+    },
+    "Türkiye Atletizm Federasyonu Atletizm Salonu Bakırköy": {
+      "name": "Türkiye Atletizm Federasyonu Atletizm Salonu Bakırköy",
+      "address": "Ataköy 2-5-6. Kısım, TAF Atletizm Salonu, Dumlupınar Cd., 34158 Bakırköy/İstanbul",
+      "mapQuery": "Türkiye Atletizm Federasyonu Ataköy Atletizm Salonu, Bakırköy, İstanbul",
+      "logistics": {
+        "transport": "Marmaray (Ataköy durağı), M1A Yenikapı-Atatürk Havalimanı Metrosu (Ataköy-Şirinevler) veya Metrobüs (Şirinevler).",
+        "accommodation": "Ataköy, Bakırköy sahil ve Şirinevler bölgesindeki oteller.",
+        "notes": "Sinan Erdem Spor Salonu bitişiğinde yer alan uluslararası standartlarda atletizm salonu."
+      },
+      "floorPlan": {
+        "pits": "Saha çevresi koridorlar ve antrenman kulvarları",
+        "field": "Atletizm sahası orta zemin ana müsabaka alanı",
+        "stands": "Sabit seyirci tribünleri",
+        "food": "Fuaye ve açık dinlenme alanı"
+      }
+    },
+    "Devlet Bahçeli Eğitim Yaşam Spor Yerleşkesi Etimesgut": {
+      "name": "Devlet Bahçeli Eğitim Yaşam Spor Yerleşkesi Etimesgut",
+      "address": "Ayyıldız, Devlet Bahçeli Eğitim Yaşam ve Spor Yerleşkesi, 1614. Cd., 06796 Etimesgut/Ankara",
+      "mapQuery": "Devlet Bahçeli Eğitim Yaşam ve Spor Yerleşkesi, Etimesgut, Ankara",
+      "logistics": {
+        "transport": "Başkentray (Etimesgut veya Elvankent tren istasyonları), Kızılay veya Sıhhiye kalkışlı EGO hatları.",
+        "accommodation": "Etimesgut, Elvankent ve Eryaman bölgesindeki oteller.",
+        "notes": "Ankara'nın yeni ve modern teknolojik spor yerleşkesi. Geniş açık ve kapalı alanlara sahiptir."
+      },
+      "floorPlan": {
+        "pits": "Çok amaçlı spor salonu geniş pit yerleşimi",
+        "field": "Ana müsabaka sahası",
+        "stands": "Protokol ve izleyici tribünleri",
+        "food": "Kantin ve sosyal tesis alanı"
+      }
+    },
+    "George R. Brown Convention Center": {
+      "name": "George R. Brown Convention Center",
+      "address": "1001 Avenida De Las Americas, Houston, TX 77010, ABD",
+      "mapQuery": "George R. Brown Convention Center, Houston, Texas",
+      "logistics": {
+        "transport": "METRORail hafif raylı sistem veya taksi/araç paylaşımı.",
+        "accommodation": "Downtown Houston otelleri.",
+        "notes": "FIRST Championship Dünya Şampiyonası ana mekanı. Dünyanın en büyük uluslararası robotik şöleni."
+      },
+      "floorPlan": {
+        "pits": "Farklı hall'lara yayılmış dev pit alanları",
+        "field": "6 eşzamanlı division yarışma sahası ve Einstein arenası",
+        "stands": "Devasa kongre merkezi tribünleri",
+        "food": "Food court ve kafeler"
+      }
+    },
+    "Başakşehir, İstanbul": {
+      "name": "Başakşehir Spor Salonu",
+      "address": "Başakşehir 2. Kısım, Başakşehir Spor Salonu, 34488 Başakşehir/İstanbul",
+      "mapQuery": "Başakşehir Spor Salonu, Başakşehir, İstanbul",
+      "logistics": {
+        "transport": "M3 Kirazlı-Metrokent Metro hattı veya İETT otobüsleri.",
         "accommodation": "Başakşehir ve Kayaşehir otelleri.",
         "notes": "Modern ve geniş bir salon."
       },
@@ -193,9 +359,10 @@
         "food": "Kafeterya alanı"
       }
     },
-    "Ataköy, İstanbul": {
-      "name": "Sinan Erdem Spor Kompleksi / TAF Atletizm Salonu",
-      "address": "Ataköy, Bakırköy/İstanbul",
+    "Bakırköy, İstanbul": {
+      "name": "Türkiye Atletizm Federasyonu Atletizm Salonu Bakırköy",
+      "address": "Ataköy 2-5-6. Kısım, TAF Atletizm Salonu, Dumlupınar Cd., 34158 Bakırköy/İstanbul",
+      "mapQuery": "Türkiye Atletizm Federasyonu Ataköy Atletizm Salonu, Bakırköy, İstanbul",
       "logistics": {
         "transport": "Marmaray Ataköy durağı veya Metrobüs Şirinevler.",
         "accommodation": "Bakırköy bölgesindeki oteller.",
@@ -208,64 +375,132 @@
         "food": "Fuaye alanı"
       }
     },
-    "Etimesgut, Ankara": {
-      "name": "Devlet Bahçeli Eğitim, Yaşam ve Spor Kompleksi",
-      "address": "Etimesgut, Ankara",
+    "ODTÜ GVO Lisesi Spor Salonu": {
+      "name": "ODTÜ GVO Lisesi Spor Salonu",
+      "address": "Üniversiteler Mahallesi, İhsan Doğramacı Bulvarı No:5, Çankaya / Ankara, 06 Türkiye",
+      "mapQuery": "ODTÜ GVO Spor Salonu, Üniversiteler Mahallesi İhsan Doğramacı Bulvarı No:5, Çankaya / Ankara, Türkiye",
       "logistics": {
-        "transport": "Etimesgut banliyö treni veya şehir içi otobüsler.",
-        "accommodation": "Etimesgut ve Sincan bölgesi.",
-        "notes": "Ankara'nın yeni ve teknolojik kompleksi."
+        "transport": "M2 Kızılay-Çayyolu Metrosu (ODTÜ istasyonu) ve ODTÜ kampüs içi ring otobüsleri veya Çankaya EGO hatları.",
+        "accommodation": "Çankaya, Bilkent ve Eskişehir Yolu üzerindeki oteller.",
+        "notes": "ODTÜ Geliştirme Vakfı Özel Lisesi kampüsü içinde yer alan spor salonu. 2027 Ankara Regional'a ev sahipliği yapmaktadır."
       },
       "floorPlan": {
-        "pits": "Alt kat spor salonu",
-        "field": "Ana müsabaka sahası",
+        "pits": "Giriş katı takım hazırlık ve pit alanları",
+        "field": "Merkez salon maç sahası",
+        "stands": "Salon tribünleri",
+        "food": "Kafeterya ve kampüs sosyal tesisleri"
+      }
+    },
+    "Türkiye Atletizm Federasyonu Atletizm Salonu": {
+      "name": "Türkiye Atletizm Federasyonu Atletizm Salonu",
+      "address": "Zuhuratbaba, Dr. Remzi Kazancıgil Cd. No:32, Bakırköy / İstanbul, 34 Türkiye",
+      "mapQuery": "Türkiye Atletizm Federasyonu Ataköy Atletizm Salonu, Zuhuratbaba Dr. Remzi Kazancıgil Cd. No:32, Bakırköy / İstanbul, Türkiye",
+      "logistics": {
+        "transport": "Marmaray Ataköy durağı, M1A Metrosu Ataköy-Şirinevler durağı veya Metrobüs Şirinevler.",
+        "accommodation": "Bakırköy sahil, Ataköy Marina ve Şirinevler çevresi otelleri.",
+        "notes": "Sinan Erdem Spor Salonu bitişiğinde yer alan uluslararası kapalı atletizm salonu. 2027 İstanbul, Bosphorus, Haliç ve Marmara turnuvalarına ev sahipliği yapmaktadır."
+      },
+      "floorPlan": {
+        "pits": "Geniş saha çevresi pist koridorları ve pit alanı",
+        "field": "Orta alan resmi müsabaka arenası",
+        "stands": "Sabit izleyici ve takım tribünleri",
+        "food": "Fuaye ve dinlenme alanları"
+      }
+    },
+    "İYTE Kapalı Spor Salonu": {
+      "name": "İYTE Kapalı Spor Salonu",
+      "address": "Gülbahçe Mahallesi, Gülbahçe Caddesi (Kampüs alanı içi), Urla / İzmir, 35 Türkiye",
+      "mapQuery": "İYTE Kapalı Spor Salonu, Gülbahçe Caddesi, Urla / İzmir, Türkiye",
+      "logistics": {
+        "transport": "Fahrettin Altay Aktarma Merkezi'nden 981, 982 veya 983 numaralı ESHOT otobüsleri ya da Urla dolmuşları.",
+        "accommodation": "Urla merkez, Gülbahçe ve Çeşmealtı bölgesindeki oteller.",
+        "notes": "İzmir Yüksek Teknoloji Enstitüsü (İYTE) Gülbahçe yerleşkesi ana spor salonu. 2027 İzmir Regional'a ev sahipliği yapmaktadır."
+      },
+      "floorPlan": {
+        "pits": "Ana salon içi pit bölümleri",
+        "field": "Merkez arena maç alanı",
         "stands": "İzleyici tribünleri",
-        "food": "Kantin ve bahçe alanı"
+        "food": "Kampüs kafeteryası ve yemekhane alanı"
       }
     },
-    "Mersin": {
-      "name": "Servet Tazegül Spor Salonu",
-      "address": "Yenişehir, Mersin",
+    "Quaycentre, Sydney Olympic Park": {
+      "name": "Quaycentre, Sydney Olympic Park",
+      "address": "Olympic Blvd, Sydney Olympic Park NSW 2127, Avustralya",
+      "mapQuery": "Quaycentre, Sydney Olympic Park, Australia",
       "logistics": {
-        "transport": "Şehir içi otobüs ve dolmuş hatları.",
-        "accommodation": "Yenişehir bölgesindeki oteller.",
-        "notes": "Akdeniz'in en geniş spor komplekslerinden biri."
+        "transport": "Sydney Olympic Park Tren İstasyonu (T7 hattı) veya Sidney feribotları.",
+        "accommodation": "Sydney Olympic Park bölgesindeki oteller.",
+        "notes": "FIRST Avustralya'nın en prestijli etkinliklerinden Southern Cross Regional'ın merkezi."
       },
       "floorPlan": {
-        "pits": "Antrenman sahası bölümü",
-        "field": "Ana yarışma sahası",
-        "stands": "Batı ve Doğu tribünleri",
-        "food": "Giriş katı kafeterya"
+        "pits": "Batı holü takım pit alanı",
+        "field": "Merkez olimpik arena",
+        "stands": "Olimpik kapasiteli tribünler",
+        "food": "Olympic Park kafe ve restoranları"
       }
     },
-    "İzmir": {
-      "name": "Fuar İzmir",
-      "address": "Gaziemir, İzmir",
+    "Credit Union 1 Arena at UIC": {
+      "name": "Credit Union 1 Arena at UIC",
+      "address": "525 S Racine Ave, Chicago, IL 60607, ABD",
+      "mapQuery": "Credit Union 1 Arena, Chicago, IL",
       "logistics": {
-        "transport": "İZBAN ve ESHOT otobüsleri.",
-        "accommodation": "Gaziemir ve Havalimanı bölgesi otelleri.",
-        "notes": "Devasa fuar alanı, geniş pit operasyonu sağlar."
+        "transport": "CTA Blue Line (UIC-Halsted durağı) veya otobüs hatları.",
+        "accommodation": "Downtown Chicago ve West Loop otelleri.",
+        "notes": "FIRST'ün en köklü etkinliklerinden Midwest Regional'ın geleneksel mekanı."
       },
       "floorPlan": {
-        "pits": "C Holü",
-        "field": "B Holü Merkezi",
-        "stands": "Modüler tribün sistemleri",
-        "food": "Holler arası geçiş koridorları"
+        "pits": "Giriş katı pit alanı",
+        "field": "Ana üniversite basketbol arenası",
+        "stands": "9.500 kişilik arena tribünleri",
+        "food": "Arena imtiyaz büfeleri"
       }
     },
-    "Houston, TX, ABD": {
-      "name": "George R. Brown Convention Center",
-      "address": "Houston, Texas, ABD",
+    "Thomas & Mack Center": {
+      "name": "Thomas & Mack Center",
+      "address": "4505 S Maryland Pkwy, Las Vegas, NV 89154, ABD",
+      "mapQuery": "Thomas & Mack Center, Las Vegas, NV",
       "logistics": {
-        "transport": "METRORail veya taksi/uber.",
-        "accommodation": "Downtown Houston otelleri.",
-        "notes": "FIRST Championship ana mekanı. Dünyanın en büyük robotik etkinliği."
+        "transport": "RTC transit otobüs hatları veya araç transferi.",
+        "accommodation": "Las Vegas Strip ve UNLV çevresi oteller.",
+        "notes": "Nevada'nın en büyük arenasında düzenlenen yüksek rekabetli Las Vegas Regional mekanı."
       },
       "floorPlan": {
-        "pits": "Birden fazla hall'da dağıtılmış pit alanları",
-        "field": "Çoklu yarışma sahaları",
-        "stands": "Geniş tribün kapasitesi",
-        "food": "Çoklu yemek alanları ve food court"
+        "pits": "Cox Pavilion pit alanı",
+        "field": "Merkez arena",
+        "stands": "Büyük arena tribünleri",
+        "food": "Food court ve büfeler"
+      }
+    },
+    "SESI Indaiatuba": {
+      "name": "SESI Indaiatuba",
+      "address": "R. Maria José de Campos, 550, Indaiatuba - SP, 13340-420, Brezilya",
+      "mapQuery": "SESI Indaiatuba, São Paulo, Brazil",
+      "logistics": {
+        "transport": "Campinas Viracopos Havalimanı transferleri ve şehirlerarası otobüsler.",
+        "accommodation": "Indaiatuba ve Campinas otelleri.",
+        "notes": "FIRST Brezilya'nın teknoloji ve inovasyon merkezi SESI yerleşkesi."
+      },
+      "floorPlan": {
+        "pits": "Teknoloji atölyeleri pit alanı",
+        "field": "Ana spor kompleksi",
+        "stands": "Takım tribünleri",
+        "food": "Yerleşke kafeteryası"
+      }
+    },
+    "Taipei Heping Basketball Gymnasium": {
+      "name": "Taipei Heping Basketball Gymnasium",
+      "address": "No. 240, Sec. 3, Xinhai Rd., Da’an Dist., Taipei City, Tayvan",
+      "mapQuery": "Taipei Heping Basketball Gymnasium, Taipei, Taiwan",
+      "logistics": {
+        "transport": "Taipei MRT Brown Line (Technology Building Station) veya Green Line (Gongguan Station).",
+        "accommodation": "Da'an District ve Taipei merkez otelleri.",
+        "notes": "Asya-Pasifik bölgesinin en önemli FIRST turnuvalarından Taipei City Regional mekanı."
+      },
+      "floorPlan": {
+        "pits": "1. kat takım pit alanı",
+        "field": "Merkez zemin yarışma sahası",
+        "stands": "7.000 kişilik stadyum tribünleri",
+        "food": "Arena çevresi restoran ve marketler"
       }
     }
   }

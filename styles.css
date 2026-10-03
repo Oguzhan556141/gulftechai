@@ -99,11 +99,18 @@
 
 /* ===== MAP MODAL SPECIFIC ===== */
 .map-modal {
-    max-width: 400px;
-    width: 90%;
-    min-height: 300px;
+    max-width: 840px !important;
+    width: 95% !important;
+    max-height: 90vh !important;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+}
+
+.map-modal .modal-body {
+    max-height: calc(90vh - 75px);
+    overflow-y: auto;
+    padding: 16px 22px;
 }
 
 .map-container {
@@ -1859,106 +1866,398 @@ a:hover {
     transform: translateY(-2px);
 }
 
-.venue-map-section {
-    margin-top: 20px;
+/* ===== ENHANCED TOURNAMENT CALENDAR & VENUE MAP ===== */
+.schedule-header-banner {
+    padding: 14px 18px;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.08) 0%, rgba(30, 58, 138, 0.15) 100%);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    border-radius: 14px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
 }
 
-.schedule-google-map {
-    height: 240px;
-    margin-top: 10px;
+body.orion-mode .schedule-header-banner {
+    background: linear-gradient(135deg, rgba(255, 7, 58, 0.12) 0%, rgba(18, 18, 18, 0.8) 100%) !important;
+    border-color: rgba(255, 7, 58, 0.35) !important;
 }
 
-.schedule-google-map-frame {
-    width: 100%;
-    height: 100%;
-    border: 0;
+.schedule-header-badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    padding: 2px 8px;
+    border-radius: 6px;
+    margin-bottom: 6px;
 }
 
-.schedule-location-list {
-    margin-top: 12px;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+body.orion-mode .schedule-header-badge {
+    color: #FF073A !important;
+    background: rgba(255, 7, 58, 0.15) !important;
+    border-color: rgba(255, 7, 58, 0.4) !important;
+}
+
+.schedule-header-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 4px 0;
+}
+
+.schedule-header-sub {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* Schedule Filter Tabs */
+.schedule-filter-tabs {
+    display: flex;
     gap: 8px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
 }
 
-.schedule-location-item {
+.schedule-tab-btn {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.schedule-tab-btn:hover {
+    color: #fff;
+    border-color: var(--accent);
+    background: rgba(56, 189, 248, 0.1);
+}
+
+.schedule-tab-btn.active {
+    background: var(--accent) !important;
+    color: #fff !important;
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 12px var(--accent-glow);
+}
+
+body.orion-mode .schedule-tab-btn:hover {
+    border-color: #FF073A !important;
+    background: rgba(255, 7, 58, 0.12) !important;
+}
+
+body.orion-mode .schedule-tab-btn.active {
+    background: #FF073A !important;
+    border-color: #FF073A !important;
+    color: #fff !important;
+    box-shadow: 0 0 16px rgba(255, 7, 58, 0.5) !important;
+}
+
+.schedule-selector-section {
+    margin-bottom: 18px;
+}
+
+.schedule-section-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+}
+
+.schedule-count-pill {
+    font-size: 0.72rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border);
+    padding: 2px 8px;
+    border-radius: 12px;
+    color: var(--accent);
+}
+
+body.orion-mode .schedule-count-pill {
+    color: #FF073A !important;
+    border-color: rgba(255, 7, 58, 0.3) !important;
+}
+
+.schedule-regional-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 8px;
+    max-height: 220px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.schedule-regional-grid::-webkit-scrollbar {
+    width: 5px;
+}
+
+.schedule-regional-grid::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 4px;
+}
+
+.schedule-regional-card {
     border: 1px solid var(--border);
     background: rgba(255, 255, 255, 0.03);
     color: var(--text-primary);
     border-radius: 10px;
-    padding: 10px;
+    padding: 10px 12px;
     font-size: 0.82rem;
     text-align: left;
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    transition: all 0.2s ease;
+    gap: 6px;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
 }
 
-.schedule-location-item span:last-child {
-    color: var(--text-muted);
-    font-size: 0.75rem;
-}
-
-.schedule-location-item:hover,
-.schedule-location-item.active {
+.schedule-regional-card:hover {
     border-color: var(--accent);
-    background: rgba(56, 189, 248, 0.12);
+    background: rgba(56, 189, 248, 0.08);
+    transform: translateY(-1px);
 }
 
-.schedule-map-actions {
-    margin-top: 10px;
+.schedule-regional-card.active {
+    border-color: var(--accent) !important;
+    background: rgba(56, 189, 248, 0.16) !important;
+    box-shadow: 0 0 16px rgba(56, 189, 248, 0.25);
+}
+
+body.orion-mode .schedule-regional-card:hover {
+    border-color: #FF073A !important;
+    background: rgba(255, 7, 58, 0.08) !important;
+}
+
+body.orion-mode .schedule-regional-card.active {
+    border-color: #FF073A !important;
+    background: rgba(255, 7, 58, 0.18) !important;
+    box-shadow: 0 0 16px rgba(255, 7, 58, 0.35) !important;
+}
+
+.regional-card-top {
     display: flex;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
 }
 
-@media (max-width: 520px) {
-    .schedule-location-list {
-        grid-template-columns: 1fr;
-    }
+.regional-card-name {
+    font-weight: 700;
+    color: #fff;
+    font-size: 0.86rem;
+    letter-spacing: 0.2px;
 }
 
-.venue-map-title {
-    margin-bottom: 10px;
+.regional-card-status {
+    font-size: 0.65rem;
+    font-weight: 700;
     color: var(--accent);
-    font-size: 0.95rem;
+    background: rgba(56, 189, 248, 0.1);
+    padding: 1px 5px;
+    border-radius: 4px;
+}
+
+body.orion-mode .regional-card-status {
+    color: #FF073A !important;
+    background: rgba(255, 7, 58, 0.12) !important;
+}
+
+.regional-card-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 0.74rem;
+    color: var(--text-muted);
+}
+
+.regional-meta-venue {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Spotlight Header */
+.schedule-active-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+}
+
+.schedule-active-tag {
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    color: var(--accent);
+    text-transform: uppercase;
+}
+
+body.orion-mode .schedule-active-tag {
+    color: #FF073A !important;
+}
+
+.schedule-active-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #fff;
+    margin: 4px 0 2px 0;
+}
+
+.schedule-active-address {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin: 0 0 8px 0;
+}
+
+.schedule-active-dates {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.date-badge, .venue-badge {
+    font-size: 0.76rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+}
+
+.schedule-active-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    align-self: center;
+}
+
+.venue-map-section {
+    margin-top: 14px;
+}
+
+.venue-map-frame-wrapper {
+    position: relative;
+    width: 100%;
+    height: 270px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+body.orion-mode .venue-map-frame-wrapper {
+    border-color: rgba(255, 7, 58, 0.3) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 7, 58, 0.15) !important;
 }
 
 .venue-map-frame {
     width: 100%;
-    height: 220px;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.03);
+    height: 100%;
+    border: 0;
+    display: block;
 }
 
-.venue-map-actions {
-    margin-top: 10px;
-    display: flex;
-    justify-content: flex-end;
+.map-overlay-badge {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    pointer-events: none;
+}
+
+body.orion-mode .map-overlay-badge {
+    background: rgba(10, 10, 10, 0.9) !important;
+    border-color: rgba(255, 7, 58, 0.5) !important;
+    color: #fff !important;
 }
 
 .btn-open-google {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 8px 12px;
+    padding: 8px 14px;
     border-radius: 10px;
     border: 1px solid var(--border);
     color: var(--text-primary);
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(255, 255, 255, 0.05);
     font-size: 0.82rem;
     font-weight: 600;
     text-decoration: none;
     transition: all 0.2s ease;
+    white-space: nowrap;
 }
 
-.btn-open-google:hover {
+.btn-open-google.primary {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+}
+
+.btn-open-google.primary:hover {
+    filter: brightness(1.15);
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+body.orion-mode .btn-open-google.primary {
+    background: #FF073A !important;
+    border-color: #FF073A !important;
+    color: #fff !important;
+}
+
+body.orion-mode .btn-open-google.primary:hover {
+    box-shadow: 0 0 20px rgba(255, 7, 58, 0.6) !important;
+}
+
+.btn-open-google.secondary:hover {
     border-color: var(--accent);
     color: #fff;
-    background: rgba(56, 189, 248, 0.2);
-    text-decoration: none;
+    background: rgba(56, 189, 248, 0.15);
+}
+
+body.orion-mode .btn-open-google.secondary:hover {
+    border-color: #FF073A !important;
+    background: rgba(255, 7, 58, 0.15) !important;
+}
+
+.btn-open-google.tertiary {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: var(--text-secondary);
+}
+
+.btn-open-google.tertiary:hover {
+    border-color: var(--accent);
+    color: #fff;
+    background: rgba(56, 189, 248, 0.12);
+}
+
+body.orion-mode .btn-open-google.tertiary:hover {
+    border-color: #FF073A !important;
+    background: rgba(255, 7, 58, 0.12) !important;
 }
 
 .venue-visual-sim-premium {

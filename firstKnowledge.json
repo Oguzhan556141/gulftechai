@@ -108,36 +108,48 @@
       "organizator": "Fikret Yüksel Vakfı"
     },
     "buyume": "Türkiye, dünya genelinde %37'lik büyüme oranıyla en hızlı büyüyen FRC ülkesi",
-    "2026_bolgesel_turnuvalar": [
+    "2027_bolgesel_turnuvalar": [
       {
-        "ad": "Istanbul Regional",
-        "tarih": "3-5 Mart 2026",
-        "mekan": "Başakşehir Spor Kompleksi, İstanbul"
+        "ad": "Ankara Regional",
+        "kod": "TUAK",
+        "tarih": "19-21 Mart 2027",
+        "mekan": "ODTÜ GVO Lisesi Spor Salonu, Çankaya / Ankara"
+      },
+      {
+        "ad": "İstanbul Regional",
+        "kod": "TUIS",
+        "tarih": "26-28 Mart 2027",
+        "mekan": "Türkiye Atletizm Federasyonu Atletizm Salonu, Bakırköy / İstanbul"
       },
       {
         "ad": "Bosphorus Regional",
-        "tarih": "6-8 Mart 2026",
-        "mekan": "Başakşehir Spor Kompleksi, İstanbul"
-      },
-      {
-        "ad": "Yeditepe Regional",
-        "tarih": "9-11 Mart 2026",
-        "mekan": "Başakşehir Spor Kompleksi, İstanbul"
+        "kod": "TUIS2",
+        "tarih": "26-28 Mart 2027",
+        "mekan": "Türkiye Atletizm Federasyonu Atletizm Salonu, Bakırköy / İstanbul"
       },
       {
         "ad": "Haliç Regional",
-        "tarih": "25-27 Mart 2026",
-        "mekan": "TAF Atletizm Salonu, Ataköy, İstanbul"
+        "kod": "TUHC",
+        "tarih": "2-4 Nisan 2027",
+        "mekan": "Türkiye Atletizm Federasyonu Atletizm Salonu, Bakırköy / İstanbul"
       },
       {
         "ad": "Marmara Regional",
-        "tarih": "28-30 Mart 2026",
-        "mekan": "TAF Atletizm Salonu, Ataköy, İstanbul"
+        "kod": "TUIS3",
+        "tarih": "2-4 Nisan 2027",
+        "mekan": "Türkiye Atletizm Federasyonu Atletizm Salonu, Bakırköy / İstanbul"
       },
       {
-        "ad": "Ankara Regional",
-        "tarih": "7-9 Nisan 2026",
-        "mekan": "Devlet Bahçeli Eğitim, Yaşam ve Spor Kompleksi, Ankara"
+        "ad": "İzmir Regional",
+        "kod": "TUIZ",
+        "tarih": "9-11 Nisan 2027",
+        "mekan": "İYTE Kapalı Spor Salonu, Urla / İzmir"
+      },
+      {
+        "ad": "FIRST Championship 2027",
+        "kod": "FCMP",
+        "tarih": "28 Nisan - 1 Mayıs 2027",
+        "mekan": "George R. Brown Convention Center, Houston, TX, ABD"
       }
     ],
     "oduller": {
