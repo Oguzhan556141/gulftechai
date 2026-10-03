@@ -4,6 +4,7 @@ import { getNextRegional, delay, renderMarkdown } from './utils.js';
 import { callGeminiAPI, simulateResponse } from './api.js';
 import { renderMap, MapComponent } from './map.js';
 import { initI18n, toggleLanguage, setLanguage, t } from './i18n.js';
+import { isOrionCommand, executeOrionCommand, applyStoredCustomKnowledge } from './orion.js';
 
 let appData = null;
 let conversations = JSON.parse(localStorage.getItem(CONFIG.CONV_STORAGE_KEY) || '{}');
@@ -74,6 +75,10 @@ async function init() {
             frc_turkiye: firstKnowledge.frc_turkiye,
             genel_kultur: generalKnowledge
         };
+
+        // Apply any live knowledge overrides previously set via OrionOS Live Editor
+        applyStoredCustomKnowledge();
+
         console.log('All knowledge files loaded successfully');
     } catch (err) {
         console.error('Initial load error:', err);
@@ -158,6 +163,68 @@ function bindEvents() {
     UI.mapModal.addEventListener('click', (e) => {
         if (e.target === UI.mapModal) UI.mapModal.classList.remove('visible');
     });
+
+    // Developer & API Diagnostics Dashboard Modal (OrionOS Exclusive)
+    const devNavBtn = document.getElementById('navDevDashboard');
+    const devModal = document.getElementById('devDashboardModal');
+    const devClose = document.getElementById('devDashboardClose');
+
+    const updateDevDashboardMetrics = () => {
+        const telemetry = window.__orionTelemetry || { totalCalls: 0, lastLatency: null, totalCharsReceived: 0 };
+        const latEl = document.getElementById('devLatencyVal');
+        if (latEl) latEl.textContent = telemetry.lastLatency !== null ? `${telemetry.lastLatency} ms` : 'Beklemede';
+
+        const convKeys = Object.keys(conversations || {});
+        let totalMsgs = 0;
+        let totalChars = 0;
+        convKeys.forEach(k => {
+            const msgs = conversations[k].messages || [];
+            totalMsgs += msgs.length;
+            msgs.forEach(m => totalChars += (m.content || '').length);
+        });
+
+        const tokenEl = document.getElementById('devTokenVal');
+        if (tokenEl) tokenEl.textContent = `~${Math.round(totalChars / 4).toLocaleString()} token`;
+
+        const msgEl = document.getElementById('devMsgCountVal');
+        if (msgEl) msgEl.textContent = `${totalMsgs} adet (${convKeys.length} sohbet)`;
+
+        const modEl = document.getElementById('devModelVal');
+        if (modEl) modEl.textContent = model;
+
+        const k = window.appKnowledge || {};
+        const kInfo = document.getElementById('devKnowledgeInfo');
+        if (kInfo) {
+            kInfo.textContent = `${(k.sponsorlar || []).length} Sponsor, ${(k.yonetim_ve_mentorlar || []).length} Mentör, ${(k.ekip_uyeleri || []).length} Üye`;
+        }
+    };
+
+    if (devNavBtn && devModal) {
+        devNavBtn.addEventListener('click', () => {
+            updateDevDashboardMetrics();
+            devModal.classList.add('visible');
+            UI.toggleSidebar(false);
+        });
+    }
+
+    if (devClose && devModal) {
+        devClose.addEventListener('click', () => devModal.classList.remove('visible'));
+        devModal.addEventListener('click', (e) => {
+            if (e.target === devModal) devModal.classList.remove('visible');
+        });
+    }
+
+    // Dev modal quick action buttons
+    const triggerConsoleCmd = (cmdText) => {
+        if (devModal) devModal.classList.remove('visible');
+        UI.chatInput.value = cmdText;
+        handleSend();
+    };
+
+    document.getElementById('btnDevStats')?.addEventListener('click', () => triggerConsoleCmd('/stats'));
+    document.getElementById('btnDevSyncIg')?.addEventListener('click', () => triggerConsoleCmd('/sync-ig'));
+    document.getElementById('btnDevDump')?.addEventListener('click', () => triggerConsoleCmd('/dump-knowledge'));
+    document.getElementById('btnDevClearCache')?.addEventListener('click', () => triggerConsoleCmd('/clear-cache'));
 
     // Language Dropdown Menus (Header & Sidebar)
     const setupLangDropdown = (btnId) => {
@@ -396,15 +463,22 @@ function applyOrionMode(enable) {
         nebula.classList.toggle('active', enable);
     }
 
+    const devNavBtn = document.getElementById('navDevDashboard');
+    if (devNavBtn) {
+        devNavBtn.style.display = enable ? 'flex' : 'none';
+    }
+
     // Generate starfield canvas for OrionOS
     if (enable) {
         initOrionStarfield();
-        // Show settings access in OrionOS
         UI.modelBadge.textContent = 'OrionOS';
         UI.modelBadge.classList.add('orion-badge');
     } else {
         UI.modelBadge.classList.remove('orion-badge');
         UI.updateApiStatus(true, model);
+        const modal = document.getElementById('devDashboardModal');
+        if (modal) modal.classList.remove('visible');
+
         // Clear starfield
         const canvas = document.getElementById('orionStarfield');
         if (canvas) {
@@ -443,13 +517,13 @@ function initOrionStarfield() {
 
             ctx.beginPath();
             ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(200, 220, 255, ${star.opacity})`;
+            ctx.fillStyle = `rgba(255, 120, 140, ${star.opacity})`;
             ctx.fill();
 
-            // Subtle glow
+            // Subtle crimson glow
             ctx.beginPath();
             ctx.arc(star.x, star.y, star.radius * 3, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(100, 150, 255, ${star.opacity * 0.1})`;
+            ctx.fillStyle = `rgba(255, 7, 58, ${star.opacity * 0.25})`;
             ctx.fill();
         });
 
@@ -484,7 +558,13 @@ async function handleSend() {
         UI.autoResizeInput();
 
         // Show activation/deactivation message
-        const msg = willEnable ? t('orionActivated') : t('orionDeactivated');
+        let msg = willEnable 
+            ? `🌌 **OrionOS Yönetici / Terminal Modu Aktif Edildi.**\n\n` +
+              `> Yetki Seviyesi: \`ROOT / DEVELOPER\`\n` +
+              `> Komut Konsolu: \`AKTİF\`\n` +
+              `> Canlı Bilgi Düzenleyici (Live Editor): \`AKTİF\`\n\n` +
+              `Komut listesini ve yardım menüsünü görmek için \`/help\` yazabilirsiniz.`
+            : t('orionDeactivated');
 
         if (!currentConvId) {
             currentConvId = 'conv_' + Date.now();
@@ -496,6 +576,50 @@ async function handleSend() {
         conversations[currentConvId].messages.push({ role: 'ai', content: msg });
         localStorage.setItem(CONFIG.CONV_STORAGE_KEY, JSON.stringify(conversations));
         loadHistory();
+        return;
+    }
+
+    // ===== ORION OS CLI / ADMIN & LIVE KNOWLEDGE INTERCEPTOR =====
+    // ONLY executed when isOrionMode is true. If isOrionMode is false, commands are ignored
+    // and processed as normal chat messages (zero leak / complete stealth).
+    if (isOrionMode && isOrionCommand(text, isOrionMode)) {
+        if (!currentConvId) {
+            currentConvId = 'conv_' + Date.now();
+            conversations[currentConvId] = { title: 'OrionOS Terminal 📟', messages: [], updatedAt: Date.now() };
+        }
+
+        $('#welcomeScreen')?.remove();
+        conversations[currentConvId].messages.push({ role: 'user', content: text });
+        UI.appendMessage('user', text);
+
+        UI.chatInput.value = '';
+        UI.sendBtn.disabled = true;
+        UI.autoResizeInput();
+        UI.scrollToBottom();
+
+        isResponding = true;
+        const typingIndicator = UI.showTypingIndicator();
+
+        try {
+            const adminResponse = await executeOrionCommand(text, {
+                conversations,
+                currentConvId,
+                model
+            });
+
+            typingIndicator.remove();
+            const msgEl = UI.appendMessage('ai', adminResponse);
+            msgEl.classList.add('orion-terminal-msg');
+            conversations[currentConvId].messages.push({ role: 'ai', content: adminResponse });
+            localStorage.setItem(CONFIG.CONV_STORAGE_KEY, JSON.stringify(conversations));
+            loadHistory();
+            UI.scrollToBottom();
+        } catch (err) {
+            typingIndicator.remove();
+            UI.appendMessage('ai', '⚠️ Terminal Hatası: ' + err.message);
+        } finally {
+            isResponding = false;
+        }
         return;
     }
 

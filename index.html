@@ -124,6 +124,13 @@
                     </svg>
                     <span data-i18n="tournamentCalendar">Turnuva Takvimi</span>
                 </button>
+                <button class="nav-item orion-only-nav" id="navDevDashboard" style="display:none;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3" />
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                    </svg>
+                    <span>⚙️ Geliştirici & API Tanılama Paneli</span>
+                </button>
             </div>
             <div class="history-section">
                 <span class="history-label" data-i18n="today">Bugün</span>
@@ -340,6 +347,56 @@
             <div class="modal-footer" id="mapModalFooter">
                 <button class="btn-back-map" id="backToTurkey" style="display:none;" data-i18n="backToTurkey">← Türkiye
                     Haritasına Dön</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== DEVELOPER DASHBOARD MODAL (ORION-OS EXCLUSIVE) ===== -->
+    <div class="modal-overlay" id="devDashboardModal">
+        <div class="modal liquid-glass orion-dev-modal">
+            <div class="modal-header">
+                <h3>⚙️ Geliştirici & API Tanılama Paneli <span class="orion-tag">[ROOT ACCESS]</span></h3>
+                <button class="modal-close" id="devDashboardClose">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="dev-telemetry-grid">
+                    <div class="dev-metric-card">
+                        <span class="metric-title">📡 Son API Gecikmesi</span>
+                        <span class="metric-val" id="devLatencyVal">-- ms</span>
+                    </div>
+                    <div class="dev-metric-card">
+                        <span class="metric-title">🧠 Bellek Token Hacmi</span>
+                        <span class="metric-val" id="devTokenVal">--</span>
+                    </div>
+                    <div class="dev-metric-card">
+                        <span class="metric-title">💬 Toplam Mesaj</span>
+                        <span class="metric-val" id="devMsgCountVal">--</span>
+                    </div>
+                    <div class="dev-metric-card">
+                        <span class="metric-title">⚡ Aktif Model</span>
+                        <span class="metric-val" id="devModelVal">gemini-3.8-flash</span>
+                    </div>
+                </div>
+
+                <div class="dev-section-title">🛠️ Hızlı Terminal İşlemleri</div>
+                <div class="dev-actions-row">
+                    <button class="dev-btn" id="btnDevStats">📊 /stats Çalıştır</button>
+                    <button class="dev-btn" id="btnDevSyncIg">📸 /sync-ig (Canlı Instagram)</button>
+                    <button class="dev-btn" id="btnDevDump">💾 /dump-knowledge (JSON İndir)</button>
+                    <button class="dev-btn danger" id="btnDevClearCache">🧹 /clear-cache (Önbellek Sıfırla)</button>
+                </div>
+
+                <div class="dev-section-title">🧬 Canlı Sistem Durumu</div>
+                <div class="dev-status-box" id="devStatusBox">
+                    <div class="status-line"><span>Çekirdek:</span> <strong style="color: #FF073A;">OrionOS Cyber Kernel v2.4</strong></div>
+                    <div class="status-line"><span>Yetki Düzeyi:</span> <strong>Süper Kullanıcı (Root / Developer)</strong></div>
+                    <div class="status-line"><span>Canlı Bilgi Grafiği:</span> <span id="devKnowledgeInfo">Yükleniyor...</span></div>
+                </div>
             </div>
         </div>
     </div>

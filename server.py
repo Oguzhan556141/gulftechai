@@ -19,10 +19,44 @@ class ProxyHandler(http.server.SimpleHTTPRequestHandler):
         return env
 
     def do_GET(self):
-        if self.path.startswith('/api/gemini'):
+        if self.path.startswith('/api/instagram'):
+            self.handle_instagram()
+        elif self.path.startswith('/api/gemini'):
             self.do_POST()
         else:
             super().do_GET()
+
+    def handle_instagram(self):
+        import re
+        username = 'gulftechtr'
+        result = {"success": False, "username": username}
+        try:
+            url = f"https://i.instagram.com/api/v1/users/web_profile_info/?username={username}"
+            req = urllib.request.Request(url, headers={
+                'User-Agent': 'Instagram 219.0.0.12.117 Android',
+                'X-IG-App-ID': '936619743392459'
+            })
+            with urllib.request.urlopen(req, timeout=5) as res:
+                data = json.loads(res.read().decode('utf-8'))
+                u = data.get('data', {}).get('user', {})
+                if u:
+                    result = {
+                        "success": True,
+                        "source": "instagram_api",
+                        "username": username,
+                        "followers": u.get('edge_followed_by', {}).get('count'),
+                        "following": u.get('edge_follow', {}).get('count'),
+                        "posts": u.get('edge_owner_to_timeline_media', {}).get('count'),
+                        "bio": u.get('biography', '')
+                    }
+        except Exception:
+            pass
+
+        self.send_response(200)
+        self.send_header('Content-Type', 'application/json')
+        self.send_header('Access-Control-Allow-Origin', '*')
+        self.end_headers()
+        self.wfile.write(json.dumps(result).encode())
 
     def do_POST(self):
         if self.path == '/api/chat':
